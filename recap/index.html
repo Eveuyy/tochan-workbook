@@ -131,6 +131,13 @@ ul.recap-list.plain li::before{content:"–";color:var(--pink-deep);font-weight:
   background:var(--peach);border:1.6px dashed var(--peach-deep);border-radius:20px;
   padding:clamp(14px,3vw,22px);margin:20px 0;font-weight:600;line-height:1.8;
 }
+.agent-link-box{
+  background:var(--lilac);border:1.6px solid rgba(124,93,166,.3);border-radius:20px;
+  padding:clamp(14px,3vw,20px);margin:20px 0;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
+}
+.agent-link-text{display:flex;gap:10px;align-items:flex-start;flex:1 1 200px;line-height:1.7;font-weight:400;}
+.agent-link-text .icon{stroke:var(--lilac-deep);margin-top:2px;}
+.agent-link-box .btn-primary{background:var(--lilac-deep);flex:none;}
 .callout .label{font-weight:700;color:var(--peach-deep);font-size:.85rem;display:block;margin-bottom:6px;letter-spacing:.02em;}
 
 .split-bars{display:flex;flex-direction:column;gap:12px;margin:18px 0;}
@@ -233,7 +240,7 @@ const RECAP = [
       'מכל בעיה כזו כבר אפשר לצאת עם כמה רעיונות לסרטון.'
     ]},
     {b:'callout', label:'לזכור', text:'מותר לגמרי לקחת השראה מיוצרים אחרים — אבל ההשראה הכי טובה מגיעה מהחיים שלכם עצמכם: קשיים, עבודה, סיטואציות יומיומיות. כל חוויה היא תוכן פוטנציאלי.'},
-    {b:'p', text:'לעזרה בסיעור מוחות יש גם סוכן AI ייעודי (הלינק בתיאור השיעור) — הוא לא אמור לחשוב במקומכם, אלא לעזור לכם לפתוח את הראש עד שתתחילו לחשוב כמו יוצרים בעצמכם.'}
+    {b:'agentLink', text:'לעזרה בסיעור מוחות והעמקת רעיונות — לא כדי לחשוב במקומכם, אלא כדי לעזור לכם לפתוח את הראש עד שתתחילו לחשוב כמו יוצרים בעצמכם.', cta:'לפתיחת סוכן הרעיונות', url:'https://chatgpt.com/g/g-6a4b400991b08191a699b42d4dd9884b-mptkh-hr-yvnvt'}
   ],
   recap:'משימת הפרק: תרגיל השמש נמצא בחוברת העבודה שלכם, מוכן למילוי.'
 },
@@ -487,6 +494,10 @@ function renderBlock(b){
     case 'twoCol': return twoCol(b.cards);
     case 'p': return `<p style="margin-bottom:16px;line-height:1.8;">${b.text}</p>`;
     case 'html': return b.html;
+    case 'agentLink': return `<div class="agent-link-box">
+      <div class="agent-link-text">${icon('bulb')}<div>${b.text}</div></div>
+      <a class="btn btn-primary" href="${b.url}" target="_blank" rel="noopener noreferrer">${b.cta||'פתיחת הסוכן'} ↗</a>
+    </div>`;
     default: return '';
   }
 }

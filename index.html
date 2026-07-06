@@ -251,6 +251,16 @@ input[type=text].input:focus, textarea.input:focus{border-color:var(--pink-deep)
 .example-title{font-weight:700;color:var(--peach-deep);margin-bottom:10px;font-size:.95rem;}
 .example-text{white-space:pre-line;line-height:1.85;}
 
+/* AI agent link box */
+.agent-link-box{
+  background:var(--lilac);border:1.6px solid rgba(124,93,166,.3);border-radius:20px;
+  padding:clamp(16px,3vw,22px);margin:22px 0;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;
+}
+.agent-link-text{display:flex;gap:12px;align-items:flex-start;flex:1 1 220px;line-height:1.7;}
+.agent-link-text .icon{stroke:var(--lilac-deep);margin-top:2px;}
+.agent-link-box .btn-primary{background:var(--lilac-deep);flex:none;}
+.agent-link-box .btn-primary:hover{box-shadow:0 4px 14px rgba(124,93,166,.35);}
+
 /* rating scale */
 .rating-row{display:flex;gap:8px;flex-wrap:wrap;}
 .rating-btn{
@@ -463,6 +473,7 @@ const WORKBOOK = [
   intro:'הרבה אנשים נתקעים כי הם חושבים שאין להם על מה לדבר.<br>התרגיל הזה עוזר לפתוח את הראש ולהוציא רעיונות מתוך העולם שלכם, בלי להסתמך רק על טרנדים או השראה מאחרים.<br>המטרה היא להבין שיש לכם הרבה יותר תוכן ממה שנדמה לכם.',
   blobColors:['var(--peach)','var(--pink)'],
   body:[
+    {b:'agentLink', text:'לא בטוחים מה בדיוק הנישה שלכם? זה שלב בסיסי ולפעמים מבלבל — יש לנו סוכן AI ייעודי שיעזור לכם לחדד ולמצוא נישה מדויקת, לפני שממשיכים לתרגיל.', cta:'לפתיחת סוכן הנישה', url:'https://chatgpt.com/g/g-6a4b4be1f7d0819185e1985e669aa22f-nyshh-vtvkn-mdvyq'},
     {b:'section', text:'במרכז השמש כתבו את הנישה / התחום שלכם. בלי לחשוב, ממש כל מה שעולה לכם לראש.'},
     {b:'sun', centerId:'t4_field', centerLabel:'התחום שלי:', rayIds:Array.from({length:10},(_,i)=>`t4_assoc_${i+1}`)},
     {b:'section', text:'בחרו מילה אחת מהרשימה.'},
@@ -476,7 +487,8 @@ const WORKBOOK = [
     {b:'text', id:'t4_idea4', label:'רעיון לסרטון 4:'},
     {b:'text', id:'t4_idea5', label:'רעיון לסרטון 5:'},
     {b:'text', id:'t4_firstToFilm', label:'הרעיון שאני מצלמ/ת ראשון:'},
-    {b:'textarea', id:'t4_why', label:'למה דווקא הוא?'}
+    {b:'textarea', id:'t4_why', label:'למה דווקא הוא?'},
+    {b:'agentLink', text:'עשיתם את התרגיל ורוצים להעמיק עוד יותר? יש לנו סוכן AI שאומן במיוחד לעזור לכם לפתח עוד רעיונות ולחשוב על כיוונים לתוכן.', cta:'לפתיחת סוכן הרעיונות', url:'https://chatgpt.com/g/g-6a4b400991b08191a699b42d4dd9884b-mptkh-hr-yvnvt'}
   ]
 },
 
@@ -986,6 +998,10 @@ function renderBlock(b){
     case 'signature': return signatureField(b.id,b.label);
     case 'example': return exampleBox(b.title,b.text);
     case 'closing': return closingText(b.text);
+    case 'agentLink': return `<div class="agent-link-box">
+      <div class="agent-link-text">${icon('bulb')}<div>${b.text}</div></div>
+      <a class="btn btn-primary" href="${b.url}" target="_blank" rel="noopener noreferrer">${b.cta||'פתיחת הסוכן'} ↗</a>
+    </div>`;
     case 'cards': return cardsRow(b.items.map(it=>card(it.title,it.blocks.map(renderBlock))));
     case 'sun': return renderSun(b);
     case 'pause': return renderPause(b.text);

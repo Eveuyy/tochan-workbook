@@ -185,8 +185,9 @@ img,svg{display:block;max-width:100%;}
 /* ===== curriculum ===== */
 .curr-list{display:flex;flex-direction:column;gap:14px;margin-top:32px;}
 .curr-item{display:flex;gap:18px;align-items:flex-start;background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:18px 22px;}
-.curr-item.biz{border-color:var(--peach-deep);background:linear-gradient(180deg,var(--paper),var(--peach) 220%);}
-.curr-item.biz .curr-num{background:var(--peach);color:var(--peach-deep);}
+.curr-item.biz{border-color:var(--sage-deep);background:var(--sage);}
+.curr-item.biz .curr-num{background:var(--sage-deep);color:#fff;}
+.curr-item.biz p{color:var(--ink);opacity:.82;}
 .curr-num{
   flex:none;width:40px;height:40px;border-radius:50%;background:var(--lilac);color:var(--lilac-deep);
   display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.05rem;
@@ -194,23 +195,10 @@ img,svg{display:block;max-width:100%;}
 .curr-item h3{font-size:1.05rem;margin-bottom:4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .curr-item p{color:var(--ink-soft);font-size:.95rem;}
 .curr-divider{
-  display:flex;align-items:center;gap:12px;background:var(--peach);border-radius:16px;
-  padding:16px 20px;margin:6px 0;font-weight:700;color:var(--peach-deep);
+  display:flex;align-items:center;gap:12px;background:var(--sage-deep);border-radius:16px;
+  padding:16px 20px;margin:6px 0;font-weight:700;color:#fff;
 }
-.curr-divider .icon{stroke:var(--peach-deep);flex:none;}
-
-.guest-bonus-card{
-  display:flex;gap:18px;align-items:flex-start;background:var(--sage);border:1.5px dashed var(--sage-deep);
-  border-radius:18px;padding:20px 22px;margin-top:4px;
-}
-.guest-bonus-badge{
-  flex:none;width:44px;height:44px;border-radius:50%;background:var(--paper);
-  display:flex;align-items:center;justify-content:center;font-size:1.1rem;gap:2px;
-}
-.guest-bonus-badge .icon{width:18px;height:18px;stroke:var(--sage-deep);}
-.guest-bonus-eyebrow{font-weight:700;font-size:.78rem;color:var(--sage-deep);letter-spacing:.02em;margin-bottom:4px;}
-.guest-bonus-card h3{font-size:1.05rem;margin-bottom:4px;}
-.guest-bonus-card p{color:var(--ink-soft);font-size:.95rem;}
+.curr-divider .icon{stroke:#fff;flex:none;}
 
 /* ===== perks (workbook / AI agents / community / updates) ===== */
 .curr-extra{
@@ -661,15 +649,11 @@ function renderCurriculum(){
   let html = CURRICULUM.map((c,i)=>curriculumItemHTML(c,i+1,false)).join('');
   html += `<div class="curr-divider">${icon('rocket')}<span>${BUSINESS_DIVIDER}</span></div>`;
   html += BUSINESS_CURRICULUM.map((c,i)=>curriculumItemHTML(c,CURRICULUM.length+i+1,true)).join('');
-  html += `
-    <div class="guest-bonus-card">
-      <div class="guest-bonus-badge">🎁 ${icon('heart')}</div>
-      <div>
-        <div class="guest-bonus-eyebrow">${GUEST_BONUS.guest}</div>
-        <h3>${GUEST_BONUS.title}</h3>
-        <p>${GUEST_BONUS.text}</p>
-      </div>
-    </div>`;
+  html += curriculumItemHTML(
+    {title:`${GUEST_BONUS.title} (${GUEST_BONUS.guest})`, text:GUEST_BONUS.text},
+    CURRICULUM.length+BUSINESS_CURRICULUM.length+1,
+    true
+  );
   el.innerHTML = html;
 
   document.getElementById('currExtra').innerHTML = CURR_EXTRAS.map(c=>`

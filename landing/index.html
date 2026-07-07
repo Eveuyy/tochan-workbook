@@ -184,24 +184,40 @@ img,svg{display:block;max-width:100%;}
 /* ===== curriculum ===== */
 .curr-list{display:flex;flex-direction:column;gap:14px;margin-top:32px;}
 .curr-item{display:flex;gap:18px;align-items:flex-start;background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:18px 22px;}
+.curr-item.bonus{border-color:var(--lilac-deep);background:linear-gradient(180deg,var(--paper),var(--lilac) 220%);}
 .curr-num{
   flex:none;width:40px;height:40px;border-radius:50%;background:var(--lilac);color:var(--lilac-deep);
   display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.05rem;
 }
-.curr-item h3{font-size:1.05rem;margin-bottom:4px;}
+.curr-item h3{font-size:1.05rem;margin-bottom:4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .curr-item p{color:var(--ink-soft);font-size:.95rem;}
-.curr-extra{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;}
-.curr-chip{
-  display:flex;align-items:center;gap:10px;background:var(--sage);border-radius:14px;padding:12px 18px;
-  font-weight:600;font-size:.92rem;
+.curr-bonus-tag{
+  background:var(--lilac-deep);color:#fff;font-size:.7rem;font-weight:700;padding:3px 10px;
+  border-radius:99px;letter-spacing:.02em;
 }
-.curr-chip .icon{stroke:var(--sage-deep);}
+.curr-divider{
+  display:flex;align-items:center;gap:12px;background:var(--lilac);border-radius:16px;
+  padding:16px 20px;margin:6px 0;font-weight:700;color:var(--lilac-deep);
+}
+.curr-divider .icon{stroke:var(--lilac-deep);flex:none;}
 
-/* ===== bonus teaser ===== */
-.bonus{background:var(--lilac);border-radius:32px;}
-.bonus-inner{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;}
-.bonus-text{flex:1 1 320px;}
-.bonus-text .icon{stroke:var(--lilac-deep);}
+/* ===== perks (workbook / AI agents / community / updates) ===== */
+.curr-extra{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:22px 16px;
+  margin-top:40px;text-align:center;
+}
+.perk-badge{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.perk-circle{
+  width:74px;height:74px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 12px 26px var(--shadow);
+}
+.perk-circle .icon{width:32px;height:32px;stroke:#fff;}
+.perk-circle.pink{background:linear-gradient(145deg,var(--pink-deep),var(--pink));}
+.perk-circle.lilac{background:linear-gradient(145deg,var(--lilac-deep),var(--lilac));}
+.perk-circle.sage{background:linear-gradient(145deg,var(--sage-deep),var(--sage));}
+.perk-circle.peach{background:linear-gradient(145deg,var(--peach-deep),var(--peach));}
+.perk-title{font-weight:700;font-size:.95rem;max-width:16ch;}
+.perk-text{font-size:.82rem;color:var(--ink-soft);max-width:20ch;line-height:1.6;}
 
 /* ===== pricing ===== */
 .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:36px;}
@@ -416,18 +432,6 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
-<section class="section bonus" id="bonus">
-  <div class="wrap">
-    <div class="bonus-inner">
-      <div class="bonus-text">
-        <h2 class="section-title">בעלי עסק? יש לכם עוד 5 פרקים</h2>
-        <p class="section-sub">אם התוכן שלכם צריך גם להכניס לקוחות, יש לכם עוד 5 פרקי בונוס שילמדו איך להפוך את העמוד שלכם לכלי שמביא לידים ומכירות — לא רק לייקים.</p>
-      </div>
-      <a class="btn btn-primary btn-lg" href="#pricing">לפרטים על מסלול העסקים</a>
-    </div>
-  </div>
-</section>
-
 <section class="section" id="pricing">
   <div class="wrap">
     <span class="section-eyebrow">ההשקעה</span>
@@ -515,6 +519,7 @@ const ICONS = {
   book:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c3-1.2 6-1.2 8 0v14c-2-1.2-5-1.2-8 0z"/><path d="M20 5c-3-1.2-6-1.2-8 0v14c2-1.2 5-1.2 8 0z"/></svg>',
   bot:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 8V4M9 4h6"/><circle cx="9" cy="13.5" r="1.3"/><circle cx="15" cy="13.5" r="1.3"/></svg>',
   chat:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12.5h5"/></svg>',
+  refresh:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0113.66-5.66L20 8M4 12a8 8 0 0013.66 5.66L20 16"/><path d="M20 4v4h-4M4 20v-4h4"/></svg>',
   rocket:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 2 5 6 4.5 11.5L12 18l-4.5-4.5C7 8 9 4 12 2z"/><path d="M9 15l-3 1 1-3M15 15l3 1-1-3"/><circle cx="12" cy="9.5" r="1.6"/></svg>',
   chevron:'<svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>',
 };
@@ -546,21 +551,32 @@ const MYTH_ROWS = [
 ];
 
 const CURRICULUM = [
-  {title:'איך אנשים באמת צורכים תוכן', text:'למה אנשים מתחברים לתוכן מסוים, ואיך זה משנה את מה שאתם יוצרים.'},
-  {title:'מה זה הוק', text:'ארבעה סוגי הוקים שגורמים לצופה לעצור, ולא להמשיך לגלול.'},
-  {title:'איך למצוא רעיונות לתוכן', text:'תרגיל השמש, וסוכן AI ייעודי לסיעור מוחות שמתחיל איתכם לחשוב כמו יוצרים.'},
-  {title:'איך עובד מבנה נכון של סרטון', text:'התחלה, אמצע וסוף — איך בונים סרטון שמחזיק קשב מההתחלה ועד הסוף.'},
-  {title:'עמידה מול מצלמה', text:'6 טיפים שישחררו אתכם מול העדשה, גם אם זו הפעם הראשונה.'},
-  {title:'צילום למתחילים', text:'תאורה, זווית וסאונד — הכול בלי שום ציוד מקצועי, רק עם מה שיש לכם בבית.'},
-  {title:'עריכה למתחילים (CapCut)', text:'מהחומר הגולמי ועד סרטון ערוך ומוכן להעלאה, שלב אחרי שלב.'},
-  {title:'אלגוריתם למתחילים', text:'איך זה באמת עובד, ולמה הוא ממש לא האויב שחשבתם.'}
+  {title:'איך אנשים באמת צורכים תוכן', text:'כדי שלא תשקיעו מאמץ בתוכן שאף אחד לא עוצר עליו — מבינים קודם כול מה גורם לצופה לעצור ולהקשיב.'},
+  {title:'מה זה הוק', text:'פותרים את הפחד מ"אף אחד לא צופה בי" — לומדים בדיוק מה גורם לצופה לעצור בשניות הראשונות, במקום לגלול הלאה.'},
+  {title:'איך למצוא רעיונות לתוכן', text:'תקועים על "אין לי על מה לדבר"? התרגיל וסוכן ה-AI האישי כאן בדיוק בשביל זה, כדי שלא תישארו בלי רעיונות אף פעם.'},
+  {title:'איך עובד מבנה נכון של סרטון', text:'כדי שהסרטונים שלכם לא ירגישו מבולגנים או חסרי כיוון — לומדים לבנות התחלה, אמצע וסוף שמחזיקים קשב עד הסוף.'},
+  {title:'עמידה מול מצלמה', text:'המצלמה מקפיאה אתכם? 6 טיפים פרקטיים שישחררו אתכם, גם אם זו הפעם הראשונה שאתם מדברים אליה.'},
+  {title:'צילום למתחילים', text:'כדי ש"אין לי ציוד מקצועי" לא יעצור אתכם יותר — מראים בדיוק איך לצלם משהו שנראה טוב עם מה שכבר יש לכם בבית.'},
+  {title:'עריכה למתחילים (CapCut)', text:'עריכה מרגישה לכם מסובכת מדי? לומדים שלב אחר שלב איך להפוך חומר גולמי לסרטון מוכן, גם בלי שום ניסיון קודם.'},
+  {title:'אלגוריתם למתחילים', text:'כדי שלא תרגישו שהאלגוריתם "נגדכם" — מבינים סוף סוף איך הוא באמת עובד, ולמה חוסר יציבות בחשיפות זה נורמלי לגמרי.'}
+];
+
+const BUSINESS_DIVIDER = 'בעלי עסק? יש לכם עוד חמישה פרקי אקסטרה שמכוונים בדיוק למטרות העסקיות שלכם';
+
+const BUSINESS_CURRICULUM = [
+  {title:'למה חשוב לתת פנים לעסק שלכם', text:'נמנעים מלהיראות כי "זה לא מקצועי מספיק"? מבינים למה החיבור האישי שלכם שווה יותר כסף מכל עיצוב מושקע.'},
+  {title:'איך עמוד תוכן טוב מכניס יותר כסף', text:'כדי שהעמוד שלכם יעבוד בשבילכם במקום שתרוצו אחרי לקוחות — לומדים איך להפוך אותו לסוכן המכירות הכי טוב שלכם.'},
+  {title:'למה ויראליות לא בהכרח מכניסה כסף', text:'רדפתם אחרי צפיות ולא ראיתם לקוחות? מבינים סוף סוף את ההבדל בין תוכן שמבדר לתוכן שמוכר.'},
+  {title:'איזה סוג תוכן צריך להיות בעמוד שלכם', text:'כדי שהעמוד שלכם ירגיש שלם ולא מקרי — מקבלים נוסחה ברורה (35/35/20/10) לאיזה תוכן לפרסם ומתי.'},
+  {title:'אתם עסק, לא משפיענים', text:'שורפים שעות ברשתות בלי לראות תוצאה? לומדים לעבוד חכם, לא הרבה, ולתת לתוכן לעבוד בשבילכם.'}
 ];
 
 const CURR_EXTRAS = [
-  {icon:'book', text:'חוברת עבודה אינטראקטיבית שמלווה ועוזרת לכם להשתפר לאורך כל הדרך'},
-  {icon:'bot', text:'2 סוכני AI זמינים תמיד, שכל מטרתם לעזור לכם להשתפר ולהגיע למטרות שלכם'},
-  {icon:'chat', text:'קהילת וואטסאפ תומכת לשאלות, עזרה ותמיכה לאורך כל הדרך'},
-  {icon:'rocket', text:'בסיום: סרטון ראשון באוויר, לא רק עוד ידע'}
+  {icon:'book', color:'pink', title:'חוברת עבודה אינטראקטיבית', text:'מלווה ועוזרת לכם להשתפר לאורך כל הדרך'},
+  {icon:'bot', color:'lilac', title:'2 סוכני AI זמינים תמיד', text:'שכל מטרתם לעזור לכם להשתפר ולהגיע למטרות שלכם'},
+  {icon:'chat', color:'sage', title:'קהילת וואטסאפ תומכת', text:'לשאלות, עזרה ותמיכה לאורך כל הדרך'},
+  {icon:'refresh', color:'peach', title:'הקורס מתעדכן כל הזמן', text:'כל שדרוג ותוכן חדש פתוח לכם, ללא הגבלת זמן'},
+  {icon:'rocket', color:'pink', title:'סרטון ראשון באוויר', text:'בסיום הקורס — לא רק עוד ידע, אלא תוצר אמיתי'}
 ];
 
 const FAQ_ITEMS = [
@@ -605,16 +621,26 @@ function renderMyth(){
   `).join('');
 }
 
+function curriculumItemHTML(c,num,bonus){
+  return `
+    <div class="curr-item${bonus?' bonus':''}">
+      <div class="curr-num num">${num}</div>
+      <div><h3>${c.title}${bonus?'<span class="curr-bonus-tag">בונוס עסקים</span>':''}</h3><p>${c.text}</p></div>
+    </div>`;
+}
 function renderCurriculum(){
   const el = document.getElementById('currList');
-  el.innerHTML = CURRICULUM.map((c,i)=>`
-    <div class="curr-item">
-      <div class="curr-num num">${i+1}</div>
-      <div><h3>${c.title}</h3><p>${c.text}</p></div>
-    </div>
-  `).join('');
+  let html = CURRICULUM.map((c,i)=>curriculumItemHTML(c,i+1,false)).join('');
+  html += `<div class="curr-divider">${icon('rocket')}<span>${BUSINESS_DIVIDER}</span></div>`;
+  html += BUSINESS_CURRICULUM.map((c,i)=>curriculumItemHTML(c,CURRICULUM.length+i+1,true)).join('');
+  el.innerHTML = html;
+
   document.getElementById('currExtra').innerHTML = CURR_EXTRAS.map(c=>`
-    <div class="curr-chip">${icon(c.icon)}<span>${c.text}</span></div>
+    <div class="perk-badge">
+      <div class="perk-circle ${c.color}">${icon(c.icon)}</div>
+      <div class="perk-title">${c.title}</div>
+      <div class="perk-text">${c.text}</div>
+    </div>
   `).join('');
 }
 
@@ -629,7 +655,7 @@ function renderPricing(){
         <li>${icon('check')}<span>חוברת עבודה אינטראקטיבית שעוזרת לכם להשתפר לאורך כל הדרך</span></li>
         <li>${icon('check')}<span>2 סוכני AI (נישה + רעיונות) שכל מטרתם לעזור לכם להגיע למטרות שלכם</span></li>
         <li>${icon('check')}<span>קהילת וואטסאפ תומכת לשאלות ועזרה</span></li>
-        <li>${icon('check')}<span>גישה מלאה, ללא הגבלת זמן</span></li>
+        <li>${icon('check')}<span>גישה מלאה, ללא הגבלת זמן — כולל כל עדכון ושדרוג עתידי לקורס</span></li>
       </ul>
       <a class="btn btn-primary" href="${PAYMENT_LINKS.regular}">אני רוצה להצטרף</a>
     </div>
@@ -642,7 +668,7 @@ function renderPricing(){
         <li>${icon('check')}<span>+ 5 פרקי בונוס לבעלי עסקים</span></li>
         <li>${icon('check')}<span>איך להפוך את התוכן שלכם לכלי שמביא לידים ומכירות</span></li>
         <li>${icon('check')}<span>קהילת וואטסאפ תומכת לשאלות ועזרה</span></li>
-        <li>${icon('check')}<span>גישה מלאה, ללא הגבלת זמן</span></li>
+        <li>${icon('check')}<span>גישה מלאה, ללא הגבלת זמן — כולל כל עדכון ושדרוג עתידי לקורס</span></li>
       </ul>
       <a class="btn btn-primary" href="${PAYMENT_LINKS.business}">אני רוצה להצטרף</a>
     </div>

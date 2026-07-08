@@ -343,6 +343,41 @@ html.a11y-contrast{filter:contrast(1.15) saturate(1.1);}
 html.a11y-contrast body{background:#fff;color:#000;}
 html.a11y-underline a{text-decoration:underline !important;}
 
+/* ===== talking-character "future self" section ===== */
+.talk-stage{display:flex;gap:36px;align-items:flex-start;margin-top:20px;}
+@media (max-width:760px){.talk-stage{flex-direction:column;}}
+.talk-figure{flex:none;width:220px;position:sticky;top:110px;}
+@media (max-width:760px){.talk-figure{position:static;width:150px;margin:0 auto 8px;}}
+.talk-figure svg{width:100%;height:auto;display:block;}
+.talk-mouth{transform-origin:120px 138px;animation:talkMouth 1.15s ease-in-out infinite;}
+@media (prefers-reduced-motion:reduce){.talk-mouth{animation:none;}}
+@keyframes talkMouth{0%,100%{transform:scaleY(.45);}50%{transform:scaleY(1);}}
+.talk-wave{animation:talkWave 1.6s ease-in-out infinite;}
+.talk-wave.w2{animation-delay:.35s;}
+@keyframes talkWave{0%,100%{opacity:.15;}50%{opacity:.85;}}
+@media (prefers-reduced-motion:reduce){.talk-wave{animation:none;opacity:.5;}}
+.talk-bubbles{flex:1;min-width:0;display:flex;flex-direction:column;gap:20px;}
+.talk-bubble{
+  position:relative;background:var(--paper);border:1.5px solid var(--line);border-radius:20px;
+  padding:18px 24px;font-size:1.02rem;line-height:1.85;opacity:0;transform:translateY(18px);
+  transition:opacity .6s ease,transform .6s ease;
+}
+.talk-bubble.in-view{opacity:1;transform:translateY(0);}
+.talk-bubble::before{
+  content:'';position:absolute;top:24px;right:-11px;width:0;height:0;
+  border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:11px solid var(--line);
+}
+.talk-bubble::after{
+  content:'';position:absolute;top:24px;right:-9px;width:0;height:0;
+  border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:9px solid var(--paper);
+}
+@media (max-width:760px){
+  .talk-bubble::before,.talk-bubble::after{display:none;}
+}
+.talk-bubble strong{color:var(--pink-deep);}
+.talk-bubble.final{border-color:var(--sage-deep);background:linear-gradient(180deg,var(--paper),var(--sage) 260%);}
+.talk-bubble.final strong{color:var(--sage-deep);}
+
 /* sticky mobile CTA */
 .sticky-cta{
   position:fixed;bottom:0;left:0;right:0;z-index:70;background:var(--paper);border-top:1.5px solid var(--line);
@@ -468,6 +503,30 @@ html.a11y-underline a{text-decoration:underline !important;}
     <div class="curr-list" id="currList"></div>
     <h3 class="perks-title">מה עוד תקבלו בקורס?</h3>
     <div class="curr-extra" id="currExtra"></div>
+  </div>
+</section>
+
+<section class="section" id="futureSelf">
+  <div class="wrap">
+    <span class="section-eyebrow">מה יקרה לכם אחרי הקורס?</span>
+    <h2 class="section-title">אין יותר תירוצים</h2>
+    <div class="talk-stage">
+      <div class="talk-figure" aria-hidden="true">
+        <svg viewBox="0 0 240 280" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="150" r="118" fill="var(--lilac)" opacity=".45"/>
+          <path d="M30,280 Q30,182 120,172 Q210,182 210,280 Z" fill="var(--sage)"/>
+          <circle cx="120" cy="108" r="58" fill="var(--peach)" stroke="var(--peach-deep)" stroke-width="4"/>
+          <circle cx="98" cy="104" r="6.5" fill="var(--ink)"/>
+          <circle cx="142" cy="104" r="6.5" fill="var(--ink)"/>
+          <circle cx="84" cy="122" r="10" fill="var(--pink)" opacity=".55"/>
+          <circle cx="156" cy="122" r="10" fill="var(--pink)" opacity=".55"/>
+          <ellipse class="talk-mouth" cx="120" cy="138" rx="16" ry="8" fill="var(--pink-deep)"/>
+          <path class="talk-wave w1" d="M68,132 q-10,6 0,16" stroke="var(--peach-deep)" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path class="talk-wave w2" d="M56,126 q-17,12 0,28" stroke="var(--peach-deep)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="talk-bubbles" id="talkBubbles"></div>
+    </div>
   </div>
 </section>
 
@@ -636,6 +695,16 @@ const FAQ_ITEMS = [
   {q:'אפשר גם ליווי אישי מעבר לקורס?', a:'כן — יש אפשרות (בנפרד מהקורס) לשיחת פיצוח אישית 1:1, שבה מדייקים יחד את הנישה, קהל היעד והאסטרטגיה שלכם. אפשר לשאול על זה אחרי ההרשמה.'}
 ];
 
+const TALK_LINES = [
+  'עד עכשיו תירצתם. <strong>"אני לא מישהו שיודע להיות מול מצלמה."</strong> <strong>"אני קופא, לא יודע מה להגיד."</strong> <strong>"אין לי ציוד, אין לי תאורה."</strong> <strong>"אני לא טכנולוגי, לא יודע לערוך."</strong>',
+  'אני אומרת לכם עכשיו — אחרי הקורס הזה, כבר לא יהיו לכם תירוצים.',
+  'לא <strong>"אני קופא מול המצלמה"</strong> — כי כבר תתרגלו לזה, טייק אחרי טייק, עד שזה יפסיק להיות מפחיד.',
+  'לא <strong>"אני לא יודע מה להגיד"</strong> — כי כבר תדעו בדיוק איך לבנות סרטון מההתחלה עד הסוף.',
+  'לא <strong>"אין לי ציוד"</strong> — כי כבר הוכחתם לעצמכם שהטלפון שבכיס מספיק. לא <strong>"אני לא טכנולוגי"</strong> — כי כבר ערכתם סרטון שלם, לבד, ב-CapCut.',
+  'אתם יכולים להמשיך לתרץ כמו עד היום. או שתתחילו עכשיו — ותהיו כבר בעבר של עצמכם.',
+  'כי בסוף הדרך הזו יהיה לכם ממש הכל כדי להתחיל: <strong>ביטחון</strong>, ידיעה מדויקת מה לעשות, וסרטון ראשון שכבר מוכן. הזמן להשמיע סוף סוף את הקול שלכם — או לקדם איתו את העסק שלכם — פשוט מגיע.'
+];
+
 /* ===== render ===== */
 function renderPhone(){
   const dotsEl = document.getElementById('phoneDots');
@@ -771,6 +840,24 @@ function wireScrollReveal(){
   items.forEach(el=>io.observe(el));
 }
 
+function renderTalkFuture(){
+  const el = document.getElementById('talkBubbles');
+  el.innerHTML = TALK_LINES.map((line,i)=>
+    `<p class="talk-bubble${i===TALK_LINES.length-1?' final':''}" style="transition-delay:${Math.min(i*80,240)}ms">${line}</p>`
+  ).join('');
+}
+
+function wireTalkReveal(){
+  const items = document.querySelectorAll('.talk-bubble');
+  if(!('IntersectionObserver' in window)){ items.forEach(el=>el.classList.add('in-view')); return; }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){ entry.target.classList.add('in-view'); io.unobserve(entry.target); }
+    });
+  }, {threshold:.35});
+  items.forEach(el=>io.observe(el));
+}
+
 function wireStickyCta(){
   const bar = document.getElementById('stickyCta');
   const hero = document.querySelector('.hero');
@@ -886,9 +973,11 @@ function boot(){
   renderPain();
   renderMyth();
   renderCurriculum();
+  renderTalkFuture();
   renderPricing();
   renderFaq();
   wireScrollReveal();
+  wireTalkReveal();
   wireStickyCta();
   wireModals();
   wireA11y();

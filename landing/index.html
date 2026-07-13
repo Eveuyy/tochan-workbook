@@ -26,19 +26,22 @@
   --line:#EAD9C2; --pink:#F6D7E1; --pink-deep:#C15C82; --peach:#FBE0BE;
   --peach-deep:#C97A34; --sage:#D9E6D0; --sage-deep:#4C7A5B;
   --lilac:#E7DDF3; --lilac-deep:#7C5DA6; --shadow:rgba(120,72,48,.14);
+  --shadow-tight:rgba(120,72,48,.16); --shadow-soft:rgba(120,72,48,.10);
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
   :root{ --cream:#FBF3E7; --paper:#FFFDF8; --ink:#2E2620; --ink-soft:#7A6C5D;
     --line:#EAD9C2; --pink:#F6D7E1; --pink-deep:#C15C82; --peach:#FBE0BE;
     --peach-deep:#C97A34; --sage:#D9E6D0; --sage-deep:#4C7A5B;
-    --lilac:#E7DDF3; --lilac-deep:#7C5DA6; --shadow:rgba(120,72,48,.14); }
+    --lilac:#E7DDF3; --lilac-deep:#7C5DA6; --shadow:rgba(120,72,48,.14);
+    --shadow-tight:rgba(120,72,48,.16); --shadow-soft:rgba(120,72,48,.10); }
 }
 :root[data-theme="dark"]{
   --cream:#FBF3E7; --paper:#FFFDF8; --ink:#2E2620; --ink-soft:#7A6C5D;
   --line:#EAD9C2; --pink:#F6D7E1; --pink-deep:#C15C82; --peach:#FBE0BE;
   --peach-deep:#C97A34; --sage:#D9E6D0; --sage-deep:#4C7A5B;
   --lilac:#E7DDF3; --lilac-deep:#7C5DA6; --shadow:rgba(120,72,48,.14);
+  --shadow-tight:rgba(120,72,48,.16); --shadow-soft:rgba(120,72,48,.10);
 }
 
 *{box-sizing:border-box;}
@@ -56,7 +59,8 @@ img,svg{display:block;max-width:100%;}
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
 .num{font-family:'Fredoka','Rubik',sans-serif;font-variant-numeric:tabular-nums;}
 .wrap{max-width:1000px;margin:0 auto;padding-inline:clamp(20px,5vw,40px);}
-.section{padding-block:clamp(56px,9vw,110px);position:relative;}
+.section{padding-block:clamp(56px,9vw,110px);position:relative;overflow:hidden;}
+.section > .wrap{position:relative;z-index:1;}
 
 /* buttons */
 .btn{
@@ -65,13 +69,14 @@ img,svg{display:block;max-width:100%;}
   transition:transform .15s ease, box-shadow .15s ease;
 }
 .btn-lg{padding:18px 36px;font-size:1.15rem;}
-.btn-primary{background:var(--pink-deep);color:#fff;box-shadow:0 10px 26px rgba(193,92,130,.38);}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(193,92,130,.46);}
+.btn-primary{background:var(--pink-deep);color:#fff;box-shadow:0 2px 5px rgba(120,40,64,.32), 0 14px 30px rgba(193,92,130,.34);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 3px 7px rgba(120,40,64,.36), 0 18px 38px rgba(193,92,130,.4);}
 .btn-primary:active{transform:translateY(0);}
 .btn-ghost{background:transparent;color:var(--ink);border:2px solid var(--line);padding:16px 34px;font-size:1rem;}
 
 /* blobs */
 .blob{position:absolute;border-radius:44% 56% 62% 38%/48% 42% 58% 52%;opacity:.55;z-index:0;pointer-events:none;filter:blur(1px);}
+.blob.parallax{will-change:transform;}
 .section > .wrap{position:relative;z-index:1;}
 
 /* ===== nav ===== */
@@ -82,7 +87,8 @@ img,svg{display:block;max-width:100%;}
 .nav .btn{padding:10px 20px;font-size:.9rem;}
 
 /* ===== hero ===== */
-.hero{padding-block:clamp(48px,8vw,88px) clamp(40px,7vw,70px);}
+.hero{padding-block:clamp(48px,8vw,88px) clamp(40px,7vw,70px);position:relative;overflow:hidden;}
+.hero .wrap{position:relative;z-index:1;}
 .hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(32px,5vw,64px);align-items:center;}
 @media (max-width:820px){.hero-grid{grid-template-columns:1fr;}}
 .eyebrow{
@@ -96,11 +102,16 @@ img,svg{display:block;max-width:100%;}
 .hero-note{margin-top:14px;font-size:.88rem;color:var(--ink-soft);}
 
 /* phone mockup */
-.phone-stage{display:flex;justify-content:center;}
+.phone-stage{display:flex;justify-content:center;perspective:1500px;}
 .phone{
   position:relative;width:min(280px,72vw);aspect-ratio:9/18.5;background:var(--ink);
-  border-radius:44px;padding:14px;box-shadow:0 30px 60px var(--shadow), 0 0 0 3px rgba(46,38,32,.06);
+  border-radius:44px;padding:14px;box-shadow:0 4px 10px var(--shadow-tight), 0 34px 68px var(--shadow-soft), 0 0 0 3px rgba(46,38,32,.06);
+  transform-style:preserve-3d;transform:rotateY(-12deg) rotateX(6deg) rotateZ(-1.5deg);
+  transition:transform .5s ease;
 }
+.phone-stage:hover .phone{transform:rotateY(-6deg) rotateX(3deg) rotateZ(-.5deg);}
+@media (max-width:820px){.phone{transform:rotateY(-7deg) rotateX(4deg) rotateZ(-1deg);}}
+@media (prefers-reduced-motion:reduce){.phone{transform:none !important;transition:none;}}
 .phone::before{
   content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);
   width:36%;height:22px;background:var(--ink);border-radius:0 0 16px 16px;z-index:3;
@@ -121,7 +132,8 @@ img,svg{display:block;max-width:100%;}
 .phone-dot.active{background:var(--ink);}
 .phone-badge{
   position:absolute;bottom:-16px;right:-10px;background:var(--paper);border-radius:14px;padding:10px 16px;
-  box-shadow:0 10px 24px var(--shadow);font-weight:700;font-size:.85rem;display:flex;align-items:center;gap:8px;
+  box-shadow:0 2px 6px var(--shadow-tight), 0 14px 28px var(--shadow-soft);font-weight:700;font-size:.85rem;display:flex;align-items:center;gap:8px;
+  transform:translateZ(46px);
 }
 .phone-badge .icon{stroke:var(--peach-deep);}
 
@@ -173,7 +185,7 @@ img,svg{display:block;max-width:100%;}
 .story-social{display:flex;gap:16px;margin:2px 0 28px;}
 .story-social-btn{
   width:58px;height:58px;border-radius:18px;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 12px 26px var(--shadow);transition:transform .15s ease;
+  box-shadow:0 3px 8px var(--shadow-tight), 0 16px 32px var(--shadow-soft);transition:transform .15s ease, box-shadow .15s ease;
 }
 .story-social-btn:hover{transform:translateY(-3px) scale(1.05);}
 .story-social-btn .icon{width:28px;height:28px;stroke:#fff;}
@@ -209,7 +221,7 @@ img,svg{display:block;max-width:100%;}
 .curr-divider-line.rev{background:linear-gradient(90deg,var(--sage-deep),transparent);}
 .curr-divider-badge{
   flex:none;width:68px;height:68px;border-radius:50%;margin:0 14px;background:var(--sage-deep);
-  display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px var(--shadow);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px var(--shadow-tight), 0 18px 36px var(--shadow-soft);
 }
 .curr-divider-badge .icon{width:28px;height:28px;stroke:#fff;}
 .curr-divider-text{font-weight:700;color:var(--sage-deep);font-size:1.1rem;max-width:44ch;}
@@ -223,7 +235,7 @@ img,svg{display:block;max-width:100%;}
 }
 .perk-circle{
   width:74px;height:74px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 12px 26px var(--shadow);flex:none;
+  box-shadow:0 3px 8px var(--shadow-tight), 0 16px 32px var(--shadow-soft);flex:none;
 }
 .perk-circle .icon{width:32px;height:32px;stroke:#fff;}
 .perk-circle.pink{background:linear-gradient(145deg,var(--pink-deep),var(--pink));}
@@ -247,7 +259,7 @@ img,svg{display:block;max-width:100%;}
   background:var(--paper);border:2px solid var(--line);border-radius:26px;padding:clamp(24px,4vw,34px);
   display:flex;flex-direction:column;gap:18px;position:relative;
 }
-.price-card.featured{border-color:var(--pink-deep);box-shadow:0 20px 44px var(--shadow);}
+.price-card.featured{border-color:var(--pink-deep);box-shadow:0 4px 10px var(--shadow-tight), 0 26px 52px var(--shadow-soft);}
 .price-tag{
   position:absolute;top:-14px;right:28px;background:var(--pink-deep);color:#fff;font-weight:700;
   font-size:.8rem;padding:6px 16px;border-radius:99px;
@@ -318,11 +330,11 @@ footer.site-footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padd
 #a11yFab{
   position:fixed;bottom:24px;left:24px;z-index:80;width:52px;height:52px;border-radius:50%;
   background:var(--lilac-deep);color:#fff;border:none;font-size:1.4rem;cursor:pointer;
-  box-shadow:0 10px 26px var(--shadow);
+  box-shadow:0 2px 6px var(--shadow-tight), 0 14px 30px var(--shadow-soft);
 }
 .a11y-panel{
   position:fixed;bottom:86px;left:24px;z-index:80;background:var(--paper);border:1.5px solid var(--line);
-  border-radius:18px;padding:16px;box-shadow:0 16px 40px var(--shadow);display:flex;flex-direction:column;gap:10px;
+  border-radius:18px;padding:16px;box-shadow:0 4px 10px var(--shadow-tight), 0 20px 44px var(--shadow-soft);display:flex;flex-direction:column;gap:10px;
   width:min(240px,80vw);
 }
 .a11y-panel[hidden]{display:none;}
@@ -382,7 +394,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 .sticky-cta{
   position:fixed;bottom:0;left:0;right:0;z-index:70;background:var(--paper);border-top:1.5px solid var(--line);
   padding:12px clamp(16px,4vw,24px);display:none;align-items:center;justify-content:space-between;gap:14px;
-  box-shadow:0 -8px 24px var(--shadow);
+  box-shadow:0 -2px 6px var(--shadow-tight), 0 -12px 30px var(--shadow-soft);
 }
 .sticky-cta.show{display:flex;}
 .sticky-cta .btn{flex:none;padding:12px 22px;font-size:.95rem;}
@@ -400,6 +412,8 @@ html.a11y-underline a{text-decoration:underline !important;}
 </nav>
 
 <section class="hero">
+  <div class="blob parallax" data-depth="18" style="width:220px;height:220px;background:var(--pink);top:-40px;right:-60px;"></div>
+  <div class="blob parallax" data-depth="-14" style="width:170px;height:170px;background:var(--lilac);bottom:-30px;left:2%;"></div>
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow">✨ קורס יצירת תוכן מאפס</span>
@@ -496,6 +510,8 @@ html.a11y-underline a{text-decoration:underline !important;}
 </section>
 
 <section class="section" id="curriculum">
+  <div class="blob parallax" data-depth="16" style="width:250px;height:250px;background:var(--sage);top:0;left:-80px;"></div>
+  <div class="blob parallax" data-depth="-20" style="width:190px;height:190px;background:var(--peach);bottom:6%;right:-50px;"></div>
   <div class="wrap">
     <span class="section-eyebrow">מה מחכה לכם בקורס?</span>
     <h2 class="section-title">8 שיעורים, צעד אחר צעד</h2>
@@ -531,6 +547,8 @@ html.a11y-underline a{text-decoration:underline !important;}
 </section>
 
 <section class="section" id="pricing">
+  <div class="blob parallax" data-depth="18" style="width:230px;height:230px;background:var(--lilac);top:-20px;right:-70px;"></div>
+  <div class="blob parallax" data-depth="-16" style="width:180px;height:180px;background:var(--pink);bottom:-30px;left:-40px;"></div>
   <div class="wrap">
     <span class="section-eyebrow">ההשקעה</span>
     <h2 class="section-title">בחרו את המסלול שלכם</h2>
@@ -547,6 +565,8 @@ html.a11y-underline a{text-decoration:underline !important;}
 </section>
 
 <section class="section closing">
+  <div class="blob parallax" data-depth="20" style="width:260px;height:260px;background:var(--peach);top:-50px;left:50%;margin-left:-260px;"></div>
+  <div class="blob parallax" data-depth="-16" style="width:200px;height:200px;background:var(--sage);bottom:-40px;right:6%;"></div>
   <div class="wrap">
     <h2 class="closing-title">כי לא מרגישים מוכנים ואז מתחילים — מתחילים, והמוכנות תגיע בדרך.</h2>
     <a class="btn btn-primary btn-lg" href="#pricing">אני מתחילה/מתחיל עכשיו</a>
@@ -968,6 +988,27 @@ function wireA11y(){
   apply();
 }
 
+function wireParallax(){
+  const els = Array.from(document.querySelectorAll('.parallax'));
+  if(!els.length) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let ticking = false;
+  function update(){
+    const vh = window.innerHeight;
+    els.forEach(el=>{
+      const depth = parseFloat(el.dataset.depth || '0');
+      const rect = el.getBoundingClientRect();
+      const centerOffset = (rect.top + rect.height/2 - vh/2) / vh;
+      el.style.transform = `translateY(${(centerOffset * depth).toFixed(2)}px)`;
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', ()=>{
+    if(!ticking){ requestAnimationFrame(update); ticking = true; }
+  }, {passive:true});
+  update();
+}
+
 function boot(){
   renderPhone();
   renderPain();
@@ -981,6 +1022,7 @@ function boot(){
   wireStickyCta();
   wireModals();
   wireA11y();
+  wireParallax();
 }
 document.addEventListener('DOMContentLoaded', boot);
 

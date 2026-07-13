@@ -90,26 +90,21 @@ img,svg{display:block;max-width:100%;}
 .nav-brand span{color:var(--purple-deep);}
 .nav .btn{padding:10px 20px;font-size:.9rem;}
 
-/* ===== hero ===== */
-.hero{padding-block:clamp(48px,8vw,88px) clamp(40px,7vw,70px);position:relative;overflow:hidden;}
+/* ===== hero (editorial) ===== */
+.hero{padding-block:clamp(64px,11vw,120px);position:relative;overflow:hidden;}
 .hero .wrap{position:relative;z-index:1;}
-.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(32px,5vw,64px);align-items:center;}
-@media (max-width:820px){.hero-grid{grid-template-columns:1fr;}}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:var(--purple-deep);
-  font-weight:700;font-size:.85rem;letter-spacing:.03em;padding:8px 18px;border-radius:99px;margin-bottom:22px;
+.hero-editorial{max-width:620px;margin:0 auto;text-align:center;}
+.hero-h1{font-size:clamp(1.5rem,3.6vw,2.1rem);line-height:1.55;font-weight:700;margin-bottom:36px;text-wrap:balance;}
+.hero-statement-main{
+  font-size:clamp(2.4rem,6.6vw,3.6rem);line-height:1.25;font-weight:700;color:var(--purple-deep);
+  margin:0 0 60px;text-wrap:balance;
 }
-.hero-title{font-size:clamp(2.3rem,5.2vw,3.5rem);margin-bottom:22px;}
-.hero-title em{
-  font-style:normal;color:var(--purple);display:inline-block;
-  -webkit-text-stroke:2px var(--ink);paint-order:stroke fill;transform:rotate(-1.5deg);
+.hero-body{font-size:clamp(1.05rem,2.1vw,1.2rem);line-height:1.9;color:var(--ink);margin:0 0 28px;max-width:52ch;margin-inline:auto;}
+.hero-stmt{
+  font-size:clamp(1.5rem,3.8vw,2.1rem);line-height:1.45;font-weight:700;color:#8B1E1E;
+  margin:64px auto;max-width:22ch;text-wrap:balance;
 }
-.hero-sub{font-size:clamp(1.05rem,2vw,1.25rem);color:var(--ink-soft);max-width:52ch;margin-bottom:32px;line-height:1.8;}
-.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
-.hero-ctas-arrow{position:relative;}
-.cta-arrow{position:absolute;width:76px;height:auto;bottom:100%;right:30px;margin-bottom:-6px;pointer-events:none;transform:scaleX(-1);}
-@media (max-width:820px){.cta-arrow{display:none;}}
-.hero-note{margin-top:14px;font-size:.88rem;color:var(--ink-soft);}
+.hero-cta-solo{margin-top:52px;}
 
 /* phone mockup */
 .phone-stage{display:flex;justify-content:center;perspective:1500px;}
@@ -422,34 +417,41 @@ html.a11y-underline a{text-decoration:underline !important;}
 </nav>
 
 <section class="hero">
-  <div class="blob parallax" data-depth="18" style="width:220px;height:220px;background:var(--purple);top:-40px;right:-60px;"></div>
-  <div class="blob parallax" data-depth="-14" style="width:170px;height:170px;background:var(--purple);bottom:-30px;left:2%;"></div>
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow">✨ קורס יצירת תוכן מאפס</span>
-      <h1 class="hero-title">רוצים ליצור תוכן כבר המון זמן, אבל <em>תמיד יש תירוץ אחר?</em></h1>
-      <p class="hero-sub">בלי ציוד מקצועי. בלי ידע קודם.</p>
-      <div class="hero-ctas hero-ctas-arrow">
-        <a class="btn btn-primary btn-lg" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
-        <a class="btn btn-ghost" href="#curriculum">מה כלול בקורס?</a>
-        <svg class="cta-arrow" viewBox="0 0 90 60" aria-hidden="true">
-          <path d="M6 6C24 6 60 8 78 26C86 34 84 40 78 44" stroke="var(--purple-deep)" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="7 7"/>
-          <path d="M68 40L78 44L74 33" stroke="var(--purple-deep)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <p class="hero-note">💛 גם אם אין לכם שום ניסיון, שום ציוד, ושום מושג מאיפה מתחילים.</p>
-    </div>
-    <div class="phone-stage">
-      <div>
-        <div class="phone">
-          <div class="phone-screen">
-            <div class="phone-line active" id="phoneLine">טוען…</div>
-            <div class="phone-dots" id="phoneDots"></div>
-          </div>
-        </div>
-        <div class="phone-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13.5" r="3.4"/></svg> רק עם הטלפון שכבר יש לכם בכיס</div>
-      </div>
-    </div>
+  <div class="wrap hero-editorial">
+    <h1 class="hero-h1">אם אתם עדיין מחכים לרגע שבו תרגישו מוכנים ליצור תוכן...</h1>
+    <p class="hero-statement-main">כנראה שהוא לא יגיע.</p>
+
+    <p class="hero-body">גם אני חיכיתי.</p>
+    <p class="hero-body">חיכיתי לביטחון. לרעיון המושלם. לציוד הנכון. לרגע שבו ארגיש מוכנה.</p>
+    <p class="hero-body">אבל הוא אף פעם לא הגיע.</p>
+    <p class="hero-body">ואז הבנתי משהו.</p>
+
+    <p class="hero-stmt">אף אחד לא יכול לעשות את הצעד הראשון במקומי.</p>
+
+    <p class="hero-body">ואני רוצה להגיד לכם בדיוק את אותו הדבר.</p>
+    <p class="hero-body">אם אתם מחפשים מישהו שיעשה את העבודה בשבילכם...</p>
+
+    <p class="hero-stmt">זה לא הקורס הזה.</p>
+
+    <p class="hero-body">אני לא יכולה להבטיח לכם שרק מלקנות קורס — החיים שלכם ישתנו.</p>
+    <p class="hero-body">האמת? אף אחד לא יכול.</p>
+    <p class="hero-body">השינוי יקרה רק אם תחליטו להתחיל.</p>
+    <p class="hero-body">אבל אני כן יכולה להבטיח לכם משהו אחר.</p>
+
+    <p class="hero-stmt">אני מביאה לכם את הידע, הכלים והדרך.</p>
+
+    <p class="hero-body">אני אלמד אתכם ליצור תוכן שאנשים באמת יעצרו לראות.</p>
+    <p class="hero-body">איך לגרום לאנשים לעצור, להקשיב, ולהתחבר למה שיש לכם להגיד.</p>
+    <p class="hero-body">איך להעביר את המסר שלכם בצורה ברורה.</p>
+    <p class="hero-body">ואיך ליצור תוכן שלא רק נראה טוב — אלא גם עובד.</p>
+
+    <p class="hero-body">כי ליצור סרטון... זה החלק הקל.</p>
+    <p class="hero-body">ליצור תוכן שאנשים זוכרים, סומכים עליו, ומתחברים אליו — זאת כבר מיומנות.</p>
+    <p class="hero-body">ואת המיומנות הזאת אפשר ללמוד. גם אם אתם מתחילים היום מאפס.</p>
+
+    <p class="hero-stmt">אבל את הצעד הראשון... אף אחד לא יכול לעשות במקומכם.</p>
+
+    <a class="btn btn-primary btn-lg hero-cta-solo" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
   </div>
 </section>
 
@@ -1024,7 +1026,6 @@ function wireParallax(){
 }
 
 function boot(){
-  renderPhone();
   renderPain();
   renderMyth();
   renderCurriculum();

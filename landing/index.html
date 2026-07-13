@@ -120,6 +120,13 @@ img,svg{display:block;max-width:100%;}
 .know-item .check-mark{color:var(--orange-deep);font-weight:700;}
 .know-close{margin-top:0;}
 
+/* ===== mindset-shift section ===== */
+.section.mindset{padding-block:clamp(48px,9vw,96px);}
+.mindset-lead{display:block;text-align:center;font-size:clamp(1.05rem,2.2vw,1.25rem);color:var(--ink-soft);margin-bottom:18px;}
+.mindset-sub{display:block;text-align:center;font-weight:700;font-size:1.1rem;color:var(--ink-soft);margin:44px 0 28px;}
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+.fade-in.in-view{opacity:1;transform:translateY(0);}
+
 /* phone mockup */
 .phone-stage{display:flex;justify-content:center;perspective:1500px;}
 .phone{
@@ -596,6 +603,40 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
+<section class="section mindset">
+  <div class="wrap hero-editorial">
+    <span class="mindset-lead fade-in">בסוף הקורס הזה...</span>
+    <p class="hero-stmt fade-in">לא תסתכלו על תוכן באותה צורה.</p>
+
+    <span class="mindset-sub fade-in">היום...</span>
+    <p class="hero-body fade-in">כל סרטון מרגיש כמו הימור.</p>
+    <p class="hero-body fade-in">אולי הוא יעבוד. אולי לא.</p>
+    <p class="hero-body fade-in">אולי יקשיבו. אולי יגללו.</p>
+    <p class="hero-body fade-in">אולי תמצאו רעיון. אולי לא.</p>
+
+    <span class="mindset-sub fade-in">אחרי הקורס...</span>
+    <p class="hero-body fade-in">אני לא יכולה להבטיח שכל סרטון שלכם יהפוך לוויראלי.</p>
+    <p class="hero-body fade-in">ואני גם לא מבטיחה שכל תוכן שתעלו יביא לקוחות.</p>
+    <p class="hero-body fade-in">אבל אני כן יכולה להבטיח לכם משהו אחר.</p>
+
+    <p class="hero-stmt fade-in">הוא כבר לא יהיה מבוסס על ניחושים.</p>
+
+    <p class="hero-body fade-in">אתם תדעו איך לגשת לכל סרטון.</p>
+    <p class="hero-body fade-in">איך לחשוב על רעיון. איך לבנות אותו. איך לפתוח אותו. איך להעביר מסר.</p>
+    <p class="hero-body fade-in">ואיך ליצור תוכן שמשרת את המטרה שלכם.</p>
+    <p class="hero-body fade-in">בין אם המטרה שלכם היא לבנות קהילה. או לקדם את העסק.</p>
+
+    <p class="stmt-purple fade-in">אני לא רוצה שתזכרו טיפים.</p>
+    <p class="stmt-purple fade-in">אני רוצה שתבינו איך תוכן עובד.</p>
+
+    <p class="hero-body fade-in">כי ברגע שמבינים איך אנשים חושבים... הרבה יותר קל ליצור תוכן שהם ירצו לעצור בשבילו.</p>
+
+    <p class="hero-body fade-in">בדיוק בגלל זה... בניתי את הקורס בצורה מסודרת.</p>
+    <p class="hero-body fade-in">שלב אחרי שלב.</p>
+    <p class="hero-body fade-in">כדי שלא תצטרכו לנחש מה לעשות קודם ומה אחר כך.</p>
+  </div>
+</section>
+
 <section class="section" id="curriculum">
   <div class="blob parallax" data-depth="16" style="width:250px;height:250px;background:var(--orange);top:0;left:-80px;"></div>
   <div class="blob parallax" data-depth="-20" style="width:190px;height:190px;background:var(--orange);bottom:6%;right:-50px;"></div>
@@ -947,6 +988,17 @@ function wireScrollReveal(){
   items.forEach(el=>io.observe(el));
 }
 
+function wireFadeIn(){
+  const items = document.querySelectorAll('.fade-in');
+  if(!('IntersectionObserver' in window)){ items.forEach(el=>el.classList.add('in-view')); return; }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){ entry.target.classList.add('in-view'); io.unobserve(entry.target); }
+    });
+  }, {threshold:.3});
+  items.forEach(el=>io.observe(el));
+}
+
 function renderTalkFuture(){
   const el = document.getElementById('talkBubbles');
   el.innerHTML = TALK_LINES.map((line,i)=>
@@ -1105,6 +1157,7 @@ function boot(){
   renderFaq();
   wireScrollReveal();
   wireTalkReveal();
+  wireFadeIn();
   wireStickyCta();
   wireModals();
   wireA11y();

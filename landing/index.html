@@ -48,9 +48,16 @@
 html{scroll-behavior:smooth;}
 html,body{margin:0;padding:0;}
 body{
-  background:var(--cream); color:var(--ink); font-family:'Rubik','Segoe UI',Arial,sans-serif;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% -8%, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 60%),
+    radial-gradient(ellipse 70% 50% at 100% 100%, rgba(193,92,130,.06) 0%, rgba(193,92,130,0) 60%),
+    radial-gradient(ellipse 70% 50% at 0% 40%, rgba(76,122,91,.05) 0%, rgba(76,122,91,0) 60%),
+    var(--cream);
+  color:var(--ink); font-family:'Rubik','Segoe UI',Arial,sans-serif;
   direction:rtl; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  position:relative;
 }
+body > *{position:relative;z-index:1;}
 h1,h2,h3{font-weight:700;text-wrap:balance;margin:0;}
 p{margin:0;}
 img,svg{display:block;max-width:100%;}

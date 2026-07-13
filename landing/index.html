@@ -120,6 +120,22 @@ img,svg{display:block;max-width:100%;}
 .know-item .check-mark{color:var(--orange-deep);font-weight:700;}
 .know-close{margin-top:0;}
 
+/* ===== roadmap (course structure) ===== */
+.roadmap-intro{max-width:52ch;margin:0 auto 44px;}
+.roadmap{position:relative;margin:0 auto;max-width:560px;text-align:start;}
+.roadmap::before{content:"";position:absolute;top:6px;bottom:6px;inset-inline-start:19px;width:2px;background:var(--line);}
+.roadmap-step{position:relative;padding-inline-start:64px;margin-bottom:40px;}
+.roadmap-step:last-child{margin-bottom:0;}
+.roadmap-marker{
+  position:absolute;inset-inline-start:0;top:0;width:40px;height:40px;border-radius:50%;
+  background:var(--purple);color:var(--purple-deep);display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:1rem;z-index:1;font-family:'Fredoka','Rubik',sans-serif;
+}
+.roadmap-title{font-size:1.25rem;font-weight:700;margin-bottom:8px;}
+.roadmap-text{color:var(--ink-soft);font-size:1rem;line-height:1.75;}
+.roadmap-biz{margin:56px auto 0;padding-top:44px;border-top:1.5px dashed var(--line);text-align:center;max-width:52ch;}
+.roadmap-biz-lead{font-size:1.3rem;font-weight:700;color:var(--orange-deep);margin-bottom:16px;}
+
 /* ===== mindset-shift section ===== */
 .section.mindset{padding-block:clamp(48px,9vw,96px);}
 .mindset-lead{display:block;text-align:center;font-size:clamp(1.05rem,2.2vw,1.25rem);color:var(--ink-soft);margin-bottom:18px;}
@@ -640,11 +656,60 @@ html.a11y-underline a{text-decoration:underline !important;}
 <section class="section" id="curriculum">
   <div class="blob parallax" data-depth="16" style="width:250px;height:250px;background:var(--orange);top:0;left:-80px;"></div>
   <div class="blob parallax" data-depth="-20" style="width:190px;height:190px;background:var(--orange);bottom:6%;right:-50px;"></div>
+  <div class="wrap hero-editorial">
+    <h2 class="section-title" style="text-align:center;">הדרך שלכם מתחילה כאן.</h2>
+    <div class="roadmap-intro">
+      <p class="hero-body">לא בניתי את הקורס הזה כרשימת שיעורים.</p>
+      <p class="hero-body">בניתי אותו בדיוק כמו התהליך שכל יוצר תוכן עובר. שלב אחר שלב. בלי לקפוץ קדימה, ובלי ללכת לאיבוד בדרך.</p>
+    </div>
+
+    <div class="roadmap">
+      <div class="roadmap-step">
+        <div class="roadmap-marker">1</div>
+        <div class="roadmap-content">
+          <h3 class="roadmap-title">מתחילים מהבסיס</h3>
+          <p class="roadmap-text">לפני שמצלמים, עורכים או מחפשים רעיונות — מבינים מה המטרה שלכם, איך לבחור את הכיוון הנכון, ואיך להתחיל בצורה שתשרת אתכם גם בהמשך.</p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="roadmap-marker">2</div>
+        <div class="roadmap-content">
+          <h3 class="roadmap-title">מתחילים לחשוב אחרת על תוכן</h3>
+          <p class="roadmap-text">תבינו למה אנשים עוצרים, איך מוצאים רעיונות, ואיך יוצרים תוכן שאנשים באמת מתחברים אליו. לא עוד טיפים — דרך חשיבה שתלווה אתכם גם אחרי שהקורס יסתיים.</p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="roadmap-marker">3</div>
+        <div class="roadmap-content">
+          <h3 class="roadmap-title">מצלמים בפשטות</h3>
+          <p class="roadmap-text">לא הופכים אתכם לצלמים מקצועיים. אתם לומדים לצלם בצורה שתשרת את התוכן שלכם — גם אם יש לכם רק פלאפון.</p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="roadmap-marker">4</div>
+        <div class="roadmap-content">
+          <h3 class="roadmap-title">עורכים בלי להסתבך</h3>
+          <p class="roadmap-text">גם כאן, המטרה היא לא להפוך אתכם לעורכי וידאו. אתם לומדים לקחת רעיון טוב, לערוך אותו בפשטות, ולהוציא אותו החוצה בלי להיתקע שעות על כל סרטון.</p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="roadmap-marker">5</div>
+        <div class="roadmap-content">
+          <h3 class="roadmap-title">מעלים את הסרטון הראשון</h3>
+          <p class="roadmap-text">כי בסוף, לא משנה כמה ידע יהיה לכם — כל עוד לא תעלו סרטון, שום דבר לא ישתנה. הקורס לא מסתיים בתיאוריה. הוא מסתיים בעשייה.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="roadmap-biz">
+      <p class="roadmap-biz-lead">ואם יש לכם עסק...</p>
+      <p class="hero-body">כאן אנחנו לוקחים את כל מה שלמדתם, ועושים את הצעד הבא. לא רק ליצור תוכן — אלא להבין איך לגרום לתוכן לעבוד בשביל העסק שלכם. איך לבנות אמון. איך לדבר ללקוחות הנכונים. ואיך ליצור תוכן שמחזק את המותג שלכם, ולא רק מביא צפיות.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="bonuses">
   <div class="wrap">
-    <span class="section-eyebrow">מה מחכה לכם בקורס?</span>
-    <h2 class="section-title">8 שיעורים, צעד אחר צעד</h2>
-    <p class="section-sub">קורס הדרגתי — כל שיעור מוסיף עוד שכבה קטנה, עוד תרגול, עוד צעד קדימה. בסיום, תהיו עם סרטון ראשון באוויר.</p>
-    <div class="curr-list" id="currList"></div>
     <h3 class="perks-title">מה עוד תקבלו בקורס?</h3>
     <div class="curr-extra" id="currExtra"></div>
   </div>
@@ -895,20 +960,6 @@ function curriculumItemHTML(c,num,biz){
     </div>`;
 }
 function renderCurriculum(){
-  const el = document.getElementById('currList');
-  let html = CURRICULUM.map((c,i)=>curriculumItemHTML(c,i+1,false)).join('');
-  html += `<div class="curr-divider">
-    <div class="curr-divider-rule"><div class="curr-divider-line"></div><div class="curr-divider-badge">${icon('rocket')}</div><div class="curr-divider-line rev"></div></div>
-    <p class="curr-divider-text">${BUSINESS_DIVIDER}</p>
-  </div>`;
-  html += BUSINESS_CURRICULUM.map((c,i)=>curriculumItemHTML(c,CURRICULUM.length+i+1,true)).join('');
-  html += curriculumItemHTML(
-    {title:`${GUEST_BONUS.title} (${GUEST_BONUS.guest})`, text:GUEST_BONUS.text},
-    CURRICULUM.length+BUSINESS_CURRICULUM.length+1,
-    true
-  );
-  el.innerHTML = html;
-
   const n = CURR_EXTRAS.length;
   const R = 38; // percent radius of the ring
   document.getElementById('currExtra').innerHTML = CURR_EXTRAS.map((c,i)=>{

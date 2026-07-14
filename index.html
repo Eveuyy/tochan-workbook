@@ -208,6 +208,26 @@ img,svg{display:block;max-width:100%;}
 .section-eyebrow{color:var(--purple-deep);font-weight:700;font-size:.85rem;letter-spacing:.03em;margin-bottom:10px;display:block;}
 .section-sub{color:var(--ink-soft);max-width:60ch;font-size:1.05rem;margin-bottom:8px;}
 
+/* ===== why-me section ===== */
+.section.whyme{padding-block:clamp(48px,9vw,96px);}
+.whyme-photo-wrap{display:flex;justify-content:center;margin-bottom:20px;}
+.whyme-photo{
+  width:220px;height:220px;border-radius:50%;object-fit:cover;display:block;
+  box-shadow:0 4px 10px var(--shadow-tight),0 24px 48px var(--shadow-soft);
+}
+.whyme-photo-placeholder{
+  width:220px;height:220px;border-radius:50%;background:var(--paper);border:2px dashed var(--line);
+  display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-soft);
+  font-size:.82rem;padding:18px;line-height:1.6;
+}
+.whyme-social{display:flex;justify-content:center;gap:14px;margin-bottom:32px;}
+.whyme-social .story-social-btn{width:46px;height:46px;border-radius:14px;}
+.whyme-social .story-social-btn .icon{width:22px;height:22px;}
+.whyme-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:52px;}
+.whyme-stat{text-align:center;}
+.whyme-stat-num{font-family:'Fredoka','Rubik',sans-serif;font-size:1.6rem;font-weight:700;color:var(--purple-deep);display:block;}
+.whyme-stat-label{font-size:.82rem;color:var(--ink-soft);}
+
 /* ===== myth section ===== */
 .myth{background:var(--paper);border-radius:32px;}
 .myth-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:32px;}
@@ -596,10 +616,12 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
-<section class="section" id="story">
-  <div class="wrap">
-    <span class="section-eyebrow">קצת עליי</span>
-    <div class="story-social">
+<section class="section whyme" id="story">
+  <div class="wrap hero-editorial">
+    <div class="whyme-photo-wrap">
+      <div class="whyme-photo-placeholder">📷<br>כאן תיכנס תמונה אמיתית שלך</div>
+    </div>
+    <div class="whyme-social">
       <a href="https://www.instagram.com/eve.harosh/?hl=he" target="_blank" rel="noopener noreferrer" class="story-social-btn instagram" aria-label="אינסטגרם">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
       </a>
@@ -607,15 +629,49 @@ html.a11y-underline a{text-decoration:underline !important;}
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v9.5a3.5 3.5 0 11-3.5-3.5"/><path d="M14 4c.5 2.5 2 4 4.5 4.3V11c-1.7 0-3.2-.5-4.5-1.4"/></svg>
       </a>
     </div>
-    <div class="story">
-      <div class="story-avatar"><svg class="icon icon-lg" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.6-9.4-9C1.2 8 2.4 5 5.6 5c1.9 0 3.3 1.1 4 2.4C10.3 6.1 11.7 5 13.6 5 16.8 5 18 8 18.4 11c-1 4.4-6.4 9-6.4 9z"/></svg></div>
-      <blockquote>
-        <p>אני איב. יוצרת תוכן כבר כמה שנים, עובדת עם עשרות מותגים, מייצרת פרסומות וקמפיינים, ומלווה בעלי עסקים בימי צילום ואסטרטגיות תוכן. אבל התחלתי מתחום אחר לגמרי — עשור שלם בעולם הקוסמטיקה והציפורניים.</p><br>
-        <p>יום אחד הרגשתי שדי. <span style="font-size:1.1rem;">אני רוצה להתבטא. אז עם ביצים משקשקות, אייפון 13, ואפס ידע בצילום, עריכה ושיווק — יצאתי לדרך. ההתחלה שלי הייתה רחוקה מלהיות מושלמת, ובטח לא ויראלית או רווחית.</span></p><br>
-        <p>היום, אחרי 4 שנים של ניסוי וטעייה, יש לי קהילה של עשרות אלפי עוקבים ב<a href="https://www.instagram.com/eve.harosh/?hl=he" target="_blank" rel="noopener noreferrer">אינסטגרם</a> וב<a href="https://www.tiktok.com/@evecohen52" target="_blank" rel="noopener noreferrer">טיקטוק</a>, ואני מתפרנסת מהדבר שפעם פחדתי בכלל להתחיל. <strong>בדיוק מהמקום שבו אתם נמצאים עכשיו — צמחתי.</strong></p>
-        <cite>ותמיד תזכרו: כשאתם מסתכלים על אנשים ברשת, אתם רואים תוצאה — לא דרך.</cite>
-      </blockquote>
+    <div class="whyme-stats">
+      <div class="whyme-stat"><span class="whyme-stat-num">29K+</span><span class="whyme-stat-label">עוקבים בטיקטוק</span></div>
+      <div class="whyme-stat"><span class="whyme-stat-num">21K+</span><span class="whyme-stat-label">עוקבים באינסטגרם</span></div>
+      <div class="whyme-stat"><span class="whyme-stat-num">שיתופי פעולה</span><span class="whyme-stat-label">עם מותגים מובילים</span></div>
     </div>
+
+    <h2 class="section-title" style="text-align:center;">למה דווקא אני?</h2>
+
+    <p class="hero-body">אם אתם כבר הולכים ללמוד ממישהו...</p>
+    <p class="hero-body">מגיע לכם לדעת למה דווקא ממנו.</p>
+
+    <p class="hero-body">היום אני יוצרת תוכן במשרה מלאה.</p>
+    <p class="hero-body">עובדת עם מותגים.</p>
+    <p class="hero-body">ובניתי קהילה של יותר מ-29,000 אנשים בטיקטוק ויותר מ-21,000 אנשים באינסטגרם.</p>
+
+    <p class="hero-body">אבל זה לא מה שהופך אותי למישהי שיכולה ללמד אתכם.</p>
+
+    <p class="hero-body">מה שהופך אותי לכזאת... זה שהייתי בדיוק במקום שבו אתם נמצאים היום.</p>
+
+    <p class="hero-body">פחדתי להצטלם.</p>
+    <p class="hero-body">לא ידעתי על מה לדבר.</p>
+    <p class="hero-body">חשבתי שאני צריכה ציוד יקר.</p>
+    <p class="hero-body">וחיכיתי לרגע שבו ארגיש מוכנה.</p>
+    <p class="hero-body">הוא לא הגיע.</p>
+
+    <p class="hero-body">במקום זה... התחלתי ללמוד. לטעות. לנסות. ולהבין איך תוכן באמת עובד.</p>
+    <p class="hero-body">לא רק איך מצלמים.</p>
+    <p class="hero-body">אלא איך גורמים לאנשים לעצור. להקשיב. ולהתחבר.</p>
+
+    <p class="stmt-purple">אני לא רוצה שתעשו את הדרך שאני עשיתי.</p>
+    <p class="stmt-purple">אני רוצה לקצר לכם אותה.</p>
+
+    <p class="hero-body">כל טעות שתראו בקורס... כבר עשיתי בעצמי.</p>
+    <p class="hero-body">כל פחד שתפגשו... אני מכירה.</p>
+    <p class="hero-body">וכל שאלה שתעלה לכם... ככל הנראה כבר עלתה גם לי.</p>
+
+    <p class="hero-body">בגלל זה הקורס הזה לא בנוי רק ממידע.</p>
+    <p class="hero-body">הוא בנוי מהניסיון שלי, מהטעויות שלי, ומהדברים שהלוואי שמישהו היה מלמד אותי כבר ביום הראשון.</p>
+
+    <p class="stmt-purple">המטרה שלי היא לא שתעשו הכול בדיוק כמוני.</p>
+    <p class="stmt-purple">המטרה שלי היא שתמצאו את הדרך שלכם.</p>
+
+    <p class="hero-body">הרבה יותר מהר ממה שאני מצאתי את שלי.</p>
   </div>
 </section>
 

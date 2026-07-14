@@ -314,6 +314,17 @@ img,svg{display:block;max-width:100%;}
   .perk-badge{position:static;transform:none;width:100%;}
 }
 
+/* ===== value recap (before price) ===== */
+.section.value{padding-block:clamp(48px,9vw,96px);}
+.value-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:44px auto 52px;max-width:640px;}
+@media (max-width:640px){.value-cards{grid-template-columns:1fr;}}
+.value-card{
+  background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:20px 22px;
+  display:flex;gap:14px;align-items:flex-start;text-align:start;
+}
+.value-card .icon{stroke:var(--purple-deep);flex:none;margin-top:2px;}
+.value-card p{font-size:.98rem;line-height:1.6;color:var(--ink);}
+
 /* ===== pricing ===== */
 .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:36px;}
 @media (max-width:760px){.price-grid{grid-template-columns:1fr;}}
@@ -327,6 +338,7 @@ img,svg{display:block;max-width:100%;}
   font-size:.8rem;padding:6px 16px;border-radius:99px;
 }
 .price-card h3{font-size:1.3rem;}
+.price-for{color:var(--ink-soft);font-size:.9rem;margin-top:-10px;}
 .price-amount{font-size:2.6rem;font-weight:700;display:flex;align-items:baseline;gap:6px;}
 .price-amount .currency{font-size:1.2rem;color:var(--ink-soft);font-weight:600;}
 .price-amount .num{font-family:'Rubik',sans-serif;letter-spacing:-.01em;}
@@ -334,6 +346,11 @@ img,svg{display:block;max-width:100%;}
 .price-features li{display:flex;gap:10px;align-items:flex-start;list-style:none;font-size:.96rem;}
 .price-features .icon{stroke:var(--orange-deep);flex:none;margin-top:2px;}
 .price-card .btn{width:100%;margin-top:auto;}
+.price-after{max-width:52ch;margin:40px auto 0;text-align:center;}
+
+/* ===== why-now section ===== */
+.section.whynow{padding-block:clamp(56px,10vw,110px);}
+.whynow-title{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;text-align:center;margin-bottom:48px;text-wrap:balance;}
 
 /* ===== faq ===== */
 .faq-list{display:flex;flex-direction:column;gap:12px;margin-top:32px;}
@@ -795,6 +812,31 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
+<section class="section value">
+  <div class="wrap hero-editorial">
+    <h2 class="section-title" style="text-align:center;">כל מה שאתם באמת צריכים כדי להתחיל ליצור תוכן.<br>במקום אחד.</h2>
+    <p class="hero-body">בניתי את הקורס הזה כך שלא תצטרכו לקפוץ בין עשרות סרטונים, מדריכים וקורסים שונים.</p>
+    <p class="hero-body">כל מה שאתם צריכים כדי להתחיל ליצור תוכן איכותי, מרוכז במקום אחד. שלב אחרי שלב.</p>
+
+    <div class="value-cards">
+      <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 2 5 6 4.5 11.5L12 18l-4.5-4.5C7 8 9 4 12 2z"/><path d="M9 15l-3 1 1-3M15 15l3 1-1-3"/><circle cx="12" cy="9.5" r="1.6"/></svg><p>הקורס המלא — מהצעד הראשון ועד הסרטון הראשון</p></div>
+      <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><p>דרך ברורה להבין איך תוכן באמת עובד</p></div>
+      <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M8 14a5 5 0 116.8 4.7c-.5.4-.8 1-.8 1.3H10c0-.4-.3-.9-.8-1.3A5 5 0 018 14z"/></svg><p>שיטה למציאת רעיונות שלא תלויה בטרנדים</p></div>
+      <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13.5" r="3.4"/></svg><p>לימוד צילום פשוט ונכון — גם בלי ציוד מקצועי</p></div>
+      <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><path d="M20 5L7.5 13M20 19L7.5 11"/></svg><p>עריכה פשוטה שתשרת את התוכן שלכם, בלי להסתבך</p></div>
+      <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 8V4M9 4h6"/><circle cx="9" cy="13.5" r="1.3"/><circle cx="15" cy="13.5" r="1.3"/></svg><p>כלי AI למציאת הנישה שמתאימה לכם</p></div>
+      <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 8V4M9 4h6"/><circle cx="9" cy="13.5" r="1.3"/><circle cx="15" cy="13.5" r="1.3"/></svg><p>כלי AI לפיתוח, דיוק ושיפור רעיונות לתוכן, לפי המטרות שלכם</p></div>
+      <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c3-1.2 6-1.2 8 0v14c-2-1.2-5-1.2-8 0z"/><path d="M20 5c-3-1.2-6-1.2-8 0v14c2-1.2 5-1.2 8 0z"/></svg><p>חוברת עבודה אינטראקטיבית שתלווה אתכם לאורך כל הקורס — ותישאר אתכם גם אחריו</p></div>
+      <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><p>גישה מיידית לקורס וצפייה בקצב שלכם</p></div>
+    </div>
+
+    <p class="hero-stmt">אני לא רוצה שתצאו מהקורס עם עוד ידע.</p>
+    <p class="hero-stmt">אני רוצה שתצאו ממנו עם תוכן בחוץ.</p>
+
+    <p class="hero-body">ועכשיו... נשאר רק לבחור את המסלול שמתאים לכם.</p>
+  </div>
+</section>
+
 <section class="section" id="pricing">
   <div class="blob parallax" data-depth="18" style="width:230px;height:230px;background:var(--purple);top:-20px;right:-70px;"></div>
   <div class="blob parallax" data-depth="-16" style="width:180px;height:180px;background:var(--purple);bottom:-30px;left:-40px;"></div>
@@ -802,6 +844,28 @@ html.a11y-underline a{text-decoration:underline !important;}
     <span class="section-eyebrow">ההשקעה</span>
     <h2 class="section-title">בחרו את המסלול שלכם</h2>
     <div class="price-grid" id="priceGrid"></div>
+    <p class="price-after hero-body">לא משנה באיזה מסלול תבחרו... המטרה שלי היא לא שתסיימו את הקורס עם עוד מידע. המטרה שלי היא שתבינו איך ליצור תוכן שמשרת את המטרות שלכם, ותתחילו להשתמש בו בפועל.</p>
+  </div>
+</section>
+
+<section class="section whynow">
+  <div class="wrap hero-editorial">
+    <h2 class="whynow-title">השאלה היא לא אם תתחילו.<br>השאלה היא רק מתי.</h2>
+
+    <p class="hero-body">אם לא תתחילו עכשיו...</p>
+    <p class="hero-body">יש סיכוי טוב שעוד חודש תהיו בדיוק באותה נקודה.</p>
+    <p class="hero-body">עם אותם רעיונות.</p>
+    <p class="hero-body">עם אותם פחדים.</p>
+    <p class="hero-body">ועם אותה מחשבה: "אני אתחיל כשארגיש מוכן."</p>
+
+    <p class="hero-body">אבל אם יש משהו שלמדתי בדרך...</p>
+    <p class="hero-body">זה שהמוכנות לא מגיעה לפני שמתחילים.</p>
+    <p class="hero-body">היא מגיעה תוך כדי.</p>
+
+    <p class="hero-body">ובכל חודש שבו אתם ממשיכים לדחות... אתם גם דוחים את ההזדמנות ללמוד מיומנות שיכולה ללוות אתכם שנים קדימה.</p>
+
+    <p class="hero-stmt">אני מביאה לכם את הידע, הכלים והדרך.</p>
+    <p class="hero-stmt">את הצעד הראשון, אף אחד לא יכול לעשות במקומכם.</p>
   </div>
 </section>
 
@@ -1035,7 +1099,8 @@ function renderPricing(){
   const el = document.getElementById('priceGrid');
   el.innerHTML = `
     <div class="price-card">
-      <h3>מסלול רגיל</h3>
+      <h3>קורס יצירת תוכן</h3>
+      <p class="price-for">למי שרוצה להתחיל ליצור תוכן אישי — בלי ניסיון קודם, בלי ציוד, ובלי לדעת מאיפה מתחילים.</p>
       <div class="price-amount"><span class="currency">₪</span><span class="num">350</span></div>
       <ul class="price-features">
         <li>${icon('check')}<span>8 שיעורים מצולמים, צעד אחר צעד</span></li>
@@ -1048,12 +1113,13 @@ function renderPricing(){
     </div>
     <div class="price-card featured">
       <div class="price-tag">לבעלי עסק</div>
-      <h3>מסלול לבעלי עסקים</h3>
+      <h3>קורס יצירת תוכן + הרחבת בעלי עסקים</h3>
+      <p class="price-for">למי שרוצה שהתוכן יביא לקוחות, לידים ומכירות — לא רק לייקים.</p>
       <div class="price-amount"><span class="currency">₪</span><span class="num">430</span></div>
       <ul class="price-features">
         <li>${icon('check')}<span>כל מה שיש במסלול הרגיל</span></li>
-        <li>${icon('check')}<span>+ 5 פרקי בונוס לבעלי עסקים</span></li>
-        <li>${icon('check')}<span>איך להפוך את התוכן שלכם לכלי שמביא לידים ומכירות</span></li>
+        <li>${icon('check')}<span>+ 5 פרקי בונוס: איך להשתמש בתוכן כדי לבנות אמון</span></li>
+        <li>${icon('check')}<span>איך להפוך תוכן לכלי שמשרת את העסק שלכם — לא רק צפיות</span></li>
         <li>${icon('check')}<span>קהילת וואטסאפ תומכת לשאלות ועזרה</span></li>
         <li>${icon('check')}<span>גישה מלאה, ללא הגבלת זמן — כולל כל עדכון ושדרוג עתידי לקורס</span></li>
       </ul>

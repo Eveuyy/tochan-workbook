@@ -352,6 +352,12 @@ img,svg{display:block;max-width:100%;}
 .section.whynow{padding-block:clamp(56px,10vw,110px);}
 .whynow-title{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;text-align:center;margin-bottom:48px;text-wrap:balance;}
 
+/* ===== final section (doubts + bookend close) ===== */
+.section.final{padding-block:clamp(56px,10vw,110px);}
+.final-title{font-size:clamp(1.8rem,4.4vw,2.6rem);font-weight:700;text-align:center;margin-bottom:52px;text-wrap:balance;}
+.final-lead{display:block;text-align:center;font-size:1.1rem;color:var(--ink-soft);margin:64px 0 8px;}
+.final-cta-wrap{display:flex;justify-content:center;margin-top:56px;}
+
 /* ===== faq ===== */
 .faq-list{display:flex;flex-direction:column;gap:12px;margin-top:32px;}
 .faq-item{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;overflow:hidden;}
@@ -869,20 +875,45 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
-<section class="section" id="faq">
-  <div class="wrap">
-    <span class="section-eyebrow">שאלות נפוצות</span>
-    <h2 class="section-title">עוד כמה דברים לפני שמתחילים</h2>
-    <div class="faq-list" id="faqList"></div>
-  </div>
-</section>
+<section class="section final">
+  <div class="wrap hero-editorial">
+    <h2 class="final-title">אולי אתם עדיין מתלבטים.</h2>
 
-<section class="section closing">
-  <div class="blob parallax" data-depth="20" style="width:260px;height:260px;background:var(--orange);top:-50px;left:50%;margin-left:-260px;"></div>
-  <div class="blob parallax" data-depth="-16" style="width:200px;height:200px;background:var(--orange);bottom:-40px;right:6%;"></div>
-  <div class="wrap">
-    <h2 class="closing-title">כי לא מרגישים מוכנים ואז מתחילים — מתחילים, והמוכנות תגיע בדרך.</h2>
-    <a class="btn btn-primary btn-lg" href="#pricing">אני מתחילה/מתחיל עכשיו</a>
+    <p class="hero-body">אולי אתם חושבים: "אין לי עדיין מספיק מה להגיד."</p>
+    <p class="hero-body">גם אני חשבתי ככה.</p>
+    <p class="hero-body">האמת? לרוב האנשים יש הרבה יותר מה להגיד ממה שהם חושבים. הם פשוט עדיין לא יודעים איך להפוך את זה לתוכן.</p>
+
+    <p class="hero-body">אולי אתם חושבים: "אני אתחיל כשיהיה לי יותר זמן."</p>
+    <p class="hero-body">יכול להיות.</p>
+    <p class="hero-body">אבל יש סיכוי טוב שגם בעוד חודש תגידו בדיוק את אותו הדבר.</p>
+    <p class="hero-body">כי בדרך כלל... זאת לא באמת בעיית הזמן. זאת בעיית ההתחלה.</p>
+
+    <p class="hero-body">אולי אתם חושבים: "ומה אם אף אחד לא יצפה?"</p>
+    <p class="hero-body">יכול להיות.</p>
+    <p class="hero-body">הסרטון הראשון כנראה לא יהיה הסרטון הכי טוב שלכם.</p>
+    <p class="hero-body">אבל גם הסרטון העשירי... לא היה קיים, אם הראשון לא היה עולה.</p>
+
+    <p class="hero-body">אני לא יכולה להבטיח לכם שתהפכו ליוצרי תוכן מצליחים תוך חודש.</p>
+    <p class="hero-body">ואני גם לא יכולה להבטיח שכל סרטון שתעלו יעבוד.</p>
+    <p class="hero-body">אבל אני כן יכולה להבטיח לכם דבר אחד.</p>
+    <p class="hero-stmt">אם תמשיכו לחכות לרגע שבו תרגישו מוכנים... יש סיכוי טוב שהוא פשוט לא יגיע.</p>
+
+    <span class="final-lead">אני אסיים בדיוק כמו שהתחלתי.</span>
+    <h2 class="hero-h1">אם אתם עדיין מחכים לרגע שבו תרגישו מוכנים ליצור תוכן...</h2>
+    <p class="hero-statement-main">כנראה שהוא לא יגיע.</p>
+
+    <p class="hero-body">ואולי... זה דווקא הדבר הכי משחרר.</p>
+    <p class="hero-body">כי זה אומר שאתם לא צריכים לחכות יותר.</p>
+    <p class="hero-body">אתם רק צריכים להחליט.</p>
+
+    <p class="hero-stmt">אני מביאה לכם את הידע.</p>
+    <p class="hero-stmt">את הכלים.</p>
+    <p class="hero-stmt">ואת הדרך.</p>
+    <p class="hero-stmt">אבל את הצעד הראשון... אף אחד לא יכול לעשות במקומכם.</p>
+
+    <div class="final-cta-wrap">
+      <a class="btn btn-primary btn-lg" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
+    </div>
   </div>
 </section>
 
@@ -1327,7 +1358,6 @@ function boot(){
   renderCurriculum();
   renderTalkFuture();
   renderPricing();
-  renderFaq();
   wireScrollReveal();
   wireTalkReveal();
   wireFadeIn();

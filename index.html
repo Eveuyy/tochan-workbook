@@ -63,7 +63,7 @@ img,svg{display:block;max-width:100%;}
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
 .num{font-family:'Fredoka','Rubik',sans-serif;font-variant-numeric:tabular-nums;}
 .wrap{max-width:1000px;margin:0 auto;padding-inline:clamp(20px,5vw,40px);}
-.section{padding-block:clamp(70px,11vw,138px);position:relative;overflow:hidden;}
+.section{padding-block:clamp(82px,12.5vw,160px);position:relative;overflow:hidden;}
 .section > .wrap{position:relative;z-index:1;}
 
 /* buttons */
@@ -106,8 +106,65 @@ img,svg{display:block;max-width:100%;}
 }
 .hero-cta-solo{margin-top:68px;}
 
+/* ===== media placeholder (hero visual / peek / social proof / future self) ===== */
+.media-placeholder{
+  position:relative;border-radius:20px;border:1.5px dashed var(--line);background:var(--paper);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  padding:32px 20px;color:var(--ink-soft);text-align:center;min-height:140px;
+}
+.media-placeholder .play-badge{
+  width:56px;height:56px;border-radius:50%;background:var(--purple-deep);color:#fff;
+  display:flex;align-items:center;justify-content:center;flex:none;
+}
+.media-placeholder .play-badge svg{width:22px;height:22px;fill:#fff;}
+.media-placeholder-label{font-size:.85rem;font-weight:700;color:var(--ink-soft);max-width:22ch;}
+.hero-visual{margin-top:56px;}
+.hero-visual .media-placeholder{aspect-ratio:9/12;max-width:300px;margin-inline:auto;}
+
+/* ===== proof bar ===== */
+.proof-bar{padding-block:18px;border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line);}
+.proof-bar-inner{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 18px;text-align:center;}
+.proof-stat{font-size:.92rem;color:var(--ink-soft);}
+.proof-stat strong{color:var(--purple-deep);font-weight:700;}
+.proof-dot{color:var(--line);}
+@media (max-width:480px){.proof-dot{display:none;}.proof-bar-inner{flex-direction:column;gap:6px;}}
+
+/* ===== before / after grid (mindset) ===== */
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:40px auto 0;max-width:640px;}
+@media (max-width:640px){.before-after{grid-template-columns:1fr;}}
+.ba-col{border-radius:18px;padding:24px 20px;}
+.ba-col.before{background:rgba(91,58,140,.06);}
+.ba-col.after{background:var(--orange);}
+.ba-label{display:block;font-weight:700;font-size:.85rem;margin-bottom:16px;color:var(--ink-soft);letter-spacing:.02em;}
+.ba-col.after .ba-label{color:var(--orange-deep);}
+.ba-item{display:flex;gap:10px;align-items:flex-start;font-size:.96rem;line-height:1.6;margin-bottom:12px;text-align:start;}
+.ba-item:last-child{margin-bottom:0;}
+.ba-item .icon{flex:none;width:18px;height:18px;margin-top:3px;}
+.ba-col.before .icon{stroke:var(--ink-soft);}
+.ba-col.after .icon{stroke:var(--orange-deep);}
+
+/* ===== myth paired rows ===== */
+.myth-pairs{display:flex;flex-direction:column;gap:14px;margin-top:32px;max-width:520px;margin-inline:auto;}
+.myth-pair{display:flex;align-items:center;gap:14px;background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:14px 18px;}
+.myth-pair .before{color:var(--ink-soft);text-decoration:line-through;flex:1;text-align:center;font-size:.96rem;}
+.myth-pair .after{color:var(--ink);font-weight:700;flex:1;text-align:center;font-size:.96rem;}
+.myth-pair .chev{flex:none;stroke:var(--orange-deep);width:20px;height:20px;transform:rotate(-90deg);}
+@media (max-width:480px){.myth-pair{flex-direction:column;gap:6px;}.myth-pair .chev{transform:none;}}
+
+/* ===== peek inside the course ===== */
+.peek-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;}
+@media (max-width:640px){.peek-grid{grid-template-columns:1fr;}}
+.peek-grid .media-placeholder{aspect-ratio:4/3;}
+
+/* ===== social proof placeholder ===== */
+.social-proof-grid{display:flex;flex-direction:column;gap:16px;margin-top:32px;}
+
+/* ===== future self (redesigned) ===== */
+.futureself-visual{margin:36px auto 0;max-width:420px;}
+.futureself-visual .media-placeholder{aspect-ratio:16/10;}
+
 /* ===== why section (editorial, continues hero language) ===== */
-.section.why{padding-block:clamp(60px,11vw,120px);}
+.section.why{padding-block:clamp(70px,12vw,138px);}
 .why-eyebrow{display:block;text-align:center;font-weight:700;font-size:1.35rem;color:var(--ink-soft);margin-bottom:44px;}
 .stmt-purple{
   font-size:clamp(1.7rem,4.2vw,2.35rem);line-height:1.4;font-weight:700;color:var(--purple-deep);
@@ -117,7 +174,7 @@ img,svg{display:block;max-width:100%;}
   font-size:clamp(2.1rem,5.4vw,3.1rem);line-height:1.3;font-weight:700;color:var(--ink);
   margin:96px auto;max-width:22ch;text-wrap:balance;text-align:center;
 }
-.section.know{padding-block:clamp(50px,10vw,105px);}
+.section.know{padding-block:clamp(58px,11vw,120px);}
 .know-title{font-size:clamp(1.6rem,3.6vw,2.2rem);font-weight:700;text-align:center;margin-bottom:48px;text-wrap:balance;}
 .know-items{display:flex;flex-direction:column;gap:24px;margin-bottom:60px;}
 .know-item{font-size:clamp(1.05rem,2.1vw,1.2rem);line-height:1.7;color:var(--ink);text-align:center;}
@@ -141,7 +198,7 @@ img,svg{display:block;max-width:100%;}
 .roadmap-biz-lead{font-size:1.3rem;font-weight:700;color:var(--orange-deep);margin-bottom:16px;}
 
 /* ===== mindset-shift section ===== */
-.section.mindset{padding-block:clamp(60px,11vw,120px);}
+.section.mindset{padding-block:clamp(70px,12vw,138px);}
 .mindset-lead{display:block;text-align:center;font-size:clamp(1.05rem,2.2vw,1.25rem);color:var(--ink-soft);margin-bottom:18px;}
 .mindset-sub{display:block;text-align:center;font-weight:700;font-size:1.1rem;color:var(--ink-soft);margin:44px 0 28px;}
 .fade-in{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
@@ -213,7 +270,7 @@ img,svg{display:block;max-width:100%;}
 .section-sub{color:var(--ink-soft);max-width:60ch;font-size:1.05rem;margin-bottom:8px;}
 
 /* ===== why-me section ===== */
-.section.whyme{padding-block:clamp(60px,11vw,120px);}
+.section.whyme{padding-block:clamp(70px,12vw,138px);}
 .whyme-photo-wrap{display:flex;justify-content:center;margin-bottom:20px;}
 .whyme-photo{
   width:220px;height:220px;border-radius:50%;object-fit:cover;display:block;
@@ -292,34 +349,31 @@ img,svg{display:block;max-width:100%;}
 .curr-divider-badge .icon{width:28px;height:28px;stroke:#fff;}
 .curr-divider-text{font-weight:700;color:var(--orange-deep);font-size:1.1rem;max-width:44ch;}
 
-/* ===== perks (workbook / AI agents / community / updates) — radial ring ===== */
+/* ===== perks (AI tools / workbook) — plain 3-card grid ===== */
 .perks-title{text-align:center;font-size:1.3rem;margin:52px 0 8px;}
-.curr-extra{position:relative;width:min(600px,94vw);aspect-ratio:1;margin:32px auto 10px;}
-.perk-badge{
-  position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;
-  align-items:center;gap:10px;text-align:center;width:clamp(120px,22vw,168px);
+.curr-extra{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  max-width:760px;margin:36px auto 0;
+}
+@media (max-width:760px){.curr-extra{grid-template-columns:1fr;max-width:360px;}}
+.perk-card{
+  display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;
+  background:var(--paper);border:1.5px solid var(--line);border-radius:20px;padding:26px 18px;
 }
 .perk-circle{
-  width:74px;height:74px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   box-shadow:0 3px 8px var(--shadow-tight), 0 16px 32px var(--shadow-soft);flex:none;
 }
-.perk-circle .icon{width:32px;height:32px;stroke:#fff;}
+.perk-circle .icon{width:28px;height:28px;stroke:#fff;}
 .perk-circle.pink{background:linear-gradient(145deg,var(--purple-deep),var(--purple));}
 .perk-circle.lilac{background:linear-gradient(145deg,var(--purple-deep),var(--purple));}
 .perk-circle.sage{background:linear-gradient(145deg,var(--orange-deep),var(--orange));}
 .perk-circle.peach{background:linear-gradient(145deg,var(--orange-deep),var(--orange));}
 .perk-title{font-weight:700;font-size:.92rem;}
 .perk-text{font-size:.8rem;color:var(--ink-soft);line-height:1.55;}
-@media (max-width:640px){
-  .curr-extra{
-    position:static;width:100%;aspect-ratio:auto;display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:26px 14px;margin-top:28px;
-  }
-  .perk-badge{position:static;transform:none;width:100%;}
-}
 
 /* ===== value recap (before price) ===== */
-.section.value{padding-block:clamp(60px,11vw,120px);}
+.section.value{padding-block:clamp(70px,12vw,138px);}
 .value-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:56px auto 64px;max-width:640px;}
 @media (max-width:640px){.value-cards{grid-template-columns:1fr;}}
 .value-card{
@@ -357,7 +411,7 @@ img,svg{display:block;max-width:100%;}
 .whynow-title{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;text-align:center;margin-bottom:48px;text-wrap:balance;}
 
 /* ===== final section (doubts + bookend close) ===== */
-.section.final{padding-block:clamp(70px,12vw,138px);}
+.section.final{padding-block:clamp(80px,13vw,158px);}
 .final-title{font-size:clamp(1.8rem,4.4vw,2.6rem);font-weight:700;text-align:center;margin-bottom:52px;text-wrap:balance;}
 .final-lead{display:block;text-align:center;font-size:1.1rem;color:var(--ink-soft);margin:64px 0 8px;}
 .final-cta-wrap{display:flex;justify-content:center;margin-top:76px;}
@@ -539,6 +593,62 @@ html.a11y-underline a{text-decoration:underline !important;}
     <p class="hero-stmt">אבל את הצעד הראשון... אף אחד לא יכול לעשות במקומכם.</p>
 
     <a class="btn btn-primary btn-lg hero-cta-solo" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
+
+    <div class="hero-visual">
+      <div class="media-placeholder">
+        <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="media-placeholder-label">כאן ייכנס וידאו קצר שלי</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="proof-bar">
+  <div class="wrap proof-bar-inner">
+    <span class="proof-stat"><strong>29K+</strong> בטיקטוק</span>
+    <span class="proof-dot">•</span>
+    <span class="proof-stat"><strong>21K+</strong> באינסטגרם</span>
+    <span class="proof-dot">•</span>
+    <span class="proof-stat">שיתופי פעולה עם מותגים מובילים</span>
+  </div>
+</div>
+
+<section class="who-for">
+  <div class="wrap">
+    <span class="who-for-label">למי הקורס הזה מתאים?</span>
+    <div class="who-for-grid">
+      <div class="who-for-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.6-9.4-9C1.2 8 2.4 5 5.6 5c1.9 0 3.3 1.1 4 2.4C10.3 6.1 11.7 5 13.6 5 16.8 5 18 8 18.4 11c-1 4.4-6.4 9-6.4 9z"/></svg>
+        <div>
+          <h3>אנשים פרטיים</h3>
+          <p>רוצים להתחיל ליצור תוכן משלהם — גם בלי ניסיון קודם, וגם בלי מושג מאיפה מתחילים.</p>
+        </div>
+      </div>
+      <div class="who-for-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v11h16V9"/><path d="M4 9a3 3 0 006 0 3 3 0 006 0 3 3 0 006 0"/></svg>
+        <div>
+          <h3>בעלי עסקים</h3>
+          <p>רוצים שהתוכן שלהם יביא לקוחות, לידים ומכירות — לא רק לייקים.</p>
+        </div>
+      </div>
+    </div>
+    <p class="who-for-note">בכל מקרה, מתחילים מאותו מקום — ובהמשך תראו בדיוק איך זה עובד בשבילכם.</p>
+  </div>
+</section>
+
+<section class="section" id="pain">
+  <div class="wrap">
+    <span class="section-eyebrow">רגע לפני שממשיכים</span>
+    <h2 class="section-title">אם אתם מזדהים עם המשפטים האלה — אני מבינה בדיוק איך זה מרגיש, כי הייתי שם</h2>
+    <div class="pain-list" id="painList"></div>
+  </div>
+</section>
+
+<section class="section myth" id="myth">
+  <div class="wrap">
+    <span class="section-eyebrow">בואו נשבור מיתוס אחד</span>
+    <h2 class="section-title">הציוד המקצועי הוא הדבר הכי פחות חשוב פה</h2>
+    <div class="myth-pairs" id="mythCompare"></div>
   </div>
 </section>
 
@@ -589,53 +699,6 @@ html.a11y-underline a{text-decoration:underline !important;}
     <p class="hero-body">אותו דבר לגבי צילום.</p>
     <p class="hero-body">אני לא רוצה להפוך אתכם לצלמים.</p>
     <p class="hero-body">אני רוצה שתדעו לצלם בצורה שתשרת את המסר שלכם.</p>
-  </div>
-</section>
-
-<section class="who-for">
-  <div class="wrap">
-    <span class="who-for-label">למי הקורס הזה מתאים?</span>
-    <div class="who-for-grid">
-      <div class="who-for-card">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.6-9.4-9C1.2 8 2.4 5 5.6 5c1.9 0 3.3 1.1 4 2.4C10.3 6.1 11.7 5 13.6 5 16.8 5 18 8 18.4 11c-1 4.4-6.4 9-6.4 9z"/></svg>
-        <div>
-          <h3>אנשים פרטיים</h3>
-          <p>רוצים להתחיל ליצור תוכן משלהם — גם בלי ניסיון קודם, וגם בלי מושג מאיפה מתחילים.</p>
-        </div>
-      </div>
-      <div class="who-for-card">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v11h16V9"/><path d="M4 9a3 3 0 006 0 3 3 0 006 0 3 3 0 006 0"/></svg>
-        <div>
-          <h3>בעלי עסקים</h3>
-          <p>רוצים שהתוכן שלהם יביא לקוחות, לידים ומכירות — לא רק לייקים.</p>
-        </div>
-      </div>
-    </div>
-    <p class="who-for-note">בכל מקרה, מתחילים מאותו מקום — ובהמשך תראו בדיוק איך זה עובד בשבילכם.</p>
-  </div>
-</section>
-
-<section class="section" id="pain">
-  <div class="wrap">
-    <span class="section-eyebrow">רגע לפני שממשיכים</span>
-    <h2 class="section-title">אם אתם מזדהים עם המשפטים האלה — אני מבינה בדיוק איך זה מרגיש, כי הייתי שם</h2>
-    <div class="pain-list" id="painList"></div>
-  </div>
-</section>
-
-<section class="section myth" id="myth">
-  <div class="wrap">
-    <span class="section-eyebrow">בואו נשבור מיתוס אחד</span>
-    <h2 class="section-title">הציוד המקצועי הוא הדבר הכי פחות חשוב פה</h2>
-    <div class="myth-grid">
-      <div class="myth-compare" id="mythCompare"></div>
-      <div class="myth-text">
-        <p>לא צריך מצלמה מקצועית כדי להתחיל. לא צריך תאורה משוכללת. עובדה — יש אנשים שמתפוצצים ברשת עם התוכן הכי פשוט, מצולם מהטלפון, בלי שום דבר מיוחד.</p>
-        <p>לרוב אנחנו חושבים שאנחנו צריכים את הציוד הכי טוב כדי להתחיל ולהתפוצץ — אבל ציוד אפשר תמיד לשדרג לאורך הדרך, וזה ממש לא מה שיכתיב את ההצלחה שלכם.</p>
-        <p>מה שבאמת עוצר את רובכם להתחיל ליצור, זה לא הציוד — זה הפחד, וחוסר הידע איך להביא את עצמכם, איך להבין את הקהל שלכם, ואיך למצוא את הזהות והנישה שלכם. וזה בדיוק מה שהקורס הזה מלמד.</p>
-        <p class="myth-note">כן, יש גם לינקים לציוד מומלץ למי שרוצה לשדרג בהמשך — אבל זה ממש לא מה שיעצור אתכם מלהתחיל היום.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -700,35 +763,27 @@ html.a11y-underline a{text-decoration:underline !important;}
 
 <section class="section mindset">
   <div class="wrap hero-editorial">
-    <span class="mindset-lead fade-in">בסוף הקורס הזה...</span>
-    <p class="hero-stmt fade-in">לא תסתכלו על תוכן באותה צורה.</p>
+    <span class="mindset-lead">בסוף הקורס הזה...</span>
+    <p class="hero-stmt">לא תסתכלו על תוכן באותה צורה.</p>
 
-    <span class="mindset-sub fade-in">היום...</span>
-    <p class="hero-body fade-in">כל סרטון מרגיש כמו הימור.</p>
-    <p class="hero-body fade-in">אולי הוא יעבוד. אולי לא.</p>
-    <p class="hero-body fade-in">אולי יקשיבו. אולי יגללו.</p>
-    <p class="hero-body fade-in">אולי תמצאו רעיון. אולי לא.</p>
+    <div class="before-after">
+      <div class="ba-col before fade-in">
+        <span class="ba-label">היום</span>
+        <div class="ba-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg> אני מעלה על עיוור</div>
+        <div class="ba-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg> אני לא יודעת למה סרטון אחד עובד</div>
+        <div class="ba-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg> אני נתקעת בכל רעיון</div>
+        <div class="ba-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg> אני מחכה להרגיש מוכנה</div>
+      </div>
+      <div class="ba-col after fade-in">
+        <span class="ba-label">אחרי הקורס</span>
+        <div class="ba-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> אני יודעת לגשת לרעיון</div>
+        <div class="ba-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> אני מבינה איך לבנות מסר</div>
+        <div class="ba-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> אני יודעת למה מישהו אמור לעצור</div>
+        <div class="ba-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> אני יוצרת מתוך מטרה</div>
+      </div>
+    </div>
 
-    <span class="mindset-sub fade-in">אחרי הקורס...</span>
-    <p class="hero-body fade-in">אני לא יכולה להבטיח שכל סרטון שלכם יהפוך לוויראלי.</p>
-    <p class="hero-body fade-in">ואני גם לא מבטיחה שכל תוכן שתעלו יביא לקוחות.</p>
-    <p class="hero-body fade-in">אבל אני כן יכולה להבטיח לכם משהו אחר.</p>
-
-    <p class="hero-stmt fade-in">הוא כבר לא יהיה מבוסס על ניחושים.</p>
-
-    <p class="hero-body fade-in">אתם תדעו איך לגשת לכל סרטון.</p>
-    <p class="hero-body fade-in">איך לחשוב על רעיון. איך לבנות אותו. איך לפתוח אותו. איך להעביר מסר.</p>
-    <p class="hero-body fade-in">ואיך ליצור תוכן שמשרת את המטרה שלכם.</p>
-    <p class="hero-body fade-in">בין אם המטרה שלכם היא לבנות קהילה. או לקדם את העסק.</p>
-
-    <p class="stmt-purple fade-in">אני לא רוצה שתזכרו טיפים.</p>
-    <p class="stmt-purple fade-in">אני רוצה שתבינו איך תוכן עובד.</p>
-
-    <p class="hero-body fade-in">כי ברגע שמבינים איך אנשים חושבים... הרבה יותר קל ליצור תוכן שהם ירצו לעצור בשבילו.</p>
-
-    <p class="hero-body fade-in">בדיוק בגלל זה... בניתי את הקורס בצורה מסודרת.</p>
-    <p class="hero-body fade-in">שלב אחרי שלב.</p>
-    <p class="hero-body fade-in">כדי שלא תצטרכו לנחש מה לעשות קודם ומה אחר כך.</p>
+    <p class="stmt-purple" style="margin-top:56px;">אני לא רוצה שתזכרו טיפים.<br>אני רוצה שתבינו איך תוכן עובד.</p>
   </div>
 </section>
 
@@ -787,6 +842,22 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
+<section class="section" id="peek">
+  <div class="wrap">
+    <span class="section-eyebrow">הצצה קטנה למה שמחכה לכם בפנים</span>
+    <h2 class="section-title">הצצה מתוך הקורס</h2>
+    <div class="peek-grid">
+      <div class="media-placeholder">
+        <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="media-placeholder-label">קטע מתוך שיעור</span>
+      </div>
+      <div class="media-placeholder"><span class="media-placeholder-label">צילום מתוך CapCut</span></div>
+      <div class="media-placeholder"><span class="media-placeholder-label">צילום מתוך חוברת העבודה</span></div>
+      <div class="media-placeholder"><span class="media-placeholder-label">צילום מתוך סוכן ה-AI</span></div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="bonuses">
   <div class="wrap">
     <h3 class="perks-title">מה עוד תקבלו בקורס?</h3>
@@ -794,31 +865,35 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
-<section class="section" id="futureSelf">
-  <div class="wrap">
-    <span class="section-eyebrow">מה יקרה לכם אחרי הקורס?</span>
-    <h2 class="section-title">אין יותר תירוצים</h2>
-    <div class="talk-stage">
-      <div class="talk-figure" aria-hidden="true">
-        <svg viewBox="0 0 240 280" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="120" cy="150" r="118" fill="var(--purple)" opacity=".45"/>
-          <path d="M30,280 Q30,182 120,172 Q210,182 210,280 Z" fill="var(--orange)"/>
-          <circle cx="120" cy="108" r="58" fill="var(--orange)" stroke="var(--orange-deep)" stroke-width="4"/>
-          <circle cx="98" cy="104" r="6.5" fill="var(--ink)"/>
-          <circle cx="142" cy="104" r="6.5" fill="var(--ink)"/>
-          <circle cx="84" cy="122" r="10" fill="var(--purple)" opacity=".55"/>
-          <circle cx="156" cy="122" r="10" fill="var(--purple)" opacity=".55"/>
-          <ellipse class="talk-mouth" cx="120" cy="138" rx="16" ry="8" fill="var(--purple-deep)"/>
-          <path class="talk-wave w1" d="M68,132 q-10,6 0,16" stroke="var(--orange-deep)" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path class="talk-wave w2" d="M56,126 q-17,12 0,28" stroke="var(--orange-deep)" stroke-width="3" fill="none" stroke-linecap="round"/>
-        </svg>
+<section class="section" id="socialProof">
+  <div class="wrap hero-editorial">
+    <h2 class="section-title" style="text-align:center;">מה אנשים אומרים אחרי שהם מתחילים</h2>
+    <div class="social-proof-grid">
+      <div class="media-placeholder"><span class="media-placeholder-label">כאן ייכנס צילום מסך של הודעה מתלמיד/ה</span></div>
+      <div class="media-placeholder"><span class="media-placeholder-label">כאן ייכנס ציטוט, שם ותמונה</span></div>
+      <div class="media-placeholder">
+        <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="media-placeholder-label">כאן ייכנס וידאו קצר של תלמיד/ה</span>
       </div>
-      <div class="talk-bubbles" id="talkBubbles"></div>
     </div>
   </div>
 </section>
 
-<section class="section value">
+<section class="section" id="futureSelf">
+  <div class="wrap hero-editorial">
+    <span class="section-eyebrow" style="text-align:center;">מה יקרה לכם אחרי הקורס?</span>
+    <p class="anchor-stmt">אני אומרת לכם עכשיו — אחרי הקורס הזה, כבר לא יהיו לכם תירוצים.</p>
+    <div class="futureself-visual">
+      <div class="media-placeholder">
+        <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="media-placeholder-label">כאן ייכנס וידאו/תמונה שממחישים את התחושה</span>
+      </div>
+    </div>
+    <p class="hero-body" style="text-align:center;margin-top:40px;">כי בסוף הדרך הזו יהיה לכם ממש הכל כדי להתחיל: <strong>ביטחון</strong>, ידיעה מדויקת מה לעשות, וסרטון ראשון שכבר מוכן. הזמן להשמיע סוף סוף את הקול שלכם — או לקדם איתו את העסק שלכם — פשוט מגיע.</p>
+  </div>
+</section>
+
+<section class="section value" id="value1">
   <div class="wrap hero-editorial">
     <h2 class="section-title" style="text-align:center;">כל מה שאתם באמת צריכים כדי להתחיל ליצור תוכן.<br>במקום אחד.</h2>
     <p class="hero-body">בניתי את הקורס הזה כך שלא תצטרכו לקפוץ בין עשרות סרטונים, מדריכים וקורסים שונים.</p>
@@ -835,7 +910,11 @@ html.a11y-underline a{text-decoration:underline !important;}
       <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c3-1.2 6-1.2 8 0v14c-2-1.2-5-1.2-8 0z"/><path d="M20 5c-3-1.2-6-1.2-8 0v14c2-1.2 5-1.2 8 0z"/></svg><p>חוברת עבודה אינטראקטיבית שתלווה אתכם לאורך כל הקורס — ותישאר אתכם גם אחריו</p></div>
       <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><p>גישה מיידית לקורס וצפייה בקצב שלכם</p></div>
     </div>
+  </div>
+</section>
 
+<section class="section value" id="value2">
+  <div class="wrap hero-editorial">
     <p class="anchor-stmt">הקורס ממשיך להתעדכן.</p>
     <p class="hero-body">עולם התוכן משתנה כל הזמן. וגם הקורס משתנה יחד איתו.</p>
     <p class="hero-body">כל עדכון חדש שאוסיף בעתיד, יהיה זמין גם לכם, ללא תשלום נוסף.</p>
@@ -844,9 +923,6 @@ html.a11y-underline a{text-decoration:underline !important;}
 
     <p class="hero-stmt">אני לא רוצה שתצאו מהקורס עם עוד ידע.</p>
     <p class="hero-stmt">אני רוצה שתצאו ממנו עם תוכן בחוץ.</p>
-
-    <p class="hero-body">נשאר רק לבחור איך אתם רוצים להתחיל.</p>
-    <p class="hero-body">לא משנה באיזה מסלול תבחרו, המטרה שלי היא לא שתסיימו את הקורס עם עוד ידע. המטרה שלי היא שתדעו ליצור תוכן שמשרת את המטרות שלכם, ותתחילו להשתמש בו בפועל.</p>
   </div>
 </section>
 
@@ -861,24 +937,11 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
-<section class="section whynow">
+<section class="section" id="faq">
   <div class="wrap hero-editorial">
-    <h2 class="whynow-title">השאלה היא לא אם תתחילו.<br>השאלה היא רק מתי.</h2>
-
-    <p class="hero-body">אם לא תתחילו עכשיו...</p>
-    <p class="hero-body">יש סיכוי טוב שעוד חודש תהיו בדיוק באותה נקודה.</p>
-    <p class="hero-body">עם אותם רעיונות.</p>
-    <p class="hero-body">עם אותם פחדים.</p>
-    <p class="hero-body">ועם אותה מחשבה: "אני אתחיל כשארגיש מוכן."</p>
-
-    <p class="hero-body">אבל אם יש משהו שלמדתי בדרך...</p>
-    <p class="hero-body">זה שהמוכנות לא מגיעה לפני שמתחילים.</p>
-    <p class="hero-body">היא מגיעה תוך כדי.</p>
-
-    <p class="hero-body">ובכל חודש שבו אתם ממשיכים לדחות... אתם גם דוחים את ההזדמנות ללמוד מיומנות שיכולה ללוות אתכם שנים קדימה.</p>
-
-    <p class="hero-stmt">אני מביאה לכם את הידע, הכלים והדרך.</p>
-    <p class="hero-stmt">את הצעד הראשון, אף אחד לא יכול לעשות במקומכם.</p>
+    <span class="section-eyebrow" style="text-align:center;">עוד כמה שאלות</span>
+    <h2 class="section-title" style="text-align:center;">שאלות נפוצות</h2>
+    <div class="faq-list" id="faqList"></div>
   </div>
 </section>
 
@@ -889,16 +952,6 @@ html.a11y-underline a{text-decoration:underline !important;}
     <p class="hero-body">אולי אתם חושבים: "אין לי עדיין מספיק מה להגיד."</p>
     <p class="hero-body">גם אני חשבתי ככה.</p>
     <p class="hero-body">האמת? לרוב האנשים יש הרבה יותר מה להגיד ממה שהם חושבים. הם פשוט עדיין לא יודעים איך להפוך את זה לתוכן.</p>
-
-    <p class="hero-body">אולי אתם חושבים: "אני אתחיל כשיהיה לי יותר זמן."</p>
-    <p class="hero-body">יכול להיות.</p>
-    <p class="hero-body">אבל יש סיכוי טוב שגם בעוד חודש תגידו בדיוק את אותו הדבר.</p>
-    <p class="hero-body">כי בדרך כלל... זאת לא באמת בעיית הזמן. זאת בעיית ההתחלה.</p>
-
-    <p class="hero-body">אולי אתם חושבים: "ומה אם אף אחד לא יצפה?"</p>
-    <p class="hero-body">יכול להיות.</p>
-    <p class="hero-body">הסרטון הראשון כנראה לא יהיה הסרטון הכי טוב שלכם.</p>
-    <p class="hero-body">אבל גם הסרטון העשירי... לא היה קיים, אם הראשון לא היה עולה.</p>
 
     <p class="hero-body">אני לא יכולה להבטיח לכם שתהפכו ליוצרי תוכן מצליחים תוך חודש.</p>
     <p class="hero-body">ואני גם לא יכולה להבטיח שכל סרטון שתעלו יעבוד.</p>
@@ -1016,11 +1069,9 @@ const PAIN_ITEMS = [
 ];
 
 const MYTH_ROWS = [
-  {type:'no', text:'מצלמה מקצועית ועדשות יקרות'},
-  {type:'no', text:'סטודיו תאורה מקצועי'},
-  {type:'no', text:'תוכנות עריכה מסובכות ויקרות'},
-  {type:'yes', text:'הטלפון שכבר יש לכם'},
-  {type:'yes', text:'אור טבעי מהחלון'}
+  {before:'מצלמה מקצועית', after:'פלאפון'},
+  {before:'סט', after:'פינה עם אור'},
+  {before:'עריכה מורכבת', after:'עריכה שמשרתת את המסר'}
 ];
 
 const CURRICULUM = [
@@ -1051,11 +1102,9 @@ const GUEST_BONUS = {
 };
 
 const CURR_EXTRAS = [
-  {icon:'book', color:'pink', title:'חוברת עבודה אינטראקטיבית', text:'מלווה ועוזרת לכם להשתפר לאורך כל הדרך'},
-  {icon:'bot', color:'lilac', title:'2 סוכני AI זמינים תמיד', text:'שכל מטרתם לעזור לכם להשתפר ולהגיע למטרות שלכם'},
-  {icon:'chat', color:'sage', title:'קהילת וואטסאפ תומכת', text:'לשאלות, עזרה ותמיכה לאורך כל הדרך'},
-  {icon:'refresh', color:'peach', title:'הקורס מתעדכן כל הזמן', text:'כל שדרוג ותוכן חדש פתוח לכם, ללא הגבלת זמן'},
-  {icon:'rocket', color:'pink', title:'סרטון ראשון באוויר', text:'בסיום הקורס — לא רק עוד ידע, אלא תוצר אמיתי'}
+  {icon:'bot', color:'lilac', title:'כלי AI למציאת הנישה שמתאימה לכם', text:'שמטרתו לעזור לכם להשתפר ולהגיע למטרות שלכם'},
+  {icon:'bulb', color:'sage', title:'כלי AI לפיתוח ושיפור רעיונות', text:'שמטרתו לעזור לכם להשתפר ולהגיע למטרות שלכם'},
+  {icon:'book', color:'pink', title:'חוברת עבודה אינטראקטיבית', text:'מלווה ועוזרת לכם להשתפר לאורך כל הדרך'}
 ];
 
 const FAQ_ITEMS = [
@@ -1106,31 +1155,17 @@ function renderPain(){
 function renderMyth(){
   const el = document.getElementById('mythCompare');
   el.innerHTML = MYTH_ROWS.map(r=>`
-    <div class="myth-row ${r.type}">${icon(r.type==='no'?'x':'check')}<span>${r.text}</span></div>
+    <div class="myth-pair"><span class="before">${r.before}</span>${icon('chevron')}<span class="after">${r.after}</span></div>
   `).join('');
 }
 
-function curriculumItemHTML(c,num,biz){
-  return `
-    <div class="curr-item${biz?' biz':''}">
-      <div class="curr-num num">${num}</div>
-      <div><h3>${c.title}</h3><p>${c.text}</p></div>
-    </div>`;
-}
 function renderCurriculum(){
-  const n = CURR_EXTRAS.length;
-  const R = 38; // percent radius of the ring
-  document.getElementById('currExtra').innerHTML = CURR_EXTRAS.map((c,i)=>{
-    const angle = (i*360/n - 90) * Math.PI/180;
-    const x = 50 + R*Math.cos(angle);
-    const y = 50 + R*Math.sin(angle);
-    return `
-    <div class="perk-badge" style="left:${x.toFixed(2)}%;top:${y.toFixed(2)}%;">
+  document.getElementById('currExtra').innerHTML = CURR_EXTRAS.map(c=>`
+    <div class="perk-card">
       <div class="perk-circle ${c.color}">${icon(c.icon)}</div>
       <div class="perk-title">${c.title}</div>
       <div class="perk-text">${c.text}</div>
-    </div>`;
-  }).join('');
+    </div>`).join('');
 }
 
 function renderPricing(){
@@ -1363,10 +1398,9 @@ function boot(){
   renderPain();
   renderMyth();
   renderCurriculum();
-  renderTalkFuture();
   renderPricing();
+  renderFaq();
   wireScrollReveal();
-  wireTalkReveal();
   wireFadeIn();
   wireStickyCta();
   wireModals();

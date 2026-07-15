@@ -113,6 +113,26 @@ img,svg{display:block;max-width:100%;}
 .hero-triad{line-height:1.9;}
 .anchor-stmt.hero-final-stmt{color:var(--orange-deep);margin-top:104px;}
 
+/* ===== social proof / viral track record ===== */
+.section.proof{padding-block:clamp(82px,12.5vw,160px);}
+.proof-title{font-size:clamp(2.2rem,5.6vw,3.2rem);font-weight:900;text-align:center;margin-bottom:56px;text-wrap:balance;}
+.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:52px 0 64px;}
+@media (max-width:560px){.proof-grid{grid-template-columns:1fr 1fr;gap:12px;}}
+.proof-card{border-radius:18px;overflow:hidden;background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);}
+.proof-thumb{
+  aspect-ratio:9/16;background:var(--ink-on-paper);display:flex;align-items:center;justify-content:center;position:relative;
+}
+.proof-thumb .play-badge{
+  width:52px;height:52px;border-radius:50%;background:var(--purple-deep);color:#fff;
+  display:flex;align-items:center;justify-content:center;flex:none;
+}
+.proof-thumb .play-badge svg{width:20px;height:20px;fill:#fff;}
+.proof-views{display:block;padding:12px 10px;font-size:.78rem;font-weight:700;color:var(--ink-soft);text-align:center;line-height:1.5;}
+.proof-highlight{
+  font-size:clamp(1.15rem,2.6vw,1.4rem);font-weight:700;color:var(--orange-deep);
+  text-align:center;line-height:1.7;max-width:46ch;margin:32px auto;text-wrap:balance;
+}
+
 /* ===== media placeholder (hero visual / peek / social proof / future self) ===== */
 .media-placeholder{
   position:relative;border-radius:20px;border:1.5px dashed var(--line);background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);
@@ -791,6 +811,75 @@ html.a11y-underline a{text-decoration:underline !important;}
     <p class="stmt-purple">המטרה שלי היא שתמצאו את הדרך שלכם.</p>
 
     <p class="hero-body">הרבה יותר מהר ממה שאני מצאתי את שלי.</p>
+  </div>
+</section>
+
+<section class="section proof" id="proof">
+  <div class="wrap hero-editorial">
+    <h2 class="proof-title">זה לא קרה במקרה.</h2>
+
+    <p class="hero-body">בארבע השנים האחרונות יצרתי מאות סרטונים.</p>
+    <p class="hero-body">חלקם הגיעו לעשרות אלפי צפיות.</p>
+    <p class="hero-body">חלקם למאות אלפים.</p>
+    <p class="hero-body">וחלקם למיליוני צפיות.</p>
+
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-thumb"><div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <span class="proof-views">כאן ייכנס סרטון + מספר צפיות</span>
+      </div>
+      <div class="proof-card">
+        <div class="proof-thumb"><div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <span class="proof-views">כאן ייכנס סרטון + מספר צפיות</span>
+      </div>
+      <div class="proof-card">
+        <div class="proof-thumb"><div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <span class="proof-views">כאן ייכנס סרטון + מספר צפיות</span>
+      </div>
+      <div class="proof-card">
+        <div class="proof-thumb"><div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+        <span class="proof-views">כאן ייכנס סרטון + מספר צפיות</span>
+      </div>
+    </div>
+
+    <p class="hero-body">אבל חשוב לי שתדעו משהו.</p>
+    <p class="proof-highlight">הוויראליות אף פעם לא הייתה המטרה שלי.</p>
+    <p class="hero-body">היא הייתה התוצאה.</p>
+
+    <p class="hero-body">התוצאה של להבין</p>
+    <p class="hero-body">איך אנשים צורכים תוכן.</p>
+    <p class="hero-body">מה גורם להם לעצור.</p>
+    <p class="hero-body">מה גורם להם להישאר.</p>
+    <p class="hero-body">ומה גורם להם לשתף.</p>
+
+    <p class="hero-body">אפשר להגיע לסרטון ויראלי אחד במקרה.</p>
+    <p class="hero-body">אבל כשזה קורה שוב.</p>
+    <p class="hero-body">ושוב.</p>
+    <p class="hero-body">ושוב.</p>
+    <p class="hero-stmt">כבר ברור שיש מאחורי זה הבנה.</p>
+
+    <p class="proof-highlight">המטרה היא לא רק להגיע לעוד צפיות.</p>
+    <p class="hero-body">המטרה היא לגרום לתוכן שלכם להגיע לאנשים הנכונים.</p>
+    <p class="hero-body">להעביר את המסר שלכם.</p>
+    <p class="hero-body">ולשרת את המטרה שבגללה בכלל התחלתם ליצור תוכן.</p>
+
+    <p class="hero-body">כי סרטון עם מיליון צפיות...</p>
+    <p class="hero-body">שלא משרת את המטרה שלכם...</p>
+    <p class="hero-body">הוא בסך הכול סרטון עם מיליון צפיות.</p>
+
+    <div class="hero-divider"></div>
+
+    <p class="hero-body">אני לא יכולה להבטיח שכל סרטון שתעלו יהיה ויראלי.</p>
+    <p class="hero-body">כי אף אחד לא יכול.</p>
+    <p class="hero-body">אבל אני כן יכולה ללמד אתכם ליצור תוכן</p>
+    <p class="hero-body">עם הרבה יותר סיכוי לגרום לאנשים לעצור.</p>
+    <p class="hero-body">להקשיב.</p>
+    <p class="hero-body">ולהתחבר.</p>
+
+    <p class="hero-stmt">אלה בדיוק העקרונות שעליהם בנוי הקורס.</p>
+
+    <p class="hero-body">לא כדי לרדוף אחרי ויראליות.</p>
+    <p class="hero-body">אלא כדי להבין איך ליצור תוכן שמשרת את המטרה שלכם.</p>
   </div>
 </section>
 

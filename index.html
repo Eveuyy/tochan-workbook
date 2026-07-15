@@ -155,6 +155,8 @@ img,svg{display:block;max-width:100%;}
 .peek-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;}
 @media (max-width:640px){.peek-grid{grid-template-columns:1fr;}}
 .peek-grid .media-placeholder{aspect-ratio:4/3;}
+.media-video-card{border-radius:20px;overflow:hidden;background:#000;aspect-ratio:16/9;}
+.peek-video{width:100%;height:100%;display:block;object-fit:cover;}
 
 /* ===== social proof placeholder ===== */
 .social-proof-grid{display:flex;flex-direction:column;gap:16px;margin-top:32px;}
@@ -844,12 +846,13 @@ html.a11y-underline a{text-decoration:underline !important;}
 
 <section class="section" id="peek">
   <div class="wrap">
-    <span class="section-eyebrow">הצצה קטנה למה שמחכה לכם בפנים</span>
-    <h2 class="section-title">הצצה מתוך הקורס</h2>
+    <span class="section-eyebrow">לפני שממשיכים</span>
+    <h2 class="section-title">טעימה קטנה לפני שקופצים פנימה</h2>
     <div class="peek-grid">
-      <div class="media-placeholder">
-        <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <span class="media-placeholder-label">קטע מתוך שיעור</span>
+      <div class="media-video-card">
+        <video class="peek-video" playsinline preload="metadata" poster="" controls>
+          <source src="assets/taste-preview.mp4" type="video/mp4">
+        </video>
       </div>
       <div class="media-placeholder"><span class="media-placeholder-label">צילום מתוך CapCut</span></div>
       <div class="media-placeholder"><span class="media-placeholder-label">צילום מתוך חוברת העבודה</span></div>

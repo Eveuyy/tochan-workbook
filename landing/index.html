@@ -129,6 +129,17 @@ img,svg{display:block;max-width:100%;}
 }
 .proof-thumb .play-badge svg{width:20px;height:20px;fill:#fff;}
 .proof-views{display:block;padding:12px 10px;font-size:.78rem;font-weight:700;color:var(--ink-soft);text-align:center;line-height:1.5;}
+.proof-card-real{background:transparent;}
+.proof-video-wrap{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:9/16;background:#000;}
+.proof-video{width:100%;height:100%;object-fit:cover;display:block;}
+.proof-views-badge{
+  position:absolute;top:10px;right:10px;z-index:2;pointer-events:none;
+  display:flex;align-items:center;gap:5px;background:rgba(17,16,19,.62);backdrop-filter:blur(3px);
+  color:#fff;font-size:.78rem;font-weight:700;padding:5px 10px;border-radius:100px;
+  transition:opacity .2s ease;font-family:'Fredoka','Rubik',sans-serif;
+}
+.proof-views-badge .icon{width:15px;height:15px;stroke:#fff;}
+.proof-video-wrap.is-playing .proof-views-badge{opacity:0;}
 .proof-highlight{
   font-size:clamp(1.15rem,2.6vw,1.4rem);font-weight:700;color:var(--orange-deep);
   text-align:center;line-height:1.7;max-width:46ch;margin:44px auto;text-wrap:balance;
@@ -821,9 +832,16 @@ html.a11y-underline a{text-decoration:underline !important;}
     <p class="hero-body">וחלקם למיליוני צפיות.</p>
 
     <div class="proof-grid">
-      <div class="proof-card">
-        <div class="proof-thumb"><div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <span class="proof-views">כאן ייכנס סרטון + מספר צפיות</span>
+      <div class="proof-card proof-card-real">
+        <div class="proof-video-wrap">
+          <video class="proof-video" poster="assets/proof-video-1-cover.jpg" playsinline preload="metadata" controls>
+            <source src="assets/proof-video-1.mp4" type="video/mp4">
+          </video>
+          <div class="proof-views-badge">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
+            <span>883K</span>
+          </div>
+        </div>
       </div>
       <div class="proof-card">
         <div class="proof-thumb"><div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
@@ -1514,6 +1532,15 @@ function wireParallax(){
   update();
 }
 
+function wireProofVideos(){
+  document.querySelectorAll('.proof-video-wrap').forEach(wrap=>{
+    const v = wrap.querySelector('video');
+    if(!v) return;
+    v.addEventListener('play', ()=>wrap.classList.add('is-playing'));
+    v.addEventListener('pause', ()=>wrap.classList.remove('is-playing'));
+  });
+}
+
 function boot(){
   renderPain();
   renderMyth();
@@ -1526,6 +1553,7 @@ function boot(){
   wireModals();
   wireA11y();
   wireParallax();
+  wireProofVideos();
 }
 document.addEventListener('DOMContentLoaded', boot);
 

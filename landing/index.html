@@ -98,7 +98,7 @@ img,svg{display:block;max-width:100%;}
 .hero-editorial{max-width:620px;margin:0 auto;text-align:center;}
 .hero-h1{font-size:clamp(1.8rem,4.2vw,2.5rem);line-height:1.5;font-weight:300;margin-bottom:44px;text-wrap:balance;opacity:.92;}
 .hero-statement-main{
-  font-size:clamp(2.4rem,6.6vw,3.6rem);line-height:1.25;font-weight:900;color:#fff;
+  font-size:clamp(2.4rem,6.6vw,3.6rem);line-height:1.25;font-weight:900;color:var(--orange-deep);
   margin:0 0 76px;text-wrap:balance;
 }
 .hero-body{font-size:clamp(1.05rem,2.1vw,1.2rem);font-weight:300;line-height:1.95;color:var(--ink);margin:0 0 36px;max-width:52ch;margin-inline:auto;}
@@ -107,6 +107,11 @@ img,svg{display:block;max-width:100%;}
   margin:80px auto;max-width:22ch;text-wrap:balance;
 }
 .hero-cta-solo{margin-top:68px;}
+.hero-photo{margin:56px auto 64px;max-width:380px;}
+.hero-photo img{width:100%;border-radius:24px;box-shadow:0 10px 24px rgba(0,0,0,.35), 0 30px 60px rgba(0,0,0,.4);}
+.hero-divider{width:64px;height:2px;background:var(--line);margin:72px auto;border-radius:4px;}
+.hero-triad{line-height:1.9;}
+.anchor-stmt.hero-final-stmt{color:var(--orange-deep);margin-top:104px;}
 
 /* ===== media placeholder (hero visual / peek / social proof / future self) ===== */
 .media-placeholder{
@@ -563,47 +568,71 @@ html.a11y-underline a{text-decoration:underline !important;}
     <h1 class="hero-h1">אם אתם עדיין מחכים לרגע שבו תרגישו מוכנים ליצור תוכן...</h1>
     <p class="hero-statement-main">כנראה שהוא לא יגיע.</p>
 
+    <div class="hero-photo">
+      <img src="assets/hero-photo.jpg" alt="איב, יוצרת התוכן מאחורי הקורס" loading="eager">
+    </div>
+
     <p class="hero-body">גם אני חיכיתי.</p>
-    <p class="hero-body">חיכיתי לביטחון. לרעיון המושלם. לציוד הנכון. לרגע שבו ארגיש מוכנה.</p>
+    <p class="hero-body">חיכיתי לביטחון.</p>
+    <p class="hero-body">לרעיון המושלם.</p>
+    <p class="hero-body">לציוד הנכון.</p>
+    <p class="hero-body">ולרגע שבו ארגיש מוכנה.</p>
     <p class="hero-body">אבל הוא אף פעם לא הגיע.</p>
     <p class="hero-body">ואז הבנתי משהו.</p>
 
-    <p class="hero-stmt">אף אחד לא יכול לעשות את הצעד הראשון במקומי.</p>
+    <p class="hero-stmt">אף אחד לא יגיע וייתן לי את האישור להתחיל.</p>
+    <p class="hero-body">הצעד הראשון תמיד יהיה שלי.</p>
 
     <p class="hero-body">ואני רוצה להגיד לכם בדיוק את אותו הדבר.</p>
-    <p class="hero-body">אם אתם מחפשים מישהו שיעשה את העבודה בשבילכם...</p>
-
-    <p class="hero-stmt">זה לא הקורס הזה.</p>
 
     <p class="hero-body">אני לא יכולה להבטיח לכם שרק מלקנות קורס — החיים שלכם ישתנו.</p>
-    <p class="hero-body">האמת? אף אחד לא יכול.</p>
+    <p class="hero-body">האמת?</p>
+    <p class="hero-body">אף אחד לא יכול.</p>
     <p class="hero-body">השינוי יקרה רק אם תחליטו להתחיל.</p>
-    <p class="hero-body">אבל אני כן יכולה להבטיח לכם משהו אחר.</p>
 
-    <p class="hero-stmt">אני מביאה לכם את הידע, הכלים והדרך.</p>
+    <p class="hero-stmt">אבל אני כן יכולה להבטיח לכם משהו אחר.</p>
+
+    <p class="hero-stmt hero-triad">אני מביאה לכם את הידע.<br>את הכלים.<br>ואת הדרך.</p>
 
     <p class="hero-body">אני אלמד אתכם איך ליצור תוכן שמשרת את המטרה שלכם.</p>
     <p class="hero-body">איך למצוא רעיונות.</p>
     <p class="hero-body">איך להעביר את המסר שלכם בצורה ברורה.</p>
     <p class="hero-body">איך לגרום לאנשים לעצור ולהקשיב.</p>
     <p class="hero-body">ואיך לצלם ולערוך בצורה פשוטה, בלי להסתבך במה שלא באמת חשוב.</p>
-    <p class="hero-body">כי המטרה שלי היא לא להפוך אתכם לעורכי וידאו, או לצלמים מקצועיים.</p>
+
+    <p class="hero-body">המטרה שלי היא לא להפוך אתכם לעורכי וידאו.</p>
+    <p class="hero-body">או לצלמים מקצועיים.</p>
     <p class="hero-body">המטרה שלי היא לתת לכם את כל מה שאתם באמת צריכים כדי ליצור תוכן שעובד.</p>
 
     <p class="hero-body">כי ליצור סרטון... זה החלק הקל.</p>
-    <p class="hero-body">ליצור תוכן שאנשים זוכרים, סומכים עליו, ומתחברים אליו — זאת כבר מיומנות.</p>
+    <p class="hero-body">ליצור תוכן שאנשים זוכרים, סומכים עליו ומתחברים אליו — זאת כבר מיומנות.</p>
     <p class="hero-body">ואת המיומנות הזאת אפשר ללמוד. גם אם אתם מתחילים היום מאפס.</p>
 
-    <p class="hero-stmt">אבל את הצעד הראשון... אף אחד לא יכול לעשות במקומכם.</p>
+    <div class="hero-divider"></div>
+
+    <p class="hero-body">בדיוק בגלל זה הקורס הזה לא מתחיל בצילום.</p>
+    <p class="hero-body">ולא בעריכה.</p>
+    <p class="hero-stmt">הוא מתחיל בדרך שבה יוצרי תוכן חושבים.</p>
+
+    <p class="hero-body">נבין איך אנשים מחליטים אם להישאר או להמשיך לגלול.</p>
+    <p class="hero-body">מה גורם להם לעצור.</p>
+    <p class="hero-body">מה גורם להם להקשיב.</p>
+    <p class="hero-body">ומה גורם להם להרגיש שהתוכן הזה מדבר בדיוק אליהם.</p>
+
+    <p class="hero-body">כי ברגע שמבינים איך חושב הצופה,</p>
+    <p class="hero-body">הרבה יותר קל לדעת:</p>
+
+    <p class="hero-stmt hero-triad">מה להגיד.<br>איך להגיד.<br>ולמי להגיד.</p>
+
+    <p class="hero-body">ורק אחר כך נעבור לצילום,</p>
+    <p class="hero-body">לעריכה,</p>
+    <p class="hero-body">ולכל הכלים שיעזרו לכם להפוך את הרעיונות שלכם לתוכן איכותי.</p>
+
+    <p class="hero-stmt hero-triad">אני מביאה לכם את הידע.<br>את הכלים.<br>ואת הדרך.</p>
+
+    <p class="anchor-stmt hero-final-stmt">אבל את הצעד הראשון...<br>אף אחד לא יכול לעשות במקומכם.</p>
 
     <a class="btn btn-primary btn-lg hero-cta-solo" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
-
-    <div class="hero-visual">
-      <div class="media-placeholder">
-        <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <span class="media-placeholder-label">כאן ייכנס וידאו קצר שלי</span>
-      </div>
-    </div>
   </div>
 </section>
 

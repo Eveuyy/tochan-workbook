@@ -133,12 +133,14 @@ img,svg{display:block;max-width:100%;}
 .proof-video-wrap{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:9/16;background:#000;}
 .proof-video{width:100%;height:100%;object-fit:cover;display:block;}
 .proof-views-badge{
-  position:absolute;top:10px;right:10px;z-index:2;pointer-events:none;
-  display:flex;align-items:center;gap:5px;background:rgba(17,16,19,.62);backdrop-filter:blur(3px);
-  color:#fff;font-size:.78rem;font-weight:700;padding:5px 10px;border-radius:100px;
+  position:absolute;top:12px;right:12px;z-index:2;pointer-events:none;
+  display:flex;align-items:center;gap:7px;background:var(--orange-deep);
+  color:#241407;font-size:.98rem;font-weight:800;padding:8px 14px;border-radius:100px;
+  box-shadow:0 6px 18px rgba(0,0,0,.4);
   transition:opacity .2s ease;font-family:'Fredoka','Rubik',sans-serif;
 }
-.proof-views-badge .icon{width:15px;height:15px;stroke:#fff;}
+.proof-views-badge .icon{width:19px;height:19px;stroke:#241407;}
+.proof-views-badge .proof-views-label{font-weight:600;opacity:.82;font-size:.86em;}
 .proof-video-wrap.is-playing .proof-views-badge{opacity:0;}
 .proof-highlight{
   font-size:clamp(1.15rem,2.6vw,1.4rem);font-weight:700;color:var(--orange-deep);
@@ -839,7 +841,7 @@ html.a11y-underline a{text-decoration:underline !important;}
           </video>
           <div class="proof-views-badge">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
-            <span>883K</span>
+            <span>883K</span><span class="proof-views-label">צפיות</span>
           </div>
         </div>
       </div>
@@ -850,7 +852,7 @@ html.a11y-underline a{text-decoration:underline !important;}
           </video>
           <div class="proof-views-badge">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
-            <span>120K</span>
+            <span>120K</span><span class="proof-views-label">צפיות</span>
           </div>
         </div>
       </div>
@@ -861,7 +863,7 @@ html.a11y-underline a{text-decoration:underline !important;}
           </video>
           <div class="proof-views-badge">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
-            <span>430K</span>
+            <span>430K</span><span class="proof-views-label">צפיות</span>
           </div>
         </div>
       </div>
@@ -872,7 +874,7 @@ html.a11y-underline a{text-decoration:underline !important;}
           </video>
           <div class="proof-views-badge">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
-            <span>4M</span>
+            <span>4M</span><span class="proof-views-label">צפיות</span>
           </div>
         </div>
       </div>
@@ -883,7 +885,7 @@ html.a11y-underline a{text-decoration:underline !important;}
           </video>
           <div class="proof-views-badge">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
-            <span>1.1M</span>
+            <span>1.1M</span><span class="proof-views-label">צפיות</span>
           </div>
         </div>
       </div>
@@ -894,7 +896,7 @@ html.a11y-underline a{text-decoration:underline !important;}
           </video>
           <div class="proof-views-badge">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
-            <span>527K</span>
+            <span>527K</span><span class="proof-views-label">צפיות</span>
           </div>
         </div>
       </div>
@@ -905,7 +907,7 @@ html.a11y-underline a{text-decoration:underline !important;}
           </video>
           <div class="proof-views-badge">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
-            <span>399K</span>
+            <span>399K</span><span class="proof-views-label">צפיות</span>
           </div>
         </div>
       </div>

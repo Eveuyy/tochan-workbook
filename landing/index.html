@@ -512,12 +512,16 @@ footer.site-footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padd
   position:fixed;bottom:24px;left:24px;z-index:80;width:52px;height:52px;border-radius:50%;
   background:var(--purple-deep);color:#fff;border:none;font-size:1.4rem;cursor:pointer;
   box-shadow:0 2px 6px var(--shadow-tight), 0 14px 30px var(--shadow-soft);
+  transition:bottom .2s ease;
 }
+@media (max-width:760px){#a11yFab.cta-active{bottom:96px;}}
 .a11y-panel{
   position:fixed;bottom:86px;left:24px;z-index:80;background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);border:1.5px solid var(--line);
   border-radius:18px;padding:16px;box-shadow:0 4px 10px var(--shadow-tight), 0 20px 44px var(--shadow-soft);display:flex;flex-direction:column;gap:10px;
   width:min(240px,80vw);
+  transition:bottom .2s ease;
 }
+@media (max-width:760px){.a11y-panel.cta-active{bottom:158px;}}
 .a11y-panel[hidden]{display:none;}
 .a11y-row{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.9rem;font-weight:600;}
 .a11y-btns{display:flex;gap:6px;}
@@ -1387,10 +1391,15 @@ function wireTalkReveal(){
 
 function wireStickyCta(){
   const bar = document.getElementById('stickyCta');
+  const fab = document.getElementById('a11yFab');
+  const panel = document.getElementById('a11yPanel');
   const hero = document.querySelector('.hero');
   const heroBottom = hero.getBoundingClientRect().height + hero.offsetTop;
   window.addEventListener('scroll', ()=>{
-    bar.classList.toggle('show', window.scrollY > heroBottom);
+    const show = window.scrollY > heroBottom;
+    bar.classList.toggle('show', show);
+    fab.classList.toggle('cta-active', show);
+    panel.classList.toggle('cta-active', show);
   }, {passive:true});
 }
 

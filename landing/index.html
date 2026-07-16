@@ -117,6 +117,22 @@ img,svg{display:block;max-width:100%;}
 /* ===== social proof / viral track record ===== */
 .section.proof{padding-block:clamp(82px,12.5vw,160px);}
 .proof-title{font-size:clamp(2.2rem,5.6vw,3.2rem);font-weight:900;text-align:center;margin-bottom:56px;text-wrap:balance;}
+.proof-video-header{
+  position:relative;border-radius:24px;overflow:hidden;
+  width:100%;height:340px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:8px;
+}
+.proof-video-header video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:blur(9px) brightness(.5) saturate(1.15);transform:scale(1.15);
+}
+.proof-video-header::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(17,16,19,.35) 0%, rgba(95,8,30,.55) 100%);
+}
+.proof-video-header .proof-title{
+  position:relative;z-index:2;margin-bottom:0;padding:0 20px;color:#fff;
+}
 .proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:52px 0 64px;}
 @media (max-width:560px){.proof-grid{grid-template-columns:1fr 1fr;gap:12px;}}
 .proof-card{border-radius:18px;overflow:hidden;background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);}
@@ -772,7 +788,12 @@ html.a11y-underline a{text-decoration:underline !important;}
 
 <section class="section proof" id="proof">
   <div class="wrap hero-editorial">
-    <h2 class="proof-title">זה לא קרה במקרה.</h2>
+    <div class="proof-video-header">
+      <video autoplay muted loop playsinline poster="assets/proof-header-montage-cover.jpg">
+        <source src="assets/proof-header-montage.mp4" type="video/mp4">
+      </video>
+      <h2 class="proof-title">זה לא קרה במקרה.</h2>
+    </div>
 
     <p class="hero-body">בארבע השנים האחרונות יצרתי מאות סרטונים.</p>
     <p class="hero-body">חלקם הגיעו לעשרות אלפי צפיות.</p>

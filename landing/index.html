@@ -75,9 +75,21 @@ img,svg{display:block;max-width:100%;}
   transition:transform .15s ease, box-shadow .15s ease;
 }
 .btn-lg{padding:18px 36px;font-size:1.15rem;}
-.btn-primary{background:linear-gradient(90deg,var(--purple-deep) 0%,var(--purple) 100%);color:#fff;box-shadow:0 2px 5px rgba(184,70,75,.35), 0 14px 30px rgba(184,70,75,.34);}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 3px 7px rgba(184,70,75,.4), 0 18px 38px rgba(184,70,75,.4);}
-.btn-primary:active{transform:translateY(0);}
+.btn-primary{
+  background:linear-gradient(180deg,var(--purple) 0%,var(--purple-deep) 100%);color:#fff;
+  border:3px solid rgba(243,236,227,.28);
+  box-shadow:0 3px 0 rgba(0,0,0,.18), 0 10px 0 rgba(184,70,75,.16), 0 6px 10px rgba(0,0,0,.3), 0 20px 36px rgba(184,70,75,.38);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 5px 0 rgba(0,0,0,.18), 0 12px 0 rgba(184,70,75,.16), 0 8px 14px rgba(0,0,0,.32), 0 24px 44px rgba(184,70,75,.42);}
+.btn-primary:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(0,0,0,.18), 0 4px 0 rgba(184,70,75,.16), 0 4px 8px rgba(0,0,0,.28);}
+
+.btn-success{
+  background:linear-gradient(180deg,#A9D6A2 0%,var(--sage) 100%);color:#1B3A1B;
+  border:3px solid rgba(255,255,255,.5);
+  box-shadow:0 3px 0 rgba(0,0,0,.14), 0 10px 0 rgba(148,201,141,.22), 0 6px 10px rgba(0,0,0,.24), 0 20px 36px rgba(148,201,141,.35);
+}
+.btn-success:hover{transform:translateY(-2px);box-shadow:0 5px 0 rgba(0,0,0,.14), 0 12px 0 rgba(148,201,141,.22), 0 8px 14px rgba(0,0,0,.26), 0 24px 44px rgba(148,201,141,.4);}
+.btn-success:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(0,0,0,.14), 0 4px 0 rgba(148,201,141,.22), 0 4px 8px rgba(0,0,0,.22);}
 .btn-ghost{background:transparent;color:var(--ink);border:2px solid var(--line);padding:16px 34px;font-size:1rem;}
 
 /* blobs */
@@ -137,7 +149,7 @@ img,svg{display:block;max-width:100%;}
 /* 4. pull-quote / highlight-sentence — one per section, max */
 .pull-quote{position:relative;text-align:center;margin:56px auto;max-width:34ch;font-size:clamp(1.25rem,3vw,1.7rem);font-weight:800;line-height:1.55;}
 .pull-quote .quote-mark{display:block;font-size:3.2rem;line-height:.6;color:var(--orange-deep);opacity:.4;font-family:Georgia,serif;margin-bottom:8px;}
-.pull-quote.card{background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);color:var(--ink);border-radius:22px;padding:36px 30px;box-shadow:0 4px 10px var(--shadow-tight),0 20px 44px var(--shadow-soft);}
+.pull-quote.card{background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);color:var(--ink);border-radius:22px;padding:36px 30px;box-shadow:0 8px 0 rgba(17,16,19,.14),0 16px 32px rgba(17,16,19,.35);}
 .pull-quote.dark{color:#fff;}
 
 /* 7. thought-note bubbles — casual, slightly tilted, scattered */
@@ -393,7 +405,7 @@ img,svg{display:block;max-width:100%;}
 .ig-card{
   background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);
   border:1.5px solid var(--line);border-radius:22px;padding:22px 22px 20px;max-width:420px;margin:0 auto 52px;
-  box-shadow:0 4px 10px var(--shadow-tight), 0 20px 44px var(--shadow-soft);
+  box-shadow:0 8px 0 rgba(17,16,19,.14), 0 16px 32px rgba(17,16,19,.35);
 }
 .ig-card-top{display:flex;align-items:center;gap:14px;}
 .ig-card-avatar{width:60px;height:60px;border-radius:50%;object-fit:cover;flex:none;border:2px solid var(--orange-deep);}
@@ -510,8 +522,9 @@ img,svg{display:block;max-width:100%;}
 .price-card{
   background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);border:2px solid var(--line);border-radius:26px;padding:clamp(24px,4vw,34px);
   display:flex;flex-direction:column;gap:18px;position:relative;
+  box-shadow:0 10px 0 rgba(17,16,19,.16), 0 16px 30px rgba(17,16,19,.35);
 }
-.price-card.featured{border-color:var(--purple-deep);box-shadow:0 4px 10px var(--shadow-tight), 0 26px 52px var(--shadow-soft);}
+.price-card.featured{border-color:var(--purple-deep);box-shadow:0 10px 0 rgba(184,70,75,.22), 0 20px 40px rgba(17,16,19,.4);}
 .price-tag{
   position:absolute;top:-14px;right:28px;background:var(--purple-deep);color:#fff;font-weight:700;
   font-size:.8rem;padding:6px 16px;border-radius:99px;
@@ -1451,7 +1464,7 @@ function renderPricing(){
         <li>${icon('check')}<span>קהילת וואטסאפ תומכת לשאלות ועזרה</span></li>
         <li>${icon('check')}<span>גישה מלאה, ללא הגבלת זמן — כולל כל עדכון ושדרוג עתידי לקורס</span></li>
       </ul>
-      <a class="btn btn-primary" href="${PAYMENT_LINKS.regular}">אני רוצה להצטרף</a>
+      <a class="btn btn-success" href="${PAYMENT_LINKS.regular}">אני רוצה להצטרף</a>
     </div>
     <div class="price-card featured">
       <div class="price-tag">לבעלי עסק</div>
@@ -1465,7 +1478,7 @@ function renderPricing(){
         <li>${icon('check')}<span>קהילת וואטסאפ תומכת לשאלות ועזרה</span></li>
         <li>${icon('check')}<span>גישה מלאה, ללא הגבלת זמן — כולל כל עדכון ושדרוג עתידי לקורס</span></li>
       </ul>
-      <a class="btn btn-primary" href="${PAYMENT_LINKS.business}">אני רוצה להצטרף</a>
+      <a class="btn btn-success" href="${PAYMENT_LINKS.business}">אני רוצה להצטרף</a>
     </div>
   `;
 }

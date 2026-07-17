@@ -1701,7 +1701,9 @@ function wireProofVideos(){
 function wireVideoHeaders(){
   const videos = document.querySelectorAll('.video-header video');
   if(!videos.length) return;
+  videos.forEach(v=>{ v.muted = true; v.defaultMuted = true; });
   const tryPlay = (v) => { const p = v.play(); if(p && p.catch) p.catch(()=>{}); };
+
   if('IntersectionObserver' in window){
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
@@ -1713,6 +1715,18 @@ function wireVideoHeaders(){
   } else {
     videos.forEach(tryPlay);
   }
+
+  // Fallback: some devices (e.g. iPhone Low Power Mode) block autoplay entirely,
+  // even via JS, until a real user gesture occurs anywhere on the page.
+  const unlock = () => {
+    videos.forEach(v=>{ if(v.paused) tryPlay(v); });
+    window.removeEventListener('touchstart', unlock);
+    window.removeEventListener('click', unlock);
+    window.removeEventListener('scroll', unlock);
+  };
+  window.addEventListener('touchstart', unlock, {once:true, passive:true});
+  window.addEventListener('click', unlock, {once:true});
+  window.addEventListener('scroll', unlock, {once:true, passive:true});
 }
 
 function wirePeekTeaser(){

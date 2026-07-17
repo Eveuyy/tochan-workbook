@@ -269,6 +269,16 @@ img,svg{display:block;max-width:100%;}
 @media (max-width:640px){.peek-grid{grid-template-columns:1fr;}}
 .peek-grid .media-placeholder{aspect-ratio:4/3;}
 .media-video-card{border-radius:20px;overflow:hidden;background:#000;aspect-ratio:16/9;}
+
+/* blurred autoplay teaser -> click reveals sharp video with sound */
+.peek-teaser{position:relative;border-radius:20px;overflow:hidden;background:#000;aspect-ratio:16/9;cursor:pointer;}
+.peek-teaser video{width:100%;height:100%;object-fit:cover;display:block;filter:blur(7px) brightness(.85);transition:filter .35s ease;}
+.peek-teaser.revealed video{filter:none;}
+.peek-teaser-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(17,16,19,.22);transition:opacity .3s ease;}
+.peek-teaser.revealed .peek-teaser-overlay{opacity:0;pointer-events:none;}
+.peek-teaser-overlay .play-badge{width:58px;height:58px;border-radius:50%;background:var(--purple-deep);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.4);}
+.peek-teaser-overlay .play-badge svg{width:24px;height:24px;fill:#fff;}
+.peek-teaser-overlay span{color:#fff;font-weight:700;font-size:.82rem;background:rgba(17,16,19,.55);padding:6px 16px;border-radius:100px;}
 .peek-video{width:100%;height:100%;display:block;object-fit:cover;}
 
 /* ===== social proof placeholder ===== */
@@ -953,10 +963,14 @@ html.a11y-underline a{text-decoration:underline !important;}
     <span class="section-eyebrow">לפני שממשיכים</span>
     <h2 class="section-title">טעימה קטנה לפני שקופצים פנימה</h2>
     <div class="peek-grid">
-      <div class="media-video-card">
-        <video class="peek-video" playsinline preload="metadata" poster="assets/peek-video-2-cover.jpg" controls>
+      <div class="peek-teaser" id="peekTeaser">
+        <video class="peek-video" playsinline preload="auto" poster="assets/peek-video-2-cover.jpg" autoplay muted loop>
           <source src="assets/peek-video-2.mp4" type="video/mp4">
         </video>
+        <div class="peek-teaser-overlay">
+          <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <span>לחצו לצפייה ברורה עם סאונד</span>
+        </div>
       </div>
       <div class="media-placeholder"><span class="media-placeholder-label">צילום מתוך CapCut</span></div>
       <div class="media-placeholder"><span class="media-placeholder-label">צילום מתוך חוברת העבודה</span></div>
@@ -1663,6 +1677,20 @@ function wireProofVideos(){
   });
 }
 
+function wirePeekTeaser(){
+  const wrap = document.getElementById('peekTeaser');
+  if(!wrap) return;
+  const video = wrap.querySelector('video');
+  wrap.addEventListener('click', ()=>{
+    if(wrap.classList.contains('revealed')) return;
+    wrap.classList.add('revealed');
+    video.muted = false;
+    video.loop = false;
+    video.setAttribute('controls', '');
+    video.play();
+  });
+}
+
 function boot(){
   renderMyth();
   renderRoadmap();
@@ -1676,6 +1704,7 @@ function boot(){
   wireA11y();
   wireParallax();
   wireProofVideos();
+  wirePeekTeaser();
 }
 document.addEventListener('DOMContentLoaded', boot);
 

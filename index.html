@@ -103,6 +103,11 @@ img,svg{display:block;max-width:100%;}
 .nav-brand{font-weight:700;font-size:1.05rem;}
 .nav-brand span{color:var(--purple-deep);}
 .nav .btn{padding:10px 20px;font-size:.9rem;}
+@media (max-width:760px){
+  .nav .wrap{padding-block:9px;}
+  .nav-brand{font-size:.88rem;}
+  .nav .btn{padding:8px 16px;font-size:.82rem;}
+}
 
 /* ===== hero (editorial) ===== */
 .hero{padding-block:clamp(60px,10vw,116px);position:relative;overflow:hidden;}
@@ -166,8 +171,6 @@ img,svg{display:block;max-width:100%;}
 @keyframes iconGlowPulse{0%,100%{opacity:.7;transform:translate(-50%,-50%) scale(.94);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.06);}}
 @media (prefers-reduced-motion:reduce){.icon3d-glow-wrap::before{animation:none;}}
 
-.section-separator{display:flex;flex-direction:column;align-items:center;padding:20px 0;}
-
 /* 4. pull-quote / highlight-sentence — one per section, max */
 .pull-quote{position:relative;text-align:center;margin:56px auto;max-width:34ch;font-size:clamp(1.25rem,3vw,1.7rem);font-weight:800;line-height:1.55;}
 .pull-quote .quote-mark{display:block;font-size:3.2rem;line-height:.6;color:var(--orange-deep);opacity:.4;font-family:Georgia,serif;margin-bottom:8px;}
@@ -199,8 +202,6 @@ img,svg{display:block;max-width:100%;}
 .phone-mockup-screen{width:100%;height:100%;border-radius:28px;overflow:hidden;position:relative;background:#000;}
 .phone-mockup-screen img,.phone-mockup-screen video{width:100%;height:100%;object-fit:cover;display:block;}
 
-/* 10. single big word, marks a chapter transition */
-.word-transition{text-align:center;font-size:clamp(2.6rem,9vw,4.8rem);font-weight:900;margin:88px auto;color:var(--orange-deep);text-wrap:balance;}
 .hero-cta-solo{margin-top:68px;}
 .hero-photo{margin:56px auto 64px;max-width:380px;}
 .hero-photo img{width:100%;border-radius:24px;box-shadow:0 10px 24px rgba(0,0,0,.35), 0 30px 60px rgba(0,0,0,.4);}
@@ -333,12 +334,6 @@ img,svg{display:block;max-width:100%;}
   font-size:clamp(2.1rem,5.4vw,3.1rem);line-height:1.3;font-weight:900;color:#fff;
   margin:44px auto;max-width:22ch;text-wrap:balance;text-align:center;
 }
-.section.know{padding-block:clamp(42px,8vw,86px);}
-.know-title{font-size:clamp(1.6rem,3.6vw,2.2rem);font-weight:700;text-align:center;margin-bottom:48px;text-wrap:balance;}
-.know-items{display:flex;flex-direction:column;gap:24px;margin-bottom:60px;}
-.know-item{font-size:clamp(1.05rem,2.1vw,1.2rem);line-height:1.7;color:var(--ink);text-align:center;}
-.know-item .check-mark{color:var(--orange-deep);font-weight:700;}
-.know-close{margin-top:0;}
 
 /* ===== roadmap (course structure) ===== */
 .roadmap-intro{max-width:52ch;margin:0 auto 44px;}
@@ -647,14 +642,20 @@ footer.site-footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padd
   box-shadow:0 2px 6px var(--shadow-tight), 0 14px 30px var(--shadow-soft);
   transition:bottom .2s ease;
 }
-@media (max-width:760px){#a11yFab.cta-active{bottom:96px;}}
+@media (max-width:760px){
+  #a11yFab{width:44px;height:44px;font-size:1.15rem;bottom:16px;left:16px;}
+  #a11yFab.cta-active{bottom:80px;}
+}
 .a11y-panel{
   position:fixed;bottom:86px;left:24px;z-index:80;background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);border:1.5px solid var(--line);
   border-radius:18px;padding:16px;box-shadow:0 4px 10px var(--shadow-tight), 0 20px 44px var(--shadow-soft);display:flex;flex-direction:column;gap:10px;
   width:min(240px,80vw);
   transition:bottom .2s ease;
 }
-@media (max-width:760px){.a11y-panel.cta-active{bottom:158px;}}
+@media (max-width:760px){
+  .a11y-panel{bottom:68px;left:16px;}
+  .a11y-panel.cta-active{bottom:132px;}
+}
 .a11y-panel[hidden]{display:none;}
 .a11y-row{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.9rem;font-weight:600;}
 .a11y-btns{display:flex;gap:6px;}
@@ -711,11 +712,12 @@ html.a11y-underline a{text-decoration:underline !important;}
 /* sticky mobile CTA */
 .sticky-cta{
   position:fixed;bottom:0;left:0;right:0;z-index:70;background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);border-top:1.5px solid var(--line);
-  padding:12px clamp(16px,4vw,24px);display:none;align-items:center;justify-content:space-between;gap:14px;
+  padding:9px clamp(16px,4vw,24px);display:none;align-items:center;justify-content:space-between;gap:14px;
   box-shadow:0 -2px 6px var(--shadow-tight), 0 -12px 30px var(--shadow-soft);
 }
 .sticky-cta.show{display:flex;}
-.sticky-cta .btn{flex:none;padding:12px 22px;font-size:.95rem;}
+.sticky-cta span{font-size:.9rem;}
+.sticky-cta .btn{flex:none;padding:9px 18px;font-size:.88rem;}
 @media (min-width:761px){.sticky-cta{display:none !important;}}
 </style>
 </head>
@@ -731,16 +733,11 @@ html.a11y-underline a{text-decoration:underline !important;}
 
 <section class="hero">
   <div class="wrap hero-editorial">
+    <span class="section-eyebrow" style="text-align:center;">קורס יצירת תוכן מאפס עם איב</span>
     <h1 class="hero-h1">אם אתם עדיין מחכים לרגע שבו תרגישו מוכנים ליצור תוכן...</h1>
     <p class="hero-statement-main">כנראה שהוא לא יגיע.</p>
 
-    <p class="hero-body">גם אני חיכיתי.</p>
-    <p class="hero-body">חיכיתי לביטחון.</p>
-    <p class="hero-body">לרעיון המושלם.</p>
-    <p class="hero-body">לציוד הנכון.</p>
-    <p class="hero-body">ולרגע שבו ארגיש מוכנה.</p>
-    <p class="hero-body">אבל הוא אף פעם לא הגיע.</p>
-    <p class="hero-body">ואז הבנתי משהו.</p>
+    <p class="hero-body">גם אני חיכיתי — לביטחון, לרעיון המושלם, לציוד הנכון. הוא אף פעם לא הגיע.</p>
 
     <p class="hero-stmt fade-in">אף אחד לא יגיע וייתן לי את <span class="marker-stroke">האישור להתחיל</span>.</p>
     <p class="hero-body" style="margin-bottom:64px;">הצעד הראשון תמיד יהיה שלי.</p>
@@ -748,11 +745,7 @@ html.a11y-underline a{text-decoration:underline !important;}
     <p class="hero-body">אני לא יכולה להבטיח לכם שרק מלקנות את הקורס הזה, ישתנו לכם החיים.</p>
     <p class="hero-body">השינוי יקרה רק אם <span class="text-highlight">תחליטו להתחיל</span>.</p>
 
-    <p class="hero-stmt fade-in" style="font-size:clamp(1.4rem,3.2vw,1.9rem);">אבל אני כן יכולה להבטיח לכם משהו אחר.</p>
-
-    <p class="hero-stmt fade-in">אני אתן לכם את כל הכלים כדי להתחיל ליצור תוכן שאנשים עוצרים להקשיב לו.</p>
-
-    <p class="hero-stmt fade-in">גם אם לא יצרתם תוכן מעולם.</p>
+    <p class="hero-stmt fade-in">אבל אני כן יכולה להבטיח לכם את כל הכלים כדי להתחיל ליצור תוכן שאנשים עוצרים להקשיב לו — גם אם לא יצרתם תוכן מעולם.</p>
 
     <div class="ig-card">
       <img class="ig-card-avatar-lg" src="assets/whyme-photo.jpg" alt="איב כהן">
@@ -762,50 +755,25 @@ html.a11y-underline a{text-decoration:underline !important;}
         <div class="ig-card-stat"><strong>21K+</strong><span>אינסטגרם</span></div>
         <div class="ig-card-stat"><strong>מותגים</strong><span>שיתופי פעולה</span></div>
       </div>
-      <p class="hero-body" style="margin-top:22px;">פחדתי להצטלם. לא ידעתי על מה לדבר. חשבתי שאני צריכה ציוד יקר.</p>
-      <p class="hero-body">היום אני יוצרת תוכן במשרה מלאה, עם קהילה של יותר מ-29,000 אנשים בטיקטוק ויותר מ-21,000 אנשים באינסטגרם.</p>
+      <p class="hero-body" style="margin-top:22px;">גם אני פחדתי להתחיל. היום זאת המשרה המלאה שלי.</p>
     </div>
 
     <p class="hero-stmt fade-in">ברגע שאנחנו מבינים מה מפעיל אותנו כצופים, אפשר ליישם את זה כיוצרים.</p>
 
-    <p class="hero-body">איך ליצור תוכן שמשרת את המטרה שלכם.</p>
-    <p class="hero-body">איך למצוא רעיונות.</p>
-    <p class="hero-body">איך להעביר את המסר שלכם בצורה ברורה.</p>
-    <p class="hero-body">איך לגרום לאנשים לעצור ולהקשיב.</p>
-    <p class="hero-body">ואיך לצלם ולערוך בצורה פשוטה, בלי להסתבך במה שלא באמת חשוב.</p>
-
-    <p class="hero-body">המטרה שלי היא לא להפוך אתכם לעורכי וידאו.</p>
-    <p class="hero-body">או לצלמים מקצועיים.</p>
-    <p class="hero-body">המטרה שלי היא לתת לכם את כל מה שאתם באמת צריכים כדי ליצור תוכן שעובד.</p>
-
-    <p class="hero-body">כי ליצור סרטון... זה החלק הקל.</p>
-    <p class="hero-body">ליצור תוכן שאנשים זוכרים, סומכים עליו ומתחברים אליו — זאת כבר <span class="marker-stroke">מיומנות</span>.</p>
-    <p class="hero-body">ואת המיומנות הזאת אפשר ללמוד. גם אם אתם מתחילים היום מאפס.</p>
+    <p class="hero-body">איך ליצור תוכן שמשרת את המטרה שלכם, איך למצוא רעיונות, איך להעביר מסר ברור — ואיך לצלם ולערוך בצורה פשוטה, בלי להסתבך במה שלא באמת חשוב.</p>
 
     <div class="hero-divider"></div>
 
-    <p class="hero-body">בדיוק בגלל זה הקורס הזה לא מתחיל בצילום.</p>
-    <p class="hero-body">ולא בעריכה.</p>
+    <p class="hero-body">בדיוק בגלל זה הקורס הזה לא מתחיל בצילום ולא בעריכה.</p>
     <div class="icon3d-glow-wrap"><img class="icon3d icon3d-support" src="assets/icons/light_bulb_3d.png" alt=""></div>
     <p class="hero-stmt stmt-gold fade-in">הוא מתחיל בדרך שבה יוצרי תוכן חושבים.</p>
 
     <div class="hero-divider"></div>
 
-    <p class="hero-stmt fade-in" style="font-size:clamp(1.4rem,3.2vw,1.9rem);">הקורס הזה כנראה פחות מתאים לכם אם...</p>
-    <p class="hero-body">אתם כבר יוצרים תוכן באופן קבוע.</p>
-    <p class="hero-body">יש לכם אסטרטגיית תוכן ברורה.</p>
-    <p class="hero-body">אתם יודעים איך להפוך צפיות ללקוחות.</p>
-    <p class="hero-body">ואתם מחפשים שיטות מתקדמות כדי לעשות סקייל לעסק שלכם.</p>
-    <p class="hero-body">כנראה שהקורס הזה בסיסי מדי בשבילכם.</p>
+    <p class="hero-body" style="font-weight:700;">פחות מתאים לכם אם אתם כבר יוצרים תוכן באופן קבוע, עם אסטרטגיה ברורה, ומחפשים שיטות מתקדמות לסקייל.</p>
 
     <p class="hero-stmt fade-in" style="font-size:clamp(1.4rem,3.2vw,1.9rem);">אבל אם...</p>
-    <p class="hero-body">כבר חודשים אתם אומרים לעצמכם: "אני אתחיל שבוע הבא."</p>
-    <p class="hero-body">יש לכם רעיונות... אבל הם נשארים בראש.</p>
-    <p class="hero-body">אתם יודעים שתוכן יכול לקדם אתכם... אבל לא באמת יודעים איך להפוך את המחשבות שלכם לסרטון.</p>
-    <p class="hero-body">אתם מפחדים מהמצלמה.</p>
-    <p class="hero-body">אתם מתחילים לצלם, ומוותרים.</p>
-    <p class="hero-body">מחכים לרגע שבו תרגישו מספיק מוכנים.</p>
-    <p class="hero-body">או פשוט לא יודעים מאיפה להתחיל.</p>
+    <p class="hero-body">כבר חודשים אתם אומרים "אני אתחיל שבוע הבא", יש לכם רעיונות שנשארים בראש, ואתם מפחדים מהמצלמה —</p>
 
     <div class="thought-row">
       <span class="thought-bubble t1">מי בכלל יעצור על זה?</span>
@@ -814,12 +782,12 @@ html.a11y-underline a{text-decoration:underline !important;}
       <span class="thought-bubble t4">מה יחשבו עליי?</span>
     </div>
 
-    <p class="hero-stmt fade-in">בשבילכם בניתי את הקורס הזה.</p>
-    <p class="hero-body">ויחד, עם משימות ברורות והדרגתיות, נעבוד עם משימות פרקטיות וברורות, יד ביד עד הסרטון הראשון המוגמר שלכם.</p>
+    <p class="hero-stmt fade-in">בשבילכם בניתי את הקורס הזה — משימות פרקטיות וברורות, יד ביד עד הסרטון הראשון המוגמר שלכם.</p>
 
     <svg class="doodle-arrow" viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M30 3c3 12 3 22-2 33"/><path d="M20 28c3 4 5 7 8 8 3-3 5-6 7-9"/></svg>
 
     <a class="btn btn-primary btn-lg hero-cta-solo" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
+    <p class="hero-body" style="margin-top:16px;font-size:.85rem;opacity:.75;">גישה מיידית · לומדים בקצב שלכם · ללא הגבלת זמן</p>
   </div>
 </section>
 
@@ -843,10 +811,8 @@ html.a11y-underline a{text-decoration:underline !important;}
       <h2 class="proof-title">זה לא קרה במקרה.</h2>
     </div>
 
-    <p class="hero-body">בארבע השנים האחרונות יצרתי מאות סרטונים.</p>
-    <p class="hero-body">חלקם הגיעו לעשרות אלפי צפיות.</p>
-    <p class="hero-body">חלקם למאות אלפים.</p>
-    <p class="hero-body">וחלקם למיליוני צפיות.</p>
+    <p class="hero-body">בארבע השנים האחרונות יצרתי מאות סרטונים — חלקם לעשרות אלפי צפיות, חלקם למאות אלפים, וחלקם למיליונים.</p>
+    <p class="hero-body">המספרים למטה הם לא המטרה. הם ההוכחה שיש שיטה מאחוריהם.</p>
 
     <svg class="doodle-arrow" viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M30 3c3 12 3 22-2 33"/><path d="M20 28c3 4 5 7 8 8 3-3 5-6 7-9"/></svg>
 
@@ -960,33 +926,12 @@ html.a11y-underline a{text-decoration:underline !important;}
       </div>
     </div>
 
-    <p class="proof-highlight fade-in">הוויראליות היא לא בהכרח הסימן להצלחה</p>
-    <p class="hero-body">אבל היא לא מקרית</p>
-    <p class="hero-body">היא תוצאה של הבנה.</p>
-    <p class="hero-body">איך אנשים צורכים תוכן.</p>
-    <p class="hero-body">מה גורם להם לעצור.</p>
-    <p class="hero-body">מה גורם להם להישאר.</p>
-    <p class="hero-body">ומה גורם להם לשתף.</p>
-
-    <p class="hero-body">אפשר להגיע לסרטון ויראלי אחד <span class="text-highlight">במקרה</span>.</p>
-    <p class="hero-body">אבל כשזה קורה שוב.</p>
-    <p class="hero-body">ושוב.</p>
-    <p class="hero-body">ושוב.</p>
-    <p class="hero-stmt fade-in">כבר ברור שיש מאחורי זה הבנה.</p>
+    <p class="proof-highlight fade-in">הוויראליות היא לא בהכרח הסימן להצלחה — אבל היא לא מקרית.</p>
+    <p class="hero-body">אפשר להגיע לסרטון ויראלי אחד במקרה. אבל כשזה קורה שוב ושוב — כבר ברור שיש מאחורי זה הבנה: איך אנשים צורכים תוכן, מה גורם להם לעצור, ומה גורם להם לשתף.</p>
 
     <div class="hero-divider"></div>
 
-    <p class="hero-body">אני לא יכולה להבטיח שכל סרטון שתעלו יהיה ויראלי.</p>
-    <p class="hero-body">כי אף אחד לא יכול.</p>
-    <p class="hero-body">אבל אני כן יכולה ללמד אתכם ליצור תוכן</p>
-    <p class="hero-body">עם הרבה יותר סיכוי לגרום לאנשים לעצור.</p>
-    <p class="hero-body">להקשיב.</p>
-    <p class="hero-body">ולהתחבר.</p>
-
-    <p class="hero-stmt fade-in">אלה בדיוק העקרונות שעליהם בנוי הקורס.</p>
-
-    <p class="hero-body">לא כדי לרדוף אחרי ויראליות.</p>
-    <p class="hero-body">אלא כדי להבין איך ליצור תוכן שמשרת את המטרה שלכם.</p>
+    <p class="hero-body">אני לא יכולה להבטיח שכל סרטון שתעלו יהיה ויראלי — אף אחד לא יכול. אבל אני כן יכולה ללמד אתכם ליצור תוכן עם הרבה יותר סיכוי לגרום לאנשים לעצור, להקשיב ולהתחבר. אלה בדיוק העקרונות שעליהם בנוי הקורס.</p>
   </div>
 </section>
 
@@ -1034,6 +979,30 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
+<section class="section" id="curriculum">
+  <div class="blob parallax" data-depth="16" style="width:250px;height:250px;background:var(--orange);top:0;left:-80px;"></div>
+  <div class="blob parallax" data-depth="-20" style="width:190px;height:190px;background:var(--orange);bottom:6%;right:-50px;"></div>
+  <div class="wrap hero-editorial">
+    <div class="video-header">
+      <video autoplay muted loop playsinline preload="auto" poster="assets/proof-header-montage-cover.jpg">
+        <source src="assets/proof-header-montage.mp4" type="video/mp4">
+      </video>
+      <h2 class="section-title" style="text-align:center;">הדרך שלכם מתחילה כאן.</h2>
+    </div>
+    <div class="roadmap-intro">
+      <p class="hero-body">בניתי את הקורס בדיוק כמו <span class="text-highlight">התהליך שכל יוצר תוכן עובר</span>. שלב אחר שלב, בלי לקפוץ קדימה.</p>
+    </div>
+
+    <span class="section-eyebrow" style="text-align:center;">לפרטיים</span>
+    <div class="roadmap" id="roadmapPersonal"></div>
+
+    <div class="roadmap-biz">
+      <p class="roadmap-biz-lead" id="roadmapBizLead"></p>
+      <div class="roadmap roadmap-biz-steps" id="roadmapBiz"></div>
+    </div>
+  </div>
+</section>
+
 <section class="section myth" id="myth">
   <div class="wrap">
     <div class="icon3d-wrap"><img class="icon3d icon3d-support" src="assets/icons/camera_3d.png" alt=""></div>
@@ -1059,23 +1028,9 @@ html.a11y-underline a{text-decoration:underline !important;}
     </div>
 
     <p class="anchor-stmt fade-in">כי זה ההבדל בין להעלות תוכן...<br>לבין ליצור תוכן שעובד.</p>
-  </div>
-</section>
 
-<section class="section know">
-  <div class="wrap hero-editorial">
-    <h2 class="know-title">בסוף הקורס הזה, אתם <span class="marker-stroke">תדעו</span>...</h2>
-    <div class="know-items">
-      <p class="know-item"><span class="check-mark">✔</span> איך למצוא רעיונות גם כשאין השראה</p>
-      <p class="know-item"><span class="check-mark">✔</span> איך לייצר סרטון כך שאנשים לא יגללו הלאה</p>
-      <p class="know-item"><span class="check-mark">✔</span> איך להעביר מסר ברור ומחובר לקהל שלכם</p>
-      <p class="know-item"><span class="check-mark">✔</span> איך לדבר מול מצלמה בלי להישמע מאולצים</p>
-      <p class="know-item"><span class="check-mark">✔</span> איך לערוך בצורה פשוטה ונכונה</p>
-      <p class="know-item"><span class="check-mark">✔</span> איך ליצור תוכן שמייצר אמון ולא רק צפיות</p>
-    </div>
-
-    <p class="hero-stmt stmt-gold fade-in">המטרה שלי היא לא להפוך אתכם לעורכי וידאו.</p>
-    <p class="hero-body">המטרה שלי היא שתדעו לקחת רעיון טוב, לערוך אותו בצורה פשוטה ונכונה, בצורה שתשרת את המטרה שלכם.</p>
+    <p class="hero-stmt stmt-gold fade-in" style="margin-top:64px;">המטרה שלי היא לא להפוך אתכם לעורכי וידאו.</p>
+    <p class="hero-body">המטרה שלי היא שתדעו לקחת רעיון טוב, ולהפוך אותו לתוכן שמשרת את המטרה שלכם.</p>
   </div>
 </section>
 
@@ -1083,29 +1038,15 @@ html.a11y-underline a{text-decoration:underline !important;}
   <div class="wrap hero-editorial">
     <h2 class="section-title" style="text-align:center;">למה דווקא אני?</h2>
 
-    <p class="hero-body">אם אתם כבר הולכים ללמוד ממישהו...</p>
-    <p class="hero-body">כדאי לכם לדעת למה לבחור בו</p>
+    <p class="hero-body">אם אתם כבר הולכים ללמוד ממישהו — כדאי לכם לדעת למה לבחור בו.</p>
 
-    <p class="hero-body">היום אני יוצרת תוכן במשרה מלאה.</p>
-    <p class="hero-body">עובדת עם מותגים.</p>
-    <p class="hero-body">יוצרת תוכן מכניס ורווחי לעסקים</p>
-    <p class="hero-body">ומתפרנסת מהדבר שפעם בכלל פחדתי להתחיל.</p>
-    <p class="hero-body">ובניתי קהילה של יותר מ-29,000 אנשים בטיקטוק ויותר מ-21,000 אנשים באינסטגרם.</p>
+    <p class="hero-body">היום אני יוצרת תוכן במשרה מלאה, עובדת עם מותגים, ובניתי קהילה של יותר מ-29,000 אנשים בטיקטוק ויותר מ-21,000 אנשים באינסטגרם.</p>
 
-    <p class="hero-body">אבל זה לא מה שהופך אותי למישהי שיכולה ללמד אתכם.</p>
+    <p class="hero-body">אבל זה לא מה שהופך אותי למישהי שיכולה ללמד אתכם. מה שהופך אותי לכזאת... זה שהייתי בדיוק במקום שבו אתם נמצאים היום.</p>
 
-    <p class="hero-body">מה שהופך אותי לכזאת... זה שהייתי בדיוק במקום שבו אתם נמצאים היום.</p>
+    <p class="hero-body">פחדתי להצטלם. לא ידעתי על מה לדבר. חשבתי שאני צריכה ציוד יקר. שרפתי זמן וכסף וחיכיתי לרגע שבו <span class="text-highlight">ארגיש מוכנה</span>. הוא לא הגיע.</p>
 
-    <p class="hero-body">פחדתי להצטלם.</p>
-    <p class="hero-body">לא ידעתי על מה לדבר.</p>
-    <p class="hero-body">חשבתי שאני צריכה ציוד יקר.</p>
-    <p class="hero-body">שרפתי זמן וכסף</p>
-    <p class="hero-body">וחיכיתי לרגע שבו <span class="text-highlight">ארגיש מוכנה</span>.</p>
-    <p class="hero-body">הוא לא הגיע.</p>
-
-    <p class="hero-body">במקום זה... התחלתי ללמוד. לטעות. לנסות. ולהבין איך תוכן באמת עובד.</p>
-    <p class="hero-body">לא רק איך מצלמים.</p>
-    <p class="hero-body">אלא איך גורמים לאנשים לעצור. להקשיב. ולהתחבר.</p>
+    <p class="hero-body">במקום זה... התחלתי ללמוד. לטעות. לנסות. ולהבין איך תוכן באמת עובד — לא רק איך מצלמים.</p>
 
     <div class="icon3d-wrap"><img class="icon3d icon3d-support" src="assets/icons/red_heart_3d.png" alt=""></div>
     <p class="stmt-purple fade-in">אני לא רוצה שתעשו את הדרך שאני עשיתי.</p>
@@ -1125,36 +1066,6 @@ html.a11y-underline a{text-decoration:underline !important;}
     <p class="hero-stmt stmt-gold fade-in">כבר לא תסתכלו על תוכן באותה צורה.</p>
 
     <p class="stmt-purple fade-in" style="margin-top:56px;">בסוף הקורס הזה אתם יוצאים עם סרטון ראשון באוויר.</p>
-  </div>
-</section>
-
-<div class="section-separator">
-  <img class="icon3d icon3d-hero fade-in" src="assets/icons/rocket_3d.png" alt="">
-  <p class="word-transition fade-in">התחלה.</p>
-</div>
-
-<section class="section" id="curriculum">
-  <div class="blob parallax" data-depth="16" style="width:250px;height:250px;background:var(--orange);top:0;left:-80px;"></div>
-  <div class="blob parallax" data-depth="-20" style="width:190px;height:190px;background:var(--orange);bottom:6%;right:-50px;"></div>
-  <div class="wrap hero-editorial">
-    <div class="video-header">
-      <video autoplay muted loop playsinline preload="auto" poster="assets/proof-header-montage-cover.jpg">
-        <source src="assets/proof-header-montage.mp4" type="video/mp4">
-      </video>
-      <h2 class="section-title" style="text-align:center;">הדרך שלכם מתחילה כאן.</h2>
-    </div>
-    <div class="roadmap-intro">
-      <p class="hero-body">לא בניתי את הקורס הזה כרשימת שיעורים.</p>
-      <p class="hero-body">בניתי אותו בדיוק כמו <span class="text-highlight">התהליך שכל יוצר תוכן עובר</span>. שלב אחר שלב. בלי לקפוץ קדימה, ובלי ללכת לאיבוד בדרך.</p>
-    </div>
-
-    <span class="section-eyebrow" style="text-align:center;">לפרטיים</span>
-    <div class="roadmap" id="roadmapPersonal"></div>
-
-    <div class="roadmap-biz">
-      <p class="roadmap-biz-lead" id="roadmapBizLead"></p>
-      <div class="roadmap roadmap-biz-steps" id="roadmapBiz"></div>
-    </div>
   </div>
 </section>
 
@@ -1212,15 +1123,8 @@ html.a11y-underline a{text-decoration:underline !important;}
       <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><path d="M20 5L7.5 13M20 19L7.5 11"/></svg><p>עריכה פשוטה שתשרת את התוכן שלכם, בלי להסתבך</p></div>
       <div class="value-card"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><p>גישה מיידית לקורס וצפייה בקצב שלכם</p></div>
     </div>
-  </div>
-</section>
 
-<section class="section value" id="value2">
-  <div class="wrap hero-editorial">
-    <div class="corner-doodle tilt" style="display:flex;justify-content:center;margin-bottom:14px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0113.66-5.66L20 8M4 12a8 8 0 0013.66 5.66L20 16"/><path d="M20 4v4h-4M4 20v-4h4"/></svg></div>
-    <p class="anchor-stmt fade-in">הקורס ממשיך להתעדכן.</p>
-    <p class="hero-body">עולם התוכן משתנה כל הזמן. וגם הקורס משתנה יחד איתו.</p>
-    <p class="hero-body">כל עדכון חדש שאוסיף בעתיד, יהיה זמין גם לכם, ללא תשלום נוסף.</p>
+    <p class="hero-body" style="text-align:center;">ועוד דבר: עולם התוכן משתנה כל הזמן, וגם הקורס משתנה איתו — כל עדכון עתידי יהיה זמין לכם ללא תשלום נוסף.</p>
   </div>
 </section>
 
@@ -1255,6 +1159,13 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
+<section class="section" id="pace">
+  <div class="wrap hero-editorial">
+    <h2 class="section-title" style="text-align:center;">לומדים בקצב שלכם, לא בקצב שלי</h2>
+    <p class="hero-body" style="text-align:center;">אין דדליין ואין לחץ להספיק הכול השבוע. הגישה שלכם לקורס ללא הגבלת זמן — אפשר לחזור לכל שיעור מתי שרוצים, לעצור, ולהתקדם כשנוח לכם.</p>
+  </div>
+</section>
+
 <section class="section" id="faq">
   <div class="wrap hero-editorial">
     <span class="section-eyebrow" style="text-align:center;">עוד כמה שאלות</span>
@@ -1266,26 +1177,20 @@ html.a11y-underline a{text-decoration:underline !important;}
 
 <section class="section final">
   <div class="wrap hero-editorial">
-    <h2 class="final-title">אולי אתם עדיין מתלבטים.</h2>
+    <h2 class="final-title">ההחלטה היחידה שנשארה.</h2>
 
     <span class="final-lead">אני אסיים בדיוק כמו שהתחלתי.</span>
     <h2 class="hero-h1">אם אתם עדיין מחכים לרגע שבו תרגישו מוכנים ליצור תוכן...</h2>
     <p class="hero-statement-main">כנראה שהוא לא יגיע.</p>
 
-    <p class="hero-body">ואולי... זה דווקא הדבר הכי משחרר.</p>
-    <p class="hero-body">כי זה אומר שאתם לא צריכים לחכות יותר.</p>
-    <p class="hero-body">אתם רק צריכים להחליט.</p>
+    <p class="hero-body">וזה דווקא הדבר הכי משחרר — אתם לא צריכים לחכות יותר. אתם רק צריכים להחליט.</p>
 
-    <p class="hero-stmt fade-in">אני מביאה לכם את הידע.</p>
-    <p class="hero-stmt fade-in">את הכלים.</p>
-    <p class="hero-stmt fade-in">ואת הדרך.</p>
+    <p class="hero-stmt fade-in">אני מביאה לכם את הידע, את הכלים, ואת הדרך.</p>
     <p class="hero-stmt stmt-gold fade-in">אבל את הצעד הראשון... אף אחד לא יכול לעשות במקומכם.</p>
 
     <div class="thought-row">
       <span class="thought-bubble action t2">יאללה, מצלמים.</span>
       <span class="thought-bubble action t1">זה לא חייב להיות מושלם.</span>
-      <span class="thought-bubble action t3">פרסמתי.</span>
-      <span class="thought-bubble action t4">אני מבין מה אני עושה.</span>
     </div>
 
     <div class="final-cta-wrap">
@@ -1385,14 +1290,14 @@ const MYTH_ROWS = [
 ];
 
 const CURRICULUM = [
-  {title:'איך אנשים באמת צורכים תוכן', text:'כדי שלא תשקיעו מאמץ בתוכן שאף אחד לא עוצר עליו — מבינים קודם כול מה גורם לצופה לעצור ולהקשיב.'},
-  {title:'מה זה הוק', text:'פותרים את הפחד מ"אף אחד לא צופה בי" — לומדים בדיוק מה גורם לצופה לעצור בשניות הראשונות, במקום לגלול הלאה.'},
-  {title:'איך למצוא רעיונות לתוכן', text:'תקועים על "אין לי על מה לדבר"? התרגיל וסוכן ה-AI האישי כאן בדיוק בשביל זה, כדי שלא תישארו בלי רעיונות אף פעם.'},
-  {title:'איך עובד מבנה נכון של סרטון', text:'כדי שהסרטונים שלכם לא ירגישו מבולגנים או חסרי כיוון — לומדים לבנות התחלה, אמצע וסוף שמחזיקים קשב עד הסוף.'},
-  {title:'עמידה מול מצלמה', text:'המצלמה מקפיאה אתכם? 6 טיפים פרקטיים שישחררו אתכם, גם אם זו הפעם הראשונה שאתם מדברים אליה.'},
-  {title:'צילום למתחילים', text:'כדי ש"אין לי ציוד מקצועי" לא יעצור אתכם יותר — מראים בדיוק איך לצלם משהו שנראה טוב עם מה שכבר יש לכם בבית.'},
-  {title:'עריכה למתחילים (CapCut)', text:'עריכה מרגישה לכם מסובכת מדי? לומדים שלב אחר שלב איך להפוך חומר גולמי לסרטון מוכן, גם בלי שום ניסיון קודם.'},
-  {title:'אלגוריתם למתחילים', text:'כדי שלא תרגישו שהאלגוריתם "נגדכם" — מבינים סוף סוף איך הוא באמת עובד, ולמה חוסר יציבות בחשיפות זה נורמלי לגמרי.'}
+  {title:'להבין מה גורם לצופה לעצור, להקשיב ולהישאר', text:'כדי שלא תשקיעו מאמץ בתוכן שאף אחד לא עוצר עליו — מבינים קודם כול איך אנשים באמת צורכים תוכן.'},
+  {title:'לכתוב פתיחה שעוצרת סקרולינג בשניות הראשונות', text:'פותרים את הפחד מ"אף אחד לא צופה בי" — לומדים בדיוק מה גורם לצופה לעצור בשניות הראשונות, במקום לגלול הלאה.'},
+  {title:'לא להיתקע יותר על "אין לי על מה לדבר"', text:'תקועים על רעיונות? התרגיל וסוכן ה-AI האישי כאן בדיוק בשביל זה, כדי שלא תישארו בלי רעיונות אף פעם.'},
+  {title:'לבנות סרטון עם התחלה, אמצע וסוף שמחזיקים קשב', text:'כדי שהסרטונים שלכם לא ירגישו מבולגנים או חסרי כיוון — לומדים מבנה נכון עד הסוף.'},
+  {title:'לדבר מול מצלמה בלי לקפוא', text:'המצלמה מקפיאה אתכם? 6 טיפים פרקטיים שישחררו אתכם, גם אם זו הפעם הראשונה שאתם מדברים אליה.'},
+  {title:'לצלם תוכן שנראה טוב עם מה שכבר יש לכם בבית', text:'כדי ש"אין לי ציוד מקצועי" לא יעצור אתכם יותר — מראים בדיוק איך לצלם משהו שנראה טוב בלי לקנות כלום.'},
+  {title:'לערוך סרטון שלם לבד, מההתחלה ועד הסוף', text:'עריכה מרגישה לכם מסובכת מדי? לומדים שלב אחר שלב איך להפוך חומר גולמי לסרטון מוכן ב-CapCut, גם בלי שום ניסיון קודם.'},
+  {title:'להפסיק להרגיש שהאלגוריתם נגדכם', text:'מבינים סוף סוף איך הוא באמת עובד, ולמה חוסר יציבות בחשיפות זה נורמלי לגמרי.'}
 ];
 
 const BUSINESS_DIVIDER = 'בעלי עסק? המסלול שלכם כולל גם 5 פרקים ייעודיים שמכוונים בדיוק למטרות העסקיות שלכם';
@@ -1401,7 +1306,7 @@ const BUSINESS_CURRICULUM = [
   {title:'למה חשוב לתת פנים לעסק שלכם', text:'נמנעים מלהיראות כי "זה לא מקצועי מספיק"? מבינים למה החיבור האישי שלכם שווה יותר כסף מכל עיצוב מושקע.'},
   {title:'למה ויראליות לא בהכרח מכניסה כסף', text:'רדפתם אחרי צפיות ולא ראיתם לקוחות? מבינים סוף סוף את ההבדל בין תוכן שמבדר לתוכן שמוכר.'},
   {title:'איך עמוד תוכן טוב מכניס יותר כסף', text:'כדי שהעמוד שלכם יעבוד בשבילכם במקום שתרוצו אחרי לקוחות — לומדים איך להפוך אותו לסוכן המכירות הכי טוב שלכם.'},
-  {title:'איזה סוג תוכן צריך להיות בעמוד שלכם', text:'כדי שהעמוד שלכם ירגיש שלם ולא מקרי — מקבלים נוסחה ברורה (35/35/20/10) לאיזה תוכן לפרסם ומתי.'},
+  {title:'לקבל נוסחה ברורה מה לפרסם ומתי (35/35/20/10)', text:'כדי שהעמוד שלכם ירגיש שלם ולא מקרי — מקבלים נוסחה ברורה לאיזה תוכן לפרסם ומתי.'},
   {title:'אתם עסק, לא משפיענים', text:'שורפים שעות ברשתות בלי לראות תוצאה? לומדים לעבוד חכם, לא הרבה, ולתת לתוכן לעבוד בשבילכם.'}
 ];
 
@@ -1423,6 +1328,8 @@ const FAQ_ITEMS = [
   {q:'אני צריך/ה ציוד מקצועי?', a:'לא. רק טלפון. יש לינקים לשדרוגים אופציונליים בהמשך למי שרוצה — אבל זה ממש לא תנאי להתחיל.'},
   {q:'כמה זמן זה לוקח?', a:'קורס הדרגתי שנבנה לפי הקצב שלכם. מומלץ לא לרוץ — לעשות כל משימה לפני שממשיכים לשיעור הבא.'},
   {q:'מה אם יש לי עסק?', a:'יש לכם מסלול ייעודי עם 5 פרקי בונוס שמלמדים איך להפוך את התוכן שלכם לכלי שמביא לידים ומכירות.'},
+  {q:'לא בטוח/ה איזה מסלול מתאים לי — הרגיל או העסקי?', a:'אם אתם רוצים ליצור תוכן אישי, בלי מטרה עסקית ברורה — המסלול הרגיל מספיק לגמרי. אם יש לכם עסק ואתם רוצים שהתוכן יביא לקוחות ומכירות — כדאי לכם המסלול המורחב. אפשר לראות השוואה מלאה בטבלה למעלה.'},
+  {q:'מה מדיניות הביטולים?', a:'ניתן לבטל בתוך 14 יום מהרכישה, כל עוד לא נפתחה הגישה לתכני הקורס. לאחר פתיחת הגישה לתכנים הדיגיטליים לא ניתן לקבל החזר כספי, מאחר שמדובר בתוכן דיגיטלי הנצרך באופן מיידי. הפירוט המלא בתקנון הביטולים בתחתית העמוד.'},
   {q:'אפשר גם ליווי אישי מעבר לקורס?', a:'כן — יש אפשרות (בנפרד מהקורס) לשיחת פיצוח אישית 1:1, שבה מדייקים יחד את הנישה, קהל היעד והאסטרטגיה שלכם. אפשר לשאול על זה אחרי ההרשמה.'}
 ];
 

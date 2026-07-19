@@ -25,23 +25,23 @@
 }
 
 :root{
-  --cream:#5F081E; --paper:#E7E3DD; --ink:#F3ECE3; --ink-soft:#D9B9AF;
-  --line:rgba(243,236,227,.18); --purple:#C97B7D; --purple-deep:#B8464B; --orange:#F0CE7C;
+  --cream:#173e39; --paper:#F0EBE0; --ink:#EAF2EF; --ink-soft:#A9C4BD;
+  --line:rgba(234,242,239,.18); --purple:#FF8A5C; --purple-deep:#F2653B; --orange:#F0CE7C;
   --orange-deep:#E7A601; --shadow:rgba(0,0,0,.35);
   --shadow-tight:rgba(0,0,0,.38); --shadow-soft:rgba(0,0,0,.28);
-  --ink-on-paper:#2A1D26; --ink-soft-on-paper:#6B5A52; --line-on-paper:rgba(42,29,38,.15);
-  --bg-black:#111013; --sage:#94C98D;
+  --ink-on-paper:#20302c; --ink-soft-on-paper:#5C6D67; --line-on-paper:rgba(32,48,44,.15);
+  --bg-black:#0d1815; --sage:#94C98D;
   color-scheme:dark;
 }
 @media (prefers-color-scheme:dark){
-  :root{ --cream:#5F081E; --paper:#E7E3DD; --ink:#F3ECE3; --ink-soft:#D9B9AF;
-    --line:rgba(243,236,227,.18); --purple:#C97B7D; --purple-deep:#B8464B; --orange:#F0CE7C;
+  :root{ --cream:#173e39; --paper:#F0EBE0; --ink:#EAF2EF; --ink-soft:#A9C4BD;
+    --line:rgba(234,242,239,.18); --purple:#FF8A5C; --purple-deep:#F2653B; --orange:#F0CE7C;
     --orange-deep:#E7A601; --shadow:rgba(0,0,0,.35);
     --shadow-tight:rgba(0,0,0,.38); --shadow-soft:rgba(0,0,0,.28); }
 }
 :root[data-theme="dark"]{
-  --cream:#5F081E; --paper:#E7E3DD; --ink:#F3ECE3; --ink-soft:#D9B9AF;
-  --line:rgba(243,236,227,.18); --purple:#C97B7D; --purple-deep:#B8464B; --orange:#F0CE7C;
+  --cream:#173e39; --paper:#F0EBE0; --ink:#EAF2EF; --ink-soft:#A9C4BD;
+  --line:rgba(234,242,239,.18); --purple:#FF8A5C; --purple-deep:#F2653B; --orange:#F0CE7C;
   --orange-deep:#E7A601; --shadow:rgba(0,0,0,.35);
   --shadow-tight:rgba(0,0,0,.38); --shadow-soft:rgba(0,0,0,.28);
 }
@@ -69,11 +69,11 @@ img,svg{display:block;max-width:100%;}
 .section > .wrap{position:relative;z-index:1;}
 
 /* ===== chapter color system: alternating section backgrounds so scrolling reads like turning a page ===== */
-.chapter-black{background:linear-gradient(180deg,#111013 0%,#1a1015 100%);}
-.chapter-maroon{background:linear-gradient(180deg,#3d0a16 0%,#5F081E 100%);}
-.chapter-plum{background:linear-gradient(180deg,#4a1220 0%,#6b2436 100%);}
-.chapter-coffee{background:linear-gradient(180deg,#3a2313 0%,#4f2f16 100%);}
-.chapter-cream{background:linear-gradient(180deg,#EDE9E3 0%,#E7E3DD 100%);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);}
+.chapter-black{background:linear-gradient(180deg,#0c1613 0%,#141f1b 100%);}
+.chapter-maroon{background:linear-gradient(180deg,#0f2b28 0%,#173e39 100%);}
+.chapter-plum{background:linear-gradient(180deg,#0d2430 0%,#123244 100%);}
+.chapter-coffee{background:linear-gradient(180deg,#241f16 0%,#332b1d 100%);}
+.chapter-cream{background:linear-gradient(180deg,#F5F0E6 0%,#F0EBE0 100%);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);}
 .chapter-cream .section-eyebrow{color:var(--purple-deep);}
 .chapter-cream .icon{stroke:var(--purple-deep);}
 .chapter-divider{height:2px;background:linear-gradient(90deg,transparent,var(--orange-deep),transparent);opacity:.5;max-width:200px;margin:0 auto;}
@@ -89,10 +89,10 @@ img,svg{display:block;max-width:100%;}
 .btn-primary{
   background:linear-gradient(180deg,var(--purple) 0%,var(--purple-deep) 100%);color:#fff;
   border:3px solid rgba(243,236,227,.28);
-  box-shadow:0 3px 0 rgba(0,0,0,.18), 0 10px 0 rgba(184,70,75,.16), 0 6px 10px rgba(0,0,0,.3), 0 20px 36px rgba(184,70,75,.38);
+  box-shadow:0 3px 0 rgba(0,0,0,.18), 0 10px 0 rgba(242,101,59,.16), 0 6px 10px rgba(0,0,0,.3), 0 20px 36px rgba(242,101,59,.38);
 }
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 5px 0 rgba(0,0,0,.18), 0 12px 0 rgba(184,70,75,.16), 0 8px 14px rgba(0,0,0,.32), 0 24px 44px rgba(184,70,75,.42);}
-.btn-primary:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(0,0,0,.18), 0 4px 0 rgba(184,70,75,.16), 0 4px 8px rgba(0,0,0,.28);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 5px 0 rgba(0,0,0,.18), 0 12px 0 rgba(242,101,59,.16), 0 8px 14px rgba(0,0,0,.32), 0 24px 44px rgba(242,101,59,.42);}
+.btn-primary:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(0,0,0,.18), 0 4px 0 rgba(242,101,59,.16), 0 4px 8px rgba(0,0,0,.28);}
 
 .btn-success{
   background:linear-gradient(180deg,#A9D6A2 0%,var(--sage) 100%);color:#1B3A1B;
@@ -243,7 +243,7 @@ img,svg{display:block;max-width:100%;}
 }
 .video-header::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg, rgba(17,16,19,.35) 0%, rgba(95,8,30,.55) 100%);
+  background:linear-gradient(180deg, rgba(17,16,19,.35) 0%, rgba(23,62,57,.55) 100%);
 }
 .video-header h2{
   position:relative;z-index:2;margin-bottom:0;padding:0 20px;color:#fff;
@@ -553,7 +553,7 @@ img,svg{display:block;max-width:100%;}
   display:flex;flex-direction:column;gap:18px;position:relative;
   box-shadow:0 10px 0 rgba(17,16,19,.16), 0 16px 30px rgba(17,16,19,.35);
 }
-.price-card.featured{border-color:var(--purple-deep);box-shadow:0 10px 0 rgba(184,70,75,.22), 0 20px 40px rgba(17,16,19,.4);}
+.price-card.featured{border-color:var(--purple-deep);box-shadow:0 10px 0 rgba(242,101,59,.22), 0 20px 40px rgba(17,16,19,.4);}
 
 .compare-title{text-align:center;font-size:clamp(1.3rem,3vw,1.6rem);font-weight:800;margin:56px 0 24px;}
 .compare-table-wrap{
@@ -563,7 +563,7 @@ img,svg{display:block;max-width:100%;}
 .compare-table{width:100%;border-collapse:collapse;min-width:480px;color:var(--ink);}
 .compare-table th,.compare-table td{padding:14px 16px;text-align:center;font-size:.9rem;border-bottom:1.5px solid var(--line);}
 .compare-table th:first-child,.compare-table td:first-child{text-align:start;color:var(--ink);font-weight:600;}
-.compare-table thead th{font-weight:800;color:var(--ink);background:rgba(184,70,75,.06);}
+.compare-table thead th{font-weight:800;color:var(--ink);background:rgba(242,101,59,.06);}
 .compare-table tbody tr:last-child td{border-bottom:none;}
 .compare-table td.yes{color:var(--orange-deep);font-weight:800;font-size:1.05rem;}
 .compare-table td.no{color:var(--ink-soft);opacity:.5;}

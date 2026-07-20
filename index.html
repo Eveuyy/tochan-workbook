@@ -344,8 +344,23 @@ img,svg{display:block;max-width:100%;}
 .peek-teaser-overlay span{color:#fff;font-weight:700;font-size:.82rem;background:rgba(17,16,19,.55);padding:6px 16px;border-radius:100px;}
 .peek-video{width:100%;height:100%;display:block;object-fit:cover;}
 
-/* ===== social proof placeholder ===== */
-.social-proof-grid{display:flex;flex-direction:column;gap:16px;margin-top:32px;}
+/* ===== social proof: real testimonial carousel ===== */
+.testimonial-carousel{
+  display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:8px 4px 20px;margin-top:8px;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.testimonial-carousel::-webkit-scrollbar{display:none;}
+.testimonial-card{
+  flex:0 0 82%;scroll-snap-align:center;
+  background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);color:var(--ink);
+  border-radius:20px;padding:22px 24px;
+  box-shadow:0 6px 0 rgba(17,16,19,.14),0 16px 30px rgba(17,16,19,.3);
+}
+@media (min-width:640px){.testimonial-card{flex-basis:44%;}}
+.testimonial-card p{font-size:.98rem;line-height:1.7;}
+.testimonial-card .testimonial-name{display:block;margin-top:14px;font-weight:700;color:var(--purple-deep);font-size:.85rem;}
+.testimonial-hint{text-align:center;font-size:.8rem;color:var(--ink-soft);margin-top:4px;}
 
 /* ===== future self (redesigned) ===== */
 .futureself-visual{margin:36px auto 0;max-width:420px;}
@@ -1024,19 +1039,34 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
-<!-- HIDDEN TEMPORARILY: no real student proof yet, course not launched.
-     Restore once real screenshots/quotes/video from beta-testers exist — do not fill with invented testimonials.
-<section class="section" id="studentProof">
+<section class="section chapter-plum" id="studentProof">
   <div class="wrap hero-editorial">
     <h2 class="section-title" style="text-align:center;">הם כבר התחילו. עכשיו תורכם.</h2>
-    <div class="social-proof-grid">
-      <div class="media-placeholder"><span class="media-placeholder-label">עדות: "בפעם הראשונה הרגשתי שאני יודעת מה לצלם"</span></div>
-      <div class="media-placeholder"><span class="media-placeholder-label">עדות: "דחיתי חודשים, ואחרי השיעור פשוט צילמתי ופרסמתי"</span></div>
-      <div class="media-placeholder"><span class="media-placeholder-label">צילום מסך של סרטון שתלמיד/ה העלה/תה</span></div>
+    <div class="testimonial-carousel">
+      <div class="testimonial-card">
+        <p>שינית לי את כל התחושה על תוכן, ופחדתי להתחיל ברמות. אלופה, ממשיכה ליישם הכל.</p>
+        <span class="testimonial-name">תלמידה בקורס</span>
+      </div>
+      <div class="testimonial-card">
+        <p>באמת שאני בשוק מעצמי חחח. אני עדיין לא מאה אחוז מול המצלמה, אבל לקחתי את אחד הטיפים שלך והפער משמעותי — מאמינה שעוד קצת תרגול וזה יבוא טבעי.</p>
+        <span class="testimonial-name">תלמידה בקורס</span>
+      </div>
+      <div class="testimonial-card">
+        <p>סגרתי מהסרטון האחרון שדיברנו עליו כבר 15 עסקאות! אורגני וממומן, אחרי הדיוק במסרים.</p>
+        <span class="testimonial-name">תלמידה במסלול לבעלי עסקים</span>
+      </div>
+      <div class="testimonial-card">
+        <p>הקורס פרקטי ברמות, אין חפירות, הכול ברור, והחוברת עבודה בכלל מוצלחת. גאוני שהיא דיגיטלית.</p>
+        <span class="testimonial-name">תלמידה בקורס</span>
+      </div>
+      <div class="testimonial-card">
+        <p>העליתי כבר את הסרטון השלישי שלי החודש! אני בהלם מעצמי, נשבעת לך. את לא מבינה כמה זה היה רחוק ממני. באמת תודה, מרגש אותי להרגיש שאני סוף־סוף מתחילה.</p>
+        <span class="testimonial-name">תלמידה בקורס</span>
+      </div>
     </div>
+    <p class="testimonial-hint">← גררו לצדדים לעוד עדויות →</p>
   </div>
 </section>
--->
 
 <section class="section chapter-cream" id="bonuses">
   <div class="wrap">

@@ -400,6 +400,20 @@ img,svg{display:block;max-width:100%;}
 .roadmap-biz-lead{font-size:1.3rem;font-weight:700;color:var(--orange-deep);margin-bottom:36px;}
 .roadmap-biz-steps .roadmap-marker{background:var(--orange);color:var(--orange-deep);}
 
+/* guest bonus lesson — visually distinct: gift icon marker, soft gold wash, IG link */
+.roadmap-step.roadmap-bonus{
+  background:linear-gradient(90deg, rgba(231,166,1,.1), transparent 85%);
+  border-radius:16px;padding-top:10px;padding-bottom:10px;
+}
+.roadmap-marker.bonus{background:var(--orange);color:#241407;}
+.roadmap-marker.bonus .icon{width:19px;height:19px;stroke:#241407;}
+.roadmap-guest-link{
+  display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+  font-size:.85rem;font-weight:700;color:var(--purple-deep);text-decoration:none;
+}
+.roadmap-guest-link .icon{width:16px;height:16px;stroke:var(--purple-deep);}
+.roadmap-guest-link:hover{text-decoration:underline;}
+
 /* ===== mindset-shift section ===== */
 .section.mindset{padding-block:clamp(50px,8.5vw,98px);}
 .mindset-lead{display:block;text-align:center;font-size:clamp(1.05rem,2.2vw,1.25rem);color:var(--ink-soft);margin-bottom:18px;}
@@ -1262,6 +1276,8 @@ const ICONS = {
   rocket:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 2 5 6 4.5 11.5L12 18l-4.5-4.5C7 8 9 4 12 2z"/><path d="M9 15l-3 1 1-3M15 15l3 1-1-3"/><circle cx="12" cy="9.5" r="1.6"/></svg>',
   chevron:'<svg class="icon chev" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>',
   scissors:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><path d="M20 5L7.5 13M20 19L7.5 11"/></svg>',
+  gift:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M3 13h18"/><path d="M12 9v12"/><path d="M12 9c-1.5-4-4-5-5.5-3.5S8 9 12 9zM12 9c1.5-4 4-5 5.5-3.5S16 9 12 9z"/></svg>',
+  instagram:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>',
 };
 function icon(name){return ICONS[name]||'';}
 
@@ -1301,10 +1317,17 @@ const BUSINESS_CURRICULUM = [
   {title:'אתם עסק, לא משפיענים', text:'שורפים שעות ברשתות בלי לראות תוצאה? לומדים לעבוד חכם, לא הרבה, ולתת לתוכן לעבוד בשבילכם.'}
 ];
 
-const GUEST_BONUS = {
+/* guest bonus lessons — inserted into the roadmaps at fixed positions, not part of the numbered sequence */
+const GUEST_LESSON_PERSONAL = {
+  afterIndex:5, /* insert right after CURRICULUM[5], the filming lesson */
+  guest:'קיריל זונד', instagram:'https://www.instagram.com/kiril.zond?igsh=bHRvamtzeGF0NTBi',
+  title:'הגדרות מצלמה, זוויות וקומפוזיציה, ציוד ותאורה',
+  text:'שיעור בונוס עם קיריל זונד, צלם ועורך וידאו — למי שכן ירצה לשדרג ולהרים את הצילום שלו רמה.'
+};
+const GUEST_LESSON_BUSINESS = {
+  guest:'יולי לין', instagram:'https://www.instagram.com/yuli.lin.asor?igsh=eG92NjJqcWowbjAy',
   title:'מיינדסט במכירות',
-  guest:'שיעור בונוס עם יולי לין',
-  text:'יולי לין, יועצת אסטרטגית שמלווה בעלי עסקים לעבור מעסק מאולתר לעסק מסודר, יציב ורווחי — בשיעור בן 8 דקות שיעזור לכם לשנות את המיינדסט שלכם סביב מכירות.'
+  text:'יועצת אסטרטגית שמלווה בעלי עסקים לעבור מעסק מאולתר לעסק מסודר, יציב ורווחי — שיעור בונוס עם יולי לין.'
 };
 
 const CURR_EXTRAS = [
@@ -1367,25 +1390,41 @@ function renderMyth(){
   `).join('');
 }
 
+function guestStepHtml(g){
+  return `
+    <div class="roadmap-step roadmap-bonus">
+      <div class="roadmap-marker bonus">${icon('gift')}</div>
+      <div class="roadmap-content">
+        <h3 class="roadmap-title">${g.title}</h3>
+        <p class="roadmap-text">${g.text}</p>
+        <a class="roadmap-guest-link" href="${g.instagram}" target="_blank" rel="noopener noreferrer">${icon('instagram')}${g.guest} באינסטגרם</a>
+      </div>
+    </div>`;
+}
+
 function renderRoadmap(){
-  document.getElementById('roadmapPersonal').innerHTML = CURRICULUM.map((c,i)=>`
+  const personalSteps = CURRICULUM.map((c,i)=>`
     <div class="roadmap-step">
       <div class="roadmap-marker">${i+1}</div>
       <div class="roadmap-content">
         <h3 class="roadmap-title">${c.title}</h3>
         <p class="roadmap-text">${c.text}</p>
       </div>
-    </div>`).join('');
+    </div>`);
+  personalSteps.splice(GUEST_LESSON_PERSONAL.afterIndex + 1, 0, guestStepHtml(GUEST_LESSON_PERSONAL));
+  document.getElementById('roadmapPersonal').innerHTML = personalSteps.join('');
 
   document.getElementById('roadmapBizLead').textContent = BUSINESS_DIVIDER;
-  document.getElementById('roadmapBiz').innerHTML = BUSINESS_CURRICULUM.map((c,i)=>`
+  const bizSteps = BUSINESS_CURRICULUM.map((c,i)=>`
     <div class="roadmap-step">
       <div class="roadmap-marker">${i+1}</div>
       <div class="roadmap-content">
         <h3 class="roadmap-title">${c.title}</h3>
         <p class="roadmap-text">${c.text}</p>
       </div>
-    </div>`).join('');
+    </div>`);
+  bizSteps.push(guestStepHtml(GUEST_LESSON_BUSINESS));
+  document.getElementById('roadmapBiz').innerHTML = bizSteps.join('');
 }
 
 function renderCurriculum(){

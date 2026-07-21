@@ -110,10 +110,6 @@ img,svg{display:block;max-width:100%;}
 
 /* ===== nav ===== */
 .nav{position:sticky;top:0;z-index:60;background:rgba(17,16,19,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
-@media (max-width:760px){
-  .nav{transition:transform .25s ease;}
-  .nav.nav-hidden{transform:translateY(-100%);}
-}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:14px;}
 .nav-brand{font-weight:700;font-size:1.05rem;}
 .nav-brand span{color:var(--purple-deep);}
@@ -1556,19 +1552,8 @@ function wireTalkReveal(){
 }
 
 function wireStickyCta(){
-  const bar = document.getElementById('stickyCta');
-  const fab = document.getElementById('a11yFab');
-  const panel = document.getElementById('a11yPanel');
-  const nav = document.querySelector('.nav');
-  const hero = document.querySelector('.hero');
-  const heroBottom = hero.getBoundingClientRect().height + hero.offsetTop;
-  window.addEventListener('scroll', ()=>{
-    const show = window.scrollY > heroBottom;
-    bar.classList.toggle('show', show);
-    fab.classList.toggle('cta-active', show);
-    panel.classList.toggle('cta-active', show);
-    nav.classList.toggle('nav-hidden', show);
-  }, {passive:true});
+  // Bottom sticky bar disabled: the top nav stays permanently fixed instead,
+  // so only one CTA bar is ever visible on mobile.
 }
 
 /* ================================================================

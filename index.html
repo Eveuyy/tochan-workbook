@@ -750,6 +750,26 @@ footer.site-footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padd
 }
 .a11y-toggle[aria-pressed="true"]{background:var(--purple);border-color:var(--purple-deep);}
 
+/* ===== chapter navigation (jump between sections) ===== */
+#chapterNavFab{
+  position:fixed;bottom:24px;right:24px;z-index:80;width:52px;height:52px;border-radius:50%;
+  background:var(--purple-deep);color:#fff;border:none;font-size:1.3rem;cursor:pointer;
+  box-shadow:0 2px 6px var(--shadow-tight), 0 14px 30px var(--shadow-soft);
+}
+@media (max-width:760px){#chapterNavFab{width:44px;height:44px;font-size:1.1rem;bottom:16px;right:16px;}}
+.chapter-nav-panel{
+  position:fixed;bottom:86px;right:24px;z-index:80;background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);border:1.5px solid var(--line);
+  border-radius:18px;padding:10px;box-shadow:0 4px 10px var(--shadow-tight), 0 20px 44px var(--shadow-soft);
+  display:flex;flex-direction:column;gap:2px;width:min(220px,72vw);max-height:70vh;overflow-y:auto;
+}
+@media (max-width:760px){.chapter-nav-panel{bottom:68px;right:16px;}}
+.chapter-nav-panel[hidden]{display:none;}
+.chapter-nav-link{
+  display:block;padding:10px 14px;border-radius:10px;color:var(--ink);text-decoration:none;
+  font-size:.92rem;font-weight:600;
+}
+.chapter-nav-link:hover{background:var(--cream);}
+
 /* accessibility states applied to <html> */
 html.a11y-contrast{filter:contrast(1.15) saturate(1.1);}
 html.a11y-contrast body{background:#fff;color:#000;}
@@ -1248,6 +1268,9 @@ html.a11y-underline a{text-decoration:underline !important;}
   <a class="btn btn-primary" href="#pricing">להצטרפות</a>
 </div>
 
+<button type="button" id="chapterNavFab" aria-label="ניווט בין סקשנים">☰</button>
+<div id="chapterNavPanel" class="chapter-nav-panel" hidden></div>
+
 <button type="button" id="a11yFab" aria-label="אפשרויות נגישות">♿</button>
 <div id="a11yPanel" class="a11y-panel" hidden>
   <div class="a11y-row"><span>גודל טקסט</span>
@@ -1355,6 +1378,17 @@ const CURR_EXTRAS = [
   {icon:'bulb', color:'sage', title:'כלי AI לפיתוח ושיפור רעיונות', text:'שמטרתו לעזור לכם להשתפר ולהגיע למטרות שלכם'},
   {icon:'book', color:'pink', title:'חוברת עבודה אינטראקטיבית', text:'מלווה ועוזרת לכם להשתפר לאורך כל הדרך'},
   {icon:'scissors', color:'peach', title:'ספריית תכנים קצרה לעריכת סרטון', text:'עורכים איתי משותף, צעד אחר צעד, עד לעריכת סרטון סופי זהה'}
+];
+
+/* chapter-nav jump list — update this array whenever sections are added/removed/reordered on the page */
+const NAV_SECTIONS = [
+  {label:'הבית', target:null},
+  {label:'מי אני', target:'#story'},
+  {label:'ההוכחות שלי', target:'#proof'},
+  {label:'עדויות תלמידים', target:'#studentProof'},
+  {label:'הסילבוס', target:'#curriculum'},
+  {label:'המחיר', target:'#pricing'},
+  {label:'שאלות נפוצות', target:'#faq'},
 ];
 
 const FAQ_ITEMS = [
@@ -1732,6 +1766,35 @@ function wirePeekTeaser(){
   });
 }
 
+function renderChapterNav(){
+  const panel = document.getElementById('chapterNavPanel');
+  panel.innerHTML = NAV_SECTIONS.map(s=>
+    `<a href="${s.target||'#'}" class="chapter-nav-link"${s.target?'':' data-top="true"'}>${s.label}</a>`
+  ).join('');
+}
+
+function wireChapterNav(){
+  const fab = document.getElementById('chapterNavFab');
+  const panel = document.getElementById('chapterNavPanel');
+  fab.addEventListener('click', ()=>{
+    if(panel.hasAttribute('hidden')) panel.removeAttribute('hidden'); else panel.setAttribute('hidden','');
+  });
+  panel.addEventListener('click', e=>{
+    const link = e.target.closest('.chapter-nav-link');
+    if(!link) return;
+    if(link.dataset.top){
+      e.preventDefault();
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+    panel.setAttribute('hidden','');
+  });
+  document.addEventListener('click', e=>{
+    if(!panel.hasAttribute('hidden') && !panel.contains(e.target) && e.target!==fab){
+      panel.setAttribute('hidden','');
+    }
+  });
+}
+
 function boot(){
   renderMyth();
   renderRoadmap();
@@ -1747,6 +1810,8 @@ function boot(){
   wireProofVideos();
   wirePeekTeaser();
   wireVideoHeaders();
+  renderChapterNav();
+  wireChapterNav();
 }
 document.addEventListener('DOMContentLoaded', boot);
 

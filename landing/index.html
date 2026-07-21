@@ -172,6 +172,22 @@ img,svg{display:block;max-width:100%;}
 .icon3d-wrap.tilt{transform:rotate(-6deg);}
 .icon3d-wrap.tilt2{transform:rotate(5deg);}
 
+/* subtle looping micro-animations, one distinct treatment per icon */
+.icon3d.anim-pulse{animation:iconPulse 2.4s ease-in-out infinite;}
+@keyframes iconPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+
+.icon3d.anim-sway{animation:iconSway 3.2s ease-in-out infinite;transform-origin:50% 90%;}
+@keyframes iconSway{0%,100%{transform:rotate(-7deg);}50%{transform:rotate(7deg);}}
+
+.icon3d.anim-shutter{animation:iconShutter 3s ease-in-out infinite;}
+@keyframes iconShutter{0%,92%,100%{transform:scale(1);opacity:1;}94%{transform:scale(.94);opacity:.7;}96%{transform:scale(1);opacity:1;}}
+
+.icon3d.anim-twinkle{animation:iconTwinkle 2.2s ease-in-out infinite;}
+@keyframes iconTwinkle{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.75;transform:scale(.93);}}
+
+.icon3d.anim-bob{animation:iconBob 2.8s ease-in-out infinite;}
+@keyframes iconBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
 .section-separator{display:flex;flex-direction:column;align-items:center;padding:36px 0 8px;}
 .word-transition{text-align:center;font-size:clamp(2.6rem,9vw,4.4rem);font-weight:900;margin:20px auto 0;color:var(--orange-deep);text-wrap:balance;}
 
@@ -803,9 +819,9 @@ html.a11y-underline a{text-decoration:underline !important;}
 
     <p class="hero-body">קורס מעשי ליצירת תוכן, שמלווה אתכם צעד אחר צעד — ממציאת רעיון, דרך בניית המסר, הצילום והעריכה, ועד לרגע שבו אתם לוחצים על "פרסום".</p>
 
-    <p class="hero-stmt stmt-gold fade-in" style="font-size:clamp(1.4rem,3.2vw,1.9rem);">גם אם מעולם לא יצרתם תוכן.<br>גם אם אתם מתביישים מול מצלמה.<br>וגם אם כרגע אין לכם מושג מאיפה להתחיל.</p>
+    <p class="hero-stmt stmt-gold fade-in" style="font-size:clamp(1.4rem,3.2vw,1.9rem);">גם אם מעולם לא יצרתם תוכן.<br>גם אם אתם קופאים מול המצלמה.<br>וגם אם כרגע אין לכם מושג מאיפה להתחיל.</p>
 
-    <p class="hero-body" style="font-weight:700;">בלי ציוד יקר. וגם בלי ניסיון קודם.</p>
+    <p class="hero-body" style="font-weight:700;">בלי ציוד יקר. בלי ניסיון קודם.</p>
 
     <a class="btn btn-primary btn-lg hero-cta-solo" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
     <p class="hero-body" style="margin-top:16px;font-size:.85rem;opacity:.75;">גישה מיידית לקורס · לימוד בקצב שלכם · גישה ללא הגבלת זמן</p>
@@ -844,15 +860,15 @@ html.a11y-underline a{text-decoration:underline !important;}
 </section>
 
 <div class="section-separator">
-  <img class="icon3d icon3d-hero fade-in" src="assets/icons/compass_3d.png" alt="">
-  <p class="word-transition fade-in" style="font-size:clamp(1.6rem,4.4vw,2.3rem);">ולא צריך לצעוד אותו לבד.</p>
+  <img class="icon3d icon3d-hero anim-sway fade-in" src="assets/icons/compass_3d.png" alt="">
+  <p class="word-transition fade-in" style="font-size:clamp(1.6rem,4.4vw,2.3rem);">ואתם לא צריכים לצעוד אותו לבד.</p>
 </div>
 
 <section class="section chapter-coffee">
   <div class="wrap hero-editorial">
     <p class="hero-stmt fade-in">למה לעבור את כל הדרך לבד, כשאתם יכולים לחסוך לעצמכם חודשים של ניחושים, טעויות ותסכול?</p>
 
-    <p class="hero-stmt stmt-coral fade-in" style="font-size:clamp(1.3rem,3vw,1.7rem);">אחרי הקורס הזה תלמדו לייצר תוכן שמביא תוצאות כבר מהרגע הראשון.</p>
+    <p class="hero-stmt stmt-coral fade-in" style="font-size:clamp(1.3rem,3vw,1.7rem);">אחרי הקורס הזה תדעו לייצר תוכן שיביא לכם תוצאות כבר מהרגע הראשון.</p>
 
     <p class="hero-body">הקורס הזה לא נבנה רק כדי ללמד אתכם ליצור תוכן. הוא נבנה כדי לגרום לכם <span class="text-highlight">להתחיל ליצור אותו</span>.</p>
 
@@ -887,17 +903,17 @@ html.a11y-underline a{text-decoration:underline !important;}
 
     <p class="hero-stmt fade-in" style="margin-top:32px;">נעים מאוד, אני איב. והייתי בדיוק במקום שבו אתם נמצאים היום.</p>
 
-    <p class="hero-body">היום אני יוצרת תוכן במשרה מלאה, עובדת עם מותגים, מלווה בעלי עסקים ויוצרי תוכן, ובניתי קהילה של עשרות אלפי אנשים ברשתות החברתיות. אבל ממש לא התחלתי משם.</p>
+    <p class="hero-body">היום, אחרי שצעדתי בדרך הארוכה. ניסיתי, טעיתי, ניתחתי, שיפרתי ודייקתי את שיטת העבודה שלי, אני יוצרת תוכן במשרה מלאה, עובדת עם מותגים ומלווה בעלי עסקים ויוצרי תוכן, בניתי קהילה של עשרות אלפי אנשים ברשתות החברתיות. אבל ממש לא התחלתי משם.</p>
 
     <p class="hero-body">גם אני פחדתי. דחיתי.</p>
 
     <p class="hero-body">ובמשך הרבה זמן הייתי בטוחה שהבעיה שלי היא בכלל טכנית. קניתי מצלמה, קניתי תאורות, חיפשתי את המיקרופון המושלם, סידרתי את הפינה היפה ביותר בבית — ושכנעתי את עצמי שברגע שיהיה לי כל מה שצריך, אני סוף־סוף אתחיל.</p>
 
-    <p class="hero-body">רק עוד קצת ללמוד, רק עוד קצת לרכוש ואני שם.</p>
+    <p class="hero-body">רק עוד קצת ציוד, רק עוד קצת ידע ואז... אז אהיה מוכנה.</p>
 
     <p class="hero-body">אבל בדיעבד הבנתי שכל הדברים האלה היו בעיקר דרך מתוחכמת לדחות את הרגע שבו באמת אצטרך להיחשף. כי כל עוד עדיין חסר לי משהו, תמיד הייתה לי סיבה טובה לא להתחיל.</p>
 
-    <div class="icon3d-wrap"><img class="icon3d icon3d-support" src="assets/icons/red_heart_3d.png" alt=""></div>
+    <div class="icon3d-wrap"><img class="icon3d icon3d-support anim-pulse" src="assets/icons/red_heart_3d.png" alt=""></div>
     <p class="stmt-purple fade-in">ציוד יכול לשדרג את התוכן שלכם.<br>אבל הוא לא התנאי להתחיל ליצור אותו.</p>
 
     <p class="hero-body">הביטחון לא הגיע אחרי שקניתי מצלמה. הוא הגיע שהתחלתי, ניסיתי, השתפשפתי והסכמתי לתת לעצמי ביטוי. הקול שלי לא חיכה לי איפשהו — מצאתי אותו רק אחרי עשרות סרטונים, אחרי טעויות ואחרי מבוכה.</p>
@@ -993,7 +1009,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 
 <section class="section myth chapter-coffee" id="myth">
   <div class="wrap">
-    <div class="icon3d-wrap"><img class="icon3d icon3d-support" src="assets/icons/camera_3d.png" alt=""></div>
+    <div class="icon3d-wrap"><img class="icon3d icon3d-support anim-shutter" src="assets/icons/camera_3d.png" alt=""></div>
     <span class="section-eyebrow" style="text-align:center;">בואו נשבור מיתוס אחד</span>
     <h2 class="section-title" style="text-align:center;">הציוד המקצועי הוא הדבר הכי פחות חשוב פה</h2>
     <div class="myth-pairs" id="mythCompare"></div>
@@ -1019,7 +1035,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 
 <section class="who-for chapter-cream">
   <div class="wrap">
-    <div class="icon3d-wrap"><img class="icon3d icon3d-support" src="assets/icons/bullseye_3d.png" alt=""></div>
+    <div class="icon3d-wrap"><img class="icon3d icon3d-support anim-bob" src="assets/icons/bullseye_3d.png" alt=""></div>
     <span class="who-for-label">למי הקורס הזה מתאים?</span>
     <div class="who-for-grid">
       <div class="who-for-card">
@@ -1109,7 +1125,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 
 <section class="section chapter-cream" id="bonuses">
   <div class="wrap">
-    <div class="icon3d-wrap"><img class="icon3d icon3d-support" src="assets/icons/sparkles_3d.png" alt=""></div>
+    <div class="icon3d-wrap"><img class="icon3d icon3d-support anim-twinkle" src="assets/icons/sparkles_3d.png" alt=""></div>
     <h3 class="perks-title">מה עוד תקבלו בקורס?</h3>
     <div class="curr-extra" id="currExtra"></div>
     <div style="display:flex;justify-content:center;margin-top:36px;">
@@ -1179,7 +1195,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 <section class="section chapter-plum" id="faq">
   <div class="wrap hero-editorial">
     <span class="section-eyebrow" style="text-align:center;">עוד כמה שאלות</span>
-    <div class="icon3d-wrap"><img class="icon3d icon3d-support" src="assets/icons/speech_balloon_3d.png" alt=""></div>
+    <div class="icon3d-wrap"><img class="icon3d icon3d-support anim-bob" src="assets/icons/speech_balloon_3d.png" alt=""></div>
     <h2 class="section-title" style="text-align:center;">שאלות נפוצות</h2>
     <div class="faq-list" id="faqList"></div>
   </div>

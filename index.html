@@ -30,7 +30,7 @@
   --orange-deep:#C97F63; --shadow:rgba(0,0,0,.35);
   --shadow-tight:rgba(0,0,0,.38); --shadow-soft:rgba(0,0,0,.28);
   --ink-on-paper:#3D2418; --ink-soft-on-paper:#7A5C4C; --line-on-paper:rgba(32,48,44,.15);
-  --bg-black:#241611; --sage:#7A8C6E; --glow:#D9683F; --glow2:#D97F9B; --glow3:#96B37D;
+  --bg-black:#241611; --sage:#7A8C6E; --glow:#D9683F; --glow2:#D97F9B; --glow3:#96B37D; --kick:#8DDBA6;
   color-scheme:dark;
 }
 @media (prefers-color-scheme:dark){
@@ -285,8 +285,10 @@ img,svg{display:block;max-width:100%;}
 .video-header h2{
   position:relative;z-index:2;margin-bottom:0;padding:0 20px;color:#fff;
 }
-.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:52px 0 64px;}
-@media (max-width:560px){.proof-grid{grid-template-columns:1fr 1fr;gap:12px;}}
+.proof-grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:52px 0 64px;padding:4px 4px 10px;}
+.proof-grid::-webkit-scrollbar{display:none;}
+.proof-grid .proof-card{flex:0 0 62%;scroll-snap-align:center;}
+@media (min-width:640px){.proof-grid .proof-card{flex-basis:30%;}}
 .proof-card{border-radius:18px;overflow:hidden;background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);}
 .proof-thumb{
   aspect-ratio:9/16;background:var(--ink-on-paper);display:flex;align-items:center;justify-content:center;position:relative;
@@ -302,12 +304,12 @@ img,svg{display:block;max-width:100%;}
 .proof-video{width:100%;height:100%;object-fit:cover;display:block;}
 .proof-views-badge{
   position:absolute;top:12px;right:12px;z-index:2;pointer-events:none;
-  display:flex;align-items:center;gap:7px;background:var(--orange-deep);
-  color:#241407;font-size:.98rem;font-weight:800;padding:8px 14px;border-radius:100px;
+  display:flex;align-items:center;gap:7px;background:var(--kick);
+  color:#3D2418;font-size:.98rem;font-weight:800;padding:8px 14px;border-radius:100px;
   box-shadow:0 6px 18px rgba(0,0,0,.4);
   transition:opacity .2s ease;font-family:'Fredoka','Rubik',sans-serif;
 }
-.proof-views-badge .icon{width:19px;height:19px;stroke:#241407;}
+.proof-views-badge .icon{width:19px;height:19px;stroke:#3D2418;}
 .proof-views-badge .proof-views-label{font-weight:600;opacity:.82;font-size:.86em;}
 .proof-video-wrap.is-playing .proof-views-badge{opacity:0;}
 .proof-highlight{

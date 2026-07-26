@@ -865,6 +865,22 @@ html.a11y-underline a{text-decoration:underline !important;}
 .sticky-cta span{font-size:.9rem;}
 .sticky-cta .btn{flex:none;padding:9px 18px;font-size:.88rem;}
 @media (min-width:761px){.sticky-cta{display:none !important;}}
+
+.hero-chain{display:flex;align-items:flex-start;justify-content:center;flex-wrap:wrap;gap:8px 4px;margin:34px auto 0;padding-top:22px;max-width:640px;border-top:1px solid rgba(234,242,239,.14);}
+.hero-chain-step{display:flex;flex-direction:column;align-items:center;gap:6px;width:82px;}
+.hero-chain-icon{width:42px;height:42px;border-radius:50%;background:linear-gradient(160deg,var(--glow2) 0%,var(--glow) 100%);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.35rem;box-shadow:0 0 0 3px rgba(217,127,155,.3),0 4px 10px rgba(0,0,0,.35),inset 0 -3px 6px rgba(0,0,0,.25),inset 0 2px 3px rgba(255,255,255,.35);}
+.hero-chain-icon span{filter:drop-shadow(0 2px 2px rgba(0,0,0,.55));}
+.hero-chain-step.is-final .hero-chain-icon{background:linear-gradient(160deg,#A8B79C 0%,#7A8C6E 100%);box-shadow:0 0 0 3px rgba(95,227,166,.28),0 4px 10px rgba(0,0,0,.35);}
+.hero-chain-label{font-size:.7rem;font-weight:700;color:var(--ink);text-align:center;line-height:1.3;}
+.hero-chain-step.is-final .hero-chain-label{color:#7A8C6E;}
+.hero-chain-arrow{color:var(--orange);opacity:.9;font-size:1.2rem;font-weight:700;flex:none;margin-top:12px;}
+@media (max-width:760px){
+  .hero-chain{gap:4px 2px;margin-top:26px;padding-top:18px;}
+  .hero-chain-step{width:60px;}
+  .hero-chain-icon{width:34px;height:34px;font-size:1.05rem;}
+  .hero-chain-label{font-size:.6rem;}
+  .hero-chain-arrow{font-size:1rem;margin-top:8px;}
+}
 </style>
 </head>
 <body>
@@ -895,6 +911,18 @@ html.a11y-underline a{text-decoration:underline !important;}
 
     <a class="btn btn-primary btn-lg hero-cta-solo" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
     <p class="hero-body" style="margin-top:16px;font-size:.85rem;opacity:.75;">גישה מיידית לקורס · לימוד בקצב שלכם · גישה ללא הגבלת זמן</p>
+
+    <div class="hero-chain">
+      <div class="hero-chain-step"><span class="hero-chain-icon"><span>📚</span></span><span class="hero-chain-label">הבנת יסודות</span></div>
+      <span class="hero-chain-arrow">←</span>
+      <div class="hero-chain-step"><span class="hero-chain-icon"><span>💡</span></span><span class="hero-chain-label">תכנון רעיון</span></div>
+      <span class="hero-chain-arrow">←</span>
+      <div class="hero-chain-step"><span class="hero-chain-icon"><span>📱</span></span><span class="hero-chain-label">צילום</span></div>
+      <span class="hero-chain-arrow">←</span>
+      <div class="hero-chain-step"><span class="hero-chain-icon"><span>🎬</span></span><span class="hero-chain-label">עריכה</span></div>
+      <span class="hero-chain-arrow">←</span>
+      <div class="hero-chain-step is-final"><span class="hero-chain-icon"><span>🚀</span></span><span class="hero-chain-label">תוכן מוגמר<br>שעובד</span></div>
+    </div>
   </div>
 </section>
 

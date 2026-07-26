@@ -1877,18 +1877,25 @@ document.addEventListener('DOMContentLoaded', boot);
     }
 
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var speed = 0.5;
+    var speed = 0.6;
     var autoOn = !reduceMotion;
     var interacting = false;
     var resumeTimer = null;
 
     rail.scrollLeft = 1;
+    /* keep the "true" position in a plain JS float — the DOM's scrollLeft rounds to
+       whole pixels, so accumulating sub-pixel speed directly on it can get stuck
+       rounding back to the same integer forever. */
+    var pos = rail.scrollLeft;
 
     function loop(){
       if(autoOn && !interacting){
-        rail.scrollLeft += speed;
-        if(rail.scrollLeft >= uw) rail.scrollLeft -= uw;
-        if(rail.scrollLeft < 0) rail.scrollLeft += uw;
+        pos += speed;
+        if(pos >= uw) pos -= uw;
+        if(pos < 0) pos += uw;
+        rail.scrollLeft = pos;
+      } else {
+        pos = rail.scrollLeft; // stay synced to wherever the user/native scroll left it
       }
       requestAnimationFrame(loop);
     }

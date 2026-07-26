@@ -1841,30 +1841,53 @@ document.addEventListener('DOMContentLoaded', boot);
 </script>
 
 <script>
-/* trusted-by logo marquee: auto-scrolls when idle; while the user is touching/scrolling/dragging it, we never touch scrollLeft ourselves */
+/* trusted-by logo marquee: clones enough copies of the logo set to always have real scroll runway
+   (fixes: on wide screens, the browser's native scroll limit could be reached before our wrap point,
+   so the auto-scroll would just stall after going through the set once or twice) */
 (function(){
   window.addEventListener('load', function(){
     var rail = document.querySelector('.trusted-marquee');
     var track = rail ? rail.querySelector('.trusted-track') : null;
     if(!rail || !track) return;
+
+    var all = Array.prototype.slice.call(track.children);
+    var unit = all.filter(function(el){ return !el.hasAttribute('aria-hidden'); });
+    all.forEach(function(el){ if(el.hasAttribute('aria-hidden')) track.removeChild(el); });
+
+    function unitWidth(){
+      var cs = getComputedStyle(track);
+      var gap = parseFloat(cs.columnGap || cs.gap) || 0;
+      var w = 0;
+      unit.forEach(function(el){ w += el.getBoundingClientRect().width; });
+      w += gap * unit.length;
+      return w;
+    }
+
+    var uw = unitWidth();
+    var target = rail.clientWidth + uw + 40;
+    var guard = 0;
+    while(track.scrollWidth < target && guard++ < 20){
+      unit.forEach(function(el){
+        var clone = el.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.setAttribute('alt', '');
+        track.appendChild(clone);
+      });
+    }
+
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var speed = 0.5;
     var autoOn = !reduceMotion;
     var interacting = false;
     var resumeTimer = null;
 
-    function halfWidth(){ return track.scrollWidth / 2; }
-
     rail.scrollLeft = 1;
 
     function loop(){
       if(autoOn && !interacting){
-        var sw = halfWidth();
         rail.scrollLeft += speed;
-        if(sw > 0){
-          if(rail.scrollLeft >= sw) rail.scrollLeft -= sw;
-          if(rail.scrollLeft < 0) rail.scrollLeft += sw;
-        }
+        if(rail.scrollLeft >= uw) rail.scrollLeft -= uw;
+        if(rail.scrollLeft < 0) rail.scrollLeft += uw;
       }
       requestAnimationFrame(loop);
     }
@@ -1880,12 +1903,10 @@ document.addEventListener('DOMContentLoaded', boot);
       }, 1800);
     }
 
-    /* while the user is scrolling/touching/dragging, we only watch — we never write scrollLeft ourselves */
     rail.addEventListener('wheel', markInteracting, {passive:true});
     rail.addEventListener('touchstart', markInteracting, {passive:true});
     rail.addEventListener('scroll', markInteracting, {passive:true});
 
-    /* real mouse click-drag only; touch/trackpad rely entirely on native scrolling */
     var dragging = false, dragStartX = 0, dragStartScroll = 0, moved = false;
     rail.addEventListener('pointerdown', function(e){
       if(e.pointerType !== 'mouse') return;

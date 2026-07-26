@@ -267,16 +267,12 @@ img,svg{display:block;max-width:100%;}
 
 .trusted-by{padding-block:clamp(32px,5.5vw,48px);text-align:center;}
 .trusted-by .trusted-label{display:block;font-weight:700;font-size:1rem;color:var(--ink);opacity:.75;margin-bottom:28px;}
-.trusted-logos{
+.trusted-names{
   display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
-  gap:30px 40px;max-width:760px;margin:0 auto;
+  gap:9px 15px;max-width:660px;margin:0 auto;
 }
-.trusted-logos img{height:34px;width:auto;max-width:130px;flex:none;transition:transform .15s ease;}
-.trusted-logos img:hover{transform:translateY(-3px);}
-.trusted-logos img.chip{height:60px;border-radius:12px;box-shadow:0 4px 14px rgba(61,36,24,.18);}
-.trusted-logos img.badge{height:60px;filter:drop-shadow(0 3px 8px rgba(61,36,24,.18));}
-.trusted-logos img.etz{height:46px;border-radius:11px;box-shadow:0 4px 14px rgba(61,36,24,.18);}
-.trusted-logos img.sapporo{height:78px;filter:drop-shadow(0 3px 8px rgba(61,36,24,.18));}
+.trusted-names span{font-family:'Rubik',sans-serif;font-weight:700;font-size:1.05rem;color:var(--ink);opacity:.85;}
+.trusted-names .dot{color:var(--sage);opacity:.9;font-weight:400;}
 
 /* ===== section icon dividers ===== */
 .section-icon-divider{display:flex;justify-content:center;margin-bottom:28px;}
@@ -896,8 +892,6 @@ html.a11y-underline a{text-decoration:underline !important;}
 
     <p class="hero-body">קורס מעשי שילמד אתכם ליצור תוכן שמושך אנשים לעצור, להקשיב ולפעול.</p>
 
-    <p class="hero-stmt stmt-gold fade-in" style="font-size:clamp(1.4rem,3.2vw,1.9rem);">גם אם מעולם לא יצרתם תוכן.<br>גם אם אתם קופאים מול המצלמה.<br>וגם אם כרגע אין לכם מושג מאיפה להתחיל.</p>
-
     <p class="hero-body" style="font-weight:700;">בלי ניסיון קודם. בלי ציוד יקר. בלי להסתבך.</p>
 
     <a class="btn btn-primary btn-lg hero-cta-solo" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
@@ -918,7 +912,7 @@ html.a11y-underline a{text-decoration:underline !important;}
       <span class="thought-bubble t4">"אני צריך קודם ציוד מקצועי."</span>
     </div>
 
-    <p class="hero-body">ברוב המקרים זה לא באמת חוסר ידע.<br>זו פשוט התחושה שאתם עדיין <span class="marker-stroke">"לא מוכנים"</span>.</p>
+    <p class="hero-body">ברוב המקרים לא מדובר רק בחוסר ידע.<br>זו פשוט התחושה שאתם עדיין <span class="marker-stroke">"לא מוכנים"</span>.</p>
 
     <p class="hero-stmt fade-in">אף אחד לא יגיע וייתן לכם את האישור להתחיל.</p>
 
@@ -926,7 +920,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 
     <p class="hero-body">הוא פשוט לא הגיע.</p>
 
-    <p class="hero-body">ורק כשהתחלתי ליצור, <span class="text-highlight">הביטחון הגיע יחד עם העשייה</span>.</p>
+    <p class="hero-body">רק כשהתחלתי ליצור, <span class="text-highlight">הביטחון הגיע יחד עם העשייה</span>.</p>
 
     <p class="hero-stmt stmt-gold fade-in">הצעד הראשון תמיד יהיה שלכם.</p>
   </div>
@@ -949,8 +943,6 @@ html.a11y-underline a{text-decoration:underline !important;}
         <span>בטיקטוק</span>
       </div>
     </div>
-    <p class="community-collab" style="margin-top:14px;">שיתופי פעולה עם מותגים מובילים</p>
-
     <p class="hero-stmt fade-in" style="margin-top:32px;">נעים מאוד, אני איב.</p>
 
     <p class="hero-body">בדיוק כמוכם, גם אני התחלתי בלי שום ניסיון ביצירת תוכן.</p>
@@ -966,7 +958,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 
     <p class="hero-body">אבל הדבר שאני הכי גאה בו הוא לא המספרים.</p>
 
-    <p class="hero-body">אלא לראות אנשים שהיו בטוחים שהם "לא בנויים למצלמה", מעלים את הסרטון הראשון שלהם, ועסקים שמתחילים סוף סוף ליצור תוכן בצורה עקבית ומבינים שהם פשוט היו צריכים שיטה ברורה.</p>
+    <p class="hero-body">אלא לראות אנשים שהיו בטוחים שהם "לא בנויים למצלמה", מעלים את הסרטון הראשון שלהם, ועסקים שמתחילים סוף סוף ליצור תוכן בצורה עקבית ומקבלים תוצאות, לידים ותכלס הכנסות.</p>
 
     <div class="icon3d-wrap"><img class="icon3d icon3d-support anim-pulse" src="assets/icons/red_heart_3d.png" alt=""></div>
 
@@ -977,25 +969,24 @@ html.a11y-underline a{text-decoration:underline !important;}
 <section class="trusted-by chapter-cream">
   <div class="wrap">
     <span class="trusted-label">חלק מהחברות שכבר סמכו עליי ביצירת תוכן</span>
-    <div class="trusted-logos">
-      <img class="badge" src="assets/logos/nestle-icecream.png" alt="נסטלה גלידות">
-      <img src="assets/logos/ben-jerrys.svg" alt="Ben &amp; Jerry's">
-      <img src="assets/logos/huggies.svg" alt="Huggies">
-      <img src="assets/logos/eset.svg" alt="ESET">
-      <img class="chip" src="assets/logos/biamba.jpg" alt="Biamba">
-      <img class="badge" src="assets/logos/skingard.png" alt="Skingard">
-      <img class="chip" src="assets/logos/mayven.jpg" alt="Mayven">
-      <img class="etz" src="assets/logos/etz-yasha.png" alt="העץ של יאשה">
-      <img class="chip" src="assets/logos/mol-hachof.jpg" alt="מול החוף">
-      <img class="chip" src="assets/logos/nia-noach.png" alt="ניע נוח">
-      <img class="sapporo" src="assets/logos/sapporo.png" alt="Sapporo">
+    <div class="trusted-names">
+      <span>נסטלה גלידות</span><span class="dot">•</span>
+      <span>Ben &amp; Jerry's</span><span class="dot">•</span>
+      <span>Huggies</span><span class="dot">•</span>
+      <span>ESET</span><span class="dot">•</span>
+      <span>Biamba</span><span class="dot">•</span>
+      <span>Skingard</span><span class="dot">•</span>
+      <span>Mayven</span><span class="dot">•</span>
+      <span>העץ של יאשה</span><span class="dot">•</span>
+      <span>מול החוף</span><span class="dot">•</span>
+      <span>ניע נוח</span><span class="dot">•</span>
+      <span>Sapporo</span>
     </div>
   </div>
 </section>
 
 <div class="section-separator">
   <img class="icon3d icon3d-hero anim-sway fade-in" src="assets/icons/compass_3d.png" alt="">
-  <p class="word-transition fade-in" style="font-size:clamp(1.6rem,4.4vw,2.3rem);">ואתם לא צריכים לצעוד אותו לבד.</p>
 </div>
 
 <section class="section chapter-coffee">
@@ -1018,11 +1009,11 @@ html.a11y-underline a{text-decoration:underline !important;}
       <video autoplay muted loop playsinline preload="auto" poster="assets/proof-header-montage-cover.jpg">
         <source src="assets/proof-header-montage.mp4" type="video/mp4">
       </video>
-      <h2 class="proof-title">זה לא קרה במקרה.</h2>
+      <h2 class="proof-title">ההצלחה שלי<br>לא קרתה במקרה.</h2>
     </div>
 
     <p class="hero-body">אלה רק חלק קטן מהסרטונים שיצרתי לאורך השנים.<br>ביחד הם צברו עשרות מיליוני צפיות.</p>
-    <p class="hero-body">חלקם הגיעו לעשרות אלפי צפיות, רבים מהם למאות אלפים, וחלקם גם למיליונים.</p>
+    <p class="hero-body">חלקם הגיעו לעשרות אלפים, רבים מהם למאות אלפים, וחלקם גם למיליונים.</p>
     <p class="hero-body">והם הרבה יותר ממספרים.<br><span class="text-highlight">הם ההוכחה לכך שכשתוכן בנוי נכון — אנשים עוצרים, נשארים ופועלים</span>.</p>
     <p class="hero-body">במשך השנים יצרתי תוכן לעמודים האישיים שלי, לעסקים ולמותגים, ואותם העקרונות שעומדים מאחורי הסרטונים האלה הם בדיוק מה שתלמדו בקורס - כדי שגם אתם תוכלו ליצור תוכן מדוייק, שמושך את הקהל הנכון ומייצר תוצאות אמיתיות.</p>
 

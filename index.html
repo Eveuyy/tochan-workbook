@@ -267,12 +267,27 @@ img,svg{display:block;max-width:100%;}
 
 .trusted-by{padding-block:clamp(32px,5.5vw,48px);text-align:center;}
 .trusted-by .trusted-label{display:block;font-weight:700;font-size:1rem;color:var(--ink);opacity:.75;margin-bottom:28px;}
-.trusted-names{
-  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
-  gap:9px 15px;max-width:660px;margin:0 auto;
+.orbit-wrap{position:relative;width:min(92vw,480px);aspect-ratio:1;margin:20px auto 0;}
+.orbit-ring{position:absolute;inset:0;--r:clamp(110px,28vw,190px);animation:orbitSpin 46s linear infinite;}
+.orbit-item{position:absolute;top:50%;left:50%;width:0;height:0;}
+.orbit-pill{
+  position:absolute;top:0;left:0;
+  display:inline-block;white-space:nowrap;
+  padding:9px 16px;border-radius:999px;
+  font-family:'Rubik',sans-serif;font-weight:700;font-size:.85rem;
+  box-shadow:0 3px 10px rgba(61,36,24,.18);
+  animation:orbitCounter 46s linear infinite;
 }
-.trusted-names span{font-family:'Rubik',sans-serif;font-weight:700;font-size:1.05rem;color:var(--ink);opacity:.85;}
-.trusted-names .dot{color:var(--sage);opacity:.9;font-weight:400;}
+.orbit-pill.c1{background:var(--purple-deep);color:#F7EDE6;}
+.orbit-pill.c2{background:var(--orange-deep);color:#3D2418;}
+.orbit-pill.c3{background:var(--purple);color:#F7EDE6;}
+.orbit-pill.c4{background:var(--sage);color:#F7EDE6;}
+@keyframes orbitSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes orbitCounter{from{transform:translate(-50%,-50%) rotate(0deg);}to{transform:translate(-50%,-50%) rotate(-360deg);}}
+@media (prefers-reduced-motion:reduce){
+  .orbit-ring,.orbit-pill{animation:none;}
+  .orbit-pill{transform:translate(-50%,-50%);}
+}
 
 /* ===== section icon dividers ===== */
 .section-icon-divider{display:flex;justify-content:center;margin-bottom:28px;}
@@ -969,18 +984,42 @@ html.a11y-underline a{text-decoration:underline !important;}
 <section class="trusted-by chapter-cream">
   <div class="wrap">
     <span class="trusted-label">חלק מהחברות שכבר סמכו עליי ביצירת תוכן</span>
-    <div class="trusted-names">
-      <span>נסטלה גלידות</span><span class="dot">•</span>
-      <span>Ben &amp; Jerry's</span><span class="dot">•</span>
-      <span>Huggies</span><span class="dot">•</span>
-      <span>ESET</span><span class="dot">•</span>
-      <span>Biamba</span><span class="dot">•</span>
-      <span>Skingard</span><span class="dot">•</span>
-      <span>Mayven</span><span class="dot">•</span>
-      <span>העץ של יאשה</span><span class="dot">•</span>
-      <span>מול החוף</span><span class="dot">•</span>
-      <span>ניע נוח</span><span class="dot">•</span>
-      <span>Sapporo</span>
+    <div class="orbit-wrap">
+      <div class="orbit-ring">
+      <div class="orbit-item" style="transform:rotate(0.0deg) translate(var(--r)) rotate(-0.0deg)">
+        <span class="orbit-pill c1">נסטלה גלידות</span>
+      </div>
+      <div class="orbit-item" style="transform:rotate(32.73deg) translate(var(--r)) rotate(-32.73deg)">
+        <span class="orbit-pill c2">Ben &amp; Jerry's</span>
+      </div>
+      <div class="orbit-item" style="transform:rotate(65.45deg) translate(var(--r)) rotate(-65.45deg)">
+        <span class="orbit-pill c3">Huggies</span>
+      </div>
+      <div class="orbit-item" style="transform:rotate(98.18deg) translate(var(--r)) rotate(-98.18deg)">
+        <span class="orbit-pill c1">ESET</span>
+      </div>
+      <div class="orbit-item" style="transform:rotate(130.91deg) translate(var(--r)) rotate(-130.91deg)">
+        <span class="orbit-pill c2">Biamba</span>
+      </div>
+      <div class="orbit-item" style="transform:rotate(163.64deg) translate(var(--r)) rotate(-163.64deg)">
+        <span class="orbit-pill c3">Skingard</span>
+      </div>
+      <div class="orbit-item" style="transform:rotate(196.36deg) translate(var(--r)) rotate(-196.36deg)">
+        <span class="orbit-pill c4">Mayven</span>
+      </div>
+      <div class="orbit-item" style="transform:rotate(229.09deg) translate(var(--r)) rotate(-229.09deg)">
+        <span class="orbit-pill c1">העץ של יאשה</span>
+      </div>
+      <div class="orbit-item" style="transform:rotate(261.82deg) translate(var(--r)) rotate(-261.82deg)">
+        <span class="orbit-pill c2">מול החוף</span>
+      </div>
+      <div class="orbit-item" style="transform:rotate(294.55deg) translate(var(--r)) rotate(-294.55deg)">
+        <span class="orbit-pill c3">ניע נוח</span>
+      </div>
+      <div class="orbit-item" style="transform:rotate(327.27deg) translate(var(--r)) rotate(-327.27deg)">
+        <span class="orbit-pill c2">Sapporo</span>
+      </div>
+      </div>
     </div>
   </div>
 </section>

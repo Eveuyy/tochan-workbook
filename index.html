@@ -1841,7 +1841,7 @@ document.addEventListener('DOMContentLoaded', boot);
 </script>
 
 <script>
-/* trusted-by logo marquee: auto-scrolls, pauses and hands control to the user on drag/touch/wheel */
+/* trusted-by logo marquee: auto-scrolls when idle; while the user is touching/scrolling/dragging it, we never touch scrollLeft ourselves */
 (function(){
   window.addEventListener('load', function(){
     var rail = document.querySelector('.trusted-marquee');
@@ -1850,50 +1850,50 @@ document.addEventListener('DOMContentLoaded', boot);
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var speed = 0.5;
     var autoOn = !reduceMotion;
+    var interacting = false;
     var resumeTimer = null;
-    var dragging = false, dragStartX = 0, dragStartScroll = 0, moved = false;
 
     function halfWidth(){ return track.scrollWidth / 2; }
-    function normalize(){
-      var sw = halfWidth();
-      if(sw <= 0) return;
-      var guard = 0;
-      while(rail.scrollLeft < 0 && guard++ < 20) rail.scrollLeft += sw;
-      while(rail.scrollLeft >= sw && guard++ < 20) rail.scrollLeft -= sw;
-    }
 
     rail.scrollLeft = 1;
 
     function loop(){
-      if(autoOn && !dragging){
+      if(autoOn && !interacting){
+        var sw = halfWidth();
         rail.scrollLeft += speed;
-        normalize();
+        if(sw > 0){
+          if(rail.scrollLeft >= sw) rail.scrollLeft -= sw;
+          if(rail.scrollLeft < 0) rail.scrollLeft += sw;
+        }
       }
       requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
 
-    function pauseThenResume(){
+    function markInteracting(){
+      interacting = true;
       autoOn = false;
       clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(function(){ autoOn = !reduceMotion; }, 1800);
+      resumeTimer = setTimeout(function(){
+        interacting = false;
+        autoOn = !reduceMotion;
+      }, 1800);
     }
 
-    rail.addEventListener('wheel', pauseThenResume, {passive:true});
-    rail.addEventListener('touchstart', pauseThenResume, {passive:true});
-    rail.addEventListener('scroll', function(){
-      if(!dragging) pauseThenResume();
-      normalize();
-    }, {passive:true});
+    /* while the user is scrolling/touching/dragging, we only watch — we never write scrollLeft ourselves */
+    rail.addEventListener('wheel', markInteracting, {passive:true});
+    rail.addEventListener('touchstart', markInteracting, {passive:true});
+    rail.addEventListener('scroll', markInteracting, {passive:true});
 
-    /* only hijack real mouse drags; touch/trackpad keep native scrolling untouched */
+    /* real mouse click-drag only; touch/trackpad rely entirely on native scrolling */
+    var dragging = false, dragStartX = 0, dragStartScroll = 0, moved = false;
     rail.addEventListener('pointerdown', function(e){
       if(e.pointerType !== 'mouse') return;
       dragging = true; moved = false;
       rail.classList.add('is-dragging');
       dragStartX = e.clientX;
       dragStartScroll = rail.scrollLeft;
-      pauseThenResume();
+      markInteracting();
       e.preventDefault();
     });
     window.addEventListener('pointermove', function(e){

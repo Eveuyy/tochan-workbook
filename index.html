@@ -268,8 +268,9 @@ img,svg{display:block;max-width:100%;}
 .trusted-marquee::-webkit-scrollbar{display:none;}
 .trusted-marquee.is-dragging{cursor:grabbing;scroll-snap-type:none;}
 .trusted-track{display:flex;align-items:center;width:max-content;gap:clamp(22px,5vw,40px);}
-.trusted-track img{height:36px;width:auto;max-width:120px;flex:none;-webkit-user-drag:none;user-select:none;}
-.trusted-track img.chip{height:44px;border-radius:11px;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.trusted-track img{height:34px;width:auto;max-width:130px;flex:none;-webkit-user-drag:none;user-select:none;}
+.trusted-track img.chip{height:46px;border-radius:11px;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.trusted-track img.badge{height:46px;}
 
 /* ===== section icon dividers ===== */
 .section-icon-divider{display:flex;justify-content:center;margin-bottom:28px;}
@@ -975,28 +976,28 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
   <div class="trusted-marquee">
     <div class="trusted-track">
-      <img src="assets/logos/nestle-icecream.png" alt="נסטלה גלידות">
+      <img class="badge" src="assets/logos/nestle-icecream.png" alt="נסטלה גלידות">
       <img src="assets/logos/ben-jerrys.svg" alt="Ben &amp; Jerry's">
       <img src="assets/logos/huggies.svg" alt="Huggies">
       <img src="assets/logos/eset.svg" alt="ESET">
       <img class="chip" src="assets/logos/biamba.jpg" alt="Biamba">
-      <img class="chip" src="assets/logos/skingard.png" alt="Skingard">
+      <img class="badge" src="assets/logos/skingard.png" alt="Skingard">
       <img class="chip" src="assets/logos/mayven.jpg" alt="Mayven">
       <img class="chip" src="assets/logos/etz-yasha.png" alt="העץ של יאשה">
       <img class="chip" src="assets/logos/mol-hachof.jpg" alt="מול החוף">
       <img class="chip" src="assets/logos/nia-noach.png" alt="ניע נוח">
-      <img src="assets/logos/sapporo.png" alt="Sapporo">
-      <img src="assets/logos/nestle-icecream.png" alt="" aria-hidden="true">
+      <img class="badge" src="assets/logos/sapporo.png" alt="Sapporo">
+      <img class="badge" src="assets/logos/nestle-icecream.png" alt="" aria-hidden="true">
       <img src="assets/logos/ben-jerrys.svg" alt="" aria-hidden="true">
       <img src="assets/logos/huggies.svg" alt="" aria-hidden="true">
       <img src="assets/logos/eset.svg" alt="" aria-hidden="true">
       <img class="chip" src="assets/logos/biamba.jpg" alt="" aria-hidden="true">
-      <img class="chip" src="assets/logos/skingard.png" alt="" aria-hidden="true">
+      <img class="badge" src="assets/logos/skingard.png" alt="" aria-hidden="true">
       <img class="chip" src="assets/logos/mayven.jpg" alt="" aria-hidden="true">
       <img class="chip" src="assets/logos/etz-yasha.png" alt="" aria-hidden="true">
       <img class="chip" src="assets/logos/mol-hachof.jpg" alt="" aria-hidden="true">
       <img class="chip" src="assets/logos/nia-noach.png" alt="" aria-hidden="true">
-      <img src="assets/logos/sapporo.png" alt="" aria-hidden="true">
+      <img class="badge" src="assets/logos/sapporo.png" alt="" aria-hidden="true">
     </div>
   </div>
 </section>
@@ -1905,8 +1906,6 @@ document.addEventListener('DOMContentLoaded', boot);
 
     rail.addEventListener('wheel', markInteracting, {passive:true});
     rail.addEventListener('touchstart', markInteracting, {passive:true});
-    rail.addEventListener('scroll', markInteracting, {passive:true});
-
     var dragging = false, dragStartX = 0, dragStartScroll = 0, moved = false;
     rail.addEventListener('pointerdown', function(e){
       if(e.pointerType !== 'mouse') return;

@@ -975,28 +975,28 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
   <div class="trusted-marquee">
     <div class="trusted-track">
-      <img src="assets/logos/nestle.svg" alt="Nestlé" loading="lazy">
-      <img src="assets/logos/ben-jerrys.svg" alt="Ben &amp; Jerry's" loading="lazy">
-      <img src="assets/logos/huggies.svg" alt="Huggies" loading="lazy">
-      <img src="assets/logos/eset.svg" alt="ESET" loading="lazy">
-      <img class="chip" src="assets/logos/biamba.jpg" alt="Biamba" loading="lazy">
-      <img class="chip" src="assets/logos/skingard.png" alt="Skingard" loading="lazy">
-      <img class="chip" src="assets/logos/mayven.jpg" alt="Mayven" loading="lazy">
-      <img class="chip" src="assets/logos/etz-yasha.png" alt="העץ של יאשה" loading="lazy">
-      <img class="chip" src="assets/logos/mol-hachof.jpg" alt="מול החוף" loading="lazy">
-      <img class="chip" src="assets/logos/nia-noach.png" alt="ניע נוח" loading="lazy">
-      <img src="assets/logos/sapporo.png" alt="Sapporo" loading="lazy">
-      <img src="assets/logos/nestle.svg" alt="" aria-hidden="true" loading="lazy">
-      <img src="assets/logos/ben-jerrys.svg" alt="" aria-hidden="true" loading="lazy">
-      <img src="assets/logos/huggies.svg" alt="" aria-hidden="true" loading="lazy">
-      <img src="assets/logos/eset.svg" alt="" aria-hidden="true" loading="lazy">
-      <img class="chip" src="assets/logos/biamba.jpg" alt="" aria-hidden="true" loading="lazy">
-      <img class="chip" src="assets/logos/skingard.png" alt="" aria-hidden="true" loading="lazy">
-      <img class="chip" src="assets/logos/mayven.jpg" alt="" aria-hidden="true" loading="lazy">
-      <img class="chip" src="assets/logos/etz-yasha.png" alt="" aria-hidden="true" loading="lazy">
-      <img class="chip" src="assets/logos/mol-hachof.jpg" alt="" aria-hidden="true" loading="lazy">
-      <img class="chip" src="assets/logos/nia-noach.png" alt="" aria-hidden="true" loading="lazy">
-      <img src="assets/logos/sapporo.png" alt="" aria-hidden="true" loading="lazy">
+      <img src="assets/logos/nestle.svg" alt="Nestlé">
+      <img src="assets/logos/ben-jerrys.svg" alt="Ben &amp; Jerry's">
+      <img src="assets/logos/huggies.svg" alt="Huggies">
+      <img src="assets/logos/eset.svg" alt="ESET">
+      <img class="chip" src="assets/logos/biamba.jpg" alt="Biamba">
+      <img class="chip" src="assets/logos/skingard.png" alt="Skingard">
+      <img class="chip" src="assets/logos/mayven.jpg" alt="Mayven">
+      <img class="chip" src="assets/logos/etz-yasha.png" alt="העץ של יאשה">
+      <img class="chip" src="assets/logos/mol-hachof.jpg" alt="מול החוף">
+      <img class="chip" src="assets/logos/nia-noach.png" alt="ניע נוח">
+      <img src="assets/logos/sapporo.png" alt="Sapporo">
+      <img src="assets/logos/nestle.svg" alt="" aria-hidden="true">
+      <img src="assets/logos/ben-jerrys.svg" alt="" aria-hidden="true">
+      <img src="assets/logos/huggies.svg" alt="" aria-hidden="true">
+      <img src="assets/logos/eset.svg" alt="" aria-hidden="true">
+      <img class="chip" src="assets/logos/biamba.jpg" alt="" aria-hidden="true">
+      <img class="chip" src="assets/logos/skingard.png" alt="" aria-hidden="true">
+      <img class="chip" src="assets/logos/mayven.jpg" alt="" aria-hidden="true">
+      <img class="chip" src="assets/logos/etz-yasha.png" alt="" aria-hidden="true">
+      <img class="chip" src="assets/logos/mol-hachof.jpg" alt="" aria-hidden="true">
+      <img class="chip" src="assets/logos/nia-noach.png" alt="" aria-hidden="true">
+      <img src="assets/logos/sapporo.png" alt="" aria-hidden="true">
     </div>
   </div>
 </section>
@@ -1843,24 +1843,31 @@ document.addEventListener('DOMContentLoaded', boot);
 <script>
 /* trusted-by logo marquee: auto-scrolls, pauses and hands control to the user on drag/touch/wheel */
 (function(){
-  document.addEventListener('DOMContentLoaded', function(){
+  window.addEventListener('load', function(){
     var rail = document.querySelector('.trusted-marquee');
     var track = rail ? rail.querySelector('.trusted-track') : null;
     if(!rail || !track) return;
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var setWidth = track.scrollWidth / 2;
     var speed = 0.5;
-    var resumeTimer = null;
     var autoOn = !reduceMotion;
+    var resumeTimer = null;
     var dragging = false, dragStartX = 0, dragStartScroll = 0, moved = false;
+
+    function halfWidth(){ return track.scrollWidth / 2; }
+    function normalize(){
+      var sw = halfWidth();
+      if(sw <= 0) return;
+      var guard = 0;
+      while(rail.scrollLeft < 0 && guard++ < 20) rail.scrollLeft += sw;
+      while(rail.scrollLeft >= sw && guard++ < 20) rail.scrollLeft -= sw;
+    }
 
     rail.scrollLeft = 1;
 
     function loop(){
       if(autoOn && !dragging){
         rail.scrollLeft += speed;
-        if(rail.scrollLeft >= setWidth) rail.scrollLeft -= setWidth;
-        else if(rail.scrollLeft <= 0) rail.scrollLeft += setWidth;
+        normalize();
       }
       requestAnimationFrame(loop);
     }
@@ -1876,16 +1883,18 @@ document.addEventListener('DOMContentLoaded', boot);
     rail.addEventListener('touchstart', pauseThenResume, {passive:true});
     rail.addEventListener('scroll', function(){
       if(!dragging) pauseThenResume();
-      if(rail.scrollLeft <= 0) rail.scrollLeft += setWidth;
-      else if(rail.scrollLeft >= setWidth * 2) rail.scrollLeft -= setWidth;
+      normalize();
     }, {passive:true});
 
+    /* only hijack real mouse drags; touch/trackpad keep native scrolling untouched */
     rail.addEventListener('pointerdown', function(e){
+      if(e.pointerType !== 'mouse') return;
       dragging = true; moved = false;
       rail.classList.add('is-dragging');
       dragStartX = e.clientX;
       dragStartScroll = rail.scrollLeft;
       pauseThenResume();
+      e.preventDefault();
     });
     window.addEventListener('pointermove', function(e){
       if(!dragging) return;

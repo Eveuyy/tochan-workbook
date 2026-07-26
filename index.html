@@ -267,12 +267,8 @@ img,svg{display:block;max-width:100%;}
 
 .trusted-by{padding-block:clamp(32px,5.5vw,48px);text-align:center;}
 .trusted-by .trusted-label{display:block;font-weight:700;font-size:1rem;color:var(--ink);opacity:.75;margin-bottom:28px;}
-.orbit-wrap{width:min(62vw,270px);margin:8px auto 0;}
-.orbit-ring-svg{display:block;width:100%;height:auto;overflow:visible;}
-.orbit-ring-spin{transform-box:fill-box;transform-origin:50% 50%;animation:orbitSpin 52s linear infinite;}
-.orbit-text{font-family:'Rubik',sans-serif;font-weight:700;font-size:14px;fill:var(--ink);direction:ltr;}
-@keyframes orbitSpin{from{transform:rotate(0deg);}to{transform:rotate(-360deg);}}
-@media (prefers-reduced-motion:reduce){.orbit-ring-spin{animation:none;}}
+.cloud-wrap{position:relative;width:min(94vw,420px);aspect-ratio:1;margin:12px auto 0;}
+.cloud-name{position:absolute;transform:translate(-50%,-50%) rotate(var(--r,0deg));font-family:'Rubik',sans-serif;font-weight:700;font-size:clamp(1rem,3.8vw,1.2rem);color:var(--ink);white-space:nowrap;}
 
 /* ===== section icon dividers ===== */
 .section-icon-divider{display:flex;justify-content:center;margin-bottom:28px;}
@@ -1003,33 +999,18 @@ html.a11y-underline a{text-decoration:underline !important;}
 <section class="trusted-by chapter-plum">
   <div class="wrap">
     <span class="trusted-label">חלק מהחברות שכבר סמכו עליי ביצירת תוכן</span>
-    <div class="orbit-wrap">
-    <svg class="orbit-ring-svg" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="חלק מהחברות שכבר סמכו עליי: נסטלה גלידות, Ben &amp; Jerry's, Huggies, ESET, Biamba, Skingard, Mayven, העץ של יאשה, מול החוף, ניע נוח, Sapporo">
-      <g class="orbit-ring-spin">
-      <path id="nm0" d="M 210.00,10.00 A 200,200 0 0,1 309.51,36.52" fill="none" stroke="none"/>
-      <path id="nm1" d="M 334.32,53.34 A 200,200 0 0,1 398.83,144.10" fill="none" stroke="none"/>
-      <path id="nm2" d="M 406.56,173.05 A 200,200 0 0,1 408.61,233.55" fill="none" stroke="none"/>
-      <path id="nm3" d="M 402.86,262.96 A 200,200 0 0,1 390.81,295.48" fill="none" stroke="none"/>
-      <path id="nm4" d="M 376.01,321.54 A 200,200 0 0,1 341.70,360.52" fill="none" stroke="none"/>
-      <path id="nm5" d="M 317.72,378.51 A 200,200 0 0,1 253.96,405.11" fill="none" stroke="none"/>
-      <path id="nm6" d="M 224.31,409.49 A 200,200 0 0,1 172.46,406.45" fill="none" stroke="none"/>
-      <path id="nm7" d="M 143.53,398.63 A 200,200 0 0,1 64.29,347.00" fill="none" stroke="none"/>
-      <path id="nm8" d="M 45.45,323.68 A 200,200 0 0,1 16.59,260.91" fill="none" stroke="none"/>
-      <path id="nm9" d="M 11.15,231.44 A 200,200 0 0,1 13.85,170.97" fill="none" stroke="none"/>
-      <path id="nm10" d="M 21.88,142.10 A 200,200 0 0,1 50.81,88.93" fill="none" stroke="none"/>
-      <text class="orbit-text"><textPath href="#nm0" startOffset="0">נסטלה גלידות</textPath></text>
-      <text class="orbit-text"><textPath href="#nm1" startOffset="0">Ben &amp; Jerry's</textPath></text>
-      <text class="orbit-text"><textPath href="#nm2" startOffset="0">Huggies</textPath></text>
-      <text class="orbit-text"><textPath href="#nm3" startOffset="0">ESET</textPath></text>
-      <text class="orbit-text"><textPath href="#nm4" startOffset="0">Biamba</textPath></text>
-      <text class="orbit-text"><textPath href="#nm5" startOffset="0">Skingard</textPath></text>
-      <text class="orbit-text"><textPath href="#nm6" startOffset="0">Mayven</textPath></text>
-      <text class="orbit-text"><textPath href="#nm7" startOffset="0">העץ של יאשה</textPath></text>
-      <text class="orbit-text"><textPath href="#nm8" startOffset="0">מול החוף</textPath></text>
-      <text class="orbit-text"><textPath href="#nm9" startOffset="0">ניע נוח</textPath></text>
-      <text class="orbit-text"><textPath href="#nm10" startOffset="0">Sapporo</textPath></text>
-      </g>
-    </svg>
+    <div class="cloud-wrap">
+      <span class="cloud-name" style="left:80%;top:13%;--r:4deg;">נסטלה גלידות</span>
+      <span class="cloud-name" style="left:87%;top:58%;--r:-7deg;">Ben &amp; Jerry's</span>
+      <span class="cloud-name" style="left:53%;top:31%;--r:4deg;">Huggies</span>
+      <span class="cloud-name" style="left:77%;top:42.8%;--r:-7deg;">ESET</span>
+      <span class="cloud-name" style="left:62%;top:76%;--r:10deg;">Biamba</span>
+      <span class="cloud-name" style="left:47%;top:91.9%;--r:10deg;">Skingard</span>
+      <span class="cloud-name" style="left:43%;top:76.1%;--r:-4deg;">Mayven</span>
+      <span class="cloud-name" style="left:16%;top:52%;--r:-4deg;">העץ של יאשה</span>
+      <span class="cloud-name" style="left:28.3%;top:15.2%;--r:7deg;">מול החוף</span>
+      <span class="cloud-name" style="left:26%;top:68%;--r:7deg;">ניע נוח</span>
+      <span class="cloud-name" style="left:30.2%;top:30.2%;--r:-10deg;">Sapporo</span>
     </div>
   </div>
 </section>

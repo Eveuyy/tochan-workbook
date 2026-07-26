@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>הדף שלכם — קורס יצירת תוכן</title>
+<title>קביעת שיחת פיצוח — קורס יצירת תוכן</title>
 <style>
 @font-face{
   font-family:'Rubik'; font-style:normal; font-weight:400 700; font-display:swap;
@@ -22,214 +22,35 @@
 }
 :root{
   --bg:#F7EDE6; --paper:#FFFFFF; --ink:#3D2418; --ink-soft:#7A6355;
-  --line:#E8DACE; --primary:#A8462E; --secondary:#C97F63;
-  --active:#8C5A6B; --active-deep:#6E4453; --detail:#7A8C6E; --detail-deep:#5E7055;
+  --line:#E8DACE; --primary:#A8462E; --secondary:#C97F63; --active:#8C5A6B;
 }
 *{box-sizing:border-box;}
 body{margin:0; background:var(--bg); color:var(--ink); font-family:'Rubik','Segoe UI',Arial,sans-serif; line-height:1.6;}
-.wrap{max-width:680px; margin:0 auto; padding:0 1.4rem 4rem;}
-
-/* ===== hero ===== */
-.hero{
-  background:linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  padding:3rem 1.4rem 3.6rem; text-align:center; position:relative; overflow:hidden;
+.wrap{max-width:720px; margin:0 auto; padding:2.4rem 1.4rem 3rem;}
+header{text-align:center; margin-bottom:1.6rem;}
+.eyebrow{font-family:'Fredoka','Rubik',sans-serif; text-transform:uppercase; letter-spacing:.08em; font-size:.78rem; color:var(--secondary); font-weight:600; margin-bottom:.6rem;}
+h1{font-family:'Fredoka','Rubik',sans-serif; font-size:1.7rem; margin:0 0 .6rem; color:var(--primary); text-wrap:balance;}
+header p{color:var(--ink-soft); font-size:.96rem; max-width:42ch; margin:0 auto;}
+.embed-card{
+  background:var(--paper); border:1px solid var(--line); border-radius:20px; overflow:hidden;
+  box-shadow:0 12px 32px -20px rgba(61,36,24,.4);
 }
-.hero::before, .hero::after{
-  content:''; position:absolute; border-radius:50%; background:rgba(255,255,255,.08); pointer-events:none;
-}
-.hero::before{ width:220px; height:220px; top:-90px; inset-inline-start:-60px; }
-.hero::after{ width:160px; height:160px; bottom:-70px; inset-inline-end:-40px; background:rgba(255,255,255,.06); }
-.hero-inner{ position:relative; max-width:640px; margin:0 auto; }
-.eyebrow{
-  font-family:'Fredoka','Rubik',sans-serif; text-transform:uppercase; letter-spacing:.09em; font-size:.78rem;
-  color:rgba(255,255,255,.85); font-weight:600; margin-bottom:.7rem;
-}
-.hero h1{
-  font-family:'Fredoka','Rubik',sans-serif; font-size:2.1rem; margin:0 0 .7rem; color:#fff; text-wrap:balance;
-}
-.hero p{ color:rgba(255,255,255,.92); font-size:1rem; max-width:36ch; margin:0 auto; }
-
-/* ===== sections ===== */
-.section{ margin-top:2.6rem; }
-.section-head{ display:flex; align-items:center; gap:.6rem; margin-bottom:1.1rem; }
-.section-icon{
-  width:2.4rem; height:2.4rem; border-radius:12px; background:var(--paper); flex-shrink:0;
-  display:flex; align-items:center; justify-content:center; font-size:1.25rem;
-  box-shadow:0 4px 14px -8px rgba(61,36,24,.35);
-}
-.section-head h2{ font-family:'Fredoka','Rubik',sans-serif; font-size:1.18rem; margin:0; color:var(--primary); }
-.section-head p{ margin:.1rem 0 0; font-size:.85rem; color:var(--ink-soft); }
-
-.card-grid{ display:flex; flex-direction:column; gap:.85rem; }
-.card{
-  background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:1.25rem 1.4rem;
-  display:flex; gap:1rem; align-items:flex-start;
-  box-shadow:0 8px 24px -18px rgba(61,36,24,.4);
-}
-.card .icon{
-  width:2.6rem; height:2.6rem; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center;
-  font-size:1.3rem; background:var(--bg);
-}
-.card .body{ flex:1; }
-.card h3{ font-family:'Fredoka','Rubik',sans-serif; font-size:1.02rem; margin:0 0 .3rem; color:var(--ink); }
-.card p{ margin:0 0 .85rem; font-size:.88rem; color:var(--ink-soft); }
-.card-link{
-  display:inline-flex; align-items:center; gap:.35rem; font-family:'Rubik',sans-serif; font-weight:700; font-size:.86rem;
-  padding:.55rem 1.2rem; border-radius:99px; text-decoration:none; background:var(--active); color:#fff;
-  transition:transform .15s ease, background .15s ease;
-}
-.card-link:hover{ background:var(--active-deep); transform:translateY(-1px); }
-.card-link.ghost{ background:transparent; color:var(--active); border:1.5px solid var(--active); }
-.card-link.ghost:hover{ background:var(--active); color:#fff; }
-
-/* soon badge */
-.badge-soon{
-  display:inline-block; font-size:.72rem; font-weight:700; color:var(--detail-deep); background:#E9EEE4;
-  padding:.2rem .6rem; border-radius:99px; margin-inline-start:.5rem; vertical-align:middle;
-}
-.card-link.disabled{ background:#E8DACE; color:var(--ink-soft); cursor:default; }
-.card-link.disabled:hover{ background:#E8DACE; transform:none; }
-
-/* pitch card (bigger, gradient-tinted) */
-.pitch-card{
-  background:linear-gradient(135deg, #fff 0%, #FBF1EC 100%); border:1.5px solid #EFD9CC; border-radius:20px;
-  padding:1.6rem 1.6rem; margin-bottom:.85rem;
-}
-.pitch-card .eyebrow-mini{ font-family:'Fredoka','Rubik',sans-serif; font-size:.78rem; color:var(--secondary); font-weight:700; margin-bottom:.5rem; }
-.pitch-card h3{ font-family:'Fredoka','Rubik',sans-serif; font-size:1.15rem; margin:0 0 .5rem; color:var(--primary); }
-.pitch-card p{ color:var(--ink-soft); font-size:.92rem; margin-bottom:1rem; }
-.pitch-card ul{ margin:0 0 1.1rem; padding-inline-start:1.2rem; color:var(--ink-soft); font-size:.87rem; }
-.pitch-card li{ margin-bottom:.3rem; }
-
-footer{ text-align:center; margin-top:3rem; color:var(--ink-soft); font-size:.85rem; }
-.dev-note{ background:#FBF2E2; border:1px dashed #D9B679; border-radius:10px; padding:.8rem 1rem; font-size:.8rem; color:#8A6A2E; margin-top:2rem; }
+.calendly-inline-widget{ min-width:280px; height:750px; }
+footer{ text-align:center; margin-top:1.6rem; color:var(--ink-soft); font-size:.85rem; }
 </style>
 </head>
 <body>
-
-<div class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">קורס יצירת תוכן</div>
-    <h1>הכל שלכם, במקום אחד ❤️</h1>
-    <p>קבצי הקורס, כלי ה-AI שלכם, וההמשך — כל מה שרלוונטי אליכם עכשיו, בלי לחפש בין שיחות ומיילים.</p>
-  </div>
-</div>
-
 <div class="wrap">
-
-  <div class="section">
-    <div class="section-head">
-      <div class="section-icon">📓</div>
-      <div><h2>קבצי למידה</h2><p>חוזרים אליהם מתי שרוצים, לאורך כל הקורס</p></div>
-    </div>
-    <div class="card-grid">
-      <div class="card">
-        <div class="icon">📓</div>
-        <div class="body">
-          <h3>חוברת העבודה שלכם</h3>
-          <p>פתחו אותה לצד הקורס — כל תרגיל במקום שלו, מוכן למילוי תוך כדי צפייה.</p>
-          <a class="card-link" href="/workbook/">פתחו את החוברת</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="icon">📄</div>
-        <div class="body">
-          <h3>סיכום הקורס</h3>
-          <p>תזכורת מרוכזת לכל מה שלמדנו, לחזור אליה כשצריך.</p>
-          <a class="card-link" href="/recap/">פתחו את הסיכום</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="icon">🎮</div>
-        <div class="body">
-          <h3>חידון: סטורי, רילס, אינסטגרם, טיקטוק</h3>
-          <p>בודקים כמה מהחומר נטמע — קצר וכיפי.</p>
-          <a class="card-link" href="/quiz/">למשחק</a>
-        </div>
-      </div>
-    </div>
+  <header>
+    <div class="eyebrow">שיחת פיצוח אישית</div>
+    <h1>קבעתם — עכשיו בוחרים שעה 🎉</h1>
+    <p>התשלום כבר נקלט. בחרו את השעה שהכי נוחה לכם, ותקבלו אישור עם קישור להתחברות.</p>
+  </header>
+  <div class="embed-card">
+    <div class="calendly-inline-widget" data-url="https://calendly.com/evecohenh/meet-with-me?hide_gdpr_banner=1"></div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
   </div>
-
-  <div class="section">
-    <div class="section-head">
-      <div class="section-icon">🧭</div>
-      <div><h2>קביעת פגישת המשך</h2><p>שיחת פיצוח אישית, 1:1</p></div>
-    </div>
-    <div class="pitch-card">
-      <div class="eyebrow-mini">🧭 שיחת פיצוח אישית</div>
-      <h3>שיחה אחת, תוכנית עבודה אמיתית ל-90 יום <span class="badge-soon">בקרוב</span></h3>
-      <p>שיחה אישית שבה נבנה יחד תוכנית עבודה ברורה — נישה, קהל, מסר, ותוכנית תוכן שאתם באמת יכולים לבצע.</p>
-      <ul>
-        <li>לא עוד שיעור — עבודה אמיתית על העסק/הקריירה שלכם</li>
-        <li>יוצאים עם תוכנית פעולה כתובה, לא רק תובנות</li>
-        <li>מתאימה גם למי שעדיין לא התחיל, וגם למי שכבר יוצר תוכן</li>
-      </ul>
-      <a href="#" class="card-link disabled" onclick="return false;">שיבוץ עצמאי — נפתח בקרוב</a>
-    </div>
-    <div class="card">
-      <div class="icon">📝</div>
-      <div class="body">
-        <h3>כבר קבעתם שיחת פיצוח?</h3>
-        <p>מלאו את השאלון הקצר לפני שנפגשים — כך נוכל להקדיש את הזמן שלנו לאסטרטגיה, לא לשאלות היכרות.</p>
-        <a class="card-link ghost" href="/blueprint/">מלאו את השאלון</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-head">
-      <div class="section-icon">🤖</div>
-      <div><h2>כלי ה-AI שלכם</h2><p>שני עוזרים שבנינו במיוחד לתהליך היצירה</p></div>
-    </div>
-    <div class="card-grid">
-      <div class="card">
-        <div class="icon">💡</div>
-        <div class="body">
-          <h3>פותח הרעיונות</h3>
-          <p>סוכן AI שאומן לעזור לכם לפתח קונספטים ורעיונות לתוכן.</p>
-          <a class="card-link" href="https://chatgpt.com/g/g-6a4b400991b08191a699b42d4dd9884b-mptkh-hr-yvnvt" target="_blank">לפתיחת הצ'אט</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="icon">🎯</div>
-        <div class="body">
-          <h3>מדייק הנישה</h3>
-          <p>הצ'אט שיעזור לכם למצוא את הנישה שלכם ולדייק אותה.</p>
-          <a class="card-link" href="https://chatgpt.com/g/g-6a4b4be1f7d0819185e1985e669aa22f-nyshh-vtvkn-mdvyq" target="_blank">לפתיחת הצ'אט</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-head">
-      <div class="section-icon">🎥</div>
-      <div><h2>המלצות לשדרוג הסטאפ</h2><p>למי שרוצה להעלות רמה בציוד</p></div>
-    </div>
-    <div class="card-grid">
-      <div class="card">
-        <div class="icon">💡</div>
-        <div class="body">
-          <h3>הציוד שלי לצילום</h3>
-          <p>תאורה ומיקרופון — בדיוק מה שאני משתמשת בו, ושווה את הכסף.</p>
-          <a class="card-link" href="https://claude.ai/code/artifact/e7c3c1b4-dd89-4ea1-8e10-b37d79311475" target="_blank">לרשימת הציוד</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="icon">📷</div>
-        <div class="body">
-          <h3>המלצות חצובות לטלפון</h3>
-          <p>חמש אפשרויות, מדורגות טוב / טוב מאוד / פרימיום, עם טבלת השוואה.</p>
-          <a class="card-link" href="https://claude.ai/code/artifact/f692a7c6-794c-4aa5-a987-1507c2935aef" target="_blank">להשוואת החצובות</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer>נתראה בפנים 💛</footer>
-
-  <div class="dev-note">🛠 "שיבוץ עצמאי" לשיחת פיצוח עדיין לא חי — ממתין להקמת יומן Calendly + מחיר סופי + לינק תשלום. גם: אין עדיין קישור לקורס עצמו (הפלטפורמה שבה צופים בשיעורים).</div>
-
+  <footer>נתראה בשיחה 💛</footer>
 </div>
 </body>
 </html>

@@ -26,7 +26,7 @@
 
 :root{
   --cream:#3D2418; --paper:#F7EDE6; --ink:#F7EDE6; --ink-soft:#C9AF9E;
-  --line:rgba(234,242,239,.18); --purple:#8C5A6B; --purple-deep:#A8462E; --orange:#E7C4B3; --coral:#C9573A; --peach:#E8A87C; --periwinkle:#7B7FC0; --burgundy:#451724;
+  --line:rgba(234,242,239,.18); --purple:#8C5A6B; --purple-deep:#A8462E; --orange:#E7C4B3; --coral:#C9573A; --peach:#E8A87C; --periwinkle:#7B7FC0; --burgundy:#451724; --ribbon-pink:#E895B3;
   --orange-deep:#C97F63; --shadow:rgba(0,0,0,.35);
   --shadow-tight:rgba(0,0,0,.38); --shadow-soft:rgba(0,0,0,.28);
   --ink-on-paper:#3D2418; --ink-soft-on-paper:#7A5C4C; --line-on-paper:rgba(32,48,44,.15);
@@ -35,13 +35,13 @@
 }
 @media (prefers-color-scheme:dark){
   :root{ --cream:#3D2418; --paper:#F7EDE6; --ink:#F7EDE6; --ink-soft:#C9AF9E;
-    --line:rgba(234,242,239,.18); --purple:#8C5A6B; --purple-deep:#A8462E; --orange:#E7C4B3; --coral:#C9573A; --peach:#E8A87C; --periwinkle:#7B7FC0; --burgundy:#451724;
+    --line:rgba(234,242,239,.18); --purple:#8C5A6B; --purple-deep:#A8462E; --orange:#E7C4B3; --coral:#C9573A; --peach:#E8A87C; --periwinkle:#7B7FC0; --burgundy:#451724; --ribbon-pink:#E895B3;
     --orange-deep:#C97F63; --shadow:rgba(0,0,0,.35);
     --shadow-tight:rgba(0,0,0,.38); --shadow-soft:rgba(0,0,0,.28); }
 }
 :root[data-theme="dark"]{
   --cream:#3D2418; --paper:#F7EDE6; --ink:#F7EDE6; --ink-soft:#C9AF9E;
-  --line:rgba(234,242,239,.18); --purple:#8C5A6B; --purple-deep:#A8462E; --orange:#E7C4B3; --coral:#C9573A; --peach:#E8A87C; --periwinkle:#7B7FC0; --burgundy:#451724;
+  --line:rgba(234,242,239,.18); --purple:#8C5A6B; --purple-deep:#A8462E; --orange:#E7C4B3; --coral:#C9573A; --peach:#E8A87C; --periwinkle:#7B7FC0; --burgundy:#451724; --ribbon-pink:#E895B3;
   --orange-deep:#C97F63; --shadow:rgba(0,0,0,.35);
   --shadow-tight:rgba(0,0,0,.38); --shadow-soft:rgba(0,0,0,.28);
 }
@@ -79,6 +79,12 @@ img,svg{display:block;max-width:100%;}
 .chapter-cream .section-eyebrow{color:var(--purple-deep);}
 .chapter-cream .icon{stroke:var(--purple-deep);}
 .chapter-divider{height:2px;background:linear-gradient(90deg,transparent,var(--orange-deep),transparent);opacity:.5;max-width:200px;margin:0 auto;}
+
+.ribbon-seam{position:relative;height:0;z-index:5;pointer-events:none;}
+.ribbon-seam svg{
+  position:absolute;top:-58px;left:50%;transform:translateX(-50%);
+  width:min(360px,72vw);height:auto;filter:drop-shadow(0 10px 18px rgba(0,0,0,.35));
+}
 
 .hero.hero-new{
   position:relative; overflow:hidden; text-align:center;
@@ -945,7 +951,24 @@ html.a11y-underline a{text-decoration:underline !important;}
   <p class="hero-body" style="margin-top:16px;font-size:.85rem;opacity:.85;">גישה מיידית לקורס · לימוד בקצב שלכם · גישה ללא הגבלת זמן</p>
 </div>
 
-<section class="section chapter-black" id="identify">
+<div class="ribbon-seam">
+  <svg viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="ribbonGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#7B7FC0"/>
+        <stop offset="35%" stop-color="#E895B3"/>
+        <stop offset="65%" stop-color="#C9573A"/>
+        <stop offset="100%" stop-color="#E8A87C"/>
+      </linearGradient>
+    </defs>
+    <path d="M0,62 C40,14 80,112 120,62 C160,14 200,112 240,62 C280,14 320,112 360,62 C378,48 390,56 400,50"
+      fill="none" stroke="rgba(0,0,0,.18)" stroke-width="24" stroke-linecap="round" transform="translate(3,6)"/>
+    <path d="M0,62 C40,14 80,112 120,62 C160,14 200,112 240,62 C280,14 320,112 360,62 C378,48 390,56 400,50"
+      fill="none" stroke="url(#ribbonGrad)" stroke-width="20" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<section class="section chapter-coffee" id="identify">
   <div class="wrap hero-editorial">
     <p class="hero-stmt fade-in">אם אתם עדיין מחכים לרגע שבו תרגישו מוכנים ליצור תוכן...<br><span style="color:var(--purple-deep);">כנראה שהוא לא יגיע.</span></p>
 

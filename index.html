@@ -198,6 +198,9 @@ img,svg{display:block;max-width:100%;}
 .nav-brand{font-weight:700;font-size:1.05rem;}
 .nav-brand span{color:var(--purple-deep);}
 .nav .btn{padding:10px 20px;font-size:.9rem;}
+.nav .btn-primary{border:none;box-shadow:0 3px 10px rgba(201,87,58,.35);}
+.nav .btn-primary:hover{box-shadow:0 4px 14px rgba(201,87,58,.4);}
+.nav .btn-primary:active{box-shadow:0 2px 6px rgba(201,87,58,.3);}
 @media (max-width:760px){
   .nav .wrap{padding-block:9px;}
   .nav-brand{font-size:.88rem;}
@@ -889,13 +892,12 @@ footer.site-footer.chapter-cream{background:linear-gradient(180deg,#EFE8D6 0%,#E
 
 /* ===== chapter navigation (jump between sections) ===== */
 .nav-chapter-btn{
-  width:40px;height:40px;border-radius:50%;
-  background:var(--coral);color:#fff;border:none;font-size:1.15rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 2px 6px var(--shadow-tight), 0 8px 16px var(--shadow-soft);
+  width:40px;height:40px;background:transparent;border:none;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
 }
+.nav-chapter-btn .bar{width:22px;height:3px;border-radius:2px;background:var(--coral);}
 .chapter-nav-panel{
-  position:absolute;top:calc(100% + 8px);right:20px;z-index:80;background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);border:1.5px solid var(--line);
+  position:absolute;top:calc(100% + 8px);right:20px;z-index:80;background:rgba(247,237,230,.85);backdrop-filter:blur(10px);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);border:1.5px solid var(--line);
   border-radius:18px;padding:10px;box-shadow:0 4px 10px var(--shadow-tight), 0 20px 44px var(--shadow-soft);
   display:flex;flex-direction:column;gap:2px;width:min(220px,72vw);max-height:70vh;overflow-y:auto;
 }
@@ -979,7 +981,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 
 <nav class="nav">
   <div class="wrap">
-    <button type="button" id="chapterNavFab" class="nav-chapter-btn" aria-label="ניווט בין סקשנים">☰</button>
+    <button type="button" id="chapterNavFab" class="nav-chapter-btn" aria-label="ניווט בין סקשנים"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
     <a class="btn btn-primary" href="#pricing">אני רוצה להתחיל ליצור</a>
   </div>
   <div id="chapterNavPanel" class="chapter-nav-panel" hidden></div>

@@ -118,7 +118,12 @@ img,svg{display:block;max-width:100%;}
 .story-photo img{width:100%; display:block; border-radius:16px; transform:rotate(-3deg); box-shadow:0 16px 30px -14px rgba(0,0,0,.5);}
 .story-top-text{flex:1 1 320px; min-width:240px;}
 .story-top-text .section-title{margin-bottom:14px;}
-@media (max-width:640px){ .story-top{flex-direction:column; text-align:center; justify-content:center;} }
+@media (max-width:640px){
+  .story-top{flex-wrap:nowrap; gap:.9rem; align-items:flex-start;}
+  .story-photo{flex:0 0 34vw; max-width:130px;}
+  .story-top-text .section-title{font-size:1.15rem;}
+  .community-stats{gap:.6rem;}
+}
 
 .story-cutout{
   position:absolute; bottom:-14px; left:-18px; width:min(220px,34vw); height:auto;

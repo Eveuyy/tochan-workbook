@@ -87,25 +87,21 @@ img,svg{display:block;max-width:100%;}
 }
 
 .hero.hero-new{
-  position:relative; overflow:hidden; text-align:center;
-  background:
-    linear-gradient(180deg, rgba(58,52,92,.55) 0%, rgba(74,66,112,.15) 30%, rgba(90,90,160,.2) 65%, rgba(58,52,92,.7) 100%),
-    url('assets/eve-hero-stool.jpg') center top / cover no-repeat;
-  aspect-ratio:1070/1180; max-height:82vh;
-  padding:clamp(28px,6vw,48px) 20px;
+  position:relative; overflow:hidden;
+  background: url('assets/eve-hero-stool-wide.jpg') right center / cover no-repeat;
+  aspect-ratio:1970/1470; max-height:56vh; min-height:260px;
 }
-.hero-photo-eyebrow{
-  position:relative; z-index:1; margin:2vw 0 0;
-  font-family:'Fredoka','Rubik',sans-serif; font-weight:700; font-size:clamp(2rem,9vw,3.6rem); line-height:1;
-  color:var(--peach); text-shadow:1px 1px 0 rgba(69,23,36,.5), 2px 2px 0 rgba(69,23,36,.4), 3px 3px 0 rgba(69,23,36,.3), 4px 4px 10px rgba(0,0,0,.4);
-  animation:heroFloat 4.5s ease-in-out infinite;
+.hero-side-text{
+  position:absolute; top:50%; left:4%; transform:translateY(-50%);
+  max-width:42%; text-align:center;
 }
+.hero-title-img{width:100%;height:auto;display:block;margin:0 auto;animation:heroFloat 4.5s ease-in-out infinite;}
 @keyframes heroFloat{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
-@media (prefers-reduced-motion:reduce){ .hero-photo-eyebrow{animation:none;} }
-.hero-photo-script{
-  position:absolute; z-index:1; bottom:26%; left:6%;
-  font-family:'Rubik',sans-serif; font-weight:700; font-size:clamp(1rem,3.6vw,1.25rem);
-  color:#fff; text-shadow:0 2px 12px rgba(0,0,0,.6);
+@media (prefers-reduced-motion:reduce){ .hero-title-img{animation:none;} }
+.hero-script-img{width:48%;height:auto;display:block;margin:10px auto 0;}
+@media (max-width:760px){
+  .hero.hero-new{aspect-ratio:1970/1520;max-height:none;background-position:78% center;}
+  .hero-side-text{max-width:52%;left:3%;}
 }
 .hero-new-below{
   background:var(--periwinkle); text-align:center;
@@ -113,7 +109,6 @@ img,svg{display:block;max-width:100%;}
 }
 .hero-new-below .hero-body{max-width:480px;margin-inline:auto;color:#fff;}
 .hero-new-below .hero-cta-solo{margin-top:16px;}
-@media (max-width:640px){ .hero.hero-new{aspect-ratio:auto; min-height:78vh;} }
 
 .story-top{display:flex; align-items:center; gap:1.8rem; flex-wrap:wrap; text-align:start;}
 .story-photo{flex:0 0 150px; max-width:150px;}
@@ -941,8 +936,10 @@ html.a11y-underline a{text-decoration:underline !important;}
 </nav>
 
 <section class="hero hero-new">
-  <h1 class="hero-photo-eyebrow">קורס יצירת תוכן</h1>
-  <span class="hero-photo-script">עם איב</span>
+  <div class="hero-side-text">
+    <img class="hero-title-img" src="assets/hero-title-stamp.png" alt="קורס יצירת תוכן">
+    <img class="hero-script-img" src="assets/hero-script-withme.png" alt="עם איב">
+  </div>
 </section>
 <div class="hero-new-below">
   <p class="hero-body">קורס מעשי שילמד אתכם ליצור תוכן שמושך אנשים לעצור, להקשיב ולפעול.</p>

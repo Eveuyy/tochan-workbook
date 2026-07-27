@@ -133,6 +133,18 @@ img,svg{display:block;max-width:100%;}
 @media (min-width:1300px){ .story-cutout{left:-90px;} }
 
 .story-heading{font-family:'Fredoka','Rubik',sans-serif; color:#fff; font-size:clamp(1.9rem,4.4vw,2.6rem);}
+
+.sticky-note{
+  position:relative; background:var(--paper); --ink:var(--ink-on-paper); color:var(--ink);
+  max-width:36ch; margin:0 auto; padding:34px 30px 30px; border-radius:6px;
+  transform:rotate(-1.6deg); box-shadow:0 14px 0 -6px rgba(0,0,0,.12), 0 20px 34px -12px rgba(0,0,0,.45);
+}
+.sticky-note p{color:var(--ink);}
+.sticky-note-tape{
+  position:absolute; top:-16px; left:50%; transform:translateX(-50%) rotate(-3deg);
+  width:90px; height:32px; background:rgba(232,168,124,.75); border:1px solid rgba(255,255,255,.3);
+  box-shadow:0 3px 6px rgba(0,0,0,.2);
+}
 .story-social-elegant{display:flex; align-items:center; justify-content:center; gap:2.2rem; margin:44px 0 10px; flex-wrap:wrap;}
 .story-social-elegant-item{display:inline-flex; align-items:center; gap:.55rem; color:#fff; font-size:.95rem;}
 .story-social-elegant-item strong{font-weight:800;}
@@ -154,6 +166,7 @@ img,svg{display:block;max-width:100%;}
   font-family:inherit;font-weight:700;cursor:pointer;border:none;border-radius:16px;
   display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;
   transition:transform .15s ease, box-shadow .15s ease;
+  padding:14px 26px;font-size:1rem;
 }
 .btn-lg{padding:18px 36px;font-size:1.15rem;}
 .btn-primary{
@@ -358,8 +371,9 @@ img,svg{display:block;max-width:100%;}
 .video-header{
   position:relative;border-radius:24px;overflow:hidden;
   width:100%;height:340px;display:flex;align-items:center;justify-content:center;
-  margin-bottom:8px;
+  margin-bottom:28px;
 }
+@media (max-width:640px){ .video-header{margin-bottom:24px;} }
 .video-header video{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   filter:blur(9px) brightness(.5) saturate(1.15);transform:scale(1.15);
@@ -390,10 +404,10 @@ img,svg{display:block;max-width:100%;}
 .proof-video{width:100%;height:100%;object-fit:cover;display:block;}
 .proof-views-badge{
   position:absolute;top:12px;right:12px;z-index:2;pointer-events:none;
-  display:flex;align-items:center;gap:7px;background:var(--kick);
-  color:#3D2418;font-size:.98rem;font-weight:800;padding:8px 14px;border-radius:100px;
+  display:flex;align-items:center;gap:7px;background:var(--peach);
+  color:#3D2418;font-size:.94rem;font-weight:700;padding:8px 14px;border-radius:100px;
   box-shadow:0 6px 18px rgba(0,0,0,.4);
-  transition:opacity .2s ease;font-family:'Fredoka','Rubik',sans-serif;
+  transition:opacity .2s ease;font-family:'Rubik',sans-serif;
 }
 .proof-views-badge .icon{width:19px;height:19px;stroke:#3D2418;}
 .proof-views-badge .proof-views-label{font-weight:600;opacity:.82;font-size:.86em;}
@@ -1023,7 +1037,7 @@ html.a11y-underline a{text-decoration:underline !important;}
     <div class="story-top">
       <div class="story-photo"><img src="assets/eve-hero-stool.jpg" alt="איב כהן"></div>
       <div class="story-top-text">
-        <h2 class="section-title story-heading">נעים מאוד, אני איב.</h2>
+        <h2 class="section-title story-heading">נעים מאוד,<br>אני איב.</h2>
         <p class="hero-body" style="color:#fff;margin-top:18px;">בדיוק כמוכם, גם אני התחלתי בלי שום ניסיון ביצירת תוכן.</p>
       </div>
     </div>
@@ -1050,7 +1064,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 <section class="section chapter-maroon">
   <div class="wrap hero-editorial">
     <div class="build-row">
-      <p class="hero-stmt fade-in build-text">לאורך הדרך בניתי קהילה של עשרות אלפי אנשים ברשתות החברתיות, והיום אני מלווה אנשים ועסקים ליצור תוכן שעובד באמת.</p>
+      <p class="hero-stmt fade-in build-text">לאורך הדרך בניתי קהילה של עשרות אלפי אנשים ברשתות החברתיות, והיום אני מלווה אנשים ועסקים <span style="color:var(--peach);">ליצור תוכן שעובד באמת</span>.</p>
       <div class="build-visual">
         <svg viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg">
           <path d="M60,108 L96.5,129.0 L60,150.0 L23.5,129.0 Z" fill="#D97A52"/>
@@ -1065,60 +1079,31 @@ html.a11y-underline a{text-decoration:underline !important;}
         </svg>
       </div>
     </div>
-    <p class="hero-body" style="margin-top:28px;">אבל הדבר שאני הכי גאה בו הוא לא המספרים.</p>
-    <p class="hero-body">אלא לראות אנשים שהיו בטוחים שהם "לא בנויים למצלמה", מעלים את הסרטון הראשון שלהם, ועסקים שמתחילים סוף סוף ליצור תוכן בצורה עקבית ומקבלים תוצאות, לידים ותכלס הכנסות.</p>
+    <p class="hero-body" style="margin-top:28px;">הדבר שהכי מרגש אותי זה בסוף לא המספרים.</p>
+    <p class="hero-body">זה לראות אנשים שהיו בטוחים שהם "לא בנויים לזה" יוצאים מהאיזור הנוחות, מעלים את התוכן הראשון שלהם ומקבלים תוצאות.<br>וככה נולד הקורס הזה.</p>
   </div>
 </section>
 
 <section class="section chapter-black">
   <div class="wrap hero-editorial">
-    <p class="hero-stmt stmt-gold fade-in" style="font-size:clamp(1.4rem,3.2vw,1.9rem);">אם גם אתם מרגישים שיצירת תוכן יכולה לקדם אתכם, אבל עדיין לא התחלתם — בניתי את הקורס הזה בדיוק בשבילכם.</p>
+    <div class="sticky-note fade-in">
+      <span class="sticky-note-tape"></span>
+      <p class="hero-stmt stmt-gold" style="font-size:clamp(1.3rem,3vw,1.7rem);">אם גם אתם מרגישים שיצירת תוכן יכולה לקדם אתכם, אבל עדיין לא התחלתם — בניתי את הקורס הזה בדיוק בשבילכם.</p>
+    </div>
   </div>
 </section>
 
 <section class="section chapter-coffee">
   <div class="wrap hero-editorial">
-    <p class="hero-stmt fade-in">ואתם לא צריכים לצעוד את הדרך הזאת לבד.</p>
+    <p class="hero-stmt fade-in">אתם לא צריכים לצעוד את הדרך הזאת לבד.</p>
 
-    <p class="hero-body">יצירת תוכן היא לא כישרון.<br>היא מיומנות.</p>
+    <p class="hero-body" style="font-weight:600;">יצירת תוכן היא לא כישרון.<br>היא מיומנות.</p>
 
     <p class="hero-body">וכמו כל מיומנות, הרבה יותר קל ללמוד אותה כשיש מישהו שכבר עבר את הדרך לפניכם.</p>
 
     <p class="hero-body">במקום לבזבז חודשים על ניסוי וטעייה, על חיפוש אינסופי של רעיונות ועל סרטונים שלא מביאים תוצאות — תקבלו <span class="text-highlight">תהליך ברור, מסודר ומעשי</span>, שילווה אתכם שלב אחר שלב.</p>
 
-    <p class="hero-stmt fade-in">את הקורס הזה תסיימו עם הסרטון הראשון שלכם באוויר.</p>
-  </div>
-</section>
-
-
-<section class="section proof chapter-maroon" id="proof">
-  <div class="wrap hero-editorial">
-    <div class="video-header">
-      <video autoplay muted loop playsinline preload="auto" poster="assets/proof-header-montage-cover.jpg">
-        <source src="assets/proof-header-montage.mp4" type="video/mp4">
-      </video>
-      <h2 class="proof-title">ההצלחה שלי<br>לא קרתה במקרה.</h2>
-    </div>
-
-    <p class="hero-body">אלה רק חלק קטן מהסרטונים שיצרתי לאורך השנים.<br>ביחד הם צברו עשרות מיליוני צפיות.</p>
-    <p class="hero-body">חלקם הגיעו לעשרות אלפים, רבים מהם למאות אלפים, וחלקם גם למיליונים.</p>
-    <p class="hero-body">והם הרבה יותר ממספרים.<br><span class="text-highlight">הם ההוכחה לכך שכשתוכן בנוי נכון — אנשים עוצרים, נשארים ופועלים</span>.</p>
-    <p class="hero-body">במשך השנים יצרתי תוכן לעמודים האישיים שלי, לעסקים ולמותגים, ואותם העקרונות שעומדים מאחורי הסרטונים האלה הם בדיוק מה שתלמדו בקורס - כדי שגם אתם תוכלו ליצור תוכן מדוייק, שמושך את הקהל הנכון ומייצר תוצאות אמיתיות.</p>
-
-    <svg class="doodle-arrow" viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M30 3c3 12 3 22-2 33"/><path d="M20 28c3 4 5 7 8 8 3-3 5-6 7-9"/></svg>
-
-    <div class="proof-grid">
-      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-1-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-1.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>883K</span><span class="proof-views-label">צפיות</span></div></div></div>
-      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-4-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-4.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>4M</span><span class="proof-views-label">צפיות</span></div></div></div>
-      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-5-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-5.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>1.1M</span><span class="proof-views-label">צפיות</span></div></div></div>
-      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-8-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-8.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>900K</span><span class="proof-views-label">צפיות</span></div></div></div>
-      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-6-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-6.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>527K</span><span class="proof-views-label">צפיות</span></div></div></div>
-      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-3-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-3.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>430K</span><span class="proof-views-label">צפיות</span></div></div></div>
-    </div>
-
-    <div style="display:flex;justify-content:center;margin-top:24px;">
-      <a class="btn btn-primary" href="#pricing">גם אני רוצה ליצור תוכן שעובד</a>
-    </div>
+    <p class="hero-stmt fade-in" style="color:var(--burgundy);">את הקורס הזה תסיימו עם הסרטון הראשון שלכם באוויר.</p>
   </div>
 </section>
 
@@ -1130,10 +1115,9 @@ html.a11y-underline a{text-decoration:underline !important;}
       <video autoplay muted loop playsinline preload="auto" poster="assets/proof-header-montage-cover.jpg">
         <source src="assets/proof-header-montage.mp4" type="video/mp4">
       </video>
-      <h2 class="section-title" style="text-align:center;">הדרך שלכם מתחילה כאן.</h2>
     </div>
     <div class="roadmap-intro">
-      <p class="hero-stmt fade-in" style="text-align:center;">מה בדיוק תלמדו בקורס?</p>
+      <h2 class="section-title fade-in" style="text-align:center;">דברי איתי תכלס, מה נלמד בקורס הזה?</h2>
       <p class="hero-body">כל פרק בקורס נבנה כדי לפתור בעיה אחרת בדרך ליצירת תוכן שעובד. בסיום הקורס תדעו בדיוק איך להפוך רעיון לסרטון שמושך את הקהל הנכון — גם אם היום אתם לא יודעים מאיפה להתחיל.</p>
     </div>
 
@@ -1148,6 +1132,89 @@ html.a11y-underline a{text-decoration:underline !important;}
     <p class="hero-body" style="text-align:center;margin-top:32px;">בסוף הקורס לא תישארו עם עוד ידע ששמרתם בצד. תצאו עם סרטון ראשון באוויר — ועם דרך ברורה להמשיך גם אחריו.</p>
     <div style="display:flex;justify-content:center;margin-top:32px;">
       <a class="btn btn-primary" href="#pricing">בואו נתחיל את הדרך שלכם</a>
+    </div>
+  </div>
+</section>
+
+<section class="section chapter-cream" id="bonuses">
+  <div class="wrap">
+    <div class="icon3d-wrap"><img class="icon3d icon3d-support anim-twinkle" src="assets/icons/sparkles_3d.png" alt=""></div>
+    <h3 class="perks-title">מעבר לשיעורים עצמם — תקבלו גם את כל הכלים שילוו אתכם לאורך הדרך.</h3>
+    <div class="curr-extra" id="currExtra"></div>
+  </div>
+</section>
+
+
+<section class="section chapter-plum" id="studentProof">
+  <div class="wrap hero-editorial">
+    <h2 class="section-title" style="text-align:center;">אל תאמינו רק לי.<br>הנה מה שאנשים שלמדו בקורס מספרים.</h2>
+    <div class="testimonial-carousel">
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/natali.png" alt="עדות של נטלי על הקורס" loading="lazy">
+        <span class="testimonial-stars">★★★★★</span>
+        <span class="testimonial-name">נטלי · תלמידה בקורס</span>
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/sharon.png" alt="עדות של שרון על הקורס" loading="lazy">
+        <span class="testimonial-stars">★★★★★</span>
+        <span class="testimonial-name">שרון · תלמידה בקורס</span>
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/reut.png" alt="עדות של רעות על הקורס" loading="lazy">
+        <span class="testimonial-stars">★★★★★</span>
+        <span class="testimonial-name">רעות · תלמידה במסלול לבעלי עסקים</span>
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/tal.png" alt="עדות של טל על הקורס" loading="lazy">
+        <span class="testimonial-stars">★★★★★</span>
+        <span class="testimonial-name">טל · תלמידה בקורס</span>
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/student5.png" alt="עדות תלמידה על הקורס" loading="lazy">
+        <span class="testimonial-stars">★★★★★</span>
+        <span class="testimonial-name">תלמידה בקורס</span>
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/bonus.png" alt="עדות תלמידה על הקורס" loading="lazy">
+        <span class="testimonial-stars">★★★★★</span>
+        <span class="testimonial-name">תלמידה בקורס</span>
+      </div>
+    </div>
+    <p class="testimonial-hint">← גררו לצדדים לעוד עדויות →</p>
+    <div style="display:flex;justify-content:center;margin-top:32px;">
+      <a class="btn btn-primary" href="#pricing">כן, גם אני רוצה להתחיל</a>
+    </div>
+  </div>
+</section>
+
+<section class="section proof chapter-maroon" id="proof">
+  <div class="wrap hero-editorial">
+    <div class="video-header">
+      <video autoplay muted loop playsinline preload="auto" poster="assets/proof-header-montage-cover.jpg">
+        <source src="assets/proof-header-montage.mp4" type="video/mp4">
+      </video>
+      <h2 class="proof-title">ההצלחה שלי<br>לא קרתה במקרה.</h2>
+    </div>
+
+    <p class="hero-body">אלה רק חלק קטן מהסרטונים שיצרתי לאורך השנים.<br>ביחד הם צברו עשרות מיליוני צפיות.</p>
+    <p class="hero-body">חלקם הגיעו לעשרות אלפים, רבים מהם למאות אלפים, וחלקם גם למיליונים.</p>
+    <p class="hero-body">והם הרבה יותר ממספרים.<br><span class="text-highlight" style="color:var(--peach);font-weight:800;">הם ההוכחה לכך שכשתוכן בנוי נכון — אנשים עוצרים, נשארים ופועלים</span>.</p>
+    <p class="hero-body">במשך השנים יצרתי תוכן לעמודים האישיים שלי, לעסקים ולמותגים, ואותם העקרונות שעומדים מאחורי הסרטונים האלה הם בדיוק מה שתלמדו בקורס - כדי שגם אתם תוכלו ליצור תוכן מדוייק, שמושך את הקהל הנכון ומייצר תוצאות אמיתיות.</p>
+
+    <svg class="doodle-arrow" viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M30 3c3 12 3 22-2 33"/><path d="M20 28c3 4 5 7 8 8 3-3 5-6 7-9"/></svg>
+
+    <div class="proof-grid">
+      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-1-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-1.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>883K</span><span class="proof-views-label">צפיות</span></div></div></div>
+      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-2-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-2.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>?</span><span class="proof-views-label">צפיות</span></div></div></div>
+      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-4-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-4.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>4M</span><span class="proof-views-label">צפיות</span></div></div></div>
+      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-5-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-5.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>1.1M</span><span class="proof-views-label">צפיות</span></div></div></div>
+      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-8-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-8.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>900K</span><span class="proof-views-label">צפיות</span></div></div></div>
+      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-6-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-6.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>527K</span><span class="proof-views-label">צפיות</span></div></div></div>
+      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-3-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-3.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>430K</span><span class="proof-views-label">צפיות</span></div></div></div>
+    </div>
+
+    <div style="display:flex;justify-content:center;margin-top:24px;">
+      <a class="btn btn-primary" href="#pricing">גם אני רוצה ליצור תוכן שעובד</a>
     </div>
   </div>
 </section>
@@ -1188,13 +1255,6 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
-<section class="section chapter-cream" id="bonuses">
-  <div class="wrap">
-    <div class="icon3d-wrap"><img class="icon3d icon3d-support anim-twinkle" src="assets/icons/sparkles_3d.png" alt=""></div>
-    <h3 class="perks-title">מעבר לשיעורים עצמם — תקבלו גם את כל הכלים שילוו אתכם לאורך הדרך.</h3>
-    <div class="curr-extra" id="currExtra"></div>
-  </div>
-</section>
 
 <section class="section value chapter-coffee" id="value1">
   <div class="wrap hero-editorial">
@@ -1265,47 +1325,6 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
-<section class="section chapter-plum" id="studentProof">
-  <div class="wrap hero-editorial">
-    <h2 class="section-title" style="text-align:center;">אל תאמינו רק לי.<br>הנה מה שאנשים שלמדו בקורס מספרים.</h2>
-    <div class="testimonial-carousel">
-      <div class="testimonial-card testimonial-card-img">
-        <img src="assets/testimonials/natali.png" alt="עדות של נטלי על הקורס" loading="lazy">
-        <span class="testimonial-stars">★★★★★</span>
-        <span class="testimonial-name">נטלי · תלמידה בקורס</span>
-      </div>
-      <div class="testimonial-card testimonial-card-img">
-        <img src="assets/testimonials/sharon.png" alt="עדות של שרון על הקורס" loading="lazy">
-        <span class="testimonial-stars">★★★★★</span>
-        <span class="testimonial-name">שרון · תלמידה בקורס</span>
-      </div>
-      <div class="testimonial-card testimonial-card-img">
-        <img src="assets/testimonials/reut.png" alt="עדות של רעות על הקורס" loading="lazy">
-        <span class="testimonial-stars">★★★★★</span>
-        <span class="testimonial-name">רעות · תלמידה במסלול לבעלי עסקים</span>
-      </div>
-      <div class="testimonial-card testimonial-card-img">
-        <img src="assets/testimonials/tal.png" alt="עדות של טל על הקורס" loading="lazy">
-        <span class="testimonial-stars">★★★★★</span>
-        <span class="testimonial-name">טל · תלמידה בקורס</span>
-      </div>
-      <div class="testimonial-card testimonial-card-img">
-        <img src="assets/testimonials/student5.png" alt="עדות תלמידה על הקורס" loading="lazy">
-        <span class="testimonial-stars">★★★★★</span>
-        <span class="testimonial-name">תלמידה בקורס</span>
-      </div>
-      <div class="testimonial-card testimonial-card-img">
-        <img src="assets/testimonials/bonus.png" alt="עדות תלמידה על הקורס" loading="lazy">
-        <span class="testimonial-stars">★★★★★</span>
-        <span class="testimonial-name">תלמידה בקורס</span>
-      </div>
-    </div>
-    <p class="testimonial-hint">← גררו לצדדים לעוד עדויות →</p>
-    <div style="display:flex;justify-content:center;margin-top:32px;">
-      <a class="btn btn-primary" href="#pricing">כן, גם אני רוצה להתחיל</a>
-    </div>
-  </div>
-</section>
 
 <section class="section chapter-black final">
   <div class="wrap hero-editorial">

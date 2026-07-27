@@ -121,11 +121,11 @@ img,svg{display:block;max-width:100%;}
 @media (max-width:640px){ .story-top{flex-direction:column; text-align:center; justify-content:center;} }
 
 .story-cutout{
-  position:absolute; bottom:-20px; left:-90px; width:min(220px,24vw); height:auto;
+  position:absolute; bottom:-14px; left:-18px; width:min(220px,34vw); height:auto;
   transform:rotate(-4deg); z-index:2; pointer-events:none;
-  filter:drop-shadow(0 18px 26px rgba(0,0,0,.4));
+  filter:drop-shadow(0 12px 20px rgba(0,0,0,.4));
 }
-@media (max-width:1300px){ .story-cutout{display:none;} }
+@media (min-width:1300px){ .story-cutout{left:-90px;} }
 
 .build-row{display:flex; align-items:center; gap:1.6rem; flex-wrap:wrap;}
 .build-visual{flex:0 0 150px; max-width:150px;}
@@ -1080,24 +1080,6 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
-<section class="trusted-by chapter-plum">
-  <div class="wrap">
-    <span class="trusted-label">חלק מהחברות שכבר סמכו עליי ביצירת תוכן</span>
-    <div class="cloud-wrap">
-      <span class="cloud-name" style="left:80%;top:13%;--r:4deg;">נסטלה גלידות</span>
-      <span class="cloud-name" style="left:87%;top:58%;--r:-7deg;">Ben &amp; Jerry's</span>
-      <span class="cloud-name" style="left:53%;top:31%;--r:4deg;">Huggies</span>
-      <span class="cloud-name" style="left:77%;top:42.8%;--r:-7deg;">ESET</span>
-      <span class="cloud-name" style="left:62%;top:76%;--r:10deg;">Biamba</span>
-      <span class="cloud-name" style="left:47%;top:91.9%;--r:10deg;">Skingard</span>
-      <span class="cloud-name" style="left:43%;top:76.1%;--r:-4deg;">Mayven</span>
-      <span class="cloud-name" style="left:16%;top:52%;--r:-4deg;">העץ של יאשה</span>
-      <span class="cloud-name" style="left:28.3%;top:15.2%;--r:7deg;">מול החוף</span>
-      <span class="cloud-name" style="left:26%;top:68%;--r:7deg;">ניע נוח</span>
-      <span class="cloud-name" style="left:30.2%;top:30.2%;--r:-10deg;">Sapporo</span>
-    </div>
-  </div>
-</section>
 
 <section class="section proof chapter-maroon" id="proof">
   <div class="wrap hero-editorial">

@@ -120,6 +120,13 @@ img,svg{display:block;max-width:100%;}
 .story-top-text .section-title{margin-bottom:14px;}
 @media (max-width:640px){ .story-top{flex-direction:column; text-align:center; justify-content:center;} }
 
+.story-cutout{
+  position:absolute; bottom:-20px; left:-90px; width:min(220px,24vw); height:auto;
+  transform:rotate(-4deg); z-index:2; pointer-events:none;
+  filter:drop-shadow(0 18px 26px rgba(0,0,0,.4));
+}
+@media (max-width:1300px){ .story-cutout{display:none;} }
+
 .build-row{display:flex; align-items:center; gap:1.6rem; flex-wrap:wrap;}
 .build-visual{flex:0 0 150px; max-width:150px;}
 .build-visual svg{width:100%; height:auto; filter:drop-shadow(0 14px 20px rgba(0,0,0,.35));}
@@ -997,7 +1004,8 @@ html.a11y-underline a{text-decoration:underline !important;}
 </section>
 
 <section class="section chapter-plum" id="story">
-  <div class="wrap hero-editorial">
+  <div class="wrap hero-editorial" style="position:relative;">
+    <img class="story-cutout" src="assets/eve-cutout-floating.png" alt="">
     <div class="story-top">
       <div class="story-photo"><img src="assets/eve-story-square.jpg" alt="איב כהן"></div>
       <div class="story-top-text">

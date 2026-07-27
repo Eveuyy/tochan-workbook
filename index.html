@@ -77,6 +77,25 @@ img,svg{display:block;max-width:100%;}
 .chapter-cream .section-eyebrow{color:var(--purple-deep);}
 .chapter-cream .icon{stroke:var(--purple-deep);}
 .chapter-divider{height:2px;background:linear-gradient(90deg,transparent,var(--orange-deep),transparent);opacity:.5;max-width:200px;margin:0 auto;}
+
+.hero.hero-new{
+  background:linear-gradient(175deg,#4A4270 0%, var(--periwinkle) 65%, #6F73B5 100%);
+  padding:clamp(56px,10vw,88px) 20px 0; text-align:center; overflow:visible;
+}
+.hero-new .section-eyebrow{color:#fff;opacity:.85;}
+.hero-new-inner{max-width:620px;margin:0 auto;position:relative;}
+.hero-new-name{
+  font-family:'Fredoka','Rubik',sans-serif; font-weight:600; font-size:clamp(2.2rem,7vw,3.4rem); line-height:1.05;
+  color:var(--peach); margin:12px 0 0; text-shadow:0 2px 18px rgba(0,0,0,.2);
+}
+.hero-new-script{
+  display:block; font-family:'Rubik',sans-serif; font-style:italic; font-weight:400; font-size:.55em;
+  color:#fff; margin-top:.2em; transform:rotate(-3deg);
+}
+.hero-new-photo-wrap{max-width:300px;margin:20px auto 0;}
+.hero-new-photo-wrap img{width:100%;height:auto;border-radius:16px;display:block;filter:drop-shadow(0 22px 38px rgba(0,0,0,.4));}
+.hero-new .hero-body{max-width:44ch;margin-inline:auto;}
+.hero-new .hero-cta-solo{margin-top:20px;}
 .word-transition-sm{text-align:center;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;margin:48px auto 8px;color:var(--sage);text-wrap:balance;}
 
 /* buttons */
@@ -890,24 +909,15 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </nav>
 
-<section class="hero">
-  <div class="wrap hero-editorial">
-    <div class="hero-video-bg">
-      <video autoplay muted loop playsinline preload="auto" poster="assets/proof-header-montage-cover.jpg">
-        <source src="assets/proof-header-montage.mp4" type="video/mp4">
-      </video>
-      <div class="hero-video-bg-inner">
-        <span class="section-eyebrow" style="text-align:center;">קורס יצירת תוכן מאפס עם איב</span>
-        <h1 class="hero-h1">מאפס ידע על יצירת תוכן,<br>לסרטון הראשון שלכם באוויר.</h1>
-      </div>
-    </div>
-
-    <p class="hero-body">קורס מעשי שילמד אתכם ליצור תוכן שמושך אנשים לעצור, להקשיב ולפעול.</p>
-
-    <p class="hero-body" style="font-weight:700;">בלי ניסיון קודם. בלי ציוד יקר. בלי להסתבך.</p>
-
+<section class="hero hero-new">
+  <div class="hero-new-inner">
+    <span class="section-eyebrow" style="text-align:center;">קורס יצירת תוכן</span>
+    <h1 class="hero-new-name">קורס יצירת תוכן<span class="hero-new-script">עם איב</span></h1>
+    <div class="hero-new-photo-wrap"><img src="assets/eve-hero-stool.jpg" alt="איב, יושבת על כיסא עץ"></div>
+    <p class="hero-body" style="color:#fff;">קורס מעשי שילמד אתכם ליצור תוכן שמושך אנשים לעצור, להקשיב ולפעול.</p>
+    <p class="hero-body" style="font-weight:700;color:#fff;">בלי ניסיון קודם. בלי ציוד יקר. בלי להסתבך.</p>
     <a class="btn btn-primary btn-lg hero-cta-solo" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
-    <p class="hero-body" style="margin-top:16px;font-size:.85rem;opacity:.75;">גישה מיידית לקורס · לימוד בקצב שלכם · גישה ללא הגבלת זמן</p>
+    <p class="hero-body" style="margin-top:16px;font-size:.85rem;opacity:.85;color:#fff;">גישה מיידית לקורס · לימוד בקצב שלכם · גישה ללא הגבלת זמן</p>
   </div>
 </section>
 

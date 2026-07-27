@@ -116,7 +116,7 @@ img,svg{display:block;max-width:100%;}
 .story-top{display:flex; align-items:center; gap:1.8rem; flex-wrap:wrap; text-align:start;}
 .story-photo{flex:0 0 260px; max-width:260px;}
 .story-photo img{width:100%; display:block; border-radius:16px; transform:rotate(-3deg); box-shadow:0 16px 30px -14px rgba(0,0,0,.5);}
-.story-top-text{flex:1 1 320px; min-width:240px;}
+.story-top-text{flex:1 1 320px; min-width:240px; padding-top:34px;}
 .story-top-text .section-title{margin-bottom:14px;}
 @media (max-width:640px){
   .story-top{flex-wrap:nowrap; gap:.9rem; align-items:flex-start;}
@@ -132,7 +132,7 @@ img,svg{display:block;max-width:100%;}
 }
 @media (min-width:1300px){ .story-cutout{left:-90px;} }
 
-.story-heading{font-family:'Fredoka','Rubik',sans-serif; color:#fff; font-size:clamp(1.9rem,4.4vw,2.6rem);}
+.story-heading{font-family:'Fredoka','Rubik',sans-serif; color:#fff; font-size:clamp(2.1rem,4.8vw,2.9rem);}
 
 .sticky-note{
   position:relative; background:var(--paper); --ink:var(--ink-on-paper); color:var(--ink);
@@ -213,7 +213,7 @@ img,svg{display:block;max-width:100%;}
   font-size:clamp(2.6rem,7.2vw,3.9rem);line-height:1.22;font-weight:900;color:var(--purple-deep);
   margin:0 0 40px;text-wrap:balance;
 }
-.hero-body{font-size:clamp(1.05rem,2.1vw,1.2rem);font-weight:300;line-height:1.5;color:var(--ink);margin:0 0 8px;max-width:52ch;margin-inline:auto;}
+.hero-body{font-size:clamp(1.05rem,2.1vw,1.2rem);font-weight:400;line-height:1.5;color:var(--ink);margin:0 0 8px;max-width:52ch;margin-inline:auto;}
 .hero-stmt{
   font-size:clamp(1.8rem,4.4vw,2.5rem);line-height:1.4;font-weight:900;color:#fff;
   margin:44px auto;max-width:22ch;text-wrap:balance;
@@ -534,17 +534,22 @@ img,svg{display:block;max-width:100%;}
 }
 .roadmap-title{font-size:1.25rem;font-weight:700;margin-bottom:8px;}
 .roadmap-text{color:var(--ink-soft);font-size:1rem;line-height:1.75;}
-.roadmap-biz{margin:56px auto 0;padding-top:44px;border-top:1.5px dashed var(--line);text-align:center;max-width:52ch;}
-.roadmap-biz-lead{font-size:1.3rem;font-weight:700;color:var(--orange-deep);margin-bottom:36px;}
-.roadmap-biz-steps .roadmap-marker{background:var(--orange);color:var(--orange-deep);}
+.roadmap-biz{
+  margin:56px auto 0;padding:36px 24px 40px;text-align:center;max-width:640px;
+  background:linear-gradient(165deg,#EDEBF6 0%,#E3E1F1 100%);border-radius:24px;
+}
+.roadmap-biz-lead{font-size:1.3rem;font-weight:700;color:var(--periwinkle);margin-bottom:36px;}
+.roadmap-biz-steps{text-align:start;}
+.roadmap-biz-steps .roadmap-marker{background:var(--periwinkle);color:#fff;}
 
 /* guest bonus lesson — visually distinct: gift icon marker, soft gold wash, IG link */
 .roadmap-step.roadmap-bonus{
-  background:linear-gradient(90deg, rgba(201,127,99,.1), transparent 85%);
+  background:linear-gradient(90deg, rgba(200,127,99,.2), transparent 85%);
   border-radius:16px;padding-top:10px;padding-bottom:10px;
+  border-inline-start:2px solid var(--coral);
 }
-.roadmap-marker.bonus{background:var(--orange);color:#241407;}
-.roadmap-marker.bonus .icon{width:19px;height:19px;stroke:#241407;}
+.roadmap-marker.bonus{background:var(--coral);color:#fff;box-shadow:0 0 0 5px rgba(201,87,58,.22), 0 0 16px rgba(201,87,58,.5);}
+.roadmap-marker.bonus .icon{width:19px;height:19px;stroke:#fff;}
 .roadmap-guest-link{
   display:inline-flex;align-items:center;gap:6px;margin-top:12px;
   font-size:.85rem;font-weight:700;color:var(--purple-deep);text-decoration:none;
@@ -1038,7 +1043,7 @@ html.a11y-underline a{text-decoration:underline !important;}
       <div class="story-photo"><img src="assets/eve-hero-stool.jpg" alt="איב כהן"></div>
       <div class="story-top-text">
         <h2 class="section-title story-heading">נעים מאוד,<br>אני איב.</h2>
-        <p class="hero-body" style="color:#fff;margin-top:18px;">בדיוק כמוכם, גם אני התחלתי בלי שום ניסיון ביצירת תוכן.</p>
+        <p class="hero-body" style="color:#fff;margin-top:8px;">בדיוק כמוכם, גם אני התחלתי בלי שום ניסיון ביצירת תוכן.</p>
       </div>
     </div>
 
@@ -1051,11 +1056,11 @@ html.a11y-underline a{text-decoration:underline !important;}
 
 <section class="section chapter-black">
   <div class="wrap hero-editorial">
-    <p class="hero-body">בלי לדעת איך מצלמים.<br>בלי להבין איך בונים סרטון.<br>ובלי שום מושג למה סרטונים מסוימים מצליחים, ואחרים פשוט... לא.</p>
+    <p class="hero-body">לא ידעתי איך לבנות סרטון,<br>איך לצלם ובטח שלא איך לערוך<br>והתחלתי בלי שמץ של מושג למה סרטונים מסוימים מצליחים, ואחרים פשוט… לא.</p>
 
-    <p class="pull-quote" style="color:var(--peach);"><span class="quote-mark" style="color:var(--peach);opacity:.7;">"</span>במקום להמשיך לנחש, החלטתי ללמוד את התחום לעומק.</p>
+    <p class="pull-quote" style="color:var(--peach);margin:20px auto;">במקום להמשיך לנחש, החלטתי ללמוד את התחום לעומק.</p>
 
-    <p class="hero-body">במשך השנים האחרונות חקרתי מאות סרטונים, למדתי איך אנשים באמת צורכים תוכן, הבנתי מה גורם להם לעצור, להישאר ולהגיב, והפכתי את כל מה שלמדתי לשיטה פשוטה שכל אחד יכול ליישם.</p>
+    <p class="hero-body" style="margin-top:0;">במשך השנים האחרונות חקרתי מאות סרטונים, למדתי איך אנשים באמת צורכים תוכן, הבנתי מה גורם להם לעצור, להישאר ולהגיב, והפכתי את כל מה שלמדתי לשיטה פשוטה שכל אחד יכול ליישם.</p>
 
     <p class="hero-body">היום אני יוצרת תוכן עבור מותגים ועסקים, מלווה בעלי עסקים בבניית אסטרטגיית תוכן, ועוזרת להם להפוך סרטונים לכלי שמביא חשיפה, לקוחות והכנסות - לא רק צפיות.</p>
   </div>
@@ -1079,7 +1084,7 @@ html.a11y-underline a{text-decoration:underline !important;}
         </svg>
       </div>
     </div>
-    <p class="hero-body" style="margin-top:28px;">הדבר שהכי מרגש אותי זה בסוף לא המספרים.</p>
+    <p class="hero-body" style="margin-top:10px;">הדבר שהכי מרגש אותי זה בסוף לא המספרים.</p>
     <p class="hero-body">זה לראות אנשים שהיו בטוחים שהם "לא בנויים לזה" יוצאים מהאיזור הנוחות, מעלים את התוכן הראשון שלהם ומקבלים תוצאות.<br>וככה נולד הקורס הזה.</p>
   </div>
 </section>
@@ -1088,14 +1093,14 @@ html.a11y-underline a{text-decoration:underline !important;}
   <div class="wrap hero-editorial">
     <div class="sticky-note fade-in">
       <span class="sticky-note-tape"></span>
-      <p class="hero-stmt stmt-gold" style="font-size:clamp(1.3rem,3vw,1.7rem);">אם גם אתם מרגישים שיצירת תוכן יכולה לקדם אתכם, אבל עדיין לא התחלתם — בניתי את הקורס הזה בדיוק בשבילכם.</p>
+      <p class="hero-stmt stmt-gold" style="font-size:clamp(1.3rem,3vw,1.7rem);">אם גם אתם מרגישים שיצירת תוכן יכולה לקדם אתכם, אבל עדיין לא התחלתם.<br><span style="color:var(--coral);">בניתי את הקורס הזה במיוחד בשבילכם.</span></p>
     </div>
   </div>
 </section>
 
 <section class="section chapter-coffee">
   <div class="wrap hero-editorial">
-    <p class="hero-stmt fade-in">אתם לא צריכים לצעוד את הדרך הזאת לבד.</p>
+    <p class="hero-stmt fade-in" style="color:var(--burgundy);">אתם לא צריכים לצעוד את הדרך הזאת לבד.</p>
 
     <p class="hero-body" style="font-weight:600;">יצירת תוכן היא לא כישרון.<br>היא מיומנות.</p>
 
@@ -1111,14 +1116,9 @@ html.a11y-underline a{text-decoration:underline !important;}
   <div class="blob parallax" data-depth="16" style="width:250px;height:250px;background:var(--orange);top:0;left:-80px;"></div>
   <div class="blob parallax" data-depth="-20" style="width:190px;height:190px;background:var(--orange);bottom:6%;right:-50px;"></div>
   <div class="wrap hero-editorial">
-    <div class="video-header">
-      <video autoplay muted loop playsinline preload="auto" poster="assets/proof-header-montage-cover.jpg">
-        <source src="assets/proof-header-montage.mp4" type="video/mp4">
-      </video>
-    </div>
     <div class="roadmap-intro">
       <h2 class="section-title fade-in" style="text-align:center;">דברי איתי תכלס, מה נלמד בקורס הזה?</h2>
-      <p class="hero-body">כל פרק בקורס נבנה כדי לפתור בעיה אחרת בדרך ליצירת תוכן שעובד. בסיום הקורס תדעו בדיוק איך להפוך רעיון לסרטון שמושך את הקהל הנכון — גם אם היום אתם לא יודעים מאיפה להתחיל.</p>
+      <p class="hero-body">כל מה שאתם צריכים בשביל להתחיל ליצור תוכן. מבניית רעיון, אל תוך צילום, ועריכה פשוטה לתוצר מוגמר שישרת את המטרות שלכם.</p>
     </div>
 
     <span class="section-eyebrow" style="text-align:center;">מבנה השיעורים בקורס</span>
@@ -1145,7 +1145,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 </section>
 
 
-<section class="section chapter-plum" id="studentProof">
+<section class="section chapter-cream" id="studentProof">
   <div class="wrap hero-editorial">
     <h2 class="section-title" style="text-align:center;">אל תאמינו רק לי.<br>הנה מה שאנשים שלמדו בקורס מספרים.</h2>
     <div class="testimonial-carousel">
@@ -1205,7 +1205,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 
     <div class="proof-grid">
       <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-1-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-1.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>883K</span><span class="proof-views-label">צפיות</span></div></div></div>
-      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-2-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-2.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>?</span><span class="proof-views-label">צפיות</span></div></div></div>
+      <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-2-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-2.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>92K</span><span class="proof-views-label">צפיות</span></div></div></div>
       <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-4-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-4.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>4M</span><span class="proof-views-label">צפיות</span></div></div></div>
       <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-5-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-5.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>1.1M</span><span class="proof-views-label">צפיות</span></div></div></div>
       <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-8-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-8.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>900K</span><span class="proof-views-label">צפיות</span></div></div></div>

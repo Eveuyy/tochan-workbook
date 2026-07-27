@@ -92,12 +92,9 @@ img,svg{display:block;max-width:100%;}
   aspect-ratio:1536/1024; max-height:60vh; min-height:280px;
 }
 .hero-side-text{
-  position:absolute; top:50%; left:5%; transform:translateY(-50%);
+  position:absolute; top:50%; left:16%; transform:translateY(-50%);
   max-width:42%; text-align:start;
-  animation:heroFloat 4.5s ease-in-out infinite;
 }
-@keyframes heroFloat{ 0%,100%{transform:translateY(-50%);} 50%{transform:translateY(calc(-50% - 8px));} }
-@media (prefers-reduced-motion:reduce){ .hero-side-text{animation:none;} }
 .hero-title-stack{
   font-family:'Fredoka','Rubik',sans-serif; font-weight:700; line-height:.98;
   font-size:clamp(1.8rem,6.2vw,3.4rem); margin:0 0 20px;
@@ -109,11 +106,11 @@ img,svg{display:block;max-width:100%;}
 .hero-side-list{list-style:none;margin:14px 0 0;padding:0;}
 .hero-side-list li{
   color:#fff; font-weight:700; font-size:clamp(.85rem,2.1vw,1.05rem);
-  margin-bottom:6px; text-shadow:0 1px 8px rgba(0,0,0,.35);
+  margin-bottom:1px; text-shadow:0 1px 8px rgba(0,0,0,.35);
 }
 @media (max-width:760px){
   .hero.hero-new{aspect-ratio:1536/1180;max-height:none;background-position:70% center;}
-  .hero-side-text{max-width:54%;left:4%;}
+  .hero-side-text{max-width:54%;left:10%;}
 }
 .hero-new-below{
   background:var(--periwinkle); text-align:center;
@@ -953,7 +950,7 @@ html.a11y-underline a{text-decoration:underline !important;}
     <ul class="hero-side-list">
       <li>בלי ניסיון קודם</li>
       <li>בלי ציוד יקר</li>
-      <li>בלי להסתבך</li>
+      <li>רק עם הסמארטפון שלכם</li>
     </ul>
   </div>
 </section>

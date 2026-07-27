@@ -81,24 +81,33 @@ img,svg{display:block;max-width:100%;}
 .chapter-divider{height:2px;background:linear-gradient(90deg,transparent,var(--orange-deep),transparent);opacity:.5;max-width:200px;margin:0 auto;}
 
 .hero.hero-new{
-  background:linear-gradient(180deg,#4A4270 0%, var(--periwinkle) 100%);
-  padding:clamp(36px,7vw,56px) 20px clamp(48px,9vw,72px); text-align:center;
+  position:relative; overflow:hidden; text-align:center;
+  background:
+    linear-gradient(180deg, rgba(58,52,92,.55) 0%, rgba(74,66,112,.15) 30%, rgba(90,90,160,.2) 65%, rgba(58,52,92,.7) 100%),
+    url('assets/eve-hero-stool.jpg') center top / cover no-repeat;
+  aspect-ratio:1070/1180; max-height:82vh;
+  padding:clamp(28px,6vw,48px) 20px;
 }
-.hero-photo-frame{position:relative;max-width:380px;margin:0 auto;}
-.hero-photo-frame img{width:100%;display:block;border-radius:18px;box-shadow:0 22px 44px -18px rgba(0,0,0,.55);}
 .hero-photo-eyebrow{
-  position:absolute;top:5%;left:50%;transform:translateX(-50%);white-space:nowrap;
-  font-family:'Fredoka','Rubik',sans-serif;font-weight:600;font-size:clamp(1.15rem,4.2vw,1.55rem);
-  color:var(--peach);text-shadow:0 2px 14px rgba(0,0,0,.55);
+  position:relative; z-index:1; margin:2vw 0 0;
+  font-family:'Fredoka','Rubik',sans-serif; font-weight:700; font-size:clamp(2rem,9vw,3.6rem); line-height:1;
+  color:var(--peach); text-shadow:1px 1px 0 rgba(69,23,36,.5), 2px 2px 0 rgba(69,23,36,.4), 3px 3px 0 rgba(69,23,36,.3), 4px 4px 10px rgba(0,0,0,.4);
+  animation:heroFloat 4.5s ease-in-out infinite;
 }
+@keyframes heroFloat{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+@media (prefers-reduced-motion:reduce){ .hero-photo-eyebrow{animation:none;} }
 .hero-photo-script{
-  position:absolute;bottom:20%;left:6%;
-  font-family:'Rubik',sans-serif;font-weight:700;font-size:clamp(.95rem,3.4vw,1.15rem);
-  color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.6);
+  position:absolute; z-index:1; bottom:26%; left:6%;
+  font-family:'Rubik',sans-serif; font-weight:700; font-size:clamp(1rem,3.6vw,1.25rem);
+  color:#fff; text-shadow:0 2px 12px rgba(0,0,0,.6);
 }
-.hero-new-below{max-width:480px;margin:22px auto 0;}
-.hero-new-below .hero-body{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.3);}
-.hero-new .hero-cta-solo{margin-top:16px;}
+.hero-new-below{
+  background:var(--periwinkle); text-align:center;
+  padding:26px 20px clamp(40px,7vw,60px);
+}
+.hero-new-below .hero-body{max-width:480px;margin-inline:auto;color:#fff;}
+.hero-new-below .hero-cta-solo{margin-top:16px;}
+@media (max-width:640px){ .hero.hero-new{aspect-ratio:auto; min-height:78vh;} }
 
 .story-top{display:flex; align-items:center; gap:1.8rem; flex-wrap:wrap; text-align:start;}
 .story-photo{flex:0 0 150px; max-width:150px;}
@@ -828,18 +837,17 @@ footer.site-footer.chapter-cream{background:linear-gradient(180deg,#EFE8D6 0%,#E
 .a11y-toggle[aria-pressed="true"]{background:var(--glow2);border-color:var(--glow);}
 
 /* ===== chapter navigation (jump between sections) ===== */
-#chapterNavFab{
-  position:fixed;bottom:24px;right:24px;z-index:80;width:52px;height:52px;border-radius:50%;
-  background:var(--glow);color:#fff;border:none;font-size:1.3rem;cursor:pointer;
-  box-shadow:0 2px 6px var(--shadow-tight), 0 14px 30px var(--shadow-soft);
+.nav-chapter-btn{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--coral);color:#fff;border:none;font-size:1.15rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 6px var(--shadow-tight), 0 8px 16px var(--shadow-soft);
 }
-@media (max-width:760px){#chapterNavFab{width:44px;height:44px;font-size:1.1rem;bottom:16px;right:16px;}}
 .chapter-nav-panel{
-  position:fixed;bottom:86px;right:24px;z-index:80;background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);border:1.5px solid var(--line);
+  position:absolute;top:calc(100% + 8px);right:20px;z-index:80;background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);border:1.5px solid var(--line);
   border-radius:18px;padding:10px;box-shadow:0 4px 10px var(--shadow-tight), 0 20px 44px var(--shadow-soft);
   display:flex;flex-direction:column;gap:2px;width:min(220px,72vw);max-height:70vh;overflow-y:auto;
 }
-@media (max-width:760px){.chapter-nav-panel{bottom:68px;right:16px;}}
 .chapter-nav-panel[hidden]{display:none;}
 .chapter-nav-link{
   display:block;padding:10px 14px;border-radius:10px;color:var(--ink);text-decoration:none;
@@ -920,24 +928,22 @@ html.a11y-underline a{text-decoration:underline !important;}
 
 <nav class="nav">
   <div class="wrap">
-    <div class="nav-brand">קורס יצירת תוכן <span>עם איב</span></div>
+    <button type="button" id="chapterNavFab" class="nav-chapter-btn" aria-label="ניווט בין סקשנים">☰</button>
     <a class="btn btn-primary" href="#pricing">אני רוצה להתחיל ליצור</a>
   </div>
+  <div id="chapterNavPanel" class="chapter-nav-panel" hidden></div>
 </nav>
 
 <section class="hero hero-new">
-  <div class="hero-photo-frame">
-    <img src="assets/eve-hero-stool.jpg" alt="איב, יושבת על כיסא עץ">
-    <h1 class="hero-photo-eyebrow">קורס יצירת תוכן</h1>
-    <span class="hero-photo-script">עם איב</span>
-  </div>
-  <div class="hero-new-below">
-    <p class="hero-body">קורס מעשי שילמד אתכם ליצור תוכן שמושך אנשים לעצור, להקשיב ולפעול.</p>
-    <p class="hero-body" style="font-weight:700;">בלי ניסיון קודם. בלי ציוד יקר. בלי להסתבך.</p>
-    <a class="btn btn-primary btn-lg hero-cta-solo" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
-    <p class="hero-body" style="margin-top:16px;font-size:.85rem;opacity:.85;">גישה מיידית לקורס · לימוד בקצב שלכם · גישה ללא הגבלת זמן</p>
-  </div>
+  <h1 class="hero-photo-eyebrow">קורס יצירת תוכן</h1>
+  <span class="hero-photo-script">עם איב</span>
 </section>
+<div class="hero-new-below">
+  <p class="hero-body">קורס מעשי שילמד אתכם ליצור תוכן שמושך אנשים לעצור, להקשיב ולפעול.</p>
+  <p class="hero-body" style="font-weight:700;">בלי ניסיון קודם. בלי ציוד יקר. בלי להסתבך.</p>
+  <a class="btn btn-primary btn-lg hero-cta-solo" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
+  <p class="hero-body" style="margin-top:16px;font-size:.85rem;opacity:.85;">גישה מיידית לקורס · לימוד בקצב שלכם · גישה ללא הגבלת זמן</p>
+</div>
 
 <section class="section chapter-black" id="identify">
   <div class="wrap hero-editorial">
@@ -1301,9 +1307,6 @@ html.a11y-underline a{text-decoration:underline !important;}
   <span style="font-weight:700;">מוכנים להתחיל?</span>
   <a class="btn btn-primary" href="#pricing">להצטרפות</a>
 </div>
-
-<button type="button" id="chapterNavFab" aria-label="ניווט בין סקשנים">☰</button>
-<div id="chapterNavPanel" class="chapter-nav-panel" hidden></div>
 
 <button type="button" id="a11yFab" aria-label="אפשרויות נגישות">♿</button>
 <div id="a11yPanel" class="a11y-panel" hidden>

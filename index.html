@@ -610,7 +610,8 @@ img,svg{display:block;max-width:100%;}
 
 /* ===== who this is for ===== */
 .who-for{padding-block:clamp(36px,6vw,56px);border-top:1.5px solid var(--line);border-bottom:1.5px solid var(--line);}
-.who-for-label{display:block;text-align:center;font-weight:900;color:var(--ink);font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:26px;text-wrap:balance;}
+.who-for-label{display:block;text-align:center;font-weight:900;color:var(--peach);font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:26px;text-wrap:balance;}
+.who-for .know-item{color:var(--paper);}
 .who-for-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
 @media (max-width:640px){.who-for-grid{grid-template-columns:1fr;}}
 .who-for-card{
@@ -781,6 +782,7 @@ img,svg{display:block;max-width:100%;}
 .price-diff-label{font-weight:700;font-size:.86rem;margin-bottom:8px;display:block;}
 .price-diff ul{display:flex;flex-direction:column;gap:6px;list-style:none;padding:0;margin:0;}
 .price-diff li{display:flex;gap:8px;align-items:flex-start;font-size:.92rem;}
+.price-diff p{font-size:.92rem;line-height:1.6;color:var(--ink-soft);}
 .price-amount{font-size:2.6rem;font-weight:700;display:flex;align-items:baseline;gap:6px;}
 .price-amount .currency{font-size:1.2rem;color:var(--ink-soft);font-weight:600;}
 .price-amount .num{font-family:'Rubik',sans-serif;letter-spacing:-.01em;}
@@ -1247,7 +1249,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 <section class="section chapter-plum" id="faq">
   <div class="wrap hero-editorial">
     <div class="icon3d-wrap"><img class="icon3d icon3d-support anim-bob" src="assets/icons/speech_balloon_3d.png" alt=""></div>
-    <h2 class="section-title" style="text-align:center;">עדיין מתלבטים?</h2>
+    <h2 class="section-title" style="text-align:center;color:var(--peach);">עדיין מתלבטים?</h2>
     <div class="faq-list" id="faqList"></div>
   </div>
 </section>
@@ -1302,30 +1304,9 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
-<section class="section chapter-coffee" id="peek">
-  <div class="wrap">
-    <h2 class="section-title">הצצה אמיתית לתוך הקורס</h2>
-    <div class="peek-grid">
-      <div class="peek-teaser" id="peekTeaser">
-        <video class="peek-video" playsinline preload="auto" poster="assets/peek-video-2-cover.jpg" autoplay muted loop>
-          <source src="assets/peek-video-2.mp4" type="video/mp4">
-        </video>
-        <div class="peek-teaser-overlay">
-          <div class="play-badge"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-          <span>לחצו לצפייה ברורה עם סאונד</span>
-        </div>
-      </div>
-      <div class="media-placeholder"><span class="media-placeholder-label">צילום מתוך CapCut</span></div>
-      <div class="media-placeholder"><span class="media-placeholder-label">צילום מתוך חוברת העבודה</span></div>
-      <div class="media-placeholder"><span class="media-placeholder-label">צילום מתוך סוכן ה-AI</span></div>
-    </div>
-  </div>
-</section>
-
 
 <section class="section chapter-black final">
   <div class="wrap hero-editorial">
-    <h2 class="final-title">ההחלטה היחידה שנשארה.</h2>
     <p class="hero-body">בעוד חודש אתם יכולים להיות בדיוק באותו המקום.<br>או להיות אחרי עשרה סרטונים,<br>עם הרבה יותר ביטחון,<br>והבנה אמיתית של איך יוצרים תוכן שעובד.</p>
 
     <p class="hero-stmt fade-in">ההחלטה היחידה שנשארה,</p>
@@ -1601,16 +1582,10 @@ function renderPricing(){
       <p class="price-save">חוסכים 110 ₪</p>
       <ul class="price-features">
         <li>${icon('check')}<span>כל מה שיש במסלול הבסיסי</span></li>
-        <li>${icon('check')}<span>קהילת וואטסאפ תומכת לשאלות ועזרה</span></li>
-        <li>${icon('check')}<span>גישה מלאה, ללא הגבלת זמן - כולל כל עדכון ושדרוג עתידי לקורס</span></li>
       </ul>
       <div class="price-diff">
         <span class="price-diff-label">במסלול Business תקבלו בנוסף:</span>
-        <ul>
-          <li>${icon('check')}<span>איך להפוך תוכן לידים ומכירות</span></li>
-          <li>${icon('check')}<span>איך לבנות אסטרטגיית תוכן לעסק</span></li>
-          <li>${icon('check')}<span>איך לגרום לעמוד שלכם למכור גם כשאתם לא מעלים מודעה</span></li>
-        </ul>
+        <p>עוד חמישה פרקים ייעודיים שכל מטרתם להביא את התוכן שלכם רמה למעלה, לתוכן שמביא תוצאות ומכירות.</p>
       </div>
       <a class="btn btn-success" href="${PAYMENT_LINKS.business}">אני רוצה את מסלול Business</a>
     </div>

@@ -88,27 +88,30 @@ img,svg{display:block;max-width:100%;}
 
 .hero.hero-new{
   position:relative; overflow:hidden;
-  background: url('assets/eve-hero-stool-wide.jpg') right center / cover no-repeat;
-  aspect-ratio:1970/1470; max-height:56vh; min-height:260px;
+  background: url('assets/eve-hero-stool-wide.jpg') center center / cover no-repeat;
+  aspect-ratio:1536/1024; max-height:60vh; min-height:280px;
 }
 .hero-side-text{
   position:absolute; top:50%; left:5%; transform:translateY(-50%);
-  max-width:44%; text-align:start;
+  max-width:42%; text-align:start;
   animation:heroFloat 4.5s ease-in-out infinite;
 }
 @keyframes heroFloat{ 0%,100%{transform:translateY(-50%);} 50%{transform:translateY(calc(-50% - 8px));} }
 @media (prefers-reduced-motion:reduce){ .hero-side-text{animation:none;} }
 .hero-title-stack{
   font-family:'Fredoka','Rubik',sans-serif; font-weight:700; line-height:.98;
-  font-size:clamp(1.8rem,6.2vw,3.4rem); margin:0;
+  font-size:clamp(1.8rem,6.2vw,3.4rem); margin:0 0 20px;
 }
 .hero-title-stack span{display:block;}
 .hero-title-stack .l1{color:var(--coral);}
 .hero-title-stack .l2{color:var(--periwinkle);}
 .hero-title-stack .l3{color:var(--peach);}
+.hero-side-text .btn-primary{
+  font-size:clamp(.8rem,2vw,1rem); padding:.7em 1.3em;
+}
 @media (max-width:760px){
-  .hero.hero-new{aspect-ratio:1970/1520;max-height:none;background-position:78% center;}
-  .hero-side-text{max-width:56%;left:4%;}
+  .hero.hero-new{aspect-ratio:1536/1180;max-height:none;background-position:70% center;}
+  .hero-side-text{max-width:54%;left:4%;}
 }
 .hero-new-below{
   background:var(--periwinkle); text-align:center;
@@ -945,6 +948,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 <section class="hero hero-new">
   <div class="hero-side-text">
     <h1 class="hero-title-stack"><span class="l1">קורס</span><span class="l2">יצירת תוכן</span><span class="l3">עם איב.</span></h1>
+    <a class="btn btn-primary" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
   </div>
 </section>
 <div class="hero-new-below">

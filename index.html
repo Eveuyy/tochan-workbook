@@ -71,8 +71,8 @@ img,svg{display:block;max-width:100%;}
 .section > .wrap{position:relative;z-index:1;}
 
 /* ===== chapter color system: alternating section backgrounds so scrolling reads like turning a page ===== */
-.chapter-black{background:linear-gradient(180deg,#4A4270 0%,#626598 100%);--ink-soft:var(--ink);}
-.chapter-maroon{background:linear-gradient(180deg,var(--purple-deep) 0%,#A5442C 100%);--ink-soft:var(--ink);}
+.chapter-black{background:linear-gradient(180deg,#4A4270 0%,#6767A0 100%);--ink-soft:var(--ink);}
+.chapter-maroon{background:linear-gradient(180deg,var(--purple-deep) 0%,#B44B31 100%);--ink-soft:var(--ink);}
 .chapter-plum{background:linear-gradient(150deg,#52333F 0%,var(--purple) 100%);--ink-soft:var(--ink);}
 .chapter-coffee{background:linear-gradient(180deg,var(--peach) 0%,var(--paper) 100%);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);}
 .chapter-cream{background:linear-gradient(180deg,#FBF6F1 0%,#F7EDE6 100%);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);}
@@ -152,7 +152,7 @@ img,svg{display:block;max-width:100%;}
 .btn-ghost{background:transparent;color:var(--ink);border:2px solid var(--line);padding:16px 34px;font-size:1rem;}
 
 /* blobs */
-.blob{position:absolute;border-radius:44% 56% 62% 38%/48% 42% 58% 52%;opacity:.55;z-index:0;pointer-events:none;filter:blur(1px);}
+.blob{position:absolute;border-radius:44% 56% 62% 38%/48% 42% 58% 52%;opacity:.8;z-index:0;pointer-events:none;filter:blur(1px);}
 .blob.parallax{will-change:transform;}
 .section > .wrap{position:relative;z-index:1;}
 
@@ -281,10 +281,10 @@ img,svg{display:block;max-width:100%;}
   border-radius:100px;padding:9px 20px;font-size:.9rem;font-weight:600;
   box-shadow:0 3px 8px var(--shadow-tight);white-space:nowrap;
 }
-.thought-bubble.t1{transform:rotate(-3deg);}
-.thought-bubble.t2{transform:rotate(2deg);}
-.thought-bubble.t3{transform:rotate(-1.5deg);}
-.thought-bubble.t4{transform:rotate(2.5deg);}
+.thought-bubble.t1{transform:rotate(-3deg);border:2px solid var(--coral);}
+.thought-bubble.t2{transform:rotate(2deg);border:2px solid var(--periwinkle);}
+.thought-bubble.t3{transform:rotate(-1.5deg);border:2px solid var(--purple);}
+.thought-bubble.t4{transform:rotate(2.5deg);border:2px solid var(--peach);}
 .thought-bubble.action{background:var(--orange);color:var(--ink-on-paper);}
 
 /* 8. phone mockup with a real cover image (adapted from the dormant .phone component) */

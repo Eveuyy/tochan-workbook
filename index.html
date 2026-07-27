@@ -114,11 +114,17 @@ img,svg{display:block;max-width:100%;}
 .hero-new-below .hero-cta-solo{margin-top:16px;}
 
 .story-top{display:flex; align-items:center; gap:1.8rem; flex-wrap:wrap; text-align:start;}
-.story-photo{flex:0 0 150px; max-width:150px;}
+.story-photo{flex:0 0 190px; max-width:190px;}
 .story-photo img{width:100%; display:block; border-radius:16px; transform:rotate(-3deg); box-shadow:0 16px 30px -14px rgba(0,0,0,.5);}
 .story-top-text{flex:1 1 320px; min-width:240px;}
 .story-top-text .section-title{margin-bottom:14px;}
 @media (max-width:640px){ .story-top{flex-direction:column; text-align:center; justify-content:center;} }
+
+.build-row{display:flex; align-items:center; gap:1.6rem; flex-wrap:wrap;}
+.build-visual{flex:0 0 150px; max-width:150px;}
+.build-visual svg{width:100%; height:auto; filter:drop-shadow(0 14px 20px rgba(0,0,0,.35));}
+.build-text{flex:1 1 300px; margin:0 !important; color:#fff;}
+@media (max-width:640px){ .build-row{flex-direction:column-reverse; text-align:center;} }
 .word-transition-sm{text-align:center;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;margin:48px auto 8px;color:var(--sage);text-wrap:balance;}
 
 /* buttons */
@@ -993,7 +999,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 <section class="section chapter-plum" id="story">
   <div class="wrap hero-editorial">
     <div class="story-top">
-      <div class="story-photo"><img src="assets/whyme-photo.jpg" alt="איב כהן"></div>
+      <div class="story-photo"><img src="assets/eve-story-square.jpg" alt="איב כהן"></div>
       <div class="story-top-text">
         <h2 class="section-title">מי אני, ולמה שתקשיבו לי בכלל?</h2>
         <div class="community-stats">
@@ -1020,13 +1026,34 @@ html.a11y-underline a{text-decoration:underline !important;}
     <p class="hero-body">במשך השנים האחרונות חקרתי מאות סרטונים, למדתי איך אנשים באמת צורכים תוכן, הבנתי מה גורם להם לעצור, להישאר ולהגיב, והפכתי את כל מה שלמדתי לשיטה פשוטה שכל אחד יכול ליישם.</p>
 
     <p class="hero-body">היום אני יוצרת תוכן עבור מותגים ועסקים, מלווה בעלי עסקים בבניית אסטרטגיית תוכן, ועוזרת להם להפוך סרטונים לכלי שמביא חשיפה, לקוחות והכנסות - לא רק צפיות.</p>
+  </div>
+</section>
 
-    <p class="hero-stmt fade-in">לאורך הדרך בניתי קהילה של עשרות אלפי אנשים ברשתות החברתיות, והיום אני מלווה אנשים ועסקים ליצור תוכן שעובד באמת.</p>
-
-    <p class="hero-body">אבל הדבר שאני הכי גאה בו הוא לא המספרים.</p>
-
+<section class="section chapter-maroon">
+  <div class="wrap hero-editorial">
+    <div class="build-row">
+      <p class="hero-stmt fade-in build-text">לאורך הדרך בניתי קהילה של עשרות אלפי אנשים ברשתות החברתיות, והיום אני מלווה אנשים ועסקים ליצור תוכן שעובד באמת.</p>
+      <div class="build-visual">
+        <svg viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60,108 L96.5,129.0 L60,150.0 L23.5,129.0 Z" fill="#D97A52"/>
+          <path d="M23.5,129.0 L60,150.0 L60,192.0 L23.5,171.0 Z" fill="#C9573A"/>
+          <path d="M96.5,129.0 L60,150.0 L60,192.0 L96.5,171.0 Z" fill="#8C3420"/>
+          <path d="M140,108 L176.5,129.0 L140,150.0 L103.5,129.0 Z" fill="#9A9DD0"/>
+          <path d="M103.5,129.0 L140,150.0 L140,192.0 L103.5,171.0 Z" fill="#7B7FC0"/>
+          <path d="M176.5,129.0 L140,150.0 L140,192.0 L176.5,171.0 Z" fill="#5457A0"/>
+          <path d="M100,43 L136.5,64.0 L100,85.0 L63.5,64.0 Z" fill="#F0C9A8"/>
+          <path d="M63.5,64.0 L100,85.0 L100,127.0 L63.5,106.0 Z" fill="#E8A87C"/>
+          <path d="M136.5,64.0 L100,85.0 L100,127.0 L136.5,106.0 Z" fill="#C9573A"/>
+        </svg>
+      </div>
+    </div>
+    <p class="hero-body" style="margin-top:28px;">אבל הדבר שאני הכי גאה בו הוא לא המספרים.</p>
     <p class="hero-body">אלא לראות אנשים שהיו בטוחים שהם "לא בנויים למצלמה", מעלים את הסרטון הראשון שלהם, ועסקים שמתחילים סוף סוף ליצור תוכן בצורה עקבית ומקבלים תוצאות, לידים ותכלס הכנסות.</p>
+  </div>
+</section>
 
+<section class="section chapter-black">
+  <div class="wrap hero-editorial">
     <p class="hero-stmt stmt-gold fade-in" style="font-size:clamp(1.4rem,3.2vw,1.9rem);">אם גם אתם מרגישים שיצירת תוכן יכולה לקדם אתכם, אבל עדיין לא התחלתם — בניתי את הקורס הזה בדיוק בשבילכם.</p>
   </div>
 </section>

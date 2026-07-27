@@ -103,11 +103,13 @@ img,svg{display:block;max-width:100%;}
   font-size:clamp(1.8rem,6.2vw,3.4rem); margin:0 0 20px;
 }
 .hero-title-stack span{display:block;}
-.hero-title-stack .l1{color:var(--coral);}
-.hero-title-stack .l2{color:var(--periwinkle);}
-.hero-title-stack .l3{color:var(--peach);}
-.hero-side-text .btn-primary{
-  font-size:clamp(.8rem,2vw,1rem); padding:.7em 1.3em;
+.hero-title-stack .l1{color:var(--peach);}
+.hero-title-stack .l2{color:var(--peach);}
+.hero-title-stack .l3{color:var(--paper);}
+.hero-side-list{list-style:none;margin:14px 0 0;padding:0;}
+.hero-side-list li{
+  color:#fff; font-weight:700; font-size:clamp(.85rem,2.1vw,1.05rem);
+  margin-bottom:6px; text-shadow:0 1px 8px rgba(0,0,0,.35);
 }
 @media (max-width:760px){
   .hero.hero-new{aspect-ratio:1536/1180;max-height:none;background-position:70% center;}
@@ -948,12 +950,15 @@ html.a11y-underline a{text-decoration:underline !important;}
 <section class="hero hero-new">
   <div class="hero-side-text">
     <h1 class="hero-title-stack"><span class="l1">קורס</span><span class="l2">יצירת תוכן</span><span class="l3">עם איב.</span></h1>
-    <a class="btn btn-primary" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
+    <ul class="hero-side-list">
+      <li>בלי ניסיון קודם</li>
+      <li>בלי ציוד יקר</li>
+      <li>בלי להסתבך</li>
+    </ul>
   </div>
 </section>
 <div class="hero-new-below">
   <p class="hero-body">קורס מעשי שילמד אתכם ליצור תוכן שמושך אנשים לעצור, להקשיב ולפעול.</p>
-  <p class="hero-body" style="font-weight:700;">בלי ניסיון קודם. בלי ציוד יקר. בלי להסתבך.</p>
   <a class="btn btn-primary btn-lg hero-cta-solo" href="#pricing">אני רוצה להתחיל ליצור תוכן</a>
   <p class="hero-body" style="margin-top:16px;font-size:.85rem;opacity:.85;">גישה מיידית לקורס · לימוד בקצב שלכם · גישה ללא הגבלת זמן</p>
 </div>

@@ -240,9 +240,6 @@ img,svg{display:block;max-width:100%;}
 }
 
 /* 2. small hand-drawn arrow doodle, guides the eye between two elements */
-.doodle-arrow{width:40px;height:auto;color:var(--orange-deep);display:block;margin:4px auto;opacity:.8;}
-.doodle-arrow.flip{transform:scaleX(-1);}
-.doodle-arrow.rot{transform:rotate(8deg);}
 
 /* 3. corner doodle: reuses the sitewide outline-icon language, placed loosely rather than boxed */
 .corner-doodle{display:inline-flex;color:var(--orange-deep);opacity:.85;}
@@ -372,11 +369,12 @@ img,svg{display:block;max-width:100%;}
 .section.proof{padding-block:clamp(58px,9vw,112px);}
 .proof-title{font-size:clamp(2.2rem,5.6vw,3.2rem);font-weight:900;text-align:center;margin-bottom:56px;text-wrap:balance;}
 .video-header{
-  position:relative;border-radius:24px;overflow:hidden;
-  width:100%;height:340px;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;border-radius:0;
+  width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  height:200px;display:flex;align-items:center;justify-content:center;
   margin-bottom:28px;
 }
-@media (max-width:640px){ .video-header{margin-bottom:24px;} }
+@media (max-width:640px){ .video-header{margin-bottom:24px;height:150px;} }
 .video-header video{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   filter:blur(9px) brightness(.5) saturate(1.15);transform:scale(1.15);
@@ -1196,12 +1194,11 @@ html.a11y-underline a{text-decoration:underline !important;}
       <h2 class="proof-title">ההצלחה שלי<br>לא קרתה במקרה.</h2>
     </div>
 
-    <p class="hero-body">אלה רק חלק קטן מהסרטונים שיצרתי לאורך השנים.<br>ביחד הם צברו עשרות מיליוני צפיות.</p>
+    <p class="hero-body">אלו הם רק חלק קטן מהסרטונים שיצרתי לאורך השנים.<br>ביחד הם צברו עשרות מיליוני צפיות.</p>
     <p class="hero-body">חלקם הגיעו לעשרות אלפים, רבים מהם למאות אלפים, וחלקם גם למיליונים.</p>
     <p class="hero-body">והם הרבה יותר ממספרים.<br><span class="text-highlight" style="color:var(--peach);font-weight:800;">הם ההוכחה לכך שכשתוכן בנוי נכון — אנשים עוצרים, נשארים ופועלים</span>.</p>
     <p class="hero-body">במשך השנים יצרתי תוכן לעמודים האישיים שלי, לעסקים ולמותגים, ואותם העקרונות שעומדים מאחורי הסרטונים האלה הם בדיוק מה שתלמדו בקורס - כדי שגם אתם תוכלו ליצור תוכן מדוייק, שמושך את הקהל הנכון ומייצר תוצאות אמיתיות.</p>
 
-    <svg class="doodle-arrow" viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M30 3c3 12 3 22-2 33"/><path d="M20 28c3 4 5 7 8 8 3-3 5-6 7-9"/></svg>
 
     <div class="proof-grid">
       <div class="proof-card proof-card-real"><div class="proof-video-wrap"><video class="proof-video" poster="assets/proof-video-1-cover.jpg" playsinline preload="metadata" controls><source src="assets/proof-video-1.mp4" type="video/mp4"></video><div class="proof-views-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg><span>883K</span><span class="proof-views-label">צפיות</span></div></div></div>
@@ -1221,7 +1218,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 
 <section class="section chapter-coffee">
   <div class="wrap hero-editorial">
-    <h2 class="know-title" style="text-align:center;"><span class="marker-stroke">בסיום הקורס תוכלו:</span></h2>
+    <h2 class="know-title" style="text-align:center;"><span class="marker-stroke">בסיום הקורס תדעו:</span></h2>
     <div class="know-items">
       <p class="know-item"><span class="check-mark">✔</span> איך למצוא רעיונות גם כשאין לכם השראה</p>
       <p class="know-item"><span class="check-mark">✔</span> איך לפתוח סרטון כך שאנשים ירצו להמשיך לצפות</p>
@@ -1234,7 +1231,7 @@ html.a11y-underline a{text-decoration:underline !important;}
   </div>
 </section>
 
-<section class="who-for chapter-cream">
+<section class="who-for chapter-black">
   <div class="wrap">
     <div class="icon3d-wrap"><img class="icon3d icon3d-support anim-bob" src="assets/icons/bullseye_3d.png" alt=""></div>
     <span class="who-for-label">אם אחד מהמשפטים הבאים מרגיש לכם מוכר - הקורס הזה נבנה בדיוק בשבילכם.</span>

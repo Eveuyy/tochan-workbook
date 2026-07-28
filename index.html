@@ -140,11 +140,16 @@ img,svg{display:block;max-width:100%;}
 .story-heading{font-family:'Fredoka','Rubik',sans-serif; color:#fff; font-size:clamp(2.1rem,4.8vw,2.9rem);}
 
 .sticky-note{
-  position:relative; background:url('assets/sticky-note-graphic.png') center / 100% 100% no-repeat;
-  aspect-ratio:501/512; max-width:400px; margin:0 auto; padding:78px 52px 55px;
-  --ink:#3D2418; color:var(--ink); display:flex; flex-direction:column; justify-content:center;
+  position:relative; background:var(--paper); --ink:var(--ink-on-paper); color:var(--ink);
+  max-width:36ch; margin:0 auto; padding:34px 30px 30px; border-radius:6px;
+  transform:rotate(-1.6deg); box-shadow:0 14px 0 -6px rgba(0,0,0,.12), 0 20px 34px -12px rgba(0,0,0,.45);
 }
 .sticky-note p{color:var(--ink);}
+.sticky-note-tape{
+  position:absolute; top:-16px; left:50%; transform:translateX(-50%) rotate(-3deg);
+  width:90px; height:32px; background:rgba(232,168,124,.75); border:1px solid rgba(255,255,255,.3);
+  box-shadow:0 3px 6px rgba(0,0,0,.2);
+}
 .story-social-elegant{display:flex; align-items:center; justify-content:center; gap:2.2rem; margin:44px 0 10px; flex-wrap:wrap;}
 .story-social-elegant-item{display:inline-flex; align-items:center; gap:.55rem; color:#fff; font-size:.95rem;}
 .story-social-elegant-item strong{font-weight:800;}
@@ -1092,6 +1097,7 @@ html.a11y-underline a{text-decoration:underline !important;}
 <section class="section chapter-black">
   <div class="wrap hero-editorial">
     <div class="sticky-note fade-in">
+      <span class="sticky-note-tape"></span>
       <p class="hero-stmt stmt-gold" style="font-size:clamp(1.3rem,3vw,1.7rem);">אם גם אתם מרגישים שיצירת תוכן יכולה לקדם אתכם, אבל עדיין לא התחלתם.<br><span style="color:var(--coral);">בניתי את הקורס הזה במיוחד בשבילכם.</span></p>
     </div>
   </div>

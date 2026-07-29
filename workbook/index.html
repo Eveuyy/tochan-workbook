@@ -835,6 +835,78 @@ const WORKBOOK = [
   ]
 },
 
+{id:'t20', type:'task', label:'בונוס לבעלי עסקים', bonus:true, title:'מה קונים ממני מעבר למוצר?',
+  introIcon:'heart',
+  intro:'אנשים לא קונים רק מוצר או שירות — הם קונים את האדם שמאחוריו.<br>בעסק קטן, האנרגיה, האישיות והדרך שבה אתם מדברים הם חלק בלתי נפרד ממה שאנשים קונים.',
+  instructions:'בלי לחשוב יותר מדי. מה עולה ראשון בראש?',
+  blobColors:['var(--lilac)','var(--peach)'],
+  body:[
+    {b:'section', text:'2-3 דברים שהאישיות או הסיפור שלי מוסיפים לעסק, מעבר למוצר/לשירות עצמו:'},
+    {b:'numbered', idPrefix:'t20_personalValue', items:['','','']},
+    {b:'textarea', id:'t20_humanFace', label:'דרך אחת קטנה שאני יכול/ה לתת לעסק שלי קצת יותר פנים אנושיות השבוע:'}
+  ]
+},
+
+{id:'t21', type:'task', label:'בונוס לבעלי עסקים', bonus:true, title:'האם העמוד שלי עושה את העבודה?',
+  introIcon:'eye',
+  intro:'עמוד טוב הוא סוכן המכירות הכי טוב שלכם — הוא עונה מראש על השאלות וההתנגדויות של הלקוחות, כדי ששיחת המכירה לא תתחיל מאפס.',
+  instructions:'תעברו על העמוד שלכם תוך כדי מילוי.',
+  blobColors:['var(--sage)','var(--lilac)'],
+  body:[
+    {b:'section', text:'שאלות או חששות שלקוחות שואלים אותי הכי הרבה לפני שהם קונים:'},
+    {b:'numbered', idPrefix:'t21_questions', items:['','','']},
+    {b:'textarea', id:'t21_answered', label:'אילו מהשאלות האלה כבר עונות עליהן בעמוד שלי?'},
+    {b:'textarea', id:'t21_missing', label:'אילו מהן עדיין לא מקבלות מענה בעמוד?'}
+  ]
+},
+
+{id:'t22', type:'task', label:'בונוס לבעלי עסקים', bonus:true, title:'צפיות מול פניות',
+  introIcon:'star',
+  intro:'ויראליות היא אמצעי — לא מטרה. יש הבדל ענק בין תוכן שמביא צפיות לבין תוכן שמביא לקוחות.',
+  instructions:'תסתכלו על 3 מהפוסטים האחרונים שלכם.',
+  blobColors:['var(--peach)','var(--pink)'],
+  body:[
+    {b:'section', text:'פוסט 1'},
+    {b:'text', id:'t22_p1_topic', label:'הנושא:'},
+    {b:'textarea', id:'t22_p1_result', label:'הביא הרבה צפיות? הביא פנייה אמיתית (לקוח פוטנציאלי)? שני הדברים?'},
+    {b:'section', text:'פוסט 2'},
+    {b:'text', id:'t22_p2_topic', label:'הנושא:'},
+    {b:'textarea', id:'t22_p2_result', label:'הביא הרבה צפיות? הביא פנייה אמיתית (לקוח פוטנציאלי)? שני הדברים?'},
+    {b:'section', text:'פוסט 3'},
+    {b:'text', id:'t22_p3_topic', label:'הנושא:'},
+    {b:'textarea', id:'t22_p3_result', label:'הביא הרבה צפיות? הביא פנייה אמיתית (לקוח פוטנציאלי)? שני הדברים?'},
+    {b:'textarea', id:'t22_takeaway', label:'מה אני לומד/ת מזה על התוכן שממש מקדם את העסק שלי?'}
+  ]
+},
+
+{id:'t23', type:'task', label:'בונוס לבעלי עסקים', bonus:true, title:'רעיונות לכל סוג תוכן',
+  introIcon:'bulb',
+  intro:'כל סוג תוכן בעמוד שלכם עונה על שאלה אחרת שהלקוח שואל את עצמו לפני שהוא קונה. הבדיקה הזו עוזרת לוודא שהעמוד שלכם נותן תמונה מלאה.',
+  instructions:'לכל קטגוריה, כתבו 2-3 רעיונות תוכן אמיתיים שאתם יכולים ליצור.',
+  blobColors:['var(--lilac)','var(--sage)'],
+  body:[
+    {b:'section', text:'תוכן שבונה אמון וחיבור — "הוא מבין אותי?"'},
+    {b:'numbered', idPrefix:'t23_trust', items:['','','']},
+    {b:'section', text:'תוכן שמראה שירות/תוצאה — "מה יוצא לי מזה?"'},
+    {b:'numbered', idPrefix:'t23_result', items:['','','']},
+    {b:'section', text:'תוכן שמחבר לאישיות שלכם — "מתחבר לאנרגיה שלו?"'},
+    {b:'numbered', idPrefix:'t23_personality', items:['','','']},
+    {b:'section', text:'תוכן קליל/טרנדי (אופציונלי):'},
+    {b:'numbered', idPrefix:'t23_light', items:['','','']}
+  ]
+},
+
+{id:'t24', type:'task', label:'בונוס לבעלי עסקים', bonus:true, title:'תדירות ריאלית',
+  introIcon:'clock',
+  intro:'אתם לא צריכים להיות כל היום ברשתות. פוסט אחד מדויק פעם בשבוע (או אפילו בשבועיים) הוא רק דוגמה לכך שעקביות חשובה יותר מכמות — לא כלל קבוע שמתאים לכל עסק.',
+  instructions:'בלי לחץ. רק מה שבאמת ריאלי לכם.',
+  blobColors:['var(--pink)','var(--sage)'],
+  body:[
+    {b:'text', id:'t24_frequency', label:'כמה פעמים בשבוע/שבועיים ריאלי לי לפרסם, בלי לרדוף אחרי כמות?'},
+    {b:'textarea', id:'t24_whyRealistic', label:'למה זה ריאלי דווקא לי, ברמת העסק והזמן שיש לי כרגע?'}
+  ]
+},
+
 {id:'final', type:'final', title:'התחייבות קטנה',
   oathPre:'אני, ', oathPost:'מתחייב/ת לא לחכות לרגע שבו הכול מושלם.',
   body:[

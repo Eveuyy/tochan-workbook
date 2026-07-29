@@ -81,6 +81,7 @@ body{margin:0; background:var(--bg); color:var(--ink); font-family:'Rubik','Sego
 .card-link:hover{ background:var(--active-deep); transform:translateY(-1px); }
 .card-link.ghost{ background:transparent; color:var(--active); border:1.5px solid var(--active); }
 .card-link.ghost:hover{ background:var(--active); color:#fff; }
+.card-link+.card-link{ margin-inline-start:.5rem; margin-top:.4rem; }
 
 /* soon badge */
 .badge-soon{
@@ -126,16 +127,18 @@ footer{ text-align:center; margin-top:3rem; color:var(--ink-soft); font-size:.85
         <div class="icon">📓</div>
         <div class="body">
           <h3>חוברת העבודה שלכם</h3>
-          <p>פתחו אותה לצד הקורס — כל תרגיל במקום שלו, מוכן למילוי תוך כדי צפייה.</p>
-          <a class="card-link" href="/workbook/">פתחו את החוברת</a>
+          <p>פתחו אותה לצד הקורס — כל תרגיל במקום שלו, מוכן למילוי תוך כדי צפייה. בחרו את הגרסה של המסלול שלכם.</p>
+          <a class="card-link" href="/workbook/">גרסה בסיסית</a>
+          <a class="card-link ghost" href="/workbook/business/">גרסה Business</a>
         </div>
       </div>
       <div class="card">
         <div class="icon">📄</div>
         <div class="body">
           <h3>סיכום הקורס</h3>
-          <p>תזכורת מרוכזת לכל מה שלמדנו, לחזור אליה כשצריך.</p>
-          <a class="card-link" href="/recap/">פתחו את הסיכום</a>
+          <p>תזכורת מרוכזת לכל מה שלמדנו, לחזור אליה כשצריך. בחרו את הגרסה של המסלול שלכם.</p>
+          <a class="card-link" href="/recap/">גרסה בסיסית</a>
+          <a class="card-link ghost" href="/recap/business/">גרסה Business</a>
         </div>
       </div>
     </div>

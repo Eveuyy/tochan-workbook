@@ -1,9 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>חוברת עבודה — קורס יצירת תוכן</title>
+<title>סיכום הקורס — מסלול Business</title>
 <style>
 @font-face{
   font-family:'Rubik';
@@ -31,31 +31,17 @@
 }
 
 :root{
-  --cream:#F7EDE6;
-  --paper:#FFFFFF;
-  --ink:#3D2418;
-  --ink-soft:#7A6355;
-  --line:#E8DACE;
-  --pink:#F1E4E8;
-  --pink-deep:#8C5A6B;
-  --peach:#F2E3D8;
-  --peach-deep:#C97F63;
-  --sage:#E3E8DD;
-  --sage-deep:#7A8C6E;
-  --lilac:#F2E0DA;
-  --lilac-deep:#A8462E;
-  --shadow:rgba(120,72,48,.12);
+  --cream:#F7EDE6; --paper:#FFFFFF; --ink:#3D2418; --ink-soft:#7A6355;
+  --line:#E8DACE; --pink:#F1E4E8; --pink-deep:#8C5A6B; --peach:#F2E3D8;
+  --peach-deep:#C97F63; --sage:#E3E8DD; --sage-deep:#7A8C6E;
+  --lilac:#F2E0DA; --lilac-deep:#A8462E; --shadow:rgba(120,72,48,.12);
   color-scheme:light;
 }
-/* This workbook is a deliberate single (light, pastel-paper) visual world —
-   pinned intentionally under both theme signals rather than inverted. */
 @media (prefers-color-scheme:dark){
-  :root{
-    --cream:#F7EDE6; --paper:#FFFFFF; --ink:#3D2418; --ink-soft:#7A6355;
+  :root{ --cream:#F7EDE6; --paper:#FFFFFF; --ink:#3D2418; --ink-soft:#7A6355;
     --line:#E8DACE; --pink:#F1E4E8; --pink-deep:#8C5A6B; --peach:#F2E3D8;
     --peach-deep:#C97F63; --sage:#E3E8DD; --sage-deep:#7A8C6E;
-    --lilac:#F2E0DA; --lilac-deep:#A8462E; --shadow:rgba(120,72,48,.12);
-  }
+    --lilac:#F2E0DA; --lilac-deep:#A8462E; --shadow:rgba(120,72,48,.12); }
 }
 :root[data-theme="dark"]{
   --cream:#F7EDE6; --paper:#FFFFFF; --ink:#3D2418; --ink-soft:#7A6355;
@@ -67,1335 +53,517 @@
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
 body{
-  background:var(--cream);
-  color:var(--ink);
-  font-family:'Rubik','Segoe UI',Arial,sans-serif;
-  direction:rtl;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  min-height:100vh;
+  background:var(--cream); color:var(--ink); font-family:'Rubik','Segoe UI',Arial,sans-serif;
+  direction:rtl; line-height:1.6; -webkit-font-smoothing:antialiased; min-height:100vh;
 }
 h1,h2,h3{font-weight:700;text-wrap:balance;margin:0;}
 p{margin:0;}
 ::selection{background:var(--pink);color:var(--ink);}
 :focus-visible{outline:3px solid var(--pink-deep);outline-offset:2px;border-radius:6px;}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms !important;transition-duration:.001ms !important;}}
-
 .num{font-family:'Fredoka','Rubik',sans-serif;font-variant-numeric:tabular-nums;}
 
-/* ===== toolbar ===== */
 .toolbar{
-  position:sticky;top:0;z-index:50;
-  background:rgba(251,243,231,.92);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--line);
-  padding:10px clamp(14px,4vw,32px);
+  position:sticky;top:0;z-index:50; background:rgba(251,243,231,.92); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line); padding:10px clamp(14px,4vw,32px);
   display:flex;align-items:center;gap:14px;flex-wrap:wrap;
 }
 .toolbar .brand{font-weight:700;font-size:1rem;white-space:nowrap;}
 .toolbar .brand span{color:var(--pink-deep);}
-.progress-wrap{flex:1 1 160px;min-width:120px;display:flex;align-items:center;gap:10px;}
-.progress-track{flex:1;height:8px;border-radius:99px;background:var(--line);overflow:hidden;}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--pink-deep),var(--peach-deep));border-radius:99px;transition:width .3s ease;}
-.progress-label{font-size:.78rem;color:var(--ink-soft);white-space:nowrap;font-variant-numeric:tabular-nums;}
 .jump-select{
-  font-family:inherit;font-size:.85rem;color:var(--ink);
+  flex:1 1 220px; font-family:inherit;font-size:.85rem;color:var(--ink);
   background:var(--paper);border:1.5px solid var(--line);border-radius:12px;
-  padding:7px 10px;max-width:180px;cursor:pointer;
+  padding:8px 12px;cursor:pointer;max-width:420px;
 }
 .btn{
   font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer;
   border-radius:12px;padding:8px 16px;border:1.5px solid transparent;
   display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
-  transition:transform .12s ease, box-shadow .12s ease;
 }
-.btn:active{transform:translateY(1px);}
 .btn-primary{background:var(--pink-deep);color:#fff;}
 .btn-primary:hover{box-shadow:0 4px 14px rgba(193,92,130,.35);}
-.btn-ghost{background:transparent;color:var(--peach-deep);border-color:var(--peach-deep);}
-.btn-ghost:hover{background:rgba(201,122,52,.08);}
-.save-note{font-size:.72rem;color:var(--ink-soft);}
 
-/* ===== page shell ===== */
-.book{max-width:1000px;margin:0 auto;padding:28px clamp(10px,3vw,24px) 80px;}
+.book{max-width:900px;margin:0 auto;padding:28px clamp(10px,3vw,24px) 80px;}
 .page{
-  position:relative;overflow:hidden;
-  background:var(--paper);
-  width:min(210mm,100%);
-  margin:0 auto 40px;
-  border-radius:28px;
-  box-shadow:0 14px 34px var(--shadow);
-  padding:clamp(30px,6vw,72px) clamp(22px,6vw,64px);
+  position:relative;overflow:hidden;background:var(--paper);width:100%;
+  margin:0 auto 36px;border-radius:28px;box-shadow:0 14px 34px var(--shadow);
+  padding:clamp(28px,5.5vw,64px) clamp(20px,5.5vw,56px);
 }
-.blob{position:absolute;border-radius:44% 56% 62% 38%/48% 42% 58% 52%;filter:blur(0px);opacity:.55;z-index:0;pointer-events:none;}
+.blob{position:absolute;border-radius:44% 56% 62% 38%/48% 42% 58% 52%;opacity:.5;z-index:0;pointer-events:none;}
 .page > *{position:relative;z-index:1;}
-.icon{width:34px;height:34px;flex:none;stroke:var(--pink-deep);}
-.icon-lg{width:54px;height:54px;}
+.icon{width:32px;height:32px;flex:none;stroke:var(--pink-deep);}
+.icon-lg{width:52px;height:52px;}
 
 /* cover */
-.page-cover{text-align:center;min-height:min(1000px,80vh);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;}
+.page-cover{text-align:center;min-height:min(640px,72vh);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;}
 .cover-eyebrow{font-size:1rem;font-weight:600;color:var(--pink-deep);letter-spacing:.04em;}
-.cover-title{font-size:clamp(2.4rem,7vw,4rem);}
-.cover-quote{max-width:34ch;font-size:clamp(1.05rem,2.6vw,1.3rem);color:var(--ink-soft);}
-.cover-icon{width:64px;height:64px;stroke:var(--sage-deep);}
+.cover-title{font-size:clamp(2.1rem,6vw,3.4rem);}
+.cover-sub{max-width:40ch;font-size:clamp(1rem,2.4vw,1.2rem);color:var(--ink-soft);line-height:1.8;}
+.cover-icon{stroke:var(--sage-deep);}
 
-/* info page */
-.page-info{display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;}
-.info-card{
-  background:var(--sage);border:1.5px solid rgba(76,122,91,.28);
-  border-radius:22px;padding:clamp(20px,4vw,32px);max-width:60ch;
-  font-size:1.05rem;line-height:1.85;
-}
-.info-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
-
-/* task chrome */
+/* chapter chrome */
 .label-pill{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--pink);color:var(--pink-deep);
-  font-weight:700;font-size:.82rem;letter-spacing:.03em;
-  padding:7px 18px;border-radius:99px;margin-bottom:16px;
+  display:inline-flex;align-items:center;gap:8px;background:var(--pink);color:var(--pink-deep);
+  font-weight:700;font-size:.82rem;letter-spacing:.03em;padding:7px 18px;border-radius:99px;margin-bottom:16px;
 }
-.page-title{font-size:clamp(1.7rem,4.4vw,2.5rem);margin-bottom:20px;}
-.page-number-badge{
-  position:absolute;left:clamp(14px,4vw,36px);top:clamp(10px,3vw,26px);
-  font-size:clamp(2.6rem,7vw,4.2rem);font-weight:700;
-  color:var(--peach-deep);opacity:.16;z-index:0;line-height:1;
+.label-pill.bonus{background:var(--lilac);color:var(--lilac-deep);}
+.chapter-title{font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:18px;}
+.chapter-number{
+  position:absolute;left:clamp(14px,4vw,32px);top:clamp(10px,3vw,24px);
+  font-size:clamp(2.4rem,6vw,3.6rem);font-weight:700;color:var(--peach-deep);opacity:.15;z-index:0;line-height:1;
 }
-.intro-box{
-  background:var(--sage);border:1.5px solid rgba(76,122,91,.25);
-  border-radius:20px;padding:clamp(16px,3vw,26px);margin-bottom:26px;
-  line-height:1.8;display:flex;gap:14px;align-items:flex-start;
+.recap-intro{
+  background:var(--sage);border:1.5px solid rgba(76,122,91,.25);border-radius:20px;
+  padding:clamp(16px,3vw,24px);margin-bottom:26px;line-height:1.8;display:flex;gap:14px;align-items:flex-start;
 }
-.intro-box .icon{stroke:var(--sage-deep);margin-top:2px;}
-.explain-box{
-  background:var(--lilac);border:1.5px solid rgba(124,93,166,.25);
-  border-radius:20px;padding:clamp(16px,3vw,26px);margin-bottom:26px;line-height:1.8;
-}
-.instructions-line{
-  display:flex;align-items:center;gap:10px;
-  color:var(--peach-deep);font-weight:600;margin-bottom:20px;font-size:.98rem;
-}
-.instructions-line .icon{width:22px;height:22px;stroke:var(--peach-deep);}
-.section-heading{font-size:1.18rem;font-weight:700;margin:30px 0 14px;}
-.section-heading:first-child{margin-top:0;}
-.closing-text{
-  margin-top:26px;font-style:normal;font-weight:600;color:var(--sage-deep);
-  border-top:1.5px dashed var(--line);padding-top:18px;
-}
+.recap-intro .icon{stroke:var(--sage-deep);margin-top:2px;}
 
-/* field stacking */
-.stack{display:flex;flex-direction:column;gap:20px;}
-.field{display:flex;flex-direction:column;gap:8px;}
-.field-label{font-weight:600;font-size:.98rem;}
-.field-label .hint{font-weight:400;color:var(--ink-soft);font-size:.85rem;display:block;margin-top:2px;}
-input[type=text].input, textarea.input{
-  width:100%;background:var(--paper);border:1.6px solid var(--line);
-  border-radius:14px;padding:12px 16px;font-family:inherit;font-size:1rem;
-  color:var(--ink);resize:vertical;
-}
-textarea.input{min-height:5.2em;line-height:1.7;}
-input[type=text].input:focus, textarea.input:focus{border-color:var(--pink-deep);}
-.numbered-list{display:flex;flex-direction:column;gap:12px;}
-.numbered-row{display:flex;align-items:center;gap:12px;}
-.numbered-row .num{
-  flex:none;width:30px;height:30px;border-radius:50%;background:var(--pink);
-  color:var(--pink-deep);display:flex;align-items:center;justify-content:center;
-  font-weight:700;font-size:.95rem;
-}
-.numbered-row input.input{flex:1;}
+.section-heading{font-size:1.12rem;font-weight:700;margin:26px 0 12px;display:flex;align-items:center;gap:8px;}
+.section-heading:first-of-type{margin-top:0;}
+.section-heading .dot{width:8px;height:8px;border-radius:50%;background:var(--pink-deep);flex:none;}
 
-/* checkbox groups */
-.check-group{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;}
-@media (max-width:560px){.check-group{grid-template-columns:1fr;}}
-.check-group.single-col{grid-template-columns:1fr;}
-.check-option{
-  display:flex;align-items:center;gap:10px;cursor:pointer;
-  padding:9px 12px;border-radius:14px;transition:background .12s ease;
-}
-.check-option:hover{background:rgba(246,215,225,.35);}
-.check-option input{position:absolute;opacity:0;width:1px;height:1px;}
-.check-option .box{
-  flex:none;width:22px;height:22px;border-radius:7px;border:2px solid var(--pink-deep);
-  background:var(--paper);position:relative;
-}
-.check-option input:checked + .box{background:var(--pink-deep);}
-.check-option input:checked + .box::after{
-  content:"";position:absolute;inset:0;margin:auto;width:11px;height:6px;
-  border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;
-  transform:translateY(-1px) rotate(-45deg);
-}
-.check-option input:focus-visible + .box{outline:3px solid var(--pink-deep);outline-offset:2px;}
-.check-option .txt{font-size:.96rem;}
-.check-option-wrap{grid-column:1/-1;display:flex;flex-direction:column;gap:6px;}
-.check-option-wrap .other-input{
-  margin-inline-start:44px;max-width:calc(100% - 44px);
-  background:var(--paper);border:1.6px solid var(--line);border-radius:12px;
-  font-family:inherit;font-size:.92rem;padding:9px 14px;color:var(--ink);
-}
-.check-option-wrap .other-input:focus{outline:none;border-color:var(--pink-deep);}
-.check-option-wrap .other-input::placeholder{color:var(--ink-soft);}
+ul.recap-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;}
+ul.recap-list li{display:flex;gap:10px;align-items:flex-start;line-height:1.7;}
+ul.recap-list li::before{content:"✨";flex:none;font-size:.9rem;margin-top:.15em;}
+ul.recap-list.plain li::before{content:"–";color:var(--pink-deep);font-weight:700;}
 
-/* cards */
-.cards-row{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
-.card{
-  background:var(--paper);border:1.6px solid var(--pink);border-radius:22px;
-  padding:22px;display:flex;flex-direction:column;gap:16px;box-shadow:0 6px 16px rgba(193,92,130,.08);
-}
-.card-title{font-weight:700;font-size:1.05rem;color:var(--pink-deep);}
-
-/* example / static boxes */
-.example-box{
+.callout{
   background:var(--peach);border:1.6px dashed var(--peach-deep);border-radius:20px;
-  padding:clamp(16px,3vw,24px);margin:22px 0;
+  padding:clamp(14px,3vw,22px);margin:20px 0;font-weight:600;line-height:1.8;
 }
-.example-title{font-weight:700;color:var(--peach-deep);margin-bottom:10px;font-size:.95rem;}
-.example-text{white-space:pre-line;line-height:1.85;}
-
-/* AI agent link box */
 .agent-link-box{
   background:var(--lilac);border:1.6px solid rgba(124,93,166,.3);border-radius:20px;
-  padding:clamp(16px,3vw,22px);margin:22px 0;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;
+  padding:clamp(14px,3vw,20px);margin:20px 0;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
 }
-.agent-link-text{display:flex;gap:12px;align-items:flex-start;flex:1 1 220px;line-height:1.7;}
+.agent-link-text{display:flex;gap:10px;align-items:flex-start;flex:1 1 200px;line-height:1.7;font-weight:400;}
 .agent-link-text .icon{stroke:var(--lilac-deep);margin-top:2px;}
 .agent-link-box .btn-primary{background:var(--lilac-deep);flex:none;}
-.agent-link-box .btn-primary:hover{box-shadow:0 4px 14px rgba(124,93,166,.35);}
+.callout .label{font-weight:700;color:var(--peach-deep);font-size:.85rem;display:block;margin-bottom:6px;letter-spacing:.02em;}
 
-/* rating scale */
-.rating-row{display:flex;gap:8px;flex-wrap:wrap;}
-.rating-btn{
-  font-family:'Fredoka','Rubik',sans-serif;font-weight:600;font-size:1.05rem;
-  width:42px;height:42px;border-radius:50%;border:1.6px solid var(--line);
-  background:var(--paper);color:var(--ink);cursor:pointer;
-}
-.rating-btn[aria-pressed="true"]{background:var(--pink-deep);border-color:var(--pink-deep);color:#fff;}
+.split-bars{display:flex;flex-direction:column;gap:12px;margin:18px 0;}
+.split-row{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;}
+.split-row .pct{font-family:'Fredoka','Rubik',sans-serif;font-weight:700;font-size:1.15rem;color:var(--pink-deep);text-align:center;}
+.split-row .bar-track{height:14px;border-radius:99px;background:var(--line);overflow:hidden;}
+.split-row .bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--pink-deep),var(--peach-deep));}
+.split-row .lbl{font-size:.92rem;font-weight:600;white-space:nowrap;}
 
-/* sun diagram (task 4) — radial layout on comfortable screens */
-.sun-wrap{display:flex;flex-direction:column;align-items:center;margin:10px 0 26px;}
-.sun-diagram{position:relative;width:min(560px,94vw);aspect-ratio:1;margin:0 auto;}
-.sun-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
-.sun-lines line{stroke:var(--peach-deep);stroke-width:.5;opacity:.5;}
-.sun-center{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:36%;aspect-ratio:1;border-radius:50%;z-index:2;
-  background:var(--peach);border:2px solid var(--peach-deep);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-  text-align:center;padding:10%;
+.recap-line{
+  margin-top:26px;padding-top:18px;border-top:1.5px dashed var(--line);
+  font-weight:700;color:var(--sage-deep);display:flex;gap:10px;align-items:flex-start;line-height:1.7;
 }
-.sun-center .field-label{color:var(--peach-deep);font-size:.85rem;}
-.sun-center input.input{text-align:center;border-color:var(--peach-deep);padding:8px 6px;font-size:.85rem;}
-.sun-ray-input{
-  position:absolute;transform:translate(-50%,-50%);z-index:2;
-  display:flex;flex-direction:column;align-items:center;gap:4px;
-  width:clamp(64px,20vw,112px);
-}
-.sun-ray-input .ray-num{
-  width:20px;height:20px;border-radius:50%;background:var(--sage);color:var(--sage-deep);
-  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;
-}
-.sun-ray-input input.input{padding:6px 8px;font-size:.78rem;text-align:center;border-radius:10px;}
-@media (max-width:480px){
-  .sun-diagram{display:grid;grid-template-columns:1fr 1fr;position:static;width:100%;aspect-ratio:auto;gap:10px;}
-  .sun-lines{display:none;}
-  .sun-center{position:static;transform:none;width:100%;grid-column:1/-1;margin-bottom:6px;padding:16px;}
-  .sun-ray-input{position:static;transform:none;width:100%;flex-direction:row;justify-content:flex-start;}
-}
+.recap-line .icon{stroke:var(--sage-deep);width:24px;height:24px;margin-top:2px;}
 
-/* pause / "go film now" banner */
-.pause-banner{
-  display:flex;align-items:center;gap:14px;background:var(--pink);
-  border:2px dashed var(--pink-deep);border-radius:20px;padding:18px 22px;
-  margin:30px 0;font-weight:700;font-size:1.05rem;color:var(--pink-deep);line-height:1.6;
-}
-.pause-banner .icon{stroke:var(--pink-deep);}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media (max-width:640px){.two-col{grid-template-columns:1fr;}}
+.mini-card{background:var(--paper);border:1.6px solid var(--pink);border-radius:18px;padding:18px;}
+.mini-card .mini-title{font-weight:700;color:var(--pink-deep);margin-bottom:10px;font-size:.98rem;}
 
-/* two-week planner */
-.week-grid{display:grid;gap:20px;grid-template-columns:1fr 1fr;}
-@media (max-width:700px){.week-grid{grid-template-columns:1fr;}}
-.week-col{border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:16px;}
-.week-col.w1{background:var(--pink);}
-.week-col.w2{background:var(--sage);}
-.week-col-title{font-weight:700;font-size:1.1rem;}
-.video-card{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;}
-.video-card .video-title{font-weight:600;font-size:.9rem;color:var(--ink-soft);}
-
-/* signature */
-.signature-input{
-  border:none;border-bottom:2.5px dashed var(--pink-deep);background:transparent;
-  font-size:1.3rem;padding:10px 4px;width:100%;font-family:inherit;color:var(--ink);
-}
-.signature-input:focus{outline:none;}
-
-/* final page */
-.page-final{text-align:center;}
-.final-title{font-size:clamp(1.9rem,5vw,2.7rem);margin-bottom:22px;}
-.final-oath{font-size:1.15rem;line-height:2;margin-bottom:26px;}
-.final-oath .blank-name{display:inline-block;min-width:200px;border-bottom:2px solid var(--ink);}
+.final-page{text-align:center;}
+.final-title{font-size:clamp(1.7rem,4.6vw,2.4rem);margin-bottom:18px;}
 
 footer.done-footer{text-align:center;color:var(--ink-soft);font-size:.85rem;padding:20px 0 60px;}
 
-/* ===== print ===== */
 @media print{
   @page{size:A4;margin:14mm;}
   .toolbar{display:none !important;}
   body{background:#fff;}
   .book{padding:0;max-width:none;}
-  .page{
-    box-shadow:none;border-radius:0;width:auto;margin:0;
-    page-break-after:always;padding:0;
-  }
+  .page{box-shadow:none;border-radius:0;margin:0;page-break-after:always;}
   .blob{display:none;}
-  .page-number-badge{opacity:.25;}
-  /* print = always a blank fillable copy, regardless of digital answers */
-  input.input, textarea.input, .other-input{
-    color:transparent !important;-webkit-text-fill-color:transparent !important;
-  }
-  textarea.input{
-    background-image:repeating-linear-gradient(var(--paper) 0 1.6em, var(--line) 1.6em calc(1.6em + 1px));
-    background-attachment:local;
-  }
-  input[type=text].input{border:none;border-bottom:1.6px solid var(--ink);border-radius:0;background:none;padding:8px 2px;}
-  .check-option input:checked + .box{background:var(--paper) !important;}
-  .check-option input:checked + .box::after{content:none !important;}
-  .signature-input{color:transparent !important;-webkit-text-fill-color:transparent !important;}
-  .rating-btn[aria-pressed="true"]{background:var(--paper) !important;color:var(--ink) !important;}
 }
 </style>
+</head>
+<body>
+
 
 <div class="toolbar">
-  <div class="brand">חוברת עבודה <span>קורס יצירת תוכן</span></div>
-  <div class="progress-wrap" aria-live="polite">
-    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-    <div class="progress-label" id="progressLabel">0%</div>
-  </div>
-  <select class="jump-select" id="jumpSelect" aria-label="קפצו לעמוד"></select>
+  <div class="brand">סיכום הקורס <span>קורס יצירת תוכן</span></div>
+  <select class="jump-select" id="jumpSelect" aria-label="קפצו לפרק"></select>
   <button class="btn btn-primary" id="printBtn">🖨️ הדפסה / שמירה כ־PDF</button>
-  <button class="btn btn-ghost" id="exportBtn">📄 ייצוא תשובות לקובץ</button>
-  <button class="btn btn-ghost" id="clearBtn">ניקוי תשובות</button>
 </div>
 
 <div class="book" id="book"></div>
 
-<footer class="done-footer">ההתקדמות שלך נשמרת אוטומטית בדפדפן הזה 🤍</footer>
+<footer class="done-footer">חוזרים לפה בכל פעם שרוצים לרענן זיכרון 🤍</footer>
 
 <script>
-const IS_BUSINESS = false; /* set true in the /business/ variant only */
+const IS_BUSINESS = true; /* set true in the /business/ variant only */
 
-const WORKBOOK = [
+const RECAP = [
 
 {id:'cover', type:'cover',
-  eyebrow:'חוברת עבודה',
+  eyebrow:'סיכום הקורס · מסלול Business',
   title:'קורס יצירת תוכן',
-  quote:'כי לא מרגישים מוכנים ואז מתחילים - מתחילים והמוכנות תגיע בדרך!'
+  sub:'כל הנקודות המרכזיות מהשיעורים המצולמים — במקום אחד, לחזור אליו בכל פעם שצריך רענון.'
 },
 
-{id:'info', type:'info',
-  text:'📌 שימו לב חברים — החוברת זוכרת מה מילאתם, אבל רק אם תחזרו אליה מאותו המכשיר והדפדפן שבו התחלתם. אם תעברו למכשיר אחר או תנקו היסטוריית גלישה, ההתקדמות תימחק. אז כדאי פשוט להישאר נאמנים לאותו מקום 😉 ולנוחיותכם, קיימת גם גרסה כתובה להדפסה למי שמעדיף/ה לעבוד על דף.',
-  ctaContinue:'התחלתי, בואו נמשיך'
-},
-
-{id:'t1', type:'task', label:'לפני שמתחילים', title:'רגע, מה עוצר אותי?',
-  introIcon:'heart',
-  intro:'לפני שמתחילים ליצור תוכן, שווה רגע להבין מה בכלל עיכב אותנו עד עכשיו.<br>לא כדי לשפוט את עצמנו, אלא כדי להפסיק לתת לפחדים לנהל אותנו מאחורי הקלעים.',
-  blobColors:['var(--pink)','var(--peach)'],
+{id:'ch1', type:'chapter', numLabel:'01', label:'פרק 1', title:'איך אנשים באמת צורכים תוכן',
+  introIcon:'eye', blobColors:['var(--pink)','var(--sage)'],
+  intro:'המטרה של הפרק הזה היא להתחיל לחשוב כמו יוצרי תוכן — לא רק לצפות בתוכן, אלא להבין למה הוא עובד.',
   body:[
-    {b:'section', text:'כתבו 3 דברים שאתם מרגישים שעצרו אתכם מלהתחיל ליצור תוכן עד היום'},
-    {b:'numbered', idPrefix:'t1_blocker', items:['','','']},
-    {b:'section', text:'תסתכלו על התשובות שלכם, ועכשיו סמנו ליד כל אחת מהתשובות שלכן רגש נוסף, או סיבה נלווית עמוקה יותר לסיבה ההתחלתית שכתבתם.'},
-    {b:'checkbox', id:'t1_reason_1', heading:'תשובה 1 — מה עומד מאחוריה?', options:[
-      {value:'fear',label:'פחד'},{value:'knowledge',label:'חוסר ידע'},{value:'time',label:'חוסר זמן'},
-      {value:'perfectionism',label:'פרפקציוניזם'},{value:'comparison',label:'השוואה לאחרים'},
-      {value:'other',label:'משהו אחר:',other:true}
+    {b:'heading', text:'למה אנחנו בכלל מתחברים לתוכן מסוים?'},
+    {b:'list', items:[
+      'השאלה שכדאי לשאול בכל צפייה היא: "למה דווקא כאן עצרתי?"',
+      'אנשים לא מתחברים לציוד, לשלמות או לאיכות צילום — הם מתחברים לרגש שהתוכן גורם להם להרגיש.',
+      'כל סרטון טוב גורם לצופה להרגיש משהו: סקרנות, הזדהות, צחוק, הלם, פחד או השראה — בדיוק כמו שחדשות תמיד דרמטיות ומסקרנות.',
+      'יש רק כמה שניות בודדות להרשים צופה לפני שהוא ממשיך לגלול — יש מלחמה מתמדת על הקשב שלנו.'
     ]},
-    {b:'checkbox', id:'t1_reason_2', heading:'תשובה 2 — מה עומד מאחוריה?', options:[
-      {value:'fear',label:'פחד'},{value:'knowledge',label:'חוסר ידע'},{value:'time',label:'חוסר זמן'},
-      {value:'perfectionism',label:'פרפקציוניזם'},{value:'comparison',label:'השוואה לאחרים'},
-      {value:'other',label:'משהו אחר:',other:true}
+    {b:'callout', label:'לזכור', text:'השקעה בציוד לא מבטיחה עניין. תוכן פשוט ומדויק יכול להיות הצלחה מסחררת. השאלה היא לא איך אני נראה, אלא מה אני רוצה לגרום לצופה להרגיש.'}
+  ],
+  recap:'משימת הפרק: צפייה אקטיבית — 10–15 דקות ביום של גלילה מודעת, ולשאול את עצמכם: "למה דווקא כאן עצרתי?"'
+},
+
+{id:'ch2', type:'chapter', numLabel:'02', label:'פרק 2', title:'מה זה הוק?',
+  introIcon:'magnet', blobColors:['var(--peach)','var(--lilac)'],
+  intro:'ההוק הוא לא טריק ולא משפט פתיחה יפה — הוא הסיבה שהצופה מחליט לעצור. הוא קורה ב־2–3 השניות הראשונות של הסרטון, ומטרתו לפתוח לצופה "לופ" שהוא ירצה לסגור.',
+  body:[
+    {b:'heading', text:'ארבעה סוגי הוקים'},
+    {b:'list', items:[
+      'הוק ויזואלי — צבעים חזקים, כתוביות דינמיות, זווית מעניינת, פעולה פיזית על המסך.',
+      'הוק סאונד — שיר מוכר, טון דיבור מסקרן, צעקה, לחישה, או טרנד שהמוח כבר מזהה אוטומטית.',
+      'הוק רגשי — משפט שגורם לצופה להרגיש "זה בדיוק אני" או "היא מבינה אותי".',
+      'הוק מסקרן — פותח שאלה בראש ("לופ פתוח") שהמוח רוצה לסגור, למשל: "עשיתי טעות שהמון יוצרים מתחילים עושים...".'
     ]},
-    {b:'checkbox', id:'t1_reason_3', heading:'תשובה 3 — מה עומד מאחוריה?', options:[
-      {value:'fear',label:'פחד'},{value:'knowledge',label:'חוסר ידע'},{value:'time',label:'חוסר זמן'},
-      {value:'perfectionism',label:'פרפקציוניזם'},{value:'comparison',label:'השוואה לאחרים'},
-      {value:'other',label:'משהו אחר:',other:true}
+    {b:'callout', label:'דוגמה מפורקת', text:'"פתחת מצלמה, עשית 400 טייקים... ובסוף לא אהבת אף אחד מהם. אז ויתרת. שוב." — נוגע בכאב, יוצר הזדהות, בונה תחושת "היא מבינה אותי", ומעורר סקרנות להמשך.'},
+    {b:'p', text:'תכנים טובים לרוב משלבים כמה סוגי הוקים יחד.'},
+    {b:'callout', label:'לזכור', text:'אם אף אחד לא עצר, אף אחד גם לא יראה את שאר הסרטון.'}
+  ],
+  recap:'משימת הפרק: בצפייה האקטיבית, זהו גם איזה סוג הוק היה בכל סרטון שעצרתם עליו, ולמה.'
+},
+
+{id:'ch3', type:'chapter', numLabel:'03', label:'פרק 3', title:'איך למצוא רעיונות לתוכן?',
+  introIcon:'sun', blobColors:['var(--peach)','var(--pink)'],
+  intro:'רעיונות הם לא כישרון מולד — הם שריר שאפשר לאמן. המטרה כאן היא לא רק למצוא רעיון לסרטון הבא, אלא ללמוד לחשוב כמו יוצרי תוכן.',
+  body:[
+    {b:'heading', text:'תרגיל השמש'},
+    {b:'list', items:[
+      'כותבים במרכז את הנישה/התחום שלכם, ומקיפים בעיגול.',
+      'מסביב זורקים אסוציאציות חופשיות — בלי לסנן ובלי לשפוט מה עולה.',
+      'בוחרים מילה אחת מהרשימה, ומפרקים אותה: אילו בעיות, כאבים או סיטואציות קשורות אליה?',
+      'מכל בעיה כזו כבר אפשר לצאת עם כמה רעיונות לסרטון.'
     ]},
-    {b:'textarea', id:'t1_rulingThought', label:'המשפט שהכי מנהל אותי בראש הוא:'},
-    {b:'textarea', id:'t1_newThought', label:'והמשפט שאני רוצה להחליף אותו בו הוא:'},
-    {b:'closing', text:'ברגע שמזהים את החסם — הרבה יותר קל לעקוף אותו.'}
-  ]
+    {b:'p', text:'הרעיונות הכי טובים מגיעים מהעבודה שלכם, מהלקוחות, מהשאלות שחוזרות שוב ושוב, ומהחיים עצמם.'},
+    {b:'callout', label:'לזכור', text:'מותר לגמרי לקחת השראה מיוצרים אחרים — אבל לא להעתיק. ההשראה הכי טובה מגיעה מהחיים שלכם עצמכם: קשיים, עבודה, סיטואציות יומיומיות. כל חוויה היא תוכן פוטנציאלי.'},
+    {b:'agentLink', text:'לעזרה בסיעור מוחות והעמקת רעיונות — לא כדי לחשוב במקומכם, אלא כדי לעזור לכם לפתוח את הראש עד שתתחילו לחשוב כמו יוצרים בעצמכם.', cta:'לפתיחת סוכן הרעיונות', url:'https://chatgpt.com/g/g-6a4b400991b08191a699b42d4dd9884b-mptkh-hr-yvnvt'},
+    {b:'p', text:'ברגע שמתחילים לחשוב כמו יוצרי תוכן, מתחילים לראות רעיונות בכל מקום.'}
+  ],
+  recap:'משימת הפרק: תרגיל השמש נמצא בחוברת העבודה שלכם, מוכן למילוי.'
 },
 
-{id:'t2', type:'task', label:'משימה 1', title:'צפייה אקטיבית',
-  introIcon:'eye',
-  intro:'אחד הסודות של יוצרי תוכן טובים הוא שהם מבינים איך לתפוס את הקשב שלנו, ולגעת בדיוק במה שיעניין אותנו.<br>במשימה הזו נלמד לצפות בתוכן בצורה חכמה, לשים לב מה עובד, מה מושך אותנו — ולמה.',
-  instructions:'בחרו 4 תכנים שאהבתם, שעצרתם עליהם, או שנשארתם לצפות בהם. אנחנו מנתחים את התוכן עצמו — כל סרטון לגופו. איזה הוק היה בסרטון הזה, ולמה הוא משך אותי?',
-  blobColors:['var(--pink)','var(--sage)'],
+{id:'ch4', type:'chapter', numLabel:'04', label:'פרק 4', title:'איך עובד מבנה נכון של סרטון?',
+  introIcon:'clapper', blobColors:['var(--pink)','var(--lilac)'],
+  intro:'כמעט כל סרטון טוב בנוי מאותו מבנה בסיסי: התחלה (עם ההוק), אמצע, וסוף.',
   body:[
-    {b:'cards', items:[1,2,3,4].map(n=>({title:`תוכן ${n}`, blocks:[
-      {b:'textarea', id:`t2_c${n}_desc`, label:'תיאור קצר של התוכן:'},
-      {b:'textarea', id:`t2_c${n}_stop`, label:'מה גרם לי לעצור?'},
-      {b:'checkbox', id:`t2_c${n}_worked`, heading:'מה עבד בו בעיניי?', options:[
-        {value:'first_line',label:'המשפט הראשון'},{value:'pace',label:'הקצב'},{value:'curiosity',label:'הסקרנות'},
-        {value:'visual',label:'הוויזואל'},{value:'sound',label:'הסאונד'},{value:'humor',label:'ההומור'},
-        {value:'identify',label:'ההזדהות'},{value:'topic',label:'הנושא'},{value:'other',label:'אחר:',other:true}
-      ]},
-      {b:'textarea', id:`t2_c${n}_takeaway`, label:'מה אני לוקח/ת מזה לתוכן שלי?'}
-    ]}))}
-  ]
-},
-
-{id:'t3', type:'task', label:'משימה 2', title:'אומנות ההוקינג',
-  introIcon:'magnet',
-  intro:'ההתחלה של הסרטון היא המקום שבו הצופה מחליט אם הוא נשאר או ממשיך הלאה.<br>במשימה הזאת נתחיל לזהות מה באמת תופס קשב בשניות הראשונות.<br>ככל שתזהו הוקים טובים אצל אחרים, יהיה לכם קל יותר ליצור כאלה בעצמכם.',
-  instructions:'בחרו 4 תכנים ונסו לזהות מה קרה שם בהתחלה.',
-  blobColors:['var(--peach)','var(--lilac)'],
-  body:[
-    {b:'cards', items:[1,2,3,4].map(n=>({title:`תוכן ${n}`, blocks:[
-      {b:'checkbox', id:`t3_c${n}_hookType`, heading:'מה היה ההוק?', options:[
-        {value:'sentence',label:'משפט'},{value:'motion',label:'תנועה'},{value:'sound',label:'סאונד'},
-        {value:'angle',label:'זווית צילום'},{value:'onscreen',label:'טקסט על המסך'},{value:'surprise',label:'משהו מפתיע'},
-        {value:'emotional',label:'משהו רגשי'},{value:'combo',label:'שילוב של כמה דברים'}
-      ]},
-      {b:'textarea', id:`t3_c${n}_first3sec`, label:'מה בדיוק קרה ב־3 השניות הראשונות?'},
-      {b:'checkbox', id:`t3_c${n}_feeling`, heading:'זה גרם לי:', options:[
-        {value:'curious',label:'להסתקרן'},{value:'laugh',label:'לצחוק'},{value:'seen',label:'להרגיש שרואים אותי'},
-        {value:'continue',label:'לרצות להבין מה ההמשך'},{value:'weird',label:'לעצור כי זה היה מוזר'},
-        {value:'other',label:'אחר:',other:true}
-      ]}
-    ]}))},
-    {b:'section', text:'עכשיו תורכם.'},
-    {b:'numbered', lead:'כתבו 5 הוקים שיכולים להתאים לתוכן שלכם:', idPrefix:'t3_myhook', items:['','','','','']},
-    {b:'text', id:'t3_firstHook', label:'ההוק שהכי התחברתי אליו ממה שכתבתי:'}
-  ]
-},
-
-{id:'t4', type:'task', label:'משימה 3', title:'תרגיל השמש',
-  introIcon:'sun',
-  intro:'הרבה אנשים נתקעים כי הם חושבים שאין להם על מה לדבר.<br>התרגיל הזה עוזר לפתוח את הראש ולהוציא רעיונות מתוך העולם שלכם, בלי להסתמך רק על טרנדים או השראה מאחרים.<br>המטרה היא להבין שיש לכם הרבה יותר תוכן ממה שנדמה לכם.',
-  blobColors:['var(--peach)','var(--pink)'],
-  body:[
-    {b:'agentLink', text:'לא בטוחים מה בדיוק הנישה שלכם? זה שלב בסיסי ולפעמים מבלבל — יש לנו סוכן AI ייעודי שיעזור לכם לחדד ולמצוא נישה מדויקת, לפני שממשיכים לתרגיל.', cta:'לפתיחת סוכן הנישה', url:'https://chatgpt.com/g/g-6a4b4be1f7d0819185e1985e669aa22f-nyshh-vtvkn-mdvyq'},
-    {b:'section', text:'במרכז השמש כתבו את הנישה / התחום שלכם. בלי לחשוב, ממש כל מה שעולה לכם לראש.'},
-    {b:'sun', centerId:'t4_field', centerLabel:'התחום שלי:', rayIds:Array.from({length:10},(_,i)=>`t4_assoc_${i+1}`)},
-    {b:'section', text:'בחרו מילה אחת מהרשימה.'},
-    {b:'text', id:'t4_chosenWord', label:'המילה שבחרתי:'},
-    {b:'section', text:'עכשיו מפרקים אותה. איזה בעיות / כאבים / מחשבות / סיטואציות יש סביב הנושא הזה?'},
-    {b:'numbered', idPrefix:'t4_problem', items:['','','','','']},
-    {b:'section', text:'הופכים את זה לרעיונות.'},
-    {b:'text', id:'t4_idea1', label:'רעיון לסרטון 1:'},
-    {b:'text', id:'t4_idea2', label:'רעיון לסרטון 2:'},
-    {b:'text', id:'t4_idea3', label:'רעיון לסרטון 3:'},
-    {b:'text', id:'t4_idea4', label:'רעיון לסרטון 4:'},
-    {b:'text', id:'t4_idea5', label:'רעיון לסרטון 5:'},
-    {b:'text', id:'t4_firstToFilm', label:'הרעיון שאני מצלמ/ת ראשון:'},
-    {b:'textarea', id:'t4_why', label:'למה דווקא הוא?'},
-    {b:'agentLink', text:'עשיתם את התרגיל ורוצים להעמיק עוד יותר? יש לנו סוכן AI שאומן במיוחד לעזור לכם לפתח עוד רעיונות ולחשוב על כיוונים לתוכן.', cta:'לפתיחת סוכן הרעיונות', url:'https://chatgpt.com/g/g-6a4b400991b08191a699b42d4dd9884b-mptkh-hr-yvnvt'}
-  ]
-},
-
-{id:'t5', type:'task', label:'משימה 4', title:'בנק רעיונות זריז',
-  introIcon:'bulb',
-  intro:'לא תמיד צריך לחכות להברקה גאונית.<br>לפעמים הרעיונות הכי טובים יוצאים דווקא כשכותבים מהר, בלי לסנן ובלי לחשוב יותר מדי.<br>המשימה הזאת תעזור לכם לבנות מאגר רעיונות שאפשר לחזור אליו בכל פעם שנתקעים.',
-  instructions:'מלאו כמה שיותר מהר. בלי לחשוב יותר מדי.',
-  blobColors:['var(--sage)','var(--peach)'],
-  body:[
-    {b:'section', text:'דברים שמצחיקים אותי בתחום שלי:'},
-    {b:'numbered', idPrefix:'t5_funny', items:['','','']},
-    {b:'section', text:'דברים שמעצבנים אותי בתחום שלי:'},
-    {b:'numbered', idPrefix:'t5_annoying', items:['','','']},
-    {b:'section', text:'שאלות ששואלים אותי הרבה:'},
-    {b:'numbered', idPrefix:'t5_questions', items:['','','']},
-    {b:'section', text:'טעויות שאנשים עושים בתחום שלי:'},
-    {b:'numbered', idPrefix:'t5_mistakes', items:['','','']},
-    {b:'section', text:'דברים שהלוואי שהייתי יודעת בהתחלה:'},
-    {b:'numbered', idPrefix:'t5_wishKnew', items:['','','']},
-    {b:'section', text:'מתוך כל הרשימה, 3 רעיונות שהכי קל לי לצלם השבוע:'},
-    {b:'numbered', idPrefix:'t5_easyThisWeek', items:['','','']}
-  ]
-},
-
-{id:'t6', type:'task', label:'משימה 5', title:'תכנון הסרטון הראשון',
-  introIcon:'clapper',
-  instructions:'לא מצלמים עדיין. רק עושים סדר.',
-  explain:'לפני שמתכננים את הסרטון, רגע נבין למי הוא בכלל מיועד.<br><br>קהל יעד זה לא חייב להיות משהו מסובך כמו גיל, עיר, מצב משפחתי וכל הבלאגן.<br>בשלב הזה קהל יעד הוא פשוט:<br>הבן אדם שאני רוצה שיראה את הסרטון ויגיד לעצמו — זה בשבילי.<br><br>ככל שתדעו יותר ברור למי אתם מדברים, יהיה לכם קל יותר לבחור מה להגיד, באיזה מילים להשתמש, איזה דוגמה להביא, ואיזה רגש להפעיל.',
-  blobColors:['var(--pink)','var(--lilac)'],
-  body:[
-    {b:'section', text:'רגע לפני התכנון — למי אני מדבר/ת?'},
-    {b:'textarea', id:'t6_whoWatches', label:'מי האדם שאני רוצה שיצפה בסרטון הזה?'},
-    {b:'textarea', id:'t6_whatTheyGoThrough', label:'מה עובר עליו / עליה כרגע?'},
-    {b:'checkbox', id:'t6_needsFromMe', heading:'מה הוא או היא צריכים ממני בסרטון הזה?', options:[
-      {value:'tip',label:'טיפ'},{value:'solution',label:'פתרון'},{value:'laugh',label:'צחוק'},
-      {value:'identify',label:'הזדהות'},{value:'inspiration',label:'השראה'},{value:'confidence',label:'ביטחון להתחיל'},
-      {value:'push',label:'דחיפה לפעולה'},{value:'meet',label:'היכרות איתי'},{value:'other',label:'אחר:',other:true}
+    {b:'heading', text:'שלושת החלקים'},
+    {b:'list', items:[
+      'התחלה — כוללת את ההוק, ולרוב גם משקפת לצופה על מה הסרטון.',
+      'אמצע — כאן נמצא התוכן עצמו: הטיפ, המוצר, הסיפור.',
+      'סוף — סוגר את הסרטון: פואנטה, שאלה, פאנץ׳, או הנעה לפעולה (לעקוב, להגיב, לשתף, לצפות בעוד תוכן).'
     ]},
-    {b:'checkbox', id:'t6_direction', heading:'מה הכיוון של הסרטון?', cols:1, options:[
-      {value:'value',label:'ערך — ללמד / להסביר / לתת טיפ'},
-      {value:'emotional',label:'רגשי — ליצור הזדהות / לגעת בכאב'},
-      {value:'entertain',label:'בידורי — להצחיק / לשחרר / ליצור חיבור'},
-      {value:'sales',label:'מכירתי — לגרום להתעניין במוצר / שירות / ליווי'},
-      {value:'personal',label:'אישי — להכיר אותי ואת הדרך שלי'},
-      {value:'other',label:'אחר:',other:true}
+    {b:'callout', label:'לזכור', text:'הוק וההתחלה הם לא אותו דבר — גם אם הם קורים באותו טיימינג. ההוק הוא מה שגורם לצופה לעצור. ההתחלה היא מה שקורה אחרי שהוא כבר עצר.'},
+    {b:'p', text:'בניית סרטון מתחילה מתכנון — לא מאלתור מול המצלמה. לפני שמתכננים סרטון, עונים על:'},
+    {b:'list', plain:true, items:[
+      'מי קהל היעד? למי אני מדבר/ת?',
+      'מה מטרת הסרטון?',
+      'מה הנושא שלו?',
+      'מה אני רוצה שהצופה ירגיש?',
+      'מה יהיה ההוק שלי?',
+      'מהי הנקודה המרכזית?',
+      'ואיך הסרטון מסתיים?'
     ]},
-    {b:'checkbox', id:'t6_viewerEnds', heading:'בסוף הסרטון אני רוצה שהצופה:', options:[
-      {value:'understand',label:'יבין משהו'},{value:'seen',label:'ירגיש שרואים אותו'},{value:'laugh',label:'יצחק'},
-      {value:'save',label:'ישמור את הסרטון'},{value:'comment',label:'יגיב'},{value:'follow',label:'יעקוב אחריי'},
-      {value:'dm',label:'ישלח לי הודעה'},{value:'work',label:'ירגיש שהוא רוצה לעבוד איתי'},{value:'other',label:'אחר:',other:true}
-    ]},
-    {b:'textarea', id:'t6_talkingTo', label:'למי הסרטון מיועד? אני מדבר/ת אל:'},
-    {b:'checkbox', id:'t6_purpose', heading:'מה מטרת הסרטון?', options:[
-      {value:'laugh',label:'להצחיק'},{value:'teach',label:'ללמד'},{value:'move',label:'לרגש'},
-      {value:'identify',label:'ליצור הזדהות'},{value:'show',label:'להראות מי אני'},{value:'tip',label:'לתת טיפ'},
-      {value:'cta',label:'להניע לפעולה'},{value:'other',label:'אחר:',other:true}
-    ]},
-    {b:'text', id:'t6_topic', label:'נושא הסרטון:'},
-    {b:'checkbox', id:'t6_viewerFeels', heading:'מה אני רוצה שהצופה ירגיש?', cols:1, options:[
-      {value:'thats_me',label:'"זה בדיוק אני"'},{value:'didnt_think',label:'"וואי, לא חשבתי על זה ככה"'},
-      {value:'understands',label:'"היא מבינה אותי"'},{value:'more',label:'"אני רוצה לשמוע עוד"'},
-      {value:'helped',label:'"זה עזר לי"'},{value:'other',label:'אחר:',other:true}
-    ]},
-    {b:'textarea', id:'t6_hook', label:'ההוק שלי:'},
-    {b:'section', text:'מה אני אומר/ת באמצע?'},
-    {b:'text', id:'t6_point1', label:'נקודה 1:'},
-    {b:'text', id:'t6_point2', label:'נקודה 2:'},
-    {b:'text', id:'t6_point3', label:'נקודה 3:'},
-    {b:'checkbox', id:'t6_ending', heading:'איך הסרטון נגמר?', options:[
-      {value:'punch',label:'פאנץ׳'},{value:'question',label:'שאלה'},{value:'summary_tip',label:'טיפ מסכם'},
-      {value:'strong_line',label:'משפט חזק'},{value:'cta',label:'הנעה לפעולה'},{value:'other',label:'אחר:',other:true}
-    ]},
-    {b:'textarea', id:'t6_closingLine', label:'משפט סיום אפשרי:'},
-    {b:'example', title:'דוגמה קצרה למילוי:', text:'תחום: יצירת תוכן\n\nלמי הסרטון מיועד?\nלאנשים בתחילת דרכם, שרוצים ליצור תוכן, מרגישים שהנושא מציף אותם, שיש פער בידע, ופחד להתחיל כך שהם תמיד דוחים את זה.\n\nמטרת הסרטון:\nליצור הזדהות ותחושת מסוגלות\n\nנושא הסרטון:\nאיך גם מי שאין לו שום ניסיון או הבנה בעולמות יצירת התוכן יכול במינימום ציוד, להגיע לתוצאות ותכנים מדוייקים לקהל שלו\n\nהוק:\nאתם רוצים ליצור תוכן כבר כל כך הרבה זמן, ותמיד יש לכם תירוץ אחר בראש ללמה זה לא הזמן הנכון.\n\nנקודה מרכזית:\nלהפסיק לתת לפחד לנהל אותי ולגרום לי לדחות את הפריצה שלי.\n\nסיום:\nהמוכנות לכולם לא תגיע אם לא נקפוץ למים.'}
-  ]
+    {b:'callout', label:'השאלה הכי חשובה', text:'מבין כל השאלות למעלה, זו שהכי משנה הכל: מה אני רוצה שהצופה ירגיש?'},
+    {b:'p', text:'כשיש מבנה ברור, הרבה יותר קל ליצור תוכן בצורה עקבית.'}
+  ],
+  recap:'משימת הפרק: תכנון הסרטון הראשון שלכם (לא לצלם עדיין!) — הגרסה המפורטת עם דוגמה נמצאת בחוברת העבודה.'
 },
 
-{id:'t7', type:'task', label:'משימה 6', title:'פחד מול מצלמה',
-  introIcon:'heart',
-  intro:'הפחד מהמצלמה לא נעלם כי חושבים עליו מספיק חזק.<br>הוא נרגע כשמסתכלים לו רגע בעיניים ומתחילים לפעול בכל זאת.<br>המשימה הזאת תעזור לכם להבין מה בדיוק מפחיד אתכם — ולהחזיר לעצמכם שליטה.',
-  blobColors:['var(--peach)','var(--pink)'],
+{id:'ch5', type:'chapter', numLabel:'05', label:'פרק 5', title:'עמידה מול מצלמה',
+  introIcon:'heart', blobColors:['var(--peach)','var(--pink)'],
+  intro:'אנחנו לא באמת מפחדים מהמצלמה עצמה — אנחנו מפחדים מהתחושה שאנחנו נשפטים. זה קשור ל"אפקט הזרקור": הנטייה הטבעית לחשוב שאנשים שמים לב אלינו הרבה יותר ממה שבאמת קורה. ברגע שמבינים את זה, קל יותר להבין שהפחד טבעי — ולא סימן שמשהו לא בסדר.',
   body:[
-    {b:'checkbox', id:'t7_scary', heading:'מה הכי מפחיד אותי בצילום?', options:[
-      {value:'look',label:'איך אני נראה/ית'},{value:'sound',label:'איך אני נשמע/ת'},{value:'laugh',label:'שאנשים יצחקו'},
-      {value:'weird',label:'שיחשבו שאני מוזר/ה'},{value:'blank',label:'שלא אדע מה להגיד'},
-      {value:'unprofessional',label:'שאצא לא מקצועי/ת'},{value:'other',label:'אחר:',other:true}
+    {b:'heading', text:'6 כלים להתמודד עם הפחד מהמצלמה'},
+    {b:'list', items:[
+      'לא להילחם בפחד — להזכיר לעצמכם: זו רק מצלמה, אתם לבד בחדר, מדברים אל טלפון.',
+      'להחזיר את הפוקוס למה שאתם רוצים להגיד — לשאול "מה אני מנסה להגיד?" במקום "איך אני נראה?".',
+      'לדבר כאילו אתם מדברים לחבר/ה — לדמיין אדם קרוב ולפנות אליו/ה, זה מכניס לאנרגיה טבעית.',
+      'אם נתקעתם — לא להתחיל הכול מחדש. לעצור, לנשום, ולהמשיך מהמשפט האחרון.',
+      'לזוז, להחזיק חפץ או לעשות פעולה (לשתות, להחזיק דף) — זה נותן לגוף "עוגן" ומשחרר גם את הדיבור.',
+      'להתוודות באמת ("אני קצת מתרגשת, לא רגילה לדבר למצלמה") — זה מוריד לחץ ודווקא יוצר חיבור.'
     ]},
-    {b:'textarea', id:'t7_thoughtBefore', label:'המשפט שעולה לי בראש לפני צילום:'},
-    {b:'textarea', id:'t7_answerToThought', label:'ומה המשפט שאני יכול להגיד לעצמי כמנטרה בשביל לגרום לעצמי להרגיש יותר בנוח מול המצלמה?'},
-    {b:'checkbox', id:'t7_resetPhrase', heading:'בחרו משפט איפוס לצילום:', cols:1, options:[
-      {value:'just_camera',label:'זאת רק מצלמה'},{value:'practicing',label:'אני רק מתרגל/ת'},
-      {value:'allowed_start',label:'מותר לי להיות בהתחלה'},{value:'no_perfect',label:'אני לא חייב/ת לצאת מושלם/ת'},
-      {value:'bad_take',label:'טייק גרוע עדיף על אפס טייקים'},{value:'other',label:'אחר:',other:true}
+    {b:'callout', label:'לזכור', text:'אין צורך להיראות מושלמים כדי ליצור תוכן טוב. אתם לא צריכים להרגיש טבעיים כדי להתחיל. אתם צריכים להתחיל כדי שזה ירגיש טבעי.'}
+  ],
+  recap:'משימת הפרק: סרטון חשיפה ראשון — קצר, בלי עריכה, בלי ניסיון להיות מושלמים. רק לדבר.'
+},
+
+{id:'ch6', type:'chapter', numLabel:'06', label:'פרק 6', title:'צילום למתחילים',
+  introIcon:'location', blobColors:['var(--sage)','var(--lilac)'],
+  intro:'המטרה כאן היא לא ללמד צילום מקצועי — היא לתת לכם את כל מה שצריך כדי להתחיל לצלם עם מה שכבר יש לכם. ציוד הוא שדרוג, לא תנאי להתחלה.',
+  body:[
+    {b:'heading', text:'תאורה'},
+    {b:'list', plain:true, items:[
+      'האור צריך להיות מול הפנים, לא מאחוריכם.',
+      'שמש חזקה מדי? וילון דק (גם וילון אמבטיה) מרכך את האור כמו פילטר טבעי.',
+      'מצלמים בערב? הדליקו כמה מקורות אור (לא רק מנורת תקרה אחת), ועמדו קרוב למקור האור.',
+      'טעות נפוצה בטבעת תאורה (רינג לייט): הפלאפון קרוב מדי לתאורה — עדיף להפריד ביניהם.'
     ]},
-    {b:'text', id:'t7_myPhrase', label:'המשפט שלי:'}
-  ]
-},
-
-{id:'t8', type:'task', label:'משימה 7', title:'סרטון חשיפה ראשון',
-  introIcon:'camera',
-  intro:'זה לא סרטון שאמור לשבור את האינטרנט.<br>זה הסרטון שאמור לשבור את הקרח ביניכם לבין המצלמה.<br>המטרה היא פשוט להתחיל להתרגל לזה שרואים אתכם, בלי לנסות לצאת מושלמים.',
-  instructions:'צלמו סרטון קצר של 20–40 שניות. בלי עריכה. בלי פילטר, רק חשיפה ראשונית לעדשה.',
-  blobColors:['var(--pink)','var(--sage)'],
-  body:[
-    {b:'checkbox', id:'t8_topic', heading:'בחרו נושא:', options:[
-      {value:'today',label:'משהו שעבר עליי היום'},{value:'thought',label:'מחשבה שיש לי בראש'},
-      {value:'learning',label:'משהו שאני לומד/ת על עצמי'},{value:'tip',label:'טיפ קצר'},
-      {value:'story',label:'סיפור קטן'},{value:'confession',label:'וידוי קטן'},{value:'other',label:'אחר:',other:true}
+    {b:'heading', text:'זווית וריחוק מהמצלמה'},
+    {b:'list', plain:true, items:[
+      'גובה העיניים — הכי טבעי ומחמיא לסרטוני דיבור.',
+      'מלמטה — מגדיל ומחזק. מלמעלה — מקטין ומעדן.',
+      'חצובה עוזרת מאוד, אך אפשר גם לאלתר (מסילת חלון, ערימת ספרים) — העיקר יציבות.'
     ]},
-    {b:'text', id:'t8_chosenTopic', label:'הנושא שבחרתי:'},
-    {b:'rating', id:'t8_beforeFeeling', label:'כמה אי נוחות אני מרגיש/ה מ־1 עד 10?', max:10},
-    {b:'example', title:'טקסט דוגמה לצילום ראשון', text:'מותר להשתמש בזה כמו שזה.\nמותר גם לשנות.\nמותר גם לקרוא מהמסך :)\n\n"היי, זה קצת מוזר לי לדבר עכשיו למצלמה,\nאבל החלטתי להתחיל לתרגל.\n\nלא כי אני מרגיש/ה מוכן/ה,\nאלא כי אני מבינ/ה שביטחון מגיע תוך כדי עשייה.\n\nאז זה אחד הניסיונות הראשונים שלי,\nוזה לא חייב להיות מושלם.\n\nרק לעזור לי לתרגל."'},
-    {b:'section', text:'עכשיו גרסה משלכם:'},
-    {b:'text', id:'t8_own1', label:'היי, זה קצת מוזר לי כי:'},
-    {b:'text', id:'t8_own2', label:'אבל החלטתי:'},
-    {b:'text', id:'t8_own3', label:'כי אני מבינ/ה ש:'},
-    {b:'text', id:'t8_own4', label:'אז היום אני:'},
-    {b:'pause', text:'ועכשיו, הולכים לצלם! 🎬 תחזרו לחוברת העבודה לאחר שצילמתם.'},
-    {b:'section', text:'אחרי הצילום:'},
-    {b:'text', id:'t8_takes', label:'כמה טייקים עשיתי?'},
-    {b:'textarea', id:'t8_lessScary', label:'מה היה פחות נורא ממה שחשבתי?'},
-    {b:'textarea', id:'t8_cute', label:'מה דווקא יצא חמוד?'},
-    {b:'textarea', id:'t8_improveNext', label:'מה אני משפר/ת בטייק הבא?'}
-  ]
-},
-
-{id:'t9', type:'task', label:'משימה 8', title:'מבט לעדשה',
-  introIcon:'eye',
-  intro:'קשר עין משנה את התחושה של הסרטון.<br>כשאתם לומדים איפה להסתכל, אתם יוצרים חיבור יותר ישיר עם מי שצופה בכם.<br>התרגיל הזה יעזור לכם להבין מה מרגיש ונראה הכי טבעי עבורכם.',
-  instructions:'אנחנו נצלם עכשיו שני סרטונים ממש קצרים לבחירתכם — זה יכול להיות גם זהה לסרטון האחרון שצילמתם. אנחנו לא עושים איתם כלום, אנחנו רק מתרגלים :)<br><br>סרטון ראשון — עם קשר עין ישיר למצלמה. סרטון שני — ללא קשר עין. אתם יכולים לבחור נקודה קרובה בחדר להתמקד בה, או להיעזר בחבר או בן משפחה לדבר אליו באמת.',
-  blobColors:['var(--lilac)','var(--pink)'],
-  body:[
-    {b:'textarea', id:'t9_sentence', label:'המשפט שאני אומר/ת:'},
-    {b:'cards', items:[
-      {title:'צילום 1', blocks:[{b:'textarea', id:'t9_shot_eyecontact', label:'צילמתי עם קשר עין ישיר לעדשה. איך זה הרגיש?'}]},
-      {title:'צילום 2', blocks:[{b:'textarea', id:'t9_shot_noeyecontact', label:'צילמתי בלי קשר עין (הסתכלתי במסך / בנקודה אחרת). איך זה הרגיש?'}]}
+    {b:'heading', text:'סאונד ורקע'},
+    {b:'list', plain:true, items:[
+      'בדקו רעשי רקע (מזגן, מקרר) לפני הצילום. אוזניות אלחוטיות משפרות מאוד את איכות הסאונד.',
+      'רקע עם קצת עומק מרגיש טוב יותר מקיר לבן שטוח — גם פריט קטן (עציץ, מנורה) עושה הבדל.'
     ]},
-    {b:'checkbox', id:'t9_moreConnected', heading:'מה נראה יותר מחובר?', cols:1, options:[
-      {value:'screen',label:'מסך'},{value:'lens',label:'עדשה'},{value:'both_ok',label:'שניהם סבבה'},
-      {value:'both_need_love',label:'שניהם צריכים עוד עבודה'}
+    {b:'callout', label:'לזכור', text:'גם שינויים קטנים כמו מיקום מול חלון או בחירת רקע יכולים לשדרג משמעותית את התוצאה. אל תחכו לציוד המושלם. תתחילו עם מה שיש לכם היום.'}
+  ],
+  recap:'משימת הפרק: טסט לוקיישן — לבחור פינה ולבדוק תאורה, רקע, זווית, מרחק וסאונד לפני שמצלמים ברצינות.'
+},
+
+{id:'ch7', type:'chapter', numLabel:'07', label:'פרק 7', title:'עריכה למתחילים / CapCut',
+  introIcon:'scissors', blobColors:['var(--peach)','var(--pink)'],
+  intro:'מטרת השיעור הזה היא לא להפוך אתכם לעורכים — אלא שתדעו לקחת סרטון, לערוך אותו בסיסית, ולהוציא תוצר מוכן להעלאה.',
+  body:[
+    {b:'callout', label:'לזכור', text:'עריכה לא יכולה להציל רעיון לא טוב. תמיד מתחילים מתוכן טוב — ורק אחר כך עורכים.'},
+    {b:'heading', text:'שלבי העבודה ב־CapCut'},
+    {b:'list', items:[
+      'פותחים פרויקט חדש ובוחרים את הקליפים לפי הסדר שבו רוצים שיופיעו בטיימליין.',
+      'חיתוכים — Trim לקיצור התחלה/סוף של קליפ, Split לפיצול וחיתוך חלקים מיותרים מהאמצע. שום דבר לא נמחק לצמיתות, תמיד אפשר לחזור אחורה.',
+      'ווליום — משתיקים סאונד מקורי (כולו או קליפ בודד) לפני הוספת מוזיקה.',
+      'מוזיקה — קובעת את כל הטון של הסרטון. עדיף מוזיקה חלשה יחסית שלא משתלטת, ולשים לב לזכויות יוצרים בתכנים מסחריים.',
+      'קצב (מהירות), מעברים בין קליפים, ואנימציות כניסה/יציאה — מרככים ומחיים את הסרטון.',
+      'פילטרים — לשינוי אווירה וצבעוניות, לקליפ בודד או לכל הפרויקט יחד.',
+      'אובר־וויס (קריינות מוקלטת מעל הסרטון) — מעולה לסרטוני אווירה, וולוגים ו־GRWM.',
+      'טקסט על המסך וכתוביות — זו אחת הנקודות הכי חשובות בעריכה: מחזיקים קשב, מדגישים דברים חשובים, וקריטיים כי הרבה צופים צורכים תוכן בלי סאונד בכלל. תמיד עוברים על הכתוביות האוטומטיות ומתקנים טעויות.',
+      'ייצוא (Export) — השלב האחרון לשמירת הסרטון המוגמר.'
     ]},
-    {b:'textarea', id:'t9_takeaway', label:'מה אני לוקח/ת לפעם הבאה?'}
-  ]
+    {b:'callout', label:'עריכה אוטומטית', text:'ב־CapCut יש גם עריכה אוטומטית (בוחרים סרטונים והאפליקציה עורכת לבד). מתאימה לסרטוני אווירה, וולוגים וטיולים — אבל היא כלי עזר, לא תחליף לרעיון טוב, הוק טוב או מסר אמיתי, ופחות מתאימה לסרטונים שבהם אתם מדברים.'},
+    {b:'callout', label:'לזכור', text:'המטרה היא לא לדעת כל פיצ׳ר ב־CapCut. המטרה היא לדעת להוציא סרטון מוכן לבד.'}
+  ],
+  recap:'משימת הפרק: לצלם ולערוך את הסרטון הראשון שלכם השבוע — לא טיוטה, לא "אחר כך".'
 },
 
-{id:'t10', type:'task', label:'משימה 9', title:'טסט לוקיישן',
-  introIcon:'location',
-  intro:'לפני שמצלמים סרטון שלם, בודקים איפה הכי נוח ונראה טוב לצלם.<br>לפעמים שינוי קטן של תאורה, רקע או זווית עושה הבדל ענק.<br>המטרה היא למצוא פינה פשוטה שתוכלו לחזור אליה בלי להסתבך כל פעם מחדש.',
-  instructions:'בחרו פינה אחת לצילום ובדקו אותה.',
-  blobColors:['var(--sage)','var(--lilac)'],
+{id:'ch8', type:'chapter', numLabel:'08', label:'פרק 8', title:'אלגוריתם למתחילים',
+  introIcon:'chart', blobColors:['var(--lilac)','var(--sage)'],
+  intro:'האלגוריתם הוא לא נגדכם, ולא יצור מסתורי ששונא אתכם — הוא מערכת פשוטה שמטרתה להשאיר אנשים כמה שיותר זמן באפליקציה, ולכן הוא מקדם תוכן שאנשים באמת נהנים ממנו.',
   body:[
-    {b:'text', id:'t10_location', label:'איפה אני מצלמ/ת?'},
-    {b:'section', text:'תאורה'},
-    {b:'checkbox', id:'t10_light', heading:'איך התאורה?', cols:1, options:[
-      {value:'amazing',label:'מהממת'},{value:'too_dark',label:'חשוכה מדי'},{value:'too_strong',label:'חזקה מדי'},
-      {value:'too_yellow',label:'צהובה מדי'},{value:'need_move',label:'צריך לזוז קצת'}
+    {b:'heading', text:'איך זה עובד בפועל'},
+    {b:'list', items:[
+      'הפלטפורמה "בודקת": על מה אנשים עוצרים, מה הם רואים עד הסוף, על מה הם מגיבים, משתפים ושומרים.',
+      'אם אנשים נשארים על התוכן שלכם — הפלטפורמה תמשיך להראות אותו לעוד אנשים. זו הסיבה שהוק, קצב, עריכה, רגש וסקרנות (מהפרקים הקודמים) כל כך חשובים.',
+      'חוסר יציבות בחשיפות הוא נורמלי — גם ליוצרים גדולים יש סרטונים שפחות עובדים. זה לא תמיד אומר שמשהו "לא עובד".',
+      'כיוצרים חדשים, האלגוריתם צריך זמן להבין מי אתם ולמי מתאים התוכן שלכם — הוא לומד אתכם תוך כדי עשייה, והדרך היחידה "ללמד" אותו היא פשוט להמשיך ליצור.'
     ]},
-    {b:'textarea', id:'t10_lightChange', label:'מה אני משנה?'},
-    {b:'section', text:'רקע'},
-    {b:'textarea', id:'t10_bgBehind', label:'מה רואים מאחוריי?'},
-    {b:'textarea', id:'t10_bgMove', label:'מה כדאי להזיז?'},
-    {b:'textarea', id:'t10_bgKeep', label:'מה דווקא יפה להשאיר?'},
-    {b:'section', text:'סאונד'},
-    {b:'checkbox', id:'t10_sound', heading:'איך אני נשמע/ת?', cols:1, options:[
-      {value:'clear',label:'ברור'},{value:'weak',label:'חלש'},{value:'bg_noise',label:'יש רעש רקע'},
-      {value:'echo',label:'יש הד'},{value:'close_window',label:'צריך לסגור חלון'},{value:'check_mic',label:'צריך לבדוק אוזניות / מיקרופון'}
+    {b:'callout', label:'לזכור', text:'אל תנסו לרצות את האלגוריתם. תיצרו תוכן שאנשים באמת רוצים לראות — והוא כבר יעשה את השאר.'}
+  ],
+  recap:'משימת הפרק: להעלות את הסרטון הראשון שלכם. לא לשמור בטיוטות — פשוט להעלות.'
+},
+
+{id:'interlude', type:'chapter', numLabel:'', label:'לפני שממשיכים', bonus:false, title:'עכשיו מתחילים באמת',
+  introIcon:'rocket', blobColors:['var(--pink)','var(--sage)'],
+  body:[
+    {b:'p', text:'אין בן אדם שנולד טבעי מול מצלמה, ואין סרטון ראשון שנראה בדיוק כמו שדמיינתם — וזה בסדר גמור, זה פשוט חלק מהדרך.'},
+    {b:'callout', label:'המסר המרכזי', text:'ביטחון לא מגיע מלראות עוד מדריך. הוא מגיע מלצלם, לנסות, ולטעות שוב ושוב. גם היוצרים שאתם רואים היום ברשת התחילו בדיוק איפה שאתם נמצאים עכשיו — עם מבוכה, פחד וחוסר ביטחון. ההבדל הוא שהם המשיכו.'}
+  ],
+  recap:'עושים — ואז לאט לאט מתחילים להרגיש מוכנים.'
+},
+
+{id:'ch9', type:'chapter', numLabel:'09', label:'בונוס · פרק 9', bonus:true, title:'למה חשוב לתת פנים לעסק שלכם?',
+  introIcon:'storefront', blobColors:['var(--lilac)','var(--peach)'],
+  intro:'אנשים לא קונים רק מוצר או שירות — הם קונים את האדם שמאחוריו. בעסק קטן, אתם חלק בלתי נפרד מהמותג: האנרגיה, האישיות והדרך שבה אתם מדברים הם חלק ממה שאנשים קונים.',
+  body:[
+    {b:'callout', label:'דוגמה', text:'שרשרת חרוזים פשוטה בדוכן ברחוב במחיר 45 ש״ח מרגישה יקרה מדי — עד שמגלים שהכינה אותה ילדה בת 10 כדי לממן את לימודי הצורפות שלה. פתאום לא קונים שרשרת, קונים לה עתיד. הרגש משפיע ישירות על איך שאנחנו קונים.'},
+    {b:'list', items:[
+      'בעסק קטן, אתם המותג: ההומור, האנרגיה והאמון שאתם מייצרים אצל אנשים.',
+      'בלי פנים לעסק, הוא הרבה פעמים מרגיש קר, רחוק, ועוד אחד מתוך מיליון בעלי מקצוע.',
+      'זה לא אומר לחשוף את כל החיים האישיים שלכם — מספיק לתת לעסק פנים אנושיות.'
+    ]}
+  ],
+  recap:'אנשים מתחברים לאנשים. וכשיש חיבור — הרבה יותר קל לתת אמון.'
+},
+
+{id:'ch10', type:'chapter', numLabel:'10', label:'בונוס · פרק 10', bonus:true, title:'איך עמוד תוכן טוב ומדויק מכניס לכם יותר כסף',
+  introIcon:'compass', blobColors:['var(--peach)','var(--sage)'],
+  intro:'עמוד אינסטגרם טוב לא רק מזרים לידים — הוא בונה אמון ומקל על תהליך המכירה. הוא הרבה פעמים המקום שבו אנשים מחליטים אם בכלל שווה להם לפנות אליכם.',
+  body:[
+    {b:'callout', label:'דוגמה — מאיה הקוסמטיקאית', text:'מאיה לא רק הראתה טיפולים — היא דיברה על פחדים שאף אחד לא אומר בקול רם. פתאום מחסום האמון נשבר: "אם היא מבינה אותי כל כך טוב, היא גם יודעת איך לעזור לי". וכשפונים אליה, כבר לא פונים כליד קר — פונים כליד לוהט.'},
+    {b:'list', items:[
+      'עמוד טוב הוא סוכן המכירות הכי טוב שלכם — הוא עונה מראש על השאלות וההתנגדויות של הלקוחות.',
+      'המטרה היא שכשמישהו פונה אליכם, הוא כבר מרגיש שהוא מכיר אתכם וסומך עליכם.'
+    ]}
+  ],
+  recap:'כשהעמוד שלכם עושה את העבודה שלו, שיחת המכירה כבר לא מתחילה מאפס.'
+},
+
+{id:'ch11', type:'chapter', numLabel:'11', label:'בונוס · פרק 11', bonus:true, title:'למה ויראליות לא בהכרח מכניסה לכם כסף',
+  introIcon:'rocket', blobColors:['var(--pink)','var(--lilac)'],
+  intro:'ויראליות היא אמצעי — לא מטרה. יש הבדל ענק בין תוכן שמביא צפיות לבין תוכן שמביא לקוחות, וצפיות לבד הן לא מדד להצלחה — בטח לא לבעלי עסקים.',
+  body:[
+    {b:'callout', label:'דוגמה — דנה הקוסמטיקאית', text:'דנה העלתה טרנד סופר מצחיק שהתפוצץ — מלא צפיות, מלא שיתופים. אבל זה לא גרם לאף אחד להגיד "קנית אותי, בבקשה תטפלי לי באקנה". יש צפיות, יש עוקבים — אבל אין פניות.'},
+    {b:'list', items:[
+      'ריצה אחרי ויראליות בלבד עלולה להביא קהל לא רלוונטי, או תוכן שלא מקדם את העסק.',
+      'המטרה היא לא להגיע לכמה שיותר אנשים, אלא להגיע לאנשים הנכונים — לא "איך אני נהיה ויראלי?" אלא "איך אני יוצר תוכן שמדבר בדיוק לצרכים ולפחדים של קהל היעד שלי?"',
+      'כשמסר מדויק וויראליות מגיעים יחד — זה מיקס מנצח.'
+    ]}
+  ],
+  recap:'עדיף שהתוכן ידבר בדיוק לאדם הנכון, מאשר שיגיע לעוד אלף אנשים שלא יהפכו לעולם ללקוחות.'
+},
+
+{id:'ch12', type:'chapter', numLabel:'12', label:'בונוס · פרק 12', bonus:true, title:'איזה סוג תוכן צריך להיות בעמוד שלכם',
+  introIcon:'layers', blobColors:['var(--sage)','var(--pink)'],
+  intro:'כל סוג תוכן בעמוד שלכם עונה על שאלה אחרת שהלקוח שואל את עצמו לפני שהוא קונה. אנשים לא קונים רק שירות או מוצר — הם קונים תחושת ביטחון, חיבור, אמון והרגשה שהגיעו לבן אדם הנכון.',
+  body:[
+    {b:'split', rows:[
+      {pct:35, label:'תוכן שבונה אמון וחיבור — "הוא מבין אותי?"'},
+      {pct:35, label:'תוכן שמראה שירות/תוצאה — "מה יוצא לי מזה?"'},
+      {pct:20, label:'תוכן שמחבר לאישיות שלכם — "מתחבר לאנרגיה שלו?"'},
+      {pct:10, label:'תוכן קליל/טרנדי (אופציונלי, קשור לנישה)'}
     ]},
-    {b:'textarea', id:'t10_soundChange', label:'מה אני משנה?'},
-    {b:'section', text:'שדרוג קטן לפריים'},
-    {b:'checkbox', id:'t10_upgrade', heading:'מה אני מוסיפ/ה?', cols:1, options:[
-      {value:'candle',label:'נר'},{value:'lamp',label:'מנורה'},{value:'plant',label:'עציץ'},
-      {value:'coffee',label:'כוס קפה'},{value:'product',label:'מוצר'},{value:'clean_bg',label:'רקע נקי יותר'},
-      {value:'none',label:'כלום, זה מספיק'}
+    {b:'p', text:'החלוקה הזו (35/35/20/10) היא דרך פשוטה לבנות עמוד מאוזן — לא חוק שחייבים לעבוד לפיו.'},
+    {b:'callout', label:'כוכבית חשובה', text:'אין ציפייה להפוך למשפיענים או לחשוף את כל החיים שלכם. גם דברים קטנים — מאחורי הקלעים, יום עבודה, ההומור שלכם — יוצרים חיבור אנושי אמיתי.'}
+  ],
+  recap:'כשכל החלקים מתחברים יחד, העמוד שלכם עושה בשבילכם את מה ששיחות מכירה פעם היו צריכות לעשות.'
+},
+
+{id:'ch13', type:'chapter', numLabel:'13', label:'בונוס · פרק 13', bonus:true, title:'אתם עסק, לא משפיענים',
+  introIcon:'flag', blobColors:['var(--lilac)','var(--sage)'],
+  intro:'האינסטגרם הוא לא העסק שלכם — הוא כלי שאמור לעבוד בשביל העסק שלכם.',
+  body:[
+    {b:'list', items:[
+      'אתם לא צריכים להיות כל היום ברשתות, ולא להפוך ליוצרי תוכן במשרה מלאה. פוסט אחד מדויק פעם בשבוע (או אפילו בשבועיים) הוא רק דוגמה לכך שעקביות חשובה יותר מכמות — לא כלל קבוע שמתאים לכל עסק.',
+      'אם העמוד בנוי נכון (עם כל המרכיבים מהפרק הקודם), הוא יניב לידים חמים — בלי צורך בכמות.'
     ]},
-    {b:'text', id:'t10_choice', label:'אחר'}
-  ]
+    {b:'callout', label:'לא ליפול לתרמית', text:'"יותר תוכן = יותר הצלחה" — זה לא משחק של כמות, זה משחק של איכות. המטרה היא תוכן איכותי שמשרת מטרה ברורה, לא תוכן שרודף אחרי כמות. התוכן צריך לשרת את העסק — לא להפוך לעבודה בפני עצמה.'}
+  ],
+  recap:'תעבדו חכם, לא קשה. התוכן צריך לעבוד בשביל העסק שלכם — לא להפך.'
 },
 
-{id:'t11', type:'task', label:'משימה 10', title:'צילום הסרטון האמיתי הראשון שלכם',
-  introIcon:'clapper',
-  intro:'עכשיו לוקחים את מה שתכננתם ומצלמים גרסה ראשונה.<br>לא סופית, לא מושלמת, פשוט ניסיון אמיתי.<br>ברגע שיש חומר מצולם, כבר יש עם מה לעבוד — וזה צעד ענק קדימה.',
-  instructions:'חדדו את המלל של הסרטון שתכננתם במשימה 5 אם יש צורך, וצלמו אותו.',
-  blobColors:['var(--pink)','var(--peach)'],
+{id:'final', type:'final', title:'איך ממשיכים מכאן?',
   body:[
-    {b:'section', text:'לפני צילום:'},
-    {b:'text', id:'t11_hook', label:'ההוק שלי:'},
-    {b:'text', id:'t11_mainPoint', label:'הנקודה המרכזית שלי:'},
-    {b:'text', id:'t11_closingLine', label:'משפט הסיום שלי:'},
-    {b:'section', text:'אחרי צילום:'},
-    {b:'text', id:'t11_takes', label:'כמה טייקים עשיתי?'},
-    {b:'text', id:'t11_bestTake', label:'איזה טייק הכי אהבתי?'},
-    {b:'textarea', id:'t11_why', label:'למה?'},
-    {b:'textarea', id:'t11_betterThanExpected', label:'מה יצא יותר טוב ממה שחשבתי?'},
-    {b:'textarea', id:'t11_improveBeforeEdit', label:'מה אני רוצה לשפר לפני העריכה?'}
-  ]
-},
-
-{id:'t12', type:'task', label:'משימה 11', title:'הכנה לעריכה',
-  introIcon:'scissors',
-  intro:'עריכה נהיית הרבה פחות מלחיצה כשמגיעים אליה מסודרים.<br>לפני שפותחים את CapCut, בוחרים את הטייק, מסדרים את החומרים ומורידים קצת עומס מהראש.<br>המטרה היא להפוך את העריכה לפעולה פשוטה, לא לפרויקט מפחיד.',
-  instructions:'לפני CapCut, עושים סדר קטן.',
-  blobColors:['var(--sage)','var(--peach)'],
-  body:[
-    {b:'checkbox', id:'t12_checklist', heading:'צ׳קליסט:', cols:1, options:[
-      {value:'chose_video',label:'בחרתי את הסרטון שאני עורכ/ת'},
-      {value:'deleted_takes',label:'מחקתי טייקים שאני לא צריכ/ה'},
-      {value:'kept_best',label:'שמרתי את הטייק הכי טוב'},
-      {value:'opened_capcut',label:'פתחתי CapCut'},
-      {value:'content_folder',label:'פתחתי תיקיית תוכן ייעודית בפלאפון עם כל התכנים הרלוונטיים לעריכה'},
-      {value:'free_minutes',label:'יש לי כמה דקות בלי הפרעה'},
-      {value:'breathed',label:'נשמתי עמוק וזכרתי שזה לא מפחיד'}
-    ]},
-    {b:'text', id:'t12_title', label:'שם הסרטון / הנושא:'}
-  ]
-},
-
-{id:'t13', type:'task', label:'משימה 12', title:'עריכה בסיסית',
-  introIcon:'scissors',
-  intro:'העריכה הראשונה לא צריכה להיות מתוחכמת.<br>היא צריכה להפוך את הסרטון לברור, נעים לצפייה ומוכן להעלאה.<br>במשימה הזו מתרגלים את הבסיס: לחתוך, לסדר, להוסיף טקסט או כתוביות — וזה לגמרי מספיק להתחלה.',
-  blobColors:['var(--peach)','var(--pink)'],
-  body:[
-    {b:'checkbox', id:'t13_checklist', heading:'צ׳קליסט עריכה:', cols:1, options:[
-      {value:'new_project',label:'פתחתי New Project'},{value:'imported',label:'הכנסתי את הסרטון'},
-      {value:'cut_start',label:'חתכתי התחלה מיותרת'},{value:'cut_end',label:'חתכתי סוף מיותר'},
-      {value:'removed_silence',label:'הורדתי בלבולים / שתיקות ארוכות'},{value:'added_text',label:'הוספתי טקסט אם צריך'},
-      {value:'added_captions',label:'הוספתי כתוביות אם מתאים'},{value:'added_music',label:'הוספתי מוזיקה אם מתאים'},
-      {value:'checked_music_volume',label:'בדקתי שהמוזיקה לא חזקה מדי'},{value:'watched_full',label:'צפיתי מההתחלה עד הסוף'},
-      {value:'exported',label:'ייצאתי את הסרטון'}
-    ]},
-    {b:'textarea', id:'t13_cutOut', label:'מה חתכתי החוצה?'},
-    {b:'textarea', id:'t13_textAdded', label:'איזה טקסט הוספתי למסך?'},
-    {b:'textarea', id:'t13_lovedEditing', label:'מה הכי אהבתי בעריכה?'},
-    {b:'textarea', id:'t13_improveNext', label:'מה הייתי רוצה לשפר בסרטון הבא?'}
-  ]
-},
-
-{id:'t14', type:'task', label:'משימה 13', title:'הכנת הסרטון להעלאה',
-  blobColors:['var(--lilac)','var(--sage)'],
-  body:[
-    {b:'checkbox', id:'t14_platform', heading:'איפה אני מעלה?', cols:1, options:[
-      {value:'reels',label:'אינסטגרם רילס'},{value:'tiktok',label:'טיקטוק'},{value:'story',label:'סטורי'},
-      {value:'post',label:'פוסט'},{value:'undecided',label:'עדיין מתלבט/ת אבל לא בורח/ת מזה'}
-    ]},
-    {b:'textarea', id:'t14_caption', label:'כיתוב לסרטון:'},
-    {b:'text', id:'t14_cover', label:'קאבר / תמונת שער — האם בחרתי תמונת קאבר?'},
-    {b:'checkbox', id:'t14_cta', heading:'הנעה לפעולה — מה אני רוצה שהצופה יעשה?', options:[
-      {value:'comment',label:'יגיב'},{value:'save',label:'ישמור'},{value:'share',label:'ישתף'},
-      {value:'follow',label:'יעקוב'},{value:'dm',label:'ישלח לי הודעה'},{value:'think',label:'יחשוב על משהו'},
-      {value:'other',label:'אחר:',other:true}
-    ]},
-    {b:'text', id:'t14_ctaLine', label:'משפט תיאור תחת הסרטון'}
-  ]
-},
-
-{id:'t15', type:'task', label:'משימה 14', title:'מעלים. כן, באמת.',
-  introIcon:'rocket',
-  intro:'זה הרגע שבו מפסיקים לשמור את הסרטון בגלריה "רק לעוד שנייה".<br>העלאה היא חלק מהתרגול, לא מבחן.<br>המטרה כאן היא ללחוץ פרסם, גם אם יש פרפרים בבטן, ולהוכיח לעצמכם שאתם מסוגלים.',
-  blobColors:['var(--pink)','var(--lilac)'],
-  body:[
-    {b:'section', text:'לפני שלוחצים פרסם:'},
-    {b:'checkbox', id:'t15_feeling', heading:'אני מרגיש/ה:', options:[
-      {value:'excited',label:'מתרגש/ת'},{value:'embarrassed',label:'מובכ/ת'},{value:'proud',label:'גאה'},
-      {value:'pressure',label:'בלחץ'},{value:'runaway',label:'רוצה לברוח'},{value:'all',label:'הכול ביחד, תודה ששאלתם'}
-    ]},
-    {b:'textarea', id:'t15_strongestFear', label:'הפחד הכי חזק עכשיו:'},
-    {b:'textarea', id:'t15_doAnyway', label:'ומה אני עושה למרות זאת?'},
-    {b:'section', text:'אחרי ההעלאה:'},
-    {b:'date', id:'t15_uploadDate', label:'העליתי בתאריך:'},
-    {b:'textarea', id:'t15_feltAfter', label:'איך הרגשתי אחרי?'},
-    {b:'textarea', id:'t15_learned', label:'מה למדתי מזה?'},
-    {b:'textarea', id:'t15_rememberNext', label:'מה אני רוצה לזכור לפעם הבאה?'}
-  ]
-},
-
-{id:'t16', type:'task', label:'משימה 15', title:'תרגיל התקדמות',
-  introIcon:'clock',
-  intro:'קל להסתכל על יוצרים מצליחים ולחשוב שהם תמיד היו ככה.<br>התרגיל הזה מזכיר לנו שכל אחד התחיל איפשהו, ושביטחון, סגנון ודיוק מגיעים עם הזמן.<br>זה תרגיל קטן שמוריד לחץ ומחזיר פרופורציות.',
-  instructions:'בחרו יוצר/ת שאתם אוהבים ולכו אחורה לתכנים הישנים שלו/ה.',
-  blobColors:['var(--sage)','var(--lilac)'],
-  body:[
-    {b:'text', id:'t16_creator', label:'מי בחרתי?'},
-    {b:'textarea', id:'t16_oldContent', label:'מה ראיתי בתוכן הישן?'},
-    {b:'checkbox', id:'t16_improved', heading:'מה השתפר אצלו/ה עם הזמן?', options:[
-      {value:'confidence',label:'ביטחון'},{value:'filming',label:'צילום'},{value:'editing',label:'עריכה'},
-      {value:'ideas',label:'רעיונות'},{value:'speaking',label:'דיבור'},{value:'look',label:'נראות'},
-      {value:'precision',label:'דיוק'},{value:'all',label:'הכול, וואו'}
-    ]},
-    {b:'textarea', id:'t16_reminds', label:'מה זה מזכיר לי על ההתחלה שלי?'}
-  ]
-},
-
-{id:'t17', type:'task', label:'משימה 16', title:'תוכנית תוכן לשבועיים',
-  introIcon:'flag',
-  intro:'כדי להמשיך ליצור גם אחרי הקורס, צריך שיהיה צעד הבא ברור.<br>תוכנית קצרה לשבועיים עוזרת להוריד עומס מהראש ולהפוך את היצירה למשהו הרבה יותר נגיש.<br>לא צריך לתכנן שנה קדימה — רק את הצעדים הקרובים.',
-  instructions:'בלי לעשות מזה אירוע. רק כמה רעיונות קדימה.',
-  blobColors:['var(--pink)','var(--sage)'],
-  body:[
-    {b:'twoWeek',
-      week1:[
-        {topic:'t17_w1v1_topic',shoot:'t17_w1v1_shoot',publish:'t17_w1v1_publish'},
-        {topic:'t17_w1v2_topic',shoot:'t17_w1v2_shoot',publish:'t17_w1v2_publish'},
-        {topic:'t17_w1v3_topic',shoot:'t17_w1v3_shoot',publish:'t17_w1v3_publish'}
-      ],
-      week2:[
-        {topic:'t17_w2v1_topic',shoot:'t17_w2v1_shoot',publish:'t17_w2v1_publish'},
-        {topic:'t17_w2v2_topic',shoot:'t17_w2v2_shoot',publish:'t17_w2v2_publish'},
-        {topic:'t17_w2v3_topic',shoot:'t17_w2v3_shoot',publish:'t17_w2v3_publish'}
-      ]
-    }
-  ]
-},
-
-{id:'t18', type:'task', label:'משימה 17', title:'מטרות קטנות',
-  introIcon:'star',
-  intro:'מטרות גדולות מדי יכולות לשתק.<br>מטרות קטנות גורמות לנו לזוז.<br>במשימה הזאת אתם בוחרים התחייבות פשוטה לשבוע הקרוב, כזו שאפשר באמת לבצע ולא רק לכתוב יפה במחברת.',
-  instructions:'בחרו מטרות לשבוע הקרוב.',
-  blobColors:['var(--peach)','var(--pink)'],
-  body:[
-    {b:'checkbox', id:'t18_commit', heading:'השבוע אני מתחייב/ת ל:', cols:1, options:[
-      {value:'active_watch',label:'לעשות צפייה אקטיבית פעמיים'},{value:'ten_ideas',label:'לכתוב 10 רעיונות'},
-      {value:'film_one',label:'לצלם סרטון אחד'},{value:'edit_one',label:'לערוך סרטון אחד'},
-      {value:'upload_one',label:'להעלות סרטון אחד'},{value:'talk_3min',label:'לדבר למצלמה 3 דקות'},
-      {value:'test_location',label:'לבדוק לוקיישן צילום'},{value:'fix_profile',label:'לסדר את הפרופיל'},
-      {value:'other',label:'אחר:',other:true}
-    ]},
-    {b:'text', id:'t18_smallestGoal', label:'המטרה הכי קטנה שלי השבוע:'},
-    {b:'text', id:'t18_day', label:'מתי אני עושה אותה? יום:'},
-    {b:'text', id:'t18_time', label:'שעה:'},
-    {b:'textarea', id:'t18_obstacle', label:'מה יכול להפריע לי?'},
-    {b:'textarea', id:'t18_workaround', label:'איך אני עוקפ/ת את זה?'}
-  ]
-},
-
-{id:'t19', type:'task', label:'משימה 18', title:'סיכום הקורס',
-  introIcon:'star',
-  intro:'לפני שממשיכים הלאה, שווה לעצור ולראות מה כבר השתנה.<br>הסיכום הזה עוזר לכם לזהות מה למדתם, מה עשיתם למרות הפחד ומה הצעד הבא שלכם.<br>כי בסוף המטרה היא לא רק לסיים את הקורס — אלא להמשיך ליצור.',
-  blobColors:['var(--lilac)','var(--pink)'],
-  body:[
-    {b:'textarea', id:'t19_surprised', label:'הדבר שהכי הפתיע אותי:'},
-    {b:'textarea', id:'t19_fearedDidAnyway', label:'הדבר שהכי פחדתי ממנו ועשיתי בכל זאת:'},
-    {b:'textarea', id:'t19_mostHelped', label:'הדבר שהכי עזר לי:'},
-    {b:'section', text:'הסרטון הראשון שהעליתי / אעלה:'},
-    {b:'text', id:'t19_videoTopic', label:'נושא הסרטון:'},
-    {b:'date', id:'t19_videoDate', label:'תאריך העלאה:'},
-    {b:'textarea', id:'t19_videoFeeling', label:'איך הרגשתי?'},
-    {b:'textarea', id:'t19_nextStep', label:'הצעד הבא שלי:'}
-  ]
-},
-
-{id:'t20', type:'task', label:'בונוס לבעלי עסקים', bonus:true, title:'מה קונים ממני מעבר למוצר?',
-  introIcon:'heart',
-  intro:'אנשים לא קונים רק מוצר או שירות — הם קונים את האדם שמאחוריו.<br>בעסק קטן, האנרגיה, האישיות והדרך שבה אתם מדברים הם חלק בלתי נפרד ממה שאנשים קונים.',
-  instructions:'בלי לחשוב יותר מדי. מה עולה ראשון בראש?',
-  blobColors:['var(--lilac)','var(--peach)'],
-  body:[
-    {b:'section', text:'2-3 דברים שהאישיות או הסיפור שלי מוסיפים לעסק, מעבר למוצר/לשירות עצמו:'},
-    {b:'numbered', idPrefix:'t20_personalValue', items:['','','']},
-    {b:'textarea', id:'t20_humanFace', label:'דרך אחת קטנה שאני יכול/ה לתת לעסק שלי קצת יותר פנים אנושיות השבוע:'}
-  ]
-},
-
-{id:'t21', type:'task', label:'בונוס לבעלי עסקים', bonus:true, title:'האם העמוד שלי עושה את העבודה?',
-  introIcon:'eye',
-  intro:'עמוד טוב הוא סוכן המכירות הכי טוב שלכם — הוא עונה מראש על השאלות וההתנגדויות של הלקוחות, כדי ששיחת המכירה לא תתחיל מאפס.',
-  instructions:'תעברו על העמוד שלכם תוך כדי מילוי.',
-  blobColors:['var(--sage)','var(--lilac)'],
-  body:[
-    {b:'section', text:'שאלות או חששות שלקוחות שואלים אותי הכי הרבה לפני שהם קונים:'},
-    {b:'numbered', idPrefix:'t21_questions', items:['','','']},
-    {b:'textarea', id:'t21_answered', label:'אילו מהשאלות האלה כבר עונות עליהן בעמוד שלי?'},
-    {b:'textarea', id:'t21_missing', label:'אילו מהן עדיין לא מקבלות מענה בעמוד?'}
-  ]
-},
-
-{id:'t22', type:'task', label:'בונוס לבעלי עסקים', bonus:true, title:'צפיות מול פניות',
-  introIcon:'star',
-  intro:'ויראליות היא אמצעי — לא מטרה. יש הבדל ענק בין תוכן שמביא צפיות לבין תוכן שמביא לקוחות.',
-  instructions:'תסתכלו על 3 מהפוסטים האחרונים שלכם.',
-  blobColors:['var(--peach)','var(--pink)'],
-  body:[
-    {b:'section', text:'פוסט 1'},
-    {b:'text', id:'t22_p1_topic', label:'הנושא:'},
-    {b:'textarea', id:'t22_p1_result', label:'הביא הרבה צפיות? הביא פנייה אמיתית (לקוח פוטנציאלי)? שני הדברים?'},
-    {b:'section', text:'פוסט 2'},
-    {b:'text', id:'t22_p2_topic', label:'הנושא:'},
-    {b:'textarea', id:'t22_p2_result', label:'הביא הרבה צפיות? הביא פנייה אמיתית (לקוח פוטנציאלי)? שני הדברים?'},
-    {b:'section', text:'פוסט 3'},
-    {b:'text', id:'t22_p3_topic', label:'הנושא:'},
-    {b:'textarea', id:'t22_p3_result', label:'הביא הרבה צפיות? הביא פנייה אמיתית (לקוח פוטנציאלי)? שני הדברים?'},
-    {b:'textarea', id:'t22_takeaway', label:'מה אני לומד/ת מזה על התוכן שממש מקדם את העסק שלי?'}
-  ]
-},
-
-{id:'t23', type:'task', label:'בונוס לבעלי עסקים', bonus:true, title:'רעיונות לכל סוג תוכן',
-  introIcon:'bulb',
-  intro:'כל סוג תוכן בעמוד שלכם עונה על שאלה אחרת שהלקוח שואל את עצמו לפני שהוא קונה. הבדיקה הזו עוזרת לוודא שהעמוד שלכם נותן תמונה מלאה.',
-  instructions:'לכל קטגוריה, כתבו 2-3 רעיונות תוכן אמיתיים שאתם יכולים ליצור.',
-  blobColors:['var(--lilac)','var(--sage)'],
-  body:[
-    {b:'section', text:'תוכן שבונה אמון וחיבור — "הוא מבין אותי?"'},
-    {b:'numbered', idPrefix:'t23_trust', items:['','','']},
-    {b:'section', text:'תוכן שמראה שירות/תוצאה — "מה יוצא לי מזה?"'},
-    {b:'numbered', idPrefix:'t23_result', items:['','','']},
-    {b:'section', text:'תוכן שמחבר לאישיות שלכם — "מתחבר לאנרגיה שלו?"'},
-    {b:'numbered', idPrefix:'t23_personality', items:['','','']},
-    {b:'section', text:'תוכן קליל/טרנדי (אופציונלי):'},
-    {b:'numbered', idPrefix:'t23_light', items:['','','']}
-  ]
-},
-
-{id:'t24', type:'task', label:'בונוס לבעלי עסקים', bonus:true, title:'תדירות ריאלית',
-  introIcon:'clock',
-  intro:'אתם לא צריכים להיות כל היום ברשתות. פוסט אחד מדויק פעם בשבוע (או אפילו בשבועיים) הוא רק דוגמה לכך שעקביות חשובה יותר מכמות — לא כלל קבוע שמתאים לכל עסק.',
-  instructions:'בלי לחץ. רק מה שבאמת ריאלי לכם.',
-  blobColors:['var(--pink)','var(--sage)'],
-  body:[
-    {b:'text', id:'t24_frequency', label:'כמה פעמים בשבוע/שבועיים ריאלי לי לפרסם, בלי לרדוף אחרי כמות?'},
-    {b:'textarea', id:'t24_whyRealistic', label:'למה זה ריאלי דווקא לי, ברמת העסק והזמן שיש לי כרגע?'}
-  ]
-},
-
-{id:'final', type:'final', title:'התחייבות קטנה',
-  oathPre:'אני, ', oathPost:'מתחייב/ת לא לחכות לרגע שבו הכול מושלם.',
-  body:[
-    {b:'textarea', id:'final_nextStep', label:'הצעד הבא שלי הוא:'},
-    {b:'date', id:'final_date', label:'ואני עושה אותו בתאריך:'},
-    {b:'signature', id:'final_signature', label:'חתימה, כי אנחנו דרמטיים פה:'}
+    {b:'p', text:'ביטחון לא מגיע מלראות עוד מדריך. הוא מגיע מעשייה. אין ציפייה שהסרטונים הראשונים שלכם יהיו מושלמים — וזו בדיוק הדרך שבה משתפרים. הצעד הכי חשוב עכשיו הוא להתחיל ליישם, גם אם עדיין לא מרגישים מוכנים.'},
+    {b:'p', text:'אם הגעתם עד לכאן, יש לכם כבר את כל הכלים כדי להתחיל ליצור תוכן. עכשיו נשאר רק להשתמש בהם.'},
+    {b:'callout', label:'רוצים עוד דיוק?', text:'למי שכבר מרגיש שהוא רוצה דיוק אישי באסטרטגיה — יש אפשרות לפגישת פיצוח אחד־על־אחד: הנישה שלכם, קהל היעד, השפה שלכם ברשת, והדרך הנכונה עבורכם לבנות עמוד שמרגיש מדויק ועובד בשבילכם. זו לא חובה אחרי הקורס — רק אופציה למי שמרגיש שהגיע הזמן לדיוק.'},
+    {b:'p', text:'אל תחכו לרגע שבו תרגישו מוכנים. תתחילו, ותנו לעשייה לבנות את הביטחון שלכם. נתראה בסרטון הראשון שלכם. ❤️'}
   ]
 }
 
 ];
 
-/* ===== icons (simple inline line icons) ===== */
 const ICONS = {
   camera:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13.5" r="3.4"/></svg>',
   heart:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.6-9.4-9C1.2 8 2.4 5 5.6 5c1.9 0 3.3 1.1 4 2.4C10.3 6.1 11.7 5 13.6 5 16.8 5 18 8 18.4 11c-1 4.4-6.4 9-6.4 9z"/></svg>',
-  star:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6 .6-4.5 4 1.3 6-5.4-3.2L6.6 19l1.3-6-4.5-4 6-.6z"/></svg>',
-  bulb:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M8 14a5 5 0 116.8 4.7c-.5.4-.8 1-.8 1.3H10c0-.4-.3-.9-.8-1.3A5 5 0 018 14z"/></svg>',
   eye:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>',
-  pin:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11.5A7 7 0 105 9.5C5 14.7 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>',
   magnet:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v8a6 6 0 0012 0V4M6 4H3v8M18 4h3v8"/><path d="M6 8h5M13 8h5" stroke-width="1.6"/></svg>',
-  clapper:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l1.5-4.5 15 3L18 13"/><path d="M3 10h16v9H5z"/><path d="M6 6.5l2 3.4M10 5.7l2 3.4M14 5l2 3.4"/></svg>',
-  scissors:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><path d="M20 5L7.5 13M20 19L7.5 11"/></svg>',
-  rocket:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 2 5 6 4.5 11.5L12 18l-4.5-4.5C7 8 9 4 12 2z"/><path d="M9 15l-3 1 1-3M15 15l3 1-1-3"/><circle cx="12" cy="9.5" r="1.6"/></svg>',
-  flag:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 5c3-1.5 4.5 1.5 7.5 0S18 5 18 5v8s-1.5 1.5-4.5 0-4.5-1.5-7.5 0"/></svg>',
-  location:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="2.6"/></svg>',
-  clock:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>',
-  upload:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M8 8l4-4 4 4"/><path d="M4 15v4h16v-4"/></svg>',
   sun:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19v2.5M4.2 4.2l1.7 1.7M18 18l1.8 1.8M2.5 12h2.4M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>',
+  clapper:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l1.5-4.5 15 3L18 13"/><path d="M3 10h16v9H5z"/><path d="M6 6.5l2 3.4M10 5.7l2 3.4M14 5l2 3.4"/></svg>',
+  location:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="2.6"/></svg>',
+  scissors:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><path d="M20 5L7.5 13M20 19L7.5 11"/></svg>',
+  bulb:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M8 14a5 5 0 116.8 4.7c-.5.4-.8 1-.8 1.3H10c0-.4-.3-.9-.8-1.3A5 5 0 018 14z"/></svg>',
+  chart:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M12 20V4M20 20v-7"/><path d="M2 20h20"/></svg>',
+  rocket:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 2 5 6 4.5 11.5L12 18l-4.5-4.5C7 8 9 4 12 2z"/><path d="M9 15l-3 1 1-3M15 15l3 1-1-3"/><circle cx="12" cy="9.5" r="1.6"/></svg>',
+  storefront:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v11h16V9"/><path d="M4 9a3 3 0 006 0 3 3 0 006 0 3 3 0 006 0"/></svg>',
+  compass:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-6 2 2-6z"/></svg>',
+  layers:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg>',
+  flag:'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 5c3-1.5 4.5 1.5 7.5 0S18 5 18 5v8s-1.5 1.5-4.5 0-4.5-1.5-7.5 0"/></svg>',
 };
-function icon(name){return ICONS[name]||'';}
-function iconLg(name){return (ICONS[name]||'').replace('class="icon"','class="icon icon-lg"');}
+function icon(n){return ICONS[n]||'';}
+function iconLg(n){return (ICONS[n]||'').replace('class="icon"','class="icon icon-lg"');}
 
-/* ===== tiny blob decoration helper ===== */
-function blobsHTML(seedColors){
-  return seedColors.map((c,i)=>{
-    const size=[130,90,150,70][i%4];
-    const pos=[
-      {top:'-40px',left:'-40px'},{bottom:'-30px',right:'-30px'},
-      {top:'20%',right:'-50px'},{bottom:'10%',left:'-45px'}
-    ][i%4];
+function blobsHTML(colors){
+  return colors.map((c,i)=>{
+    const size=[120,85,140,65][i%4];
+    const pos=[{top:'-36px',left:'-36px'},{bottom:'-28px',right:'-28px'},{top:'22%',right:'-45px'},{bottom:'12%',left:'-40px'}][i%4];
     const posCss=Object.entries(pos).map(([k,v])=>`${k}:${v}`).join(';');
     return `<div class="blob" style="width:${size}px;height:${size}px;background:${c};${posCss}"></div>`;
   }).join('');
 }
 
-/* ===== state (autosave) ===== */
-const STORAGE_KEY='tocan_workbook_v1';
-let STATE={};
-function loadState(){
-  try{STATE=JSON.parse(localStorage.getItem(STORAGE_KEY))||{};}catch(e){STATE={};}
+function recapList(items,plain){
+  return `<ul class="recap-list${plain?' plain':''}">${items.map(t=>`<li>${t}</li>`).join('')}</ul>`;
 }
-function saveState(){
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(STATE));
-  updateProgress();
+function sectionHeading(text){return `<div class="section-heading"><span class="dot"></span>${text}</div>`;}
+function callout(label,text){return `<div class="callout"><span class="label">${label}</span>${text}</div>`;}
+function recapLine(text){return `<div class="recap-line">${icon('heart')}<span>${text}</span></div>`;}
+function splitBars(rows){
+  return `<div class="split-bars">${rows.map(r=>`
+    <div class="split-row">
+      <div class="pct num">${r.pct}%</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${r.pct}%"></div></div>
+      <div class="lbl">${r.label}</div>
+    </div>`).join('')}</div>`;
 }
-loadState();
-
-/* ===== field renderers ===== */
-function fieldWrap(id,kind,inner){
-  return `<div class="field track" data-id="${id}" data-kind="${kind}">${inner}</div>`;
+function twoCol(cards){
+  return `<div class="two-col">${cards.map(c=>`<div class="mini-card"><div class="mini-title">${c.title}</div>${c.body}</div>`).join('')}</div>`;
 }
-function labelHTML(label,hint){
-  if(!label) return '';
-  return `<label class="field-label" for="${label.forId||''}">${label.text||label}${hint?`<span class="hint">${hint}</span>`:''}</label>`;
-}
-function textInput(id,labelText,opts={}){
-  const ph=opts.placeholder?` placeholder="${opts.placeholder}"`:'';
-  return fieldWrap(id,'text',`
-    <label class="field-label" for="${id}">${labelText}</label>
-    <input class="input" type="text" id="${id}" data-field="${id}"${ph}>
-  `);
-}
-function dateInput(id,labelText,opts={}){
-  return textInput(id,labelText,{placeholder:opts.placeholder||'לדוגמה: 12.08.2026'});
-}
-function textareaField(id,labelText){
-  return fieldWrap(id,'textarea',`
-    <label class="field-label" for="${id}">${labelText}</label>
-    <textarea class="input" id="${id}" data-field="${id}"></textarea>
-  `);
-}
-function numberedInputs(idPrefix,items){
-  const rows=items.map((label,i)=>{
-    const id=`${idPrefix}_${i+1}`;
-    return `<div class="numbered-row field track" data-id="${id}" data-kind="text">
-      <span class="num">${i+1}</span>
-      <input class="input" type="text" id="${id}" data-field="${id}"${label?` placeholder="${label}"`:''}>
-    </div>`;
-  }).join('');
-  return `<div class="numbered-list">${rows}</div>`;
-}
-function checkboxGroup(id,heading,options,opts={}){
-  const optsHTML=options.map((o,i)=>{
-    const optId=`${id}_${i}`;
-    if(o.other){
-      return `<div class="check-option-wrap">
-        <label class="check-option" for="${optId}">
-          <input type="checkbox" id="${optId}" data-field="${id}" data-val="${o.value}">
-          <span class="box"></span>
-          <span class="txt">${o.label}</span>
-        </label>
-        <input type="text" class="other-input" data-field="${id}_other" data-other-of="${optId}" placeholder="כתבו כאן...">
-      </div>`;
-    }
-    return `<label class="check-option" for="${optId}">
-      <input type="checkbox" id="${optId}" data-field="${id}" data-val="${o.value}">
-      <span class="box"></span>
-      <span class="txt">${o.label}</span>
-    </label>`;
-  }).join('');
-  const singleCol=opts.cols===1||options.length<=3||options.some(o=>o.label&&o.label.length>28);
-  return fieldWrap(id,'checkgroup',`
-    ${heading?`<div class="field-label">${heading}</div>`:''}
-    <div class="check-group${singleCol?' single-col':''}">${optsHTML}</div>
-  `);
-}
-function ratingScale(id,labelText,max=10){
-  const btns=Array.from({length:max},(_,i)=>i+1).map(n=>
-    `<button type="button" class="rating-btn num" data-field="${id}" data-rate="${n}" aria-pressed="false">${n}</button>`
-  ).join('');
-  return fieldWrap(id,'rating',`
-    <div class="field-label">${labelText}</div>
-    <div class="rating-row">${btns}</div>
-  `);
-}
-function signatureField(id,labelText){
-  return fieldWrap(id,'text',`
-    <label class="field-label" for="${id}">${labelText}</label>
-    <input class="signature-input" type="text" id="${id}" data-field="${id}">
-  `);
-}
-function exampleBox(title,text){
-  return `<div class="example-box"><div class="example-title">${title}</div><div class="example-text">${text}</div></div>`;
-}
-function sectionHeading(text){return `<div class="section-heading">${text}</div>`;}
-function plainPara(text){return `<p style="margin-bottom:18px;line-height:1.8;">${text}</p>`;}
-function instructionsLine(text){return `<div class="instructions-line">${icon('flag')}<span>${text}</span></div>`;}
-function closingText(text){return `<div class="closing-text">${text}</div>`;}
-function card(title,innerBlocks){
-  return `<div class="card"><div class="card-title">${title}</div>${innerBlocks.join('')}</div>`;
-}
-function cardsRow(cardsHTML){return `<div class="cards-row">${cardsHTML.join('')}</div>`;}
 
 function renderBlock(b){
   switch(b.b){
-    case 'intro': return `<div class="intro-box">${icon(b.icon||'bulb')}<div>${b.text}</div></div>`;
-    case 'explain': return `<div class="explain-box">${b.text}</div>`;
-    case 'instructions': return instructionsLine(b.text);
-    case 'section': return sectionHeading(b.text);
-    case 'p': return plainPara(b.text);
-    case 'text': return textInput(b.id,b.label,b.opts||{});
-    case 'date': return dateInput(b.id,b.label,b.opts||{});
-    case 'textarea': return textareaField(b.id,b.label);
-    case 'numbered': return (b.lead?plainPara(b.lead):'')+numberedInputs(b.idPrefix,b.items);
-    case 'checkbox': return checkboxGroup(b.id,b.heading,b.options,{cols:b.cols});
-    case 'rating': return ratingScale(b.id,b.label,b.max||10);
-    case 'signature': return signatureField(b.id,b.label);
-    case 'example': return exampleBox(b.title,b.text);
-    case 'closing': return closingText(b.text);
+    case 'heading': return sectionHeading(b.text);
+    case 'list': return recapList(b.items,b.plain);
+    case 'callout': return callout(b.label,b.text);
+    case 'split': return splitBars(b.rows);
+    case 'twoCol': return twoCol(b.cards);
+    case 'p': return `<p style="margin-bottom:16px;line-height:1.8;">${b.text}</p>`;
+    case 'html': return b.html;
     case 'agentLink': return `<div class="agent-link-box">
       <div class="agent-link-text">${icon('bulb')}<div>${b.text}</div></div>
       <a class="btn btn-primary" href="${b.url}" target="_blank" rel="noopener noreferrer">${b.cta||'פתיחת הסוכן'} ↗</a>
     </div>`;
-    case 'cards': return cardsRow(b.items.map(it=>card(it.title,it.blocks.map(renderBlock))));
-    case 'sun': return renderSun(b);
-    case 'pause': return renderPause(b.text);
-    case 'twoWeek': return renderTwoWeek(b);
-    case 'html': return b.html;
     default: return '';
   }
 }
-function renderSun(b){
-  const n=b.rayIds.length;
-  const R=40;
-  const points=b.rayIds.map((id,i)=>{
-    const angle=(i*360/n-90)*Math.PI/180;
-    const x=50+R*Math.cos(angle);
-    const y=50+R*Math.sin(angle);
-    return {id,i,x,y};
-  });
-  const lines=points.map(p=>`<line x1="50" y1="50" x2="${p.x.toFixed(2)}" y2="${p.y.toFixed(2)}"/>`).join('');
-  const rays=points.map(p=>`
-    <div class="sun-ray-input field track" data-id="${p.id}" data-kind="text" style="left:${p.x.toFixed(2)}%;top:${p.y.toFixed(2)}%;">
-      <span class="ray-num">${p.i+1}</span>
-      <input class="input" type="text" id="${p.id}" data-field="${p.id}">
-    </div>`).join('');
-  return `<div class="sun-wrap">
-    <div class="sun-diagram">
-      <svg class="sun-lines" viewBox="0 0 100 100" preserveAspectRatio="none">${lines}</svg>
-      <div class="sun-center field track" data-id="${b.centerId}" data-kind="text">
-        <div class="field-label">${b.centerLabel}</div>
-        <input class="input" type="text" id="${b.centerId}" data-field="${b.centerId}">
-      </div>
-      ${rays}
-    </div>
-  </div>`;
-}
-function renderPause(text){
-  return `<div class="pause-banner">${icon('camera')}<div>${text}</div></div>`;
-}
-function renderTwoWeek(b){
-  function col(title,cls,videos){
-    const cards=videos.map((v,i)=>`
-      <div class="video-card">
-        <div class="video-title">סרטון ${i+1}</div>
-        ${textInput(v.topic,'נושא:')}
-        ${textInput(v.shoot,'מתי אני מצלמ/ת?')}
-        ${textInput(v.publish,'מתי אני מעל/ה?')}
-      </div>`).join('');
-    return `<div class="week-col ${cls}"><div class="week-col-title">${title}</div>${cards}</div>`;
-  }
-  return `<div class="week-grid">
-    ${col('שבוע 1','w1',b.week1)}
-    ${col('שבוע 2','w2',b.week2)}
-  </div>`;
-}
 
-/* ===== page renderers ===== */
 function renderPage(p,idx){
   if(p.type==='cover'){
     return `<section class="page page-cover" id="page-${p.id}">
       ${blobsHTML(['var(--pink)','var(--sage)','var(--peach)','var(--lilac)'])}
-      ${icon('camera').replace('class="icon"','class="icon cover-icon"')}
+      ${iconLg('camera')}
       <div class="cover-eyebrow">${p.eyebrow}</div>
       <h1 class="cover-title">${p.title}</h1>
-      <p class="cover-quote">${p.quote}</p>
+      <p class="cover-sub">${p.sub}</p>
     </section>`;
   }
-  if(p.type==='info'){
-    return `<section class="page page-info" id="page-${p.id}">
-      ${blobsHTML(['var(--sage)','var(--pink)'])}
-      ${iconLg('pin')}
-      <div class="info-card">${p.text}</div>
-      <div class="info-actions">
-        <button class="btn btn-primary" data-scrollnext="1">${p.ctaContinue||'התחלתי, בואו נמשיך'}</button>
-        <button class="btn btn-ghost" data-action="print">הדפסה</button>
-        <button class="btn btn-ghost" data-action="clear">ניקוי תשובות</button>
-      </div>
-    </section>`;
-  }
-  if(p.type==='task'){
-    return `<section class="page page-task" id="page-${p.id}">
+  if(p.type==='chapter'){
+    return `<section class="page page-chapter" id="page-${p.id}">
       ${blobsHTML(p.blobColors||['var(--pink)','var(--peach)'])}
-      <div class="page-number-badge num">${String(idx).padStart(2,'0')}</div>
-      <div class="label-pill">${p.label}</div>
-      <h2 class="page-title">${p.title}</h2>
-      ${p.intro?`<div class="intro-box">${icon(p.introIcon||'bulb')}<div>${p.intro}</div></div>`:''}
-      ${p.explain?`<div class="explain-box">${p.explain}</div>`:''}
-      ${p.instructions?instructionsLine(p.instructions):''}
-      <div class="stack">${p.body.map(renderBlock).join('')}</div>
+      <div class="chapter-number num">${p.numLabel||''}</div>
+      <div class="label-pill${p.bonus?' bonus':''}">${p.label}</div>
+      <h2 class="chapter-title">${p.title}</h2>
+      ${p.intro?`<div class="recap-intro">${icon(p.introIcon||'bulb')}<div>${p.intro}</div></div>`:''}
+      <div>${p.body.map(renderBlock).join('')}</div>
+      ${p.recap?recapLine(p.recap):''}
     </section>`;
   }
   if(p.type==='final'){
-    return `<section class="page page-final" id="page-${p.id}">
+    return `<section class="page final-page" id="page-${p.id}">
       ${blobsHTML(['var(--pink)','var(--lilac)','var(--sage)'])}
       ${iconLg('heart')}
       <h2 class="final-title">${p.title}</h2>
-      <p class="final-oath">${p.oathPre}<span class="blank-name"></span>,<br>${p.oathPost}</p>
-      <div class="stack" style="max-width:60ch;margin:0 auto;text-align:right;">
-        ${p.body.map(renderBlock).join('')}
-      </div>
+      <div style="max-width:60ch;margin:0 auto;text-align:right;">${p.body.map(renderBlock).join('')}</div>
     </section>`;
   }
   return '';
 }
 
-/* ===== boot ===== */
 function boot(){
   const book=document.getElementById('book');
-  book.innerHTML=WORKBOOK.filter(p=>IS_BUSINESS||!p.bonus).map((p,i)=>renderPage(p,i)).join('');
-
-  // populate jump select
+  book.innerHTML=RECAP.filter(p=>IS_BUSINESS||!p.bonus).map((p,i)=>renderPage(p,i)).join('');
   const jump=document.getElementById('jumpSelect');
-  jump.innerHTML='<option value="">קפצו לעמוד…</option>'+WORKBOOK.filter(p=>IS_BUSINESS||!p.bonus).map(p=>{
-    const label=p.type==='task'?`${p.label} — ${p.title}`:(p.title||p.eyebrow||p.id);
+  jump.innerHTML='<option value="">קפצו לפרק…</option>'+RECAP.filter(p=>IS_BUSINESS||!p.bonus).map(p=>{
+    const label=p.type==='chapter'?`${p.label} — ${p.title}`:(p.title||p.eyebrow||p.id);
     return `<option value="page-${p.id}">${label}</option>`;
   }).join('');
   jump.addEventListener('change',e=>{
-    if(e.target.value){document.getElementById(e.target.value).scrollIntoView({behavior:'smooth',block:'start'});}
+    if(e.target.value) document.getElementById(e.target.value).scrollIntoView({behavior:'smooth',block:'start'});
     jump.value='';
   });
-
-  document.querySelectorAll('[data-scrollnext]').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const pages=document.querySelectorAll('.page');
-      const infoIdx=[...pages].findIndex(p=>p.id==='page-info');
-      if(pages[infoIdx+1]) pages[infoIdx+1].scrollIntoView({behavior:'smooth',block:'start'});
-    });
-  });
-
-  hydrateInputs();
-  wireEvents();
-  updateProgress();
-}
-
-function hydrateInputs(){
-  document.querySelectorAll('[data-field]').forEach(el=>{
-    const key=el.dataset.field;
-    if(el.type==='checkbox'){
-      el.checked=!!(STATE[key]&&STATE[key][el.dataset.val]);
-    }else{
-      if(STATE[key]!==undefined) el.value=STATE[key];
-    }
-  });
-  document.querySelectorAll('.rating-btn').forEach(btn=>{
-    const key=btn.dataset.field;
-    if(STATE[key]==btn.dataset.rate){btn.setAttribute('aria-pressed','true');}
-  });
-}
-
-function wireEvents(){
-  document.body.addEventListener('input',e=>{
-    const el=e.target;
-    if(!el.dataset.field) return;
-    const key=el.dataset.field;
-    if(el.type==='checkbox'){
-      STATE[key]=STATE[key]||{};
-      STATE[key][el.dataset.val]=el.checked;
-    }else{
-      STATE[key]=el.value;
-      if(el.dataset.otherOf){
-        const box=document.getElementById(el.dataset.otherOf);
-        if(box && !box.checked && el.value.trim()){
-          box.checked=true;
-          STATE[box.dataset.field]=STATE[box.dataset.field]||{};
-          STATE[box.dataset.field][box.dataset.val]=true;
-        }
-      }
-    }
-    saveState();
-  });
-  document.body.addEventListener('click',e=>{
-    const btn=e.target.closest('.rating-btn');
-    if(btn){
-      const key=btn.dataset.field;
-      const group=btn.parentElement.querySelectorAll('.rating-btn');
-      group.forEach(b=>b.setAttribute('aria-pressed', b===btn ? 'true':'false'));
-      STATE[key]=btn.dataset.rate;
-      saveState();
-    }
-    if(e.target.closest('[data-action="print"]')) window.print();
-    if(e.target.closest('[data-action="clear"]')) clearAnswers();
-  });
   document.getElementById('printBtn').addEventListener('click',()=>window.print());
-  document.getElementById('exportBtn').addEventListener('click',exportAnswers);
-  document.getElementById('clearBtn').addEventListener('click',clearAnswers);
 }
-
-/* ===== export answers to a text file ===== */
-function stripTags(s){return (s||'').replace(/<br\s*\/?>/gi,' ').replace(/<[^>]+>/g,'').trim();}
-function collectBlockText(b,out,prefix,context){
-  switch(b.b){
-    case 'text': case 'date': case 'signature': {
-      const v=STATE[b.id];
-      if(v && v.trim()) out.push(`${prefix}${b.label} ${v.trim()}`);
-      break;
-    }
-    case 'textarea': {
-      const v=STATE[b.id];
-      if(v && v.trim()) out.push(`${prefix}${b.label}\n${v.trim()}`);
-      break;
-    }
-    case 'numbered': {
-      const items=[];
-      b.items.forEach((_,i)=>{
-        const id=`${b.idPrefix}_${i+1}`;
-        const v=STATE[id];
-        if(v && v.trim()) items.push(`${i+1}. ${v.trim()}`);
-      });
-      if(items.length){
-        const question=stripTags(b.lead)||context;
-        if(question) out.push(`${prefix}${question}`);
-        items.forEach(it=>out.push(`${prefix}${it}`));
-      }
-      break;
-    }
-    case 'checkbox': {
-      const chosen=b.options.filter(o=>STATE[b.id]&&STATE[b.id][o.value]).map(o=>{
-        if(o.other){
-          const free=STATE[`${b.id}_other`];
-          return free && free.trim() ? `אחר: ${free.trim()}` : 'אחר';
-        }
-        return o.label;
-      });
-      if(chosen.length) out.push(`${prefix}${b.heading||''} ${chosen.join(', ')}`);
-      break;
-    }
-    case 'rating': {
-      const v=STATE[b.id];
-      if(v) out.push(`${prefix}${b.label} ${v}/10`);
-      break;
-    }
-    case 'sun': {
-      const c=STATE[b.centerId];
-      if(c && c.trim()) out.push(`${prefix}${b.centerLabel} ${c.trim()}`);
-      b.rayIds.forEach((id,i)=>{
-        const v=STATE[id];
-        if(v && v.trim()) out.push(`${prefix}אסוציאציה ${i+1}: ${v.trim()}`);
-      });
-      break;
-    }
-    case 'twoWeek': {
-      ['week1','week2'].forEach((wk,wi)=>{
-        b[wk].forEach((v,vi)=>{
-          const topic=STATE[v.topic],shoot=STATE[v.shoot],pub=STATE[v.publish];
-          if((topic&&topic.trim())||(shoot&&shoot.trim())||(pub&&pub.trim())){
-            out.push(`${prefix}שבוע ${wi+1} — סרטון ${vi+1}: נושא: ${topic||'—'} | מתי מצלמ/ת: ${shoot||'—'} | מתי מעל/ה: ${pub||'—'}`);
-          }
-        });
-      });
-      break;
-    }
-    case 'cards': {
-      b.items.forEach(card=>{
-        let cardContext='';
-        card.blocks.forEach(cb=>{
-          if(cb.b==='section'||cb.b==='p') cardContext=stripTags(cb.text);
-          collectBlockText(cb,out,`[${card.title}] `,cardContext);
-        });
-      });
-      break;
-    }
-  }
-}
-function exportAnswers(){
-  const lines=['חוברת עבודה — קורס יצירת תוכן','התשובות שמולאו בחוברת:',''];
-  WORKBOOK.forEach(p=>{
-    if(p.type!=='task' && p.type!=='final') return;
-    const out=[];
-    let context='';
-    (p.body||[]).forEach(b=>{
-      if(b.b==='section'||b.b==='p') context=stripTags(b.text);
-      collectBlockText(b,out,'',context);
-    });
-    if(out.length){
-      lines.push(`=== ${p.label?p.label+' — ':''}${p.title} ===`);
-      out.forEach(l=>lines.push(l));
-      lines.push('');
-    }
-  });
-  if(lines.length<=3){
-    alert('עדיין אין תשובות שמורות בחוברת הזו — אין מה לייצא.');
-    return;
-  }
-  const text=lines.join('\n');
-  const blob=new Blob([text],{type:'text/plain;charset=utf-8'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url; a.download='התשובות-שלי-קורס-יצירת-תוכן.txt';
-  document.body.appendChild(a); a.click(); a.remove();
-  URL.revokeObjectURL(url);
-}
-
-function clearAnswers(){
-  if(!confirm('למחוק את כל התשובות שמילאת בחוברת? פעולה זו לא ניתנת לביטול.')) return;
-  STATE={};
-  localStorage.removeItem(STORAGE_KEY);
-  document.querySelectorAll('[data-field]').forEach(el=>{
-    if(el.type==='checkbox') el.checked=false; else el.value='';
-  });
-  document.querySelectorAll('.rating-btn').forEach(b=>b.setAttribute('aria-pressed','false'));
-  updateProgress();
-}
-
-function updateProgress(){
-  const tracks=document.querySelectorAll('.track');
-  let filled=0;
-  tracks.forEach(t=>{
-    const kind=t.dataset.kind;
-    if(kind==='checkgroup'){
-      const any=[...t.querySelectorAll('input[type=checkbox]')].some(c=>c.checked);
-      if(any) filled++;
-    }else if(kind==='rating'){
-      const any=[...t.querySelectorAll('.rating-btn')].some(b=>b.getAttribute('aria-pressed')==='true');
-      if(any) filled++;
-    }else{
-      const input=t.querySelector('input,textarea');
-      if(input && input.value.trim().length>0) filled++;
-    }
-  });
-  const pct=tracks.length?Math.round(filled/tracks.length*100):0;
-  document.getElementById('progressFill').style.width=pct+'%';
-  document.getElementById('progressLabel').textContent=pct+'%';
-}
-
 document.addEventListener('DOMContentLoaded',boot);
 
 </script>
 
-</body></html>
+</body>
+</html>

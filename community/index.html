@@ -39,6 +39,10 @@ body{
   padding:32px 18px;
 }
 .wrap{max-width:480px; width:100%; text-align:center;}
+.photo{
+  width:112px; height:112px; border-radius:50%; object-fit:cover; object-position:70% 15%;
+  margin:0 auto 14px; display:block; border:4px solid var(--paper); box-shadow:0 6px 16px rgba(61,36,24,.18);
+}
 .heart{font-size:2.2rem; margin-bottom:6px;}
 h1{
   font-family:'Fredoka','Rubik',sans-serif; font-weight:700; text-wrap:balance;
@@ -67,12 +71,17 @@ h1{
 .btn:hover{transform:translateY(-2px);}
 .btn:active{transform:translateY(1px);}
 .btn .price{font-family:'Fredoka','Rubik',sans-serif;}
+.btn .price-was{
+  font-family:'Fredoka','Rubik',sans-serif; font-weight:600; font-size:.95rem;
+  color:rgba(255,255,255,.75); text-decoration:line-through; text-decoration-thickness:2px;
+}
 footer{margin-top:22px; font-size:.8rem; color:var(--ink-soft-on-paper);}
 </style>
 </head>
 <body>
 
 <div class="wrap">
+  <img class="photo" src="/assets/eve-hero-photo-v5.jpg" alt="איב">
   <div class="heart">💙</div>
   <h1>תודה שאתם חלק מהקהילה שלי.</h1>
   <p class="lede">כמו שהבטחתי, זו ההטבה המיוחדת שלי בשבילכם.<br>עד 7.8 תוכלו להצטרף לקורס ב-50% הנחה.</p>
@@ -82,12 +91,12 @@ footer{margin-top:22px; font-size:.8rem; color:var(--ink-soft-on-paper);}
 
   <div class="track">
     <p>רוצים ללמוד איך לייצר תוכן עבור עצמכם? לחצו כאן</p>
-    <a class="btn" href="https://mrng.to/6lWmymXhbY">מסלול פרטי — <span class="price">₪115</span></a>
+    <a class="btn" href="https://mrng.to/6lWmymXhbY">מסלול פרטי — <span class="price-was">₪229</span> <span class="price">₪115</span></a>
   </div>
 
   <div class="track">
     <p>רוצים ללמוד ליצור תוכן עבור העסק שלכם? לחצו כאן</p>
-    <a class="btn" href="https://mrng.to/JH3RavtV6c">מסלול עסקי — <span class="price">₪135</span></a>
+    <a class="btn" href="https://mrng.to/JH3RavtV6c">מסלול עסקי — <span class="price-was">₪269</span> <span class="price">₪135</span></a>
   </div>
 
   <footer>קורס יצירת תוכן © איב</footer>

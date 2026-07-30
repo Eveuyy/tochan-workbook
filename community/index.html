@@ -35,15 +35,21 @@ body{
   background:linear-gradient(180deg,var(--peach) 0%,var(--paper) 55%);
   color:var(--ink-on-paper); font-family:'Rubik','Segoe UI',Arial,sans-serif;
   direction:rtl; line-height:1.65; -webkit-font-smoothing:antialiased;
-  min-height:100vh; display:flex; align-items:center; justify-content:center;
-  padding:32px 18px;
+  min-height:100vh;
 }
-.wrap{max-width:480px; width:100%; text-align:center;}
-.photo{
-  width:112px; height:112px; border-radius:50%; object-fit:cover; object-position:70% 15%;
-  margin:0 auto 14px; display:block; border:4px solid var(--paper); box-shadow:0 6px 16px rgba(61,36,24,.18);
+.cover{
+  position:relative; width:100%; height:52vh; min-height:300px; max-height:480px;
+  overflow:hidden; background:var(--peach);
 }
-.heart{font-size:2.2rem; margin-bottom:6px;}
+.cover img{
+  width:100%; height:100%; object-fit:cover; object-position:70% 22%; display:block;
+}
+.cover::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(232,168,124,0) 45%, var(--peach) 100%);
+}
+.wrap{max-width:480px; width:100%; margin:0 auto; text-align:center; padding:0 18px 32px; position:relative; z-index:1;}
+.heart{font-size:2.2rem; margin:-8px 0 6px;}
 h1{
   font-family:'Fredoka','Rubik',sans-serif; font-weight:700; text-wrap:balance;
   font-size:clamp(1.5rem,5vw,1.9rem); margin:0 0 14px; color:var(--burgundy);
@@ -80,8 +86,11 @@ footer{margin-top:22px; font-size:.8rem; color:var(--ink-soft-on-paper);}
 </head>
 <body>
 
+<div class="cover">
+  <img src="/assets/eve-hero-photo-v5.jpg" alt="איב">
+</div>
+
 <div class="wrap">
-  <img class="photo" src="/assets/eve-hero-photo-v5.jpg" alt="איב">
   <div class="heart">💙</div>
   <h1>תודה שאתם חלק מהקהילה שלי.</h1>
   <p class="lede">כמו שהבטחתי, זו ההטבה המיוחדת שלי בשבילכם.<br>עד 7.8 תוכלו להצטרף לקורס ב-50% הנחה.</p>

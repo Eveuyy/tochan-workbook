@@ -268,6 +268,33 @@ h1,h2,.display,.badge-num,.countdown-num{
 }
 .field b{ color:var(--ink); font-weight:600; font-size:0.82rem; }
 .field.empty{ font-style:italic; }
+.field.activity{ font-size:0.94rem; color:var(--ink); border-top:none; padding-top:0; margin-top:2px; }
+.field.activity.empty{ font-size:0.82rem; color:var(--ink-soft); }
+
+.guide-row{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  border-top:1px dashed var(--line);
+  padding-top:8px;
+  margin-top:10px;
+  font-size:0.8rem;
+  color:var(--ink-soft);
+}
+.guide-pill{
+  display:inline-flex;
+  align-items:center;
+  padding:2px 10px;
+  border-radius:999px;
+  font-weight:600;
+  font-size:0.8rem;
+}
+.guide-pill.unset{
+  border:1.5px dashed var(--line);
+  color:var(--ink-soft);
+  font-weight:400;
+  font-style:italic;
+}
 
 /* ---------- legend ---------- */
 .legend{
@@ -370,6 +397,7 @@ footer .tag{
 
   <footer>
     <div>הלוח החי מתעדכן ב־<a href="https://docs.google.com/spreadsheets/d/1TzY7HCJKBQwHfHV4EQQ0XkWiePZuXAg_Rx_hz1RLaRM/edit#gid=1031160742" target="_blank" rel="noopener">גיליון קייטנת נועם</a></div>
+    <div class="tag">התוכן כאן מעודכן ידנית לפי הגיליון — למילויים הכי טריים תמיד עדיף להיכנס ישירות</div>
     <div class="tag">מתגעגעים כבר לחופש 💛</div>
   </footer>
 
@@ -378,28 +406,59 @@ footer .tag{
 <script>
 (function(){
   var days = [
-    {d:"23/08", w:"יום ראשון"},
-    {d:"24/08", w:"יום שני"},
-    {d:"25/08", w:"יום שלישי"},
-    {d:"26/08", w:"יום רביעי"},
-    {d:"27/08", w:"יום חמישי"},
-    {d:"28/08", w:"יום שישי"},
-    {d:"29/08", w:"יום שבת"},
-    {d:"30/08", w:"יום ראשון"},
-    {d:"31/08", w:"יום שני"}
+    {d:"23/08", w:"יום ראשון",  activity:"", hours:"", tickets:"", guide:""},
+    {d:"24/08", w:"יום שני",    activity:"יום כיף בים פעילות עם סאפ", hours:"", tickets:"נקנה במקום", guide:"תמיר"},
+    {d:"25/08", w:"יום שלישי",  activity:"קרקס עם הדודה הכי מושלמת", hours:"", tickets:"יש", guide:"הגר"},
+    {d:"26/08", w:"יום רביעי",  activity:"", hours:"", tickets:"", guide:"רוני"},
+    {d:"27/08", w:"יום חמישי",  activity:"ירושלים- אקווריום ישראל", hours:"", tickets:"כן", guide:"תמיר"},
+    {d:"28/08", w:"יום שישי",   activity:"", hours:"", tickets:"", guide:""},
+    {d:"29/08", w:"יום שבת",    activity:"", hours:"", tickets:"", guide:""},
+    {d:"30/08", w:"יום ראשון",  activity:"", hours:"", tickets:"", guide:""},
+    {d:"31/08", w:"יום שני",    activity:"", hours:"", tickets:"", guide:""}
   ];
   var tapes = ["var(--rose)","var(--sky)","var(--mint)","var(--sun)","var(--peach)","var(--lavender)"];
+  var guideColors = {
+    "תמיר": {bg:"var(--rose)",  text:"var(--rose-deep)"},
+    "איב":  {bg:"var(--sky)",   text:"var(--sky-deep)"},
+    "רוני": {bg:"var(--mint)",  text:"var(--mint-deep)"},
+    "הגר":  {bg:"var(--sun)",   text:"var(--sun-deep)"},
+    "מגי":  {bg:"var(--peach)", text:"var(--peach-deep)"}
+  };
+  function esc(s){
+    var d = document.createElement("div");
+    d.textContent = s || "";
+    return d.innerHTML;
+  }
   var grid = document.getElementById("dayGrid");
   days.forEach(function(day, i){
     var el = document.createElement("div");
     el.className = "day";
     el.style.setProperty("--tape", tapes[i % tapes.length]);
     el.style.setProperty("--tilt", (i % 2 === 0 ? "-1deg" : "1deg"));
-    el.innerHTML =
-      '<div class="date">' + day.d + '</div>' +
-      '<div class="weekday">' + day.w + '</div>' +
-      '<div class="field empty">✏️ <b>עדיין לא נקבעה פעילות</b></div>' +
-      '<div class="field empty">🧑‍🏫 מדריך: טרם נבחר</div>';
+
+    var html = '<div class="date">' + day.d + '</div>' +
+      '<div class="weekday">' + day.w + '</div>';
+
+    if (day.activity) {
+      html += '<div class="field activity">🎈 ' + esc(day.activity) + '</div>';
+    } else {
+      html += '<div class="field activity empty">✏️ עדיין לא נקבעה פעילות</div>';
+    }
+    if (day.hours) {
+      html += '<div class="field">🕐 ' + esc(day.hours) + '</div>';
+    }
+    if (day.tickets) {
+      html += '<div class="field">🎟️ ' + esc(day.tickets) + '</div>';
+    }
+
+    if (day.guide && guideColors[day.guide]) {
+      var c = guideColors[day.guide];
+      html += '<div class="guide-row">מדריך: <span class="guide-pill" style="background:' + c.bg + ';color:' + c.text + '">' + esc(day.guide) + '</span></div>';
+    } else {
+      html += '<div class="guide-row">מדריך: <span class="guide-pill unset">טרם נבחר</span></div>';
+    }
+
+    el.innerHTML = html;
     grid.appendChild(el);
   });
 

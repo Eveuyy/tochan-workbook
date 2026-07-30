@@ -562,6 +562,11 @@ img,svg{display:block;max-width:100%;}
 }
 .roadmap-guest-link .icon{width:16px;height:16px;stroke:var(--purple-deep);}
 .roadmap-guest-link:hover{text-decoration:underline;}
+.badge-soon{
+  display:inline-block;font-size:.72rem;font-weight:700;color:var(--sage);
+  background:rgba(122,140,110,.14);border:1px solid rgba(122,140,110,.4);
+  padding:.15rem .65rem;border-radius:99px;margin-inline-start:.5rem;vertical-align:middle;
+}
 .roadmap-step:nth-child(even):not(.roadmap-bonus){
   background:linear-gradient(90deg, rgba(232,168,124,.22), transparent 88%);
   border-radius:16px; padding-top:8px; padding-bottom:8px;
@@ -1444,6 +1449,11 @@ const GUEST_LESSON_BUSINESS = {
   title:'מיינדסט במכירות',
   text:'יועצת אסטרטגית שמלווה בעלי עסקים לעבור מעסק מאולתר לעסק מסודר, יציב ורווחי - שיעור בונוס עם יולי לין.'
 };
+const GUEST_LESSON_BUSINESS_2 = {
+  guest:'מני בן עדי', opensOn:'1.9',
+  title:'מאחורי כפתור \'קידום הפוסט\'',
+  text:'נבין מה צריך שיהיה כבר מוכן לפני שמשלמים על פרסום, ולמה קמפיין שרודף רק אחרי מכירות הרבה פעמים עולה יותר ומחזיר פחות - שיעור בונוס עם מני בן עדי.'
+};
 
 const CURR_EXTRAS = [
   {icon:'bot', color:'lilac', title:'כלי AI שיעזור לכם למצוא את הכיוון שמתאים לכם', text:'שמטרתו לעזור לכם להשתפר ולהגיע למטרות שלכם'},
@@ -1513,9 +1523,9 @@ function guestStepHtml(g){
     <div class="roadmap-step roadmap-bonus">
       <div class="roadmap-marker bonus">${icon('gift')}</div>
       <div class="roadmap-content">
-        <h3 class="roadmap-title">${g.title}</h3>
+        <h3 class="roadmap-title">${g.title}${g.opensOn?` <span class="badge-soon">נפתח ב-${g.opensOn}</span>`:''}</h3>
         <p class="roadmap-text">${g.text}</p>
-        <a class="roadmap-guest-link" href="${g.instagram}" target="_blank" rel="noopener noreferrer">${icon('instagram')}${g.guest} באינסטגרם</a>
+        ${g.instagram?`<a class="roadmap-guest-link" href="${g.instagram}" target="_blank" rel="noopener noreferrer">${icon('instagram')}${g.guest} באינסטגרם</a>`:''}
       </div>
     </div>`;
 }
@@ -1542,6 +1552,7 @@ function renderRoadmap(){
       </div>
     </div>`);
   bizSteps.push(guestStepHtml(GUEST_LESSON_BUSINESS));
+  bizSteps.push(guestStepHtml(GUEST_LESSON_BUSINESS_2));
   document.getElementById('roadmapBiz').innerHTML = bizSteps.join('');
 }
 

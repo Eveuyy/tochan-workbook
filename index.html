@@ -1628,7 +1628,7 @@ function renderPricing(){
         <li>${icon('check')}<span>קהילת וואטסאפ תומכת</span></li>
         <li>${icon('check')}<span>גישה מלאה, ללא הגבלת זמן - כולל כל עדכון ושדרוג עתידי לקורס</span></li>
       </ul>
-      <a class="btn btn-success" href="${PAYMENT_LINKS.regular}">אני מתחיל/ה ליצור תוכן</a>
+      <a class="btn btn-success" href="${PAYMENT_LINKS.regular}" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'regular'})">אני מתחיל/ה ליצור תוכן</a>
     </div>
     <div class="price-card featured">
       <div class="price-tag">⭐ הבחירה של בעלי עסקים</div>
@@ -1647,7 +1647,7 @@ function renderPricing(){
         <span class="price-diff-label">במסלול Business תקבלו בנוסף:</span>
         <p>עוד חמישה פרקים ייעודיים שכל מטרתם להביא את התוכן שלכם רמה למעלה, לתוכן שעובד נכון עבור העסק שלכם.</p>
       </div>
-      <a class="btn btn-success" href="${PAYMENT_LINKS.business}">אני רוצה את מסלול Business</a>
+      <a class="btn btn-success" href="${PAYMENT_LINKS.business}" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'business'})">אני רוצה את מסלול Business</a>
     </div>
   `;
 }

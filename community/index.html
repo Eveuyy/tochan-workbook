@@ -77,6 +77,23 @@ h1{
 }
 footer{margin-top:22px; font-size:.8rem; color:var(--ink-soft-on-paper);}
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2014675365814954');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -90,12 +107,12 @@ footer{margin-top:22px; font-size:.8rem; color:var(--ink-soft-on-paper);}
 
   <div class="track">
     <p>רוצים ללמוד איך לייצר תוכן עבור עצמכם? לחצו כאן</p>
-    <a class="btn" href="https://mrng.to/6lWmymXhbY">מסלול פרטי — <span class="price-was">₪339</span> <span class="price">₪169</span></a>
+    <a class="btn" href="https://mrng.to/6lWmymXhbY" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'community_regular'})">מסלול פרטי — <span class="price-was">₪339</span> <span class="price">₪169</span></a>
   </div>
 
   <div class="track">
     <p>רוצים ללמוד ליצור תוכן עבור העסק שלכם? לחצו כאן</p>
-    <a class="btn biz" href="https://mrng.to/JH3RavtV6c">מסלול עסקי — <span class="price-was">₪379</span> <span class="price">₪189</span></a>
+    <a class="btn biz" href="https://mrng.to/JH3RavtV6c" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'community_business'})">מסלול עסקי — <span class="price-was">₪379</span> <span class="price">₪189</span></a>
   </div>
 
   <footer>קורס יצירת תוכן © איב</footer>

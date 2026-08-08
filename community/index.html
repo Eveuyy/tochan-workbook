@@ -50,6 +50,18 @@ h1{
   color:#fff; background:var(--coral); padding:6px 18px; border-radius:99px;
   font-size:.95rem; margin:14px 0 26px; box-shadow:0 4px 10px rgba(201,87,58,.35);
 }
+.countdown{display:flex; justify-content:center; gap:8px; margin:14px 0 26px;}
+.cd-box{
+  background:var(--coral); color:#fff; border-radius:14px; padding:8px 6px;
+  min-width:52px; box-shadow:0 4px 10px rgba(201,87,58,.35);
+  display:flex; flex-direction:column; align-items:center;
+}
+.cd-num{font-family:'Fredoka','Rubik',sans-serif; font-weight:700; font-size:1.25rem; line-height:1.1; font-variant-numeric:tabular-nums;}
+.cd-label{font-size:.62rem; opacity:.85; margin-top:2px;}
+.cd-expired{
+  display:inline-block; font-family:'Fredoka','Rubik',sans-serif; font-weight:700;
+  color:#fff; background:var(--ink-soft-on-paper); padding:6px 18px; border-radius:99px; font-size:.95rem;
+}
 .choose{font-weight:700; font-size:1.05rem; margin:0 0 22px;}
 .track{
   background:var(--paper); border:1.5px solid var(--line-on-paper); border-radius:20px;
@@ -94,14 +106,43 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<script>
+(function(){
+  var target = new Date('2026-08-09T20:30:00+03:00').getTime();
+  var el = document.getElementById('countdown');
+  var timer = setInterval(tick, 1000);
+  tick();
+  function tick(){
+    var diff = target - Date.now();
+    if(diff <= 0){
+      clearInterval(timer);
+      el.innerHTML = '<div class="cd-expired">ההטבה הסתיימה</div>';
+      return;
+    }
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor((diff%86400000)/3600000);
+    var m = Math.floor((diff%3600000)/60000);
+    var s = Math.floor((diff%60000)/1000);
+    document.getElementById('cd-days').textContent = d;
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+})();
+</script>
 </head>
 <body>
 
 <div class="wrap">
   <div class="heart">💙</div>
   <h1>תודה שאתם חלק מהקהילה שלי.</h1>
-  <p class="lede">כמו שהבטחתי, זו ההטבה המיוחדת שלי בשבילכם.<br>עד 7.8 תוכלו להצטרף לקורס ב-50% הנחה.</p>
-  <div class="deadline">ההטבה בתוקף עד 7.8</div>
+  <p class="lede">כמו שהבטחתי, זו ההטבה המיוחדת שלי בשבילכם.<br>עד 9.8 בשעה 20:30 תוכלו להצטרף לקורס ב-50% הנחה.</p>
+  <div class="countdown" id="countdown">
+    <div class="cd-box"><span class="cd-num" id="cd-days">--</span><span class="cd-label">ימים</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">שעות</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">דקות</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">שניות</span></div>
+  </div>
 
   <p class="choose">בחרו את המסלול שמתאים לכם:</p>
 

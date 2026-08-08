@@ -50,7 +50,7 @@ h1{
   color:#fff; background:var(--coral); padding:6px 18px; border-radius:99px;
   font-size:.95rem; margin:14px 0 26px; box-shadow:0 4px 10px rgba(201,87,58,.35);
 }
-.countdown{display:flex; justify-content:center; gap:8px; margin:14px 0 26px;}
+.countdown{display:flex; justify-content:center; gap:8px; margin:14px 0 26px; direction:ltr;}
 .cd-box{
   background:var(--coral); color:#fff; border-radius:14px; padding:8px 6px;
   min-width:52px; box-shadow:0 4px 10px rgba(201,87,58,.35);
@@ -87,6 +87,17 @@ h1{
   font-family:'Fredoka','Rubik',sans-serif; font-weight:600; font-size:.95rem;
   color:rgba(255,255,255,.75); text-decoration:line-through; text-decoration-thickness:2px;
 }
+.more-info{margin:26px 0 6px;}
+.more-info p{margin:0 0 10px; font-size:.9rem; color:var(--ink-soft-on-paper);}
+.btn-outline{
+  display:inline-flex; align-items:center; justify-content:center; gap:6px; width:100%;
+  font-family:inherit; font-weight:600; font-size:.95rem; cursor:pointer;
+  border:1.5px solid var(--line-on-paper); border-radius:16px; text-decoration:none;
+  padding:13px 20px; background:transparent; color:var(--purple-deep);
+  box-shadow:none; transition:background .15s ease, transform .15s ease;
+}
+.btn-outline:hover{background:rgba(168,70,46,.06); transform:translateY(-1px);}
+.btn-outline:active{transform:translateY(0);}
 footer{margin-top:22px; font-size:.8rem; color:var(--ink-soft-on-paper);}
 </style>
 <!-- Meta Pixel Code -->
@@ -154,6 +165,11 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
   <div class="track">
     <p>רוצים ללמוד ליצור תוכן עבור העסק שלכם? לחצו כאן</p>
     <a class="btn biz" href="https://mrng.to/JH3RavtV6c" onclick="typeof fbq==='function'&&fbq('track','InitiateCheckout',{content_name:'community_business'})">מסלול עסקי — <span class="price-was">₪379</span> <span class="price">₪189</span></a>
+  </div>
+
+  <div class="more-info">
+    <p>לא בטוחים מה מתאים לכם? כל הפרטים על הקורס במקום אחד:</p>
+    <a class="btn-outline" href="https://www.evecontent.co.il/" onclick="typeof fbq==='function'&&fbq('track','ViewContent',{content_name:'community_full_landing'})">לדף הקורס המלא ←</a>
   </div>
 
   <footer>קורס יצירת תוכן © איב</footer>

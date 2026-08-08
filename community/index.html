@@ -87,17 +87,18 @@ h1{
   font-family:'Fredoka','Rubik',sans-serif; font-weight:600; font-size:.95rem;
   color:rgba(255,255,255,.75); text-decoration:line-through; text-decoration-thickness:2px;
 }
-.more-info{margin:26px 0 6px;}
-.more-info p{margin:0 0 10px; font-size:.9rem; color:var(--ink-soft-on-paper);}
+.more-info{margin:28px 0 6px; padding-top:20px; border-top:1.5px dashed var(--line-on-paper);}
+.more-info p{margin:0 0 12px; font-size:.98rem; font-weight:600; color:var(--ink-on-paper);}
 .btn-outline{
-  display:inline-flex; align-items:center; justify-content:center; gap:6px; width:100%;
-  font-family:inherit; font-weight:600; font-size:.95rem; cursor:pointer;
-  border:1.5px solid var(--line-on-paper); border-radius:16px; text-decoration:none;
-  padding:13px 20px; background:transparent; color:var(--purple-deep);
-  box-shadow:none; transition:background .15s ease, transform .15s ease;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px; width:100%;
+  font-family:inherit; font-weight:700; font-size:1.05rem; cursor:pointer;
+  border:none; border-radius:16px; text-decoration:none;
+  padding:16px 20px; background:linear-gradient(180deg,#5A2233 0%,var(--burgundy) 100%); color:#fff;
+  box-shadow:0 3px 0 rgba(0,0,0,.18), 0 10px 0 rgba(69,23,36,.28), 0 6px 10px rgba(0,0,0,.3), 0 20px 36px rgba(69,23,36,.45);
+  transition:transform .15s ease;
 }
-.btn-outline:hover{background:rgba(168,70,46,.06); transform:translateY(-1px);}
-.btn-outline:active{transform:translateY(0);}
+.btn-outline:hover{transform:translateY(-2px);}
+.btn-outline:active{transform:translateY(1px);}
 footer{margin-top:22px; font-size:.8rem; color:var(--ink-soft-on-paper);}
 </style>
 <!-- Meta Pixel Code -->

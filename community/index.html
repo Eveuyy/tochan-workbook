@@ -151,6 +151,7 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
     if(diff <= 0){
       clearInterval(timer);
       el.innerHTML = '<div class="cd-expired">ההטבה הסתיימה</div>';
+      deactivateOffer();
       return;
     }
     var d = Math.floor(diff/86400000);
@@ -161,6 +162,18 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
     document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
     document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
     document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+  function deactivateOffer(){
+    var lede = document.querySelector('.lede');
+    if(lede) lede.innerHTML = 'כמו שהבטחתי, זו הייתה ההטבה המיוחדת שלי בשבילכם.<br>ההצטרפות ב-50% הנחה כבר לא זמינה.';
+    var choose = document.querySelector('.choose');
+    if(choose) choose.style.display = 'none';
+    document.querySelectorAll('.track').forEach(function(t){ t.style.display = 'none'; });
+    var moreInfo = document.querySelector('.more-info');
+    if(moreInfo){
+      var p = moreInfo.querySelector('p');
+      if(p) p.textContent = 'אבל עדיין אפשר להצטרף לקורס במחיר הרגיל:';
+    }
   }
 })();
 </script>

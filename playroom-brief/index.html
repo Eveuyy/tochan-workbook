@@ -1,0 +1,498 @@
+<meta charset="UTF-8">
+<title>בריף: אתר מכירה למשחקיה</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --bg:#FBF6EE;
+    --ink:#2B241D;
+    --ink-soft:#6B5F54;
+    --accent:#E2622E;
+    --accent-ink:#ffffff;
+    --accent2:#1E5C54;
+    --line:rgba(43,36,29,0.14);
+    --card:#ffffff;
+    --card-line:rgba(43,36,29,0.10);
+    --reject-bg:#F1EBE1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#201A14;
+      --ink:#F3EAE0;
+      --ink-soft:#B7A99A;
+      --accent:#F07A46;
+      --accent-ink:#201A14;
+      --accent2:#4FA69A;
+      --line:rgba(243,234,224,0.16);
+      --card:#2A2219;
+      --card-line:rgba(243,234,224,0.10);
+      --reject-bg:#2A241C;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#201A14;
+    --ink:#F3EAE0;
+    --ink-soft:#B7A99A;
+    --accent:#F07A46;
+    --accent-ink:#201A14;
+    --accent2:#4FA69A;
+    --line:rgba(243,234,224,0.16);
+    --card:#2A2219;
+    --card-line:rgba(243,234,224,0.10);
+    --reject-bg:#2A241C;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    direction:rtl;
+    font-family:"Segoe UI","Arial Hebrew","Noto Sans Hebrew",Arial,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{
+    max-width:720px;
+    margin:0 auto;
+    padding:56px 24px 96px;
+  }
+
+  .eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    color:var(--accent);
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .eyebrow .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--accent);
+    flex:none;
+  }
+  .eyebrow time{
+    color:var(--ink-soft);
+    font-weight:600;
+    letter-spacing:0;
+    text-transform:none;
+    font-variant-numeric:tabular-nums;
+  }
+
+  h1{
+    font-size:clamp(28px,4.5vw,38px);
+    font-weight:800;
+    letter-spacing:-0.01em;
+    margin:0 0 14px;
+    text-wrap:balance;
+  }
+
+  .lede{
+    font-size:17px;
+    color:var(--ink-soft);
+    margin:0 0 40px;
+    max-width:60ch;
+  }
+
+  .opening{
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:14px;
+    padding:22px 24px;
+    margin-bottom:44px;
+    font-size:15.5px;
+    color:var(--ink);
+  }
+  .opening p{margin:0 0 12px;}
+  .opening p:last-child{margin-bottom:0;}
+  .opening .sign{color:var(--ink-soft);font-size:14px;margin-top:14px;}
+
+  section{margin-bottom:44px;}
+
+  h2{
+    font-size:12.5px;
+    font-weight:800;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent2);
+    margin:0 0 16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  h2::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  p.body-text{font-size:15.5px;color:var(--ink);max-width:64ch;margin:0 0 12px;}
+
+  /* Flow steps */
+  ol.flow{
+    list-style:none;
+    margin:0;padding:0;
+    counter-reset:step;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  ol.flow li{
+    counter-increment:step;
+    position:relative;
+    padding:14px 0 14px 0;
+    padding-inline-start:44px;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+  }
+  ol.flow li:last-child{border-bottom:none;}
+  ol.flow li::before{
+    content:counter(step);
+    position:absolute;
+    inset-inline-start:0;
+    top:14px;
+    width:28px;height:28px;
+    border-radius:50%;
+    background:var(--accent);
+    color:var(--accent-ink);
+    font-weight:800;
+    font-size:13px;
+    display:flex;align-items:center;justify-content:center;
+    font-variant-numeric:tabular-nums;
+  }
+  ol.flow strong{display:block;font-weight:700;margin-bottom:2px;}
+  ol.flow span{color:var(--ink-soft);font-size:14px;}
+
+  /* Feature tiers */
+  .tier{
+    border-radius:12px;
+    padding:16px 18px;
+    margin-bottom:12px;
+    border:1px solid var(--card-line);
+    background:var(--card);
+  }
+  .tier.high{border-inline-start:4px solid var(--accent);}
+  .tier.mid{border-inline-start:4px solid var(--accent2); opacity:0.92;}
+  .tier.skip{background:var(--reject-bg); border-inline-start:4px solid var(--ink-soft);}
+  .tier-label{
+    font-size:11.5px;
+    font-weight:800;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .tier.high .tier-label{color:var(--accent);}
+  .tier.mid .tier-label{color:var(--accent2);}
+  .tier.skip .tier-label{color:var(--ink-soft);}
+  .tier ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .tier li{font-size:14.5px;}
+  .tier.skip li{text-decoration:line-through;text-decoration-color:var(--ink-soft);color:var(--ink-soft);}
+  .tier li b{font-weight:700;}
+  .tier li em{font-style:normal;color:var(--ink-soft);font-size:13.5px;}
+
+  /* Checklist */
+  .checklist{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .check-item{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:10px;
+    padding:13px 16px;
+  }
+  .check-item .box{
+    flex:none;
+    width:20px;height:20px;
+    border-radius:5px;
+    border:2px solid var(--accent2);
+    margin-top:2px;
+  }
+  .check-item div{font-size:14.5px;}
+  .check-item b{display:block;font-weight:700;margin-bottom:2px;}
+  .check-item span{color:var(--ink-soft);font-size:13.5px;}
+
+  .payment-note{
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:12px;
+    padding:16px 18px;
+    font-size:14.5px;
+    color:var(--ink);
+  }
+  .payment-note b{color:var(--accent2);}
+
+  /* Fillable answer fields */
+  .field{
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:10px;
+    padding:14px 16px 12px;
+    margin-bottom:12px;
+  }
+  .field label{
+    display:block;
+    font-weight:700;
+    font-size:14.5px;
+    margin-bottom:2px;
+  }
+  .field .hint{
+    display:block;
+    color:var(--ink-soft);
+    font-size:13px;
+    margin-bottom:8px;
+  }
+  .field textarea{
+    width:100%;
+    min-height:88px;
+    resize:vertical;
+    border:1px solid var(--card-line);
+    border-radius:8px;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:inherit;
+    font-size:14.5px;
+    line-height:1.55;
+    padding:10px 12px;
+    direction:rtl;
+  }
+  .field textarea:focus{
+    outline:2px solid var(--accent2);
+    outline-offset:1px;
+  }
+  .save-status{
+    font-size:12.5px;
+    color:var(--accent2);
+    min-height:16px;
+    margin-top:6px;
+    opacity:0;
+    transition:opacity .3s;
+  }
+  .save-status.show{opacity:1;}
+
+  .send-bar{
+    position:sticky;
+    bottom:0;
+    margin:32px -24px -96px;
+    padding:14px 24px calc(14px + env(safe-area-inset-bottom));
+    background:var(--card);
+    border-top:1px solid var(--card-line);
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:flex-end;
+    box-shadow:0 -8px 20px -12px rgba(0,0,0,0.25);
+  }
+  .send-bar .note{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    flex:1 1 200px;
+  }
+  .btn{
+    border:none;
+    border-radius:9px;
+    padding:11px 18px;
+    font-size:14.5px;
+    font-weight:700;
+    font-family:inherit;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--accent);color:var(--accent-ink);}
+  .btn-secondary{background:transparent;color:var(--accent2);border:1.5px solid var(--accent2);}
+  .btn:active{transform:translateY(1px);}
+
+  footer{
+    margin-top:56px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-size:14px;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  footer b{color:var(--ink);}
+
+  @media (max-width:480px){
+    .page{padding:40px 18px 72px;}
+    .send-bar{margin:32px -18px -72px;padding:14px 18px calc(14px + env(safe-area-inset-bottom));justify-content:stretch;}
+    .send-bar .btn{flex:1;}
+    .send-bar .note{order:3;flex-basis:100%;text-align:center;}
+  }
+</style>
+
+<div class="page">
+  <div class="eyebrow"><span class="dot"></span> בריף פנימי · לשיתוף עם בעלי <time>12.8.2026</time></div>
+  <h1>האתר שיעשה בשבילך את מה שאתה עושה בטלפון — רק בלי הפסקה</h1>
+  <p class="lede">סיכום ההחלטות שסגרנו על אתר מכירה דיגיטלי למשחקיה, לפני שמתחילים לבנות בפועל.</p>
+
+  <div class="opening">
+    <p>היי אהוב, אחרי שיחה עם קלוד סגרנו כיוון ברור לאתר שיעשה בעצם את מה שאתה עושה בכל שיחת מכירה — רק שהוא יעבוד 24/7, בלי לחכות שתהיה פנוי, ועם כל הוויזואליה שטלפון פשוט לא יכול לתת.</p>
+    <p>הרעיון הוא לא להחליף אותך — הוא לקחת את מה שכבר עובד לך בשיחות, ולתת לזה בית דיגיטלי כיפי שמוביל לקוח מהשאלה הראשונה ועד לתשלום בפועל.</p>
+    <p class="sign">למטה כל מה שסגרנו, ובסוף — מה שאני צריכה ממך כדי שזה ידבר באמת כמוך.</p>
+  </div>
+
+  <section>
+    <h2>המסע של הלקוח באתר</h2>
+    <ol class="flow">
+      <li><strong>כניסה כיפית</strong><span>תמונה/וידאו מהמקום, כותרת מזמינה</span></li>
+      <li><strong>כמה שאלות קצרות</strong><span>תאריך, גיל החוגג/ת, כמות ילדים, וייב רצוי — בסגנון אשף, לא טופס</span></li>
+      <li><strong>חבילות מותאמות</strong><span>מוצגות עם תמונות ומחיר, ממוינות לפי התשובות</span></li>
+      <li><strong>עדויות לקוחות</strong><span>בדיוק בנקודה הזו — אחרי שרואים חבילה, לפני שממשיכים הלאה</span></li>
+      <li><strong>תוספות ואפסיילים</strong><span>עוגה, מגיש, צלם וכו' — מוצגים כ"הוספה לחוויה", לא מכירה קשה</span></li>
+      <li><strong>שאלות נפוצות</strong><span>עונה על ההססנות האחרונה, רגע לפני הסגירה — בדיוק מהתשובות שאתה כותב למטה</span></li>
+      <li><strong>סגירה</strong><span>טופס פרטים + סיכום הזמנה + לינק תשלום חיצוני / הנחיות להעברה בנקאית</span></li>
+      <li><strong>תודה חמה</strong><span>מה קורה עכשיו — אישור, מי חוזר אליהם ומתי</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>מה יהפוך את החוויה למיוחדת</h2>
+    <div class="tier high">
+      <div class="tier-label">עדיפות גבוהה</div>
+      <ul>
+        <li><b>לוח זמינות חי</b> — תאריכים פנויים בזמן אמת, <em>זה מה שדוחף מהתלהבות לסגירה בפועל</em></li>
+        <li><b>וידאו-עדויות</b>, לא רק טקסט — <em>משכנע פי כמה מעדות כתובה</em></li>
+        <li><b>ציר זמן ליום המסיבה</b> — <em>נותן להורה ביטחון ומוריד הססנות</em></li>
+        <li><b>סיור וירטואלי + גלריית המקום ומסיבות</b> — <em>כבר סגור, ייכנס כווידאו/תמונות</em></li>
+      </ul>
+    </div>
+    <div class="tier mid">
+      <div class="tier-label">כיף — אבל משני</div>
+      <ul>
+        <li><b>דמות/מסקוט</b> שמובילה את הגלילה בטון חם ומשועשע</li>
+        <li><b>קונפטי קטן</b> ברגע הסגירה — רגע שיא רגשי</li>
+      </ul>
+    </div>
+    <div class="tier skip">
+      <div class="tier-label">מדלגים על זה בכוונה</div>
+      <ul>
+        <li>מוזיקת רקע אוטומטית וידאו כבד ברקע — מאט טעינה במובייל ומרחיק מהמטרה: לסגור ולשלם</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>תשלום וסגירה</h2>
+    <div class="payment-note">בלי סליקה מובנית באתר. בסוף המסע — <b>לינק תשלום חיצוני או הנחיות להעברה בנקאית</b>, בדיוק כמו שאתה סוגר היום, רק שהמסע עד לשם קורה לבד.</div>
+  </section>
+
+  <section>
+    <h2>מה אני צריכה ממך — פשוט תכתוב כאן</h2>
+    <p class="body-text" style="margin-bottom:16px;">מה שתכתוב נשמר אוטומטית בדפדפן שלך תוך כדי הקלדה. בסוף — כפתור אחד שולח לי הכל במייל, כדי שזה יגיע אליי בלי שתצטרך להעתיק כלום בעצמך.</p>
+    <div class="field">
+      <label for="f-script">תסריט המכירה שלך</label>
+      <span class="hint">הטקסט או עיקרי הדברים — כדי שהאתר "ידבר" באותו טון ואותן נקודות שכנוע שעובדות לך בטלפון</span>
+      <textarea id="f-script" placeholder="למשל: אני פותח בשאלה על גיל הילד/ה ומה הוא הכי אוהב, ואז..."></textarea>
+    </div>
+    <div class="field">
+      <label for="f-objections">ההתנגדויות שאתה שומע הכי הרבה</label>
+      <span class="hint">ואיך אתה עונה עליהן — זה בדיוק מה שהאתר צריך לנטרל לבד</span>
+      <textarea id="f-objections" placeholder="למשל: 'זה יקר לי' — ואני עונה..."></textarea>
+    </div>
+    <div class="field">
+      <label for="f-hooks">נקודות המכירה שהכי עובדות לך</label>
+      <span class="hint">מה גורם ללקוח להגיד "כן" — כדי לשים את זה במקום הכי חזק במסע</span>
+      <textarea id="f-hooks" placeholder="למשל: הדגש על זה שהצוות שלנו מנהל את כל האירוע כדי שההורים יוכלו פשוט ליהנות..."></textarea>
+    </div>
+    <div class="field">
+      <label for="f-faq">שאלות נפוצות</label>
+      <span class="hint">מה לקוחות שואלים הכי הרבה לפני שהם סוגרים, ואיך אתה עונה — זה ייכנס כסקשן שאלות נפוצות באתר, ממש לפני הסגירה</span>
+      <textarea id="f-faq" placeholder="למשל: 'מה קורה אם יורד גשם / מזג אוויר לא טוב?' — אני עונה..."></textarea>
+    </div>
+    <div class="save-status" id="saveStatus">נשמר ✓</div>
+  </section>
+
+  <footer>
+    <div>סטטוס: <b>מתחילים לבנות שלד ראשוני עכשיו</b></div>
+    <div>תוכן (חבילות, תמונות, עדויות) — <b>יוזן בהמשך</b></div>
+  </footer>
+
+  <div class="send-bar">
+    <span class="note" id="sendNote">מה שתכתוב נשמר אוטומטית בדפדפן הזה</span>
+    <button class="btn btn-secondary" id="copyBtn" type="button">העתקת הכל</button>
+    <button class="btn btn-primary" id="mailBtn" type="button">שליחה לאיב במייל</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var fields = [
+    {id:'f-script', label:'תסריט המכירה'},
+    {id:'f-objections', label:'התנגדויות נפוצות ואיך עונים עליהן'},
+    {id:'f-hooks', label:'נקודות המכירה שהכי עובדות'},
+    {id:'f-faq', label:'שאלות נפוצות ותשובות'}
+  ];
+  var storeKey = 'playroom-brief-answers:' + location.pathname;
+  var statusEl = document.getElementById('saveStatus');
+  var saveTimer;
+
+  function load(){
+    try{
+      var saved = JSON.parse(localStorage.getItem(storeKey) || '{}');
+      fields.forEach(function(f){
+        var el = document.getElementById(f.id);
+        if(el && saved[f.id]) el.value = saved[f.id];
+      });
+    }catch(e){}
+  }
+
+  function save(){
+    var data = {};
+    fields.forEach(function(f){
+      var el = document.getElementById(f.id);
+      if(el) data[f.id] = el.value;
+    });
+    localStorage.setItem(storeKey, JSON.stringify(data));
+    statusEl.classList.add('show');
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){ statusEl.classList.remove('show'); }, 1500);
+  }
+
+  function buildText(){
+    var lines = ['הבריף שמילא בעלי — משחקיה', ''];
+    fields.forEach(function(f){
+      var el = document.getElementById(f.id);
+      var val = (el && el.value.trim()) || '(לא מולא)';
+      lines.push(f.label + ':', val, '');
+    });
+    return lines.join('\n');
+  }
+
+  fields.forEach(function(f){
+    var el = document.getElementById(f.id);
+    if(el) el.addEventListener('input', save);
+  });
+  load();
+
+  document.getElementById('mailBtn').addEventListener('click', function(){
+    var body = encodeURIComponent(buildText());
+    var subject = encodeURIComponent('הבריף שמילאתי - משחקיה');
+    window.location.href = 'mailto:coheneve95@gmail.com?subject=' + subject + '&body=' + body;
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    var text = buildText();
+    var noteEl = document.getElementById('sendNote');
+    function done(ok){
+      noteEl.textContent = ok ? 'הועתק! אפשר להדביק בוואטסאפ' : 'לא הצלחתי להעתיק אוטומטית — סמנו ידנית והעתיקו';
+      setTimeout(function(){ noteEl.textContent = 'מה שתכתוב נשמר אוטומטית בדפדפן הזה'; }, 3000);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){done(true);}, function(){done(false);});
+    } else {
+      done(false);
+    }
+  });
+})();
+</script>

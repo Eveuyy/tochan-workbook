@@ -170,18 +170,35 @@ h2.q-title{
 
 .example{
   margin:14px 0 4px;
+  border-radius:var(--radius-md);
+  overflow:hidden;
+}
+.example-toggle{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  cursor:pointer;
+  list-style:none;
   background:var(--paper-soft);
   border-radius:var(--radius-md);
-  padding:14px 16px;
-  font-size:.92rem;
-}
-.example .example-label{
-  display:block;
-  font-size:.74rem;
+  padding:11px 16px;
+  font-size:.86rem;
   font-weight:700;
   color:var(--active);
-  letter-spacing:.03em;
-  margin-bottom:8px;
+  user-select:none;
+}
+.example-toggle::-webkit-details-marker{display:none;}
+.example-toggle .lamp{font-size:1rem;}
+.example[open] .example-toggle{border-radius:var(--radius-md) var(--radius-md) 0 0;}
+.example-body{
+  background:var(--paper-soft);
+  padding:2px 16px 14px;
+  font-size:.92rem;
+}
+.example-lead{
+  font-weight:700;
+  color:var(--active);
+  margin:8px 0 8px;
 }
 .example p{margin:0 0 8px;}
 .example p:last-child{margin-bottom:0;}
@@ -388,7 +405,8 @@ textarea:focus, input[type=text]:focus{
   .scene{padding:0; gap:22px;}
   .card{box-shadow:none; border:none; max-width:100%; padding:0; break-inside:avoid;}
   h1, h2.q-title{color:#000;}
-  .example{background:#f4f4f4;}
+  .example-body{background:#f4f4f4; display:block !important;}
+  .example-toggle{display:none !important;}
 }
 </style>
 
@@ -423,12 +441,14 @@ textarea:focus, input[type=text]:focus{
         <p>נתחיל הכי רחב.</p>
         <p><strong>באיזה עולם אתם רוצים ליצור תוכן ולעבוד?</strong></p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <span class="reveal">צילום.</span>
         <p>זו הנישה שלנו.</p>
         <p>באותה מידה זו יכולה להיות כושר, אוכל, שיווק, אופנה, עיצוב, פיננסים או כל עולם אחר.</p>
-      </div>
+        </div>
+      </details>
       <div class="guide guide-after"><p>כרגע לא צריך לסבך את זה.</p></div>
       <div class="answer-block">
         <label for="q1">התשובה שלך</label>
@@ -444,8 +464,9 @@ textarea:focus, input[type=text]:focus{
         <p><strong>איזה חלק בתוך הנישה הגדולה שלכם הכי מעניין אתכם?</strong></p>
         <p>חשבו: במה יש לכם ידע או ניסיון? מה אתם הכי אוהבים לעשות? איזה סוג עבודה הייתם שמחים לעשות יותר?</p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <p>בתוך עולם הצילום אפשר לבחור:</p>
         <ul>
           <li>צילום אירועים</li>
@@ -458,7 +479,8 @@ textarea:focus, input[type=text]:focus{
         <p>הצלמת שלנו בוחרת:</p>
         <span class="reveal">צילום משפחות.</span>
         <p>עברנו מ־<strong>צילום</strong> ל־<strong>צילום משפחות.</strong></p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q2">התשובה שלך</label>
         <textarea id="q2" name="q2" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -479,12 +501,14 @@ textarea:focus, input[type=text]:focus{
           <p><strong>מי האנשים שהייתם הכי רוצים שיגיעו אליכם? את מי אתם מרגישים שאתם מבינים?</strong></p>
         </div>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <p>הצלמת שלנו יכולה לצלם המון סוגים של משפחות. אבל היא מגלה שהיא הכי רוצה לעבוד עם:</p>
         <span class="reveal">משפחות עם ילדים קטנים.</span>
         <p>עכשיו אנחנו כבר יודעים הרבה יותר על מי שנמצא בצד השני.</p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q3">התשובה שלך</label>
         <textarea id="q3" name="q3" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -498,13 +522,15 @@ textarea:focus, input[type=text]:focus{
         <p>גם בתוך אותו קהל יש אנשים עם רצונות, חששות ובעיות שונות.</p>
         <p>שאלו: <strong>מה עובר על האנשים שאני הכי רוצה למשוך אליי? מה חשוב להם? מה מקשה עליהם?</strong></p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <p>הצלמת שלנו רוצה לעבוד עם הורים לילדים קטנים שרוצים תמונות משפחתיות יפות — <strong>אבל חוששים שהילדים לא ישתפו פעולה בצילומים.</strong></p>
         <p>הם כבר מדמיינים את עצמם אומרים:</p>
         <p><em>"תסתכל למצלמה."</em><br><em>"תעמוד רגע במקום."</em><br><em>"רק תמונה אחת יפה ודי."</em></p>
         <p>והם חוששים שכל החוויה תהפוך למאבק.</p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q4">התשובה שלך</label>
         <textarea id="q4" name="q4" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -518,12 +544,14 @@ textarea:focus, input[type=text]:focus{
         <p>אתם לא חייבים לפתור כל בעיה שקיימת בנישה שלכם.</p>
         <p>שאלו: <strong>איזו בעיה הייתי רוצה שאנשים יזהו אותי איתה?</strong></p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <p>הצלמת שלנו לא רק רוצה "לצלם משפחות".</p>
         <p>היא רוצה לעזור למשפחות שרוצות לתעד את התקופה הזאת — <strong>בלי להפוך את יום הצילום לאירוע מלחיץ שבו מנסים לגרום לילדים להתנהג ולהצטלם "יפה".</strong></p>
         <p>כאן אנחנו כבר מתחילים להבין הרבה יותר טוב <strong>איזה סוג של צלמת היא רוצה להיות.</strong></p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q5">התשובה שלך</label>
         <textarea id="q5" name="q5" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -537,14 +565,16 @@ textarea:focus, input[type=text]:focus{
         <p>שני בעלי מקצוע יכולים לעבוד באותה נישה, עם אותו קהל ואפילו לפתור בעיה דומה — <strong>ועדיין לעשות את זה בדרך שונה לגמרי.</strong></p>
         <p>אז שאלו את עצמכם: במה אתם מאמינים? מה חשוב לכם בדרך שבה אתם עובדים? מה אתם עושים אחרת? על מה אתם לא מוכנים להתפשר?</p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <p>הצלמת שלנו לא מאמינה שילדים צריכים לעמוד במקום, להסתכל למצלמה ולחייך לפי הוראה כדי שתצא תמונה יפה.</p>
         <p>הגישה שלה היא:</p>
         <span class="reveal">אני לא מנסה לגרום לילדים "להצטלם יפה".</span>
         <p><strong>אני נותנת להם להיות ילדים, יוצרת רגעים טבעיים עם המשפחה — ומתעדת את מה שקורה ביניהם באמת.</strong></p>
         <p>וזו כבר מתחילה להיות <strong>הזווית שלה בתוך הנישה.</strong></p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q6">התשובה שלך</label>
         <textarea id="q6" name="q6" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -558,8 +588,10 @@ textarea:focus, input[type=text]:focus{
         <p>עכשיו בואו נבדוק שהנישה שדייקנו באמת נותנת לכם מספיק מקום ליצור.</p>
         <p>נסו לכתוב לפחות 5 נושאים שאתם יכולים לדבר עליהם שוב ושוב.</p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה, הצלמת שלנו יכולה ליצור תוכן על</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
+        <p class="example-lead">לדוגמה, הצלמת שלנו יכולה ליצור תוכן על</p>
         <ul>
           <li>איך להתכונן לצילומי משפחה.</li>
           <li>מה עושים כשהילד לא משתף פעולה.</li>
@@ -570,7 +602,8 @@ textarea:focus, input[type=text]:focus{
           <li>מאחורי הקלעים של צילומי משפחות.</li>
           <li>איך לתעד רגעים אמיתיים ולא רק תמונות "מושלמות".</li>
         </ul>
-      </div>
+        </div>
+      </details>
       <div class="guide guide-after">
         <p>אם פתאום מתחילים לקפוץ לכם המון רעיונות לתוכן — <strong>זה סימן טוב.</strong></p>
         <p>יש לכם פוקוס, אבל עדיין יש לכם מספיק מקום ליצור.</p>

@@ -170,18 +170,35 @@ h2.q-title{
 
 .example{
   margin:14px 0 4px;
+  border-radius:var(--radius-md);
+  overflow:hidden;
+}
+.example-toggle{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  cursor:pointer;
+  list-style:none;
   background:var(--paper-soft);
   border-radius:var(--radius-md);
-  padding:14px 16px;
-  font-size:.92rem;
-}
-.example .example-label{
-  display:block;
-  font-size:.74rem;
+  padding:11px 16px;
+  font-size:.86rem;
   font-weight:700;
   color:var(--active);
-  letter-spacing:.03em;
-  margin-bottom:8px;
+  user-select:none;
+}
+.example-toggle::-webkit-details-marker{display:none;}
+.example-toggle .lamp{font-size:1rem;}
+.example[open] .example-toggle{border-radius:var(--radius-md) var(--radius-md) 0 0;}
+.example-body{
+  background:var(--paper-soft);
+  padding:2px 16px 14px;
+  font-size:.92rem;
+}
+.example-lead{
+  font-weight:700;
+  color:var(--active);
+  margin:8px 0 8px;
 }
 .example p{margin:0 0 8px;}
 .example p:last-child{margin-bottom:0;}
@@ -338,7 +355,8 @@ textarea:focus, input[type=text]:focus{
   .scene{padding:0; gap:22px;}
   .card{box-shadow:none; border:none; max-width:100%; padding:0; break-inside:avoid;}
   h1, h2.q-title{color:#000;}
-  .example{background:#f4f4f4;}
+  .example-body{background:#f4f4f4; display:block !important;}
+  .example-toggle{display:none !important;}
 }
 </style>
 
@@ -382,11 +400,13 @@ textarea:focus, input[type=text]:focus{
         </div>
         <p>נסו לא להסתפק בהגדרה רחבה כמו "נשים", "בעלי עסקים" או "כל מי שצריך את השירות שלי".</p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <p>במקום: <span class="no">"נשים שרוצות להיכנס לכושר"</span></p>
         <p>אפשר לדייק: <strong>"נשים שכבר ניסו להתחיל להתאמן כמה פעמים, אבל אף פעם לא הצליחו להתמיד לאורך זמן."</strong></p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q1">התשובה שלך</label>
         <textarea id="q1" name="q1" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -408,10 +428,12 @@ textarea:focus, input[type=text]:focus{
         </div>
         <p>מה מתסכל אותו? מה לא עובד לו? מתי הוא מרגיש את הבעיה?</p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <p><em>"כל פעם אני אומרת לעצמי שהפעם אני באמת אתחיל להתאמן. אני מתחילה עם המון מוטיבציה, מחזיקה קצת — ואז שוב מפסיקה."</em></p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q2">התשובה שלך</label>
         <textarea id="q2" name="q2" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -426,12 +448,14 @@ textarea:focus, input[type=text]:focus{
         <p>נסו להבין: <strong>למה זה לא עבד? מה היה קשה? מה גרם לו לוותר?</strong></p>
         <p>אם אתם בתחילת הדרך ולא יודעים עדיין, חשבו מה הלקוח שלכם כנראה מנסה לעשות היום לבד.</p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <p>היא נרשמה כמה פעמים לחדר כושר, הורידה תוכניות אימונים, ניסתה להתאמן 4–5 פעמים בשבוע והתחילה בכל פעם מחדש עם המון מוטיבציה.</p>
         <p><strong>אבל בסוף היא תמיד התייאשה, כי האימונים היו עצימים מדי בשבילה והיא לא הצליחה לשמור על הקצב לאורך זמן.</strong></p>
         <p>ואולי כאן מתחילה להתגלות אמת חשובה: <strong>הבעיה שלה היא לא בהכרח שאין לה כוח רצון. אולי היא פשוט ניסתה שוב ושוב דרך שלא התאימה לה.</strong></p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q3">התשובה שלך</label>
         <textarea id="q3" name="q3" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -445,13 +469,15 @@ textarea:focus, input[type=text]:focus{
         <p>מה הוא יחפש? מה הוא יבקש מכם? מה הוא חושב שיפתור לו את הבעיה?</p>
         <p>כאן התשובה יכולה להיות השירות שאתם מוכרים.</p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <p><em>"אני צריכה מאמנת כושר."</em></p>
         <p><em>"אני צריכה תוכנית אימונים טובה."</em></p>
         <p><em>"אני צריכה מישהי שתגרום לי להתמיד."</em></p>
         <p>זה מה שהיא חושבת שהיא צריכה. <strong>אבל זה עדיין לא בהכרח מה שהיא באמת רוצה.</strong></p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q4">התשובה שלך</label>
         <textarea id="q4" name="q4" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -466,12 +492,14 @@ textarea:focus, input[type=text]:focus{
         <p>אם השירות שלכם יעבוד בדיוק כמו שהלקוח מקווה — <strong>מה הוא באמת רוצה שיקרה בחיים שלו?</strong></p>
         <p>אל תפחדו מתשובות פשוטות, אישיות או רגשיות.</p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <p>היא אולי מבקשת תוכנית אימונים. אבל היא לא חולמת על "תוכנית אימונים". <strong>היא רוצה להגיע לגוף שהיא חולמת עליו.</strong></p>
         <p>היא רוצה ללבוש את הג'ינס שלה ולהרגיש בו טוב. להסתכל במראה ולהיות מרוצה ממה שהיא רואה. להרגיש שהפעם היא לא התחילה משהו רק כדי לוותר עליו שוב.</p>
         <p><strong>השירות הוא מה שהיא קונה. השינוי הוא מה שהיא באמת רוצה.</strong></p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q5">התשובה שלך</label>
         <textarea id="q5" name="q5" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -485,11 +513,13 @@ textarea:focus, input[type=text]:focus{
         <p>התוצאה היא רק חלק מהסיפור.</p>
         <p>שאלו את עצמכם: <strong>אם הבעיה הזאת תיפתר — איך הלקוח שלי רוצה להרגיש?</strong></p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <p>היא רוצה ללבוש את הג'ינס שלה ולהרגיש בו טוב. אבל מתחת לזה היא אולי רוצה:</p>
         <p><strong>להרגיש חזקה.</strong> להרגיש בנוח בגוף שלה. להסתכל במראה ולהיות מרוצה ממה שהיא רואה. להרגיש גאה בעצמה. ולהפסיק להרגיש שהיא בכל פעם מאכזבת את עצמה מחדש.</p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q6">התשובה שלך</label>
         <textarea id="q6" name="q6" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -512,12 +542,14 @@ textarea:focus, input[type=text]:focus{
         </div>
         <p>אתם לא חייבים להמציא שיטה שאף אחד בעולם לא חשב עליה. <strong>הבידול שלכם יכול להיות גם בדרך שבה אתם פותרים את הבעיה.</strong></p>
       </div>
-      <div class="example">
-        <span class="example-label">לדוגמה</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
         <p>הלקוחה שלנו רגילה לחשוב שכדי לראות תוצאות היא צריכה להתאמן חזק יותר, יותר פעמים ולהיות ממושמעת יותר.</p>
         <p>אבל אצל המאמנת שלנו היא לא מקבלת עוד תוכנית שדורשת ממנה לתת 200% לשבועיים — ואז להישבר.</p>
         <p><strong>היא בונה איתה אימונים שמתאימים לרמה שלה ולחיים שלה, כדי שהיא תוכל להתקדם בלי להרגיש שכל אימון הוא עונש.</strong></p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q7">התשובה שלך</label>
         <textarea id="q7" name="q7" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -531,14 +563,17 @@ textarea:focus, input[type=text]:focus{
         <p>עכשיו הסתכלו על כל מה שכתבתם עד עכשיו.</p>
         <p>אתם אולי מוכרים אימונים, צילום, עיצוב, ייעוץ, טיפול או שירות אחר. <strong>אבל מה הלקוח באמת מקבל מכם?</strong></p>
       </div>
-      <div class="example">
-        <span class="example-label">בדוגמה שלנו</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
+        <p class="example-lead">בדוגמה שלנו</p>
         <p>על הנייר היא קנתה <strong>אימוני כושר.</strong> אבל בדרך היא יכולה לקבל הרבה יותר.</p>
         <p>היא יכולה להגיע לגוף שהיא רוצה בלי לשנוא את הדרך לשם. להרגיש חזקה יותר בגוף שלה. <strong>לגלות שהיא הרבה יותר חזקה ממה שהיא חשבה.</strong></p>
         <p>להפסיק לספר לעצמה שהיא "פשוט לא מצליחה להתמיד". לבנות אמון בעצמה וביכולת שלה לעמוד במה שהיא מבטיחה לעצמה.</p>
         <p>ולפתח מיינדסט שמוביל לערך עצמי גבוה יותר — כזה שבו היא לא מודדת את עצמה רק לפי איך שהיא נראית, אלא לומדת להכיר בכוח שלה, ביכולות שלה ובהתקדמות שלה.</p>
         <p><strong>ופתאום אנחנו מבינים:</strong> היא לא מוכרת רק אימוני כושר. <strong>היא עוזרת לנשים להתחזק — בגוף, אבל גם בדרך שבה הן תופסות את עצמן.</strong></p>
-      </div>
+        </div>
+      </details>
       <div class="answer-block">
         <label for="q8">התשובה שלך</label>
         <textarea id="q8" name="q8" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
@@ -570,11 +605,14 @@ textarea:focus, input[type=text]:focus{
         <input type="text" id="b5" name="b5" placeholder="...">
       </div>
 
-      <div class="example">
-        <span class="example-label">ובדוגמה שלנו</span>
+      <details class="example">
+        <summary class="example-toggle"><span class="lamp">💡</span> לדוגמה - לחצו</summary>
+        <div class="example-body">
+        <p class="example-lead">ובדוגמה שלנו</p>
         <p>התחלנו מ: <strong>"אני מאמנת כושר."</strong></p>
         <p>והגענו למשהו הרבה יותר מדויק: <strong>"אני עוזרת לנשים שכבר ניסו שוב ושוב להיכנס לכושר, להגיע לגוף שהן רוצות ולהרגיש חזקות ובטוחות יותר בעצמן — באמצעות אימונים שמתאימים לרמה ולחיים שלהן, בלי תוכניות קיצוניות שגורמות להן להתייאש אחרי כמה שבועות."</strong></p>
-      </div>
+        </div>
+      </details>
 
       <div class="lede" style="margin-top:16px;">
         <p>אל תנסו למצוא עכשיו את המשפט המושלם. <strong>המטרה של התרגיל הזה היא לא לכתוב סלוגן יפה.</strong></p>

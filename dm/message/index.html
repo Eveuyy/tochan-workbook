@@ -68,7 +68,7 @@ body{
 .scene{
   position:relative;
   overflow:hidden;
-  padding:28px 16px 210px;
+  padding:28px 16px 118px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -306,14 +306,21 @@ textarea:focus, input[type=text]:focus{
   position:fixed;
   left:0; right:0; bottom:0;
   z-index:2;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
+  display:flex;
   gap:8px;
   padding:0 14px calc(14px + env(safe-area-inset-bottom));
-  pointer-events:none;
+  pointer-events:auto;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x proximity;
+  scrollbar-width:none;
 }
+.footer-nav::-webkit-scrollbar{display:none;}
 .footer-nav a{
   pointer-events:auto;
+  flex:0 0 auto;
+  min-width:106px;
+  scroll-snap-align:start;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -365,7 +372,7 @@ textarea:focus, input[type=text]:focus{
   <div class="blob" style="width:150px;height:150px; bottom:400px; right:-50px; background:var(--detail); opacity:.2;"></div>
 
   <div class="card rise">
-    <span class="eyebrow">📩 אם אתם כאן, כנראה שגם אתם רוצים לגרום לעמוד העסקי שלכם לעבוד עבורכם</span>
+    <span class="eyebrow">🚀 בואו נצא לדרך</span>
     <h1>שאלון לדייק את המסר של העסק שלכם</h1>
     <div class="lede">
       <p>המטרה של השאלון הזה היא לעזור לכם להבין <strong>מה אתם באמת נותנים ללקוחות שלכם — מעבר לשם המקצוע או השירות שאתם מוכרים.</strong></p>

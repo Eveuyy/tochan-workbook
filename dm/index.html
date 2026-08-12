@@ -71,7 +71,7 @@ body{
   position:relative;
   flex:1;
   overflow:hidden;
-  padding:28px 18px 210px;
+  padding:28px 18px 118px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -248,14 +248,21 @@ h1{
   position:fixed;
   left:0; right:0; bottom:0;
   z-index:2;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
+  display:flex;
   gap:8px;
   padding:0 14px calc(14px + env(safe-area-inset-bottom));
-  pointer-events:none;
+  pointer-events:auto;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x proximity;
+  scrollbar-width:none;
 }
+.footer-nav::-webkit-scrollbar{display:none;}
 .footer-nav a{
   pointer-events:auto;
+  flex:0 0 auto;
+  min-width:106px;
+  scroll-snap-align:start;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -306,7 +313,7 @@ h1{
   <div class="blob" style="width:150px;height:150px; bottom:90px; right:-50px; background:var(--detail); opacity:.25;"></div>
 
   <div class="content-card rise">
-    <span class="eyebrow">📩 אם אתם כאן, כנראה שגם אתם רוצים לגרום לעמוד העסקי שלכם לעבוד עבורכם</span>
+    <span class="eyebrow">🚀 בואו נצא לדרך</span>
     <h1>[כאן נכנסת הכותרת של התוכן הספציפי]</h1>
     <p class="lede">כל פוסט מוביל לתוכן אחר - לפעמים שאלון קצר למילוי, לפעמים מדריך כתוב. זו דוגמה לאיך שאלון עם שדות נראה, כדי שנוכל לבדוק יחד שההורדה עובדת:</p>
 

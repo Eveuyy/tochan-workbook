@@ -1,4 +1,5 @@
 <title>תבנית תוכן ל-DM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="שלד קבוע לתוכן שנשלח בתגובה למילת מפתח באינסטגרם - מדריך או שאלון להורדה, עם ניווט קבוע בתחתית">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%8C%3C/text%3E%3C/svg%3E">
 <style>
@@ -306,7 +307,7 @@ h1{
     </button>
     <p class="privacy-note">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2 3 7v6c0 5 4 8.5 9 9 5-.5 9-4 9-9V7z"/></svg>
-      ההורדה נשארת רק אצלך במכשיר - שום דבר לא נשלח אליי.
+      מה שאת כותבת נשמר אוטומטית בדפדפן שלך - אם תחזרי לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי.
     </p>
   </div>
 
@@ -322,6 +323,35 @@ h1{
 </div>
 
 <script>
+(function(){
+  var STORAGE_KEY = 'dm-answers:' + location.pathname;
+  var form = document.getElementById('demoForm');
+  var fields = Array.prototype.slice.call(form.querySelectorAll('input, textarea'));
+
+  function loadSaved(){
+    var raw;
+    try { raw = localStorage.getItem(STORAGE_KEY); } catch(e) { return; }
+    if (!raw) return;
+    var saved;
+    try { saved = JSON.parse(raw); } catch(e) { return; }
+    fields.forEach(function(f){
+      if (saved[f.name] !== undefined) f.value = saved[f.name];
+    });
+  }
+
+  function persist(){
+    var data = {};
+    fields.forEach(function(f){ data[f.name] = f.value; });
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+  }
+
+  fields.forEach(function(f){
+    f.addEventListener('input', persist);
+  });
+
+  loadSaved();
+})();
+
 document.getElementById('downloadBtn').addEventListener('click', function(){
   window.print();
 });

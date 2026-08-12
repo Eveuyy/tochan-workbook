@@ -40,6 +40,7 @@ body{
   background:var(--paper);
   color:var(--ink);
   font-family:'Rubik','Segoe UI',Arial,sans-serif;
+  direction:rtl;
   line-height:1.65;
   min-height:100vh;
   display:flex;
@@ -223,6 +224,32 @@ textarea:focus, input[type=text]:focus{
   margin-bottom:6px;
 }
 
+
+.gender-picker{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:14px 0 0;
+  padding-top:14px;
+  border-top:1px dashed rgba(61,36,24,.12);
+}
+.gender-picker-label{font-size:.82rem; color:var(--ink-soft); font-weight:600;}
+.gender-btn{
+  border:1.5px solid var(--secondary);
+  background:#fff;
+  color:var(--ink);
+  font-family:inherit;
+  font-size:.82rem;
+  font-weight:700;
+  padding:6px 16px;
+  border-radius:999px;
+  cursor:pointer;
+  transition:background .15s ease, color .15s ease, border-color .15s ease;
+}
+.gender-btn.active{background:var(--active); border-color:var(--active); color:#fff;}
+.gender-btn:focus-visible{outline:3px solid var(--detail); outline-offset:2px;}
+
 .download-btn{
   display:flex;
   align-items:center;
@@ -319,12 +346,8 @@ textarea:focus, input[type=text]:focus{
   <div class="blob" style="width:220px;height:220px; top:-60px; left:-70px; background:var(--secondary);"></div>
   <div class="blob" style="width:150px;height:150px; bottom:400px; right:-50px; background:var(--detail); opacity:.2;"></div>
 
-  <div class="topbar rise">
-    <span class="wordmark">איב<span>.</span></span>
-  </div>
-
   <div class="card rise">
-    <span class="eyebrow">📩 קיבלת את זה כי כתבת לי מילה בפוסט "הלקוחות שלכם לא צריכים שתספרו להם מה המקצוע שלכם"</span>
+    <span class="eyebrow">📩 אם אתם כאן, כנראה שגם אתם רוצים לגרום לעמוד העסקי שלכם לעבוד עבורכם</span>
     <h1>שאלון לדייק את המסר של העסק שלכם</h1>
     <div class="lede">
       <p>המטרה של השאלון הזה היא לעזור לכם להבין <strong>מה אתם באמת נותנים ללקוחות שלכם — מעבר לשם המקצוע או השירות שאתם מוכרים.</strong></p>
@@ -334,6 +357,12 @@ textarea:focus, input[type=text]:focus{
       <p><strong>המטרה היא להיכנס לראש של הלקוח שלכם ולגלות מה הוא באמת רוצה.</strong></p>
     </div>
     <span class="hint-note">💡 לאורך השאלון נשתמש בדוגמה של מאמנת כושר</span>
+
+    <div class="gender-picker" role="group" aria-label="פנייה בלשון">
+      <span class="gender-picker-label">איך נפנה אליך?</span>
+      <button type="button" class="gender-btn" data-gender="m">זכר</button>
+      <button type="button" class="gender-btn" data-gender="f">נקבה</button>
+    </div>
   </div>
 
   <form id="messageForm">
@@ -360,7 +389,7 @@ textarea:focus, input[type=text]:focus{
       </div>
       <div class="answer-block">
         <label for="q1">התשובה שלך</label>
-        <textarea id="q1" name="q1" placeholder="כתבי כאן..."></textarea>
+        <textarea id="q1" name="q1" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
       </div>
     </div>
 
@@ -385,7 +414,7 @@ textarea:focus, input[type=text]:focus{
       </div>
       <div class="answer-block">
         <label for="q2">התשובה שלך</label>
-        <textarea id="q2" name="q2" placeholder="כתבי כאן..."></textarea>
+        <textarea id="q2" name="q2" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
       </div>
     </div>
 
@@ -405,7 +434,7 @@ textarea:focus, input[type=text]:focus{
       </div>
       <div class="answer-block">
         <label for="q3">התשובה שלך</label>
-        <textarea id="q3" name="q3" placeholder="כתבי כאן..."></textarea>
+        <textarea id="q3" name="q3" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
       </div>
     </div>
 
@@ -425,7 +454,7 @@ textarea:focus, input[type=text]:focus{
       </div>
       <div class="answer-block">
         <label for="q4">התשובה שלך</label>
-        <textarea id="q4" name="q4" placeholder="כתבי כאן..."></textarea>
+        <textarea id="q4" name="q4" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
       </div>
     </div>
 
@@ -445,7 +474,7 @@ textarea:focus, input[type=text]:focus{
       </div>
       <div class="answer-block">
         <label for="q5">התשובה שלך</label>
-        <textarea id="q5" name="q5" placeholder="כתבי כאן..."></textarea>
+        <textarea id="q5" name="q5" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
       </div>
     </div>
 
@@ -463,7 +492,7 @@ textarea:focus, input[type=text]:focus{
       </div>
       <div class="answer-block">
         <label for="q6">התשובה שלך</label>
-        <textarea id="q6" name="q6" placeholder="כתבי כאן..."></textarea>
+        <textarea id="q6" name="q6" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
       </div>
     </div>
 
@@ -491,7 +520,7 @@ textarea:focus, input[type=text]:focus{
       </div>
       <div class="answer-block">
         <label for="q7">התשובה שלך</label>
-        <textarea id="q7" name="q7" placeholder="כתבי כאן..."></textarea>
+        <textarea id="q7" name="q7" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
       </div>
     </div>
 
@@ -512,7 +541,7 @@ textarea:focus, input[type=text]:focus{
       </div>
       <div class="answer-block">
         <label for="q8">התשובה שלך</label>
-        <textarea id="q8" name="q8" placeholder="כתבי כאן..."></textarea>
+        <textarea id="q8" name="q8" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
       </div>
     </div>
 
@@ -557,11 +586,11 @@ textarea:focus, input[type=text]:focus{
   </form>
 
   <button class="download-btn rise" id="downloadBtn" type="button">
-    <span aria-hidden="true">💾</span> שמרי את התשובות שלך כ-PDF
+    <span aria-hidden="true">💾</span> <span data-text-m="שמור את התשובות שלך כ-PDF" data-text-f="שמרי את התשובות שלך כ-PDF">שמור את התשובות שלך כ-PDF</span>
   </button>
   <p class="privacy-note">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2 3 7v6c0 5 4 8.5 9 9 5-.5 9-4 9-9V7z"/></svg>
-    מה שאת כותבת נשמר אוטומטית בדפדפן שלך - אם תחזרי לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי.
+    <span data-text-m="מה שאתה כותב נשמר אוטומטית בדפדפן שלך - אם תחזור לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי." data-text-f="מה שאת כותבת נשמר אוטומטית בדפדפן שלך - אם תחזרי לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי.">מה שאתה כותב נשמר אוטומטית בדפדפן שלך - אם תחזור לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי.</span>
   </p>
 </div>
 
@@ -572,6 +601,33 @@ textarea:focus, input[type=text]:focus{
 </div>
 
 <script>
+(function(){
+  var GENDER_KEY = 'dm-gender-pref';
+  var genderBtns = Array.prototype.slice.call(document.querySelectorAll('.gender-btn'));
+  var genderedEls = Array.prototype.slice.call(document.querySelectorAll('[data-text-m]'));
+
+  function applyGender(g){
+    genderedEls.forEach(function(el){
+      var text = g === 'f' ? el.getAttribute('data-text-f') : el.getAttribute('data-text-m');
+      if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') {
+        el.setAttribute('placeholder', text);
+      } else {
+        el.textContent = text;
+      }
+    });
+    genderBtns.forEach(function(b){ b.classList.toggle('active', b.dataset.gender === g); });
+    try { localStorage.setItem(GENDER_KEY, g); } catch(e) {}
+  }
+
+  genderBtns.forEach(function(b){
+    b.addEventListener('click', function(){ applyGender(b.dataset.gender); });
+  });
+
+  var savedGender;
+  try { savedGender = localStorage.getItem(GENDER_KEY); } catch(e) {}
+  applyGender(savedGender === 'f' ? 'f' : 'm');
+})();
+
 (function(){
   var STORAGE_KEY = 'dm-answers:' + location.pathname;
   var form = document.getElementById('messageForm');

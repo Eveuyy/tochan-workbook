@@ -1,6 +1,6 @@
-<title>תבנית תוכן ל-DM</title>
+<title>שאלון: דייקו את הנישה שלכם</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="שלד קבוע לתוכן שנשלח בתגובה למילת מפתח באינסטגרם - מדריך או שאלון להורדה, עם ניווט קבוע בתחתית">
+<meta name="description" content="שאלון מודרך לרדת ברזולוציה בתוך הנישה שלכם - תת-נישה, קהל, בעיה, זווית ונושאי תוכן">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%8C%3C/text%3E%3C/svg%3E">
 <style>
 @font-face{
@@ -29,7 +29,7 @@
   --active:#8C5A6B;
   --detail:#7A8C6E;
   --card-shadow: 0 18px 40px -18px rgba(61,36,24,.28);
-  --radius-lg: 28px;
+  --radius-lg: 26px;
   --radius-md: 16px;
 }
 
@@ -41,7 +41,7 @@ body{
   color:var(--ink);
   font-family:'Rubik','Segoe UI',Arial,sans-serif;
   direction:rtl;
-  line-height:1.6;
+  line-height:1.65;
   min-height:100vh;
   display:flex;
   flex-direction:column;
@@ -50,8 +50,6 @@ body{
 
 @media (prefers-reduced-motion: no-preference){
   .rise{animation:rise .6s cubic-bezier(.2,.8,.2,1) both;}
-  .rise:nth-of-type(2){animation-delay:.08s;}
-  .rise:nth-of-type(3){animation-delay:.16s;}
 }
 @keyframes rise{
   from{opacity:0; transform:translateY(14px);}
@@ -62,19 +60,19 @@ body{
   position:absolute;
   border-radius:50%;
   filter:blur(2px);
-  opacity:.35;
+  opacity:.3;
   z-index:0;
   pointer-events:none;
 }
 
 .scene{
   position:relative;
-  flex:1;
   overflow:hidden;
-  padding:28px 18px 128px;
+  padding:28px 16px 128px;
   display:flex;
   flex-direction:column;
   align-items:center;
+  gap:16px;
 }
 
 .topbar{
@@ -83,7 +81,7 @@ body{
   display:flex;
   align-items:center;
   gap:8px;
-  margin-bottom:22px;
+  margin-bottom:4px;
 }
 .wordmark{
   font-family:'Fredoka','Rubik',sans-serif;
@@ -94,60 +92,122 @@ body{
 }
 .wordmark span{color:var(--active);}
 
-.content-card{
+.card{
   position:relative;
   z-index:1;
   width:100%;
-  max-width:460px;
+  max-width:520px;
   background:#fff;
   border:1px solid rgba(61,36,24,.08);
   border-radius:var(--radius-lg);
   box-shadow:var(--card-shadow);
-  padding:26px 22px 24px;
+  padding:24px 20px;
 }
 
-.eyebrow{
+.eyebrow, .q-pill{
   display:inline-flex;
   align-items:center;
   gap:6px;
-  font-size:.78rem;
-  font-weight:600;
-  letter-spacing:.06em;
+  font-size:.76rem;
+  font-weight:700;
+  letter-spacing:.02em;
   color:var(--active);
   background:rgba(140,90,107,.1);
   padding:5px 12px;
   border-radius:999px;
-  margin-bottom:14px;
+  margin-bottom:12px;
 }
 
 h1{
   font-family:'Fredoka','Rubik',sans-serif;
   font-weight:600;
-  font-size:1.55rem;
-  line-height:1.3;
+  font-size:1.5rem;
+  line-height:1.32;
   color:var(--primary);
-  margin:0 0 10px;
+  margin:0 0 12px;
+  text-wrap:balance;
+}
+h2.q-title{
+  font-family:'Fredoka','Rubik',sans-serif;
+  font-weight:600;
+  font-size:1.22rem;
+  line-height:1.35;
+  color:var(--primary);
+  margin:0 0 12px;
   text-wrap:balance;
 }
 
-.lede{
-  margin:0 0 22px;
-  color:var(--ink-soft);
+.lede p, .guide p{
+  margin:0 0 12px;
   font-size:.96rem;
 }
+.lede p:last-child, .guide p:last-child{margin-bottom:0;}
 
-.field{
-  margin-bottom:16px;
+.hint-note{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:.82rem;
+  color:var(--ink-soft);
+  background:var(--paper-soft);
+  border-radius:999px;
+  padding:6px 12px;
+  margin-top:4px;
 }
-.field label{
+
+.subcase{
+  margin:12px 0;
+  padding-inline-start:14px;
+  border-inline-start:3px solid var(--secondary);
+}
+.subcase b{
   display:block;
   font-size:.86rem;
-  font-weight:600;
-  color:var(--ink);
-  margin-bottom:6px;
+  color:var(--primary);
+  margin-bottom:3px;
 }
-.field input[type=text],
-.field textarea{
+.subcase p{margin:0; font-size:.94rem;}
+
+.example{
+  margin:14px 0 4px;
+  background:var(--paper-soft);
+  border-radius:var(--radius-md);
+  padding:14px 16px;
+  font-size:.92rem;
+}
+.example .example-label{
+  display:block;
+  font-size:.74rem;
+  font-weight:700;
+  color:var(--active);
+  letter-spacing:.03em;
+  margin-bottom:8px;
+}
+.example p{margin:0 0 8px;}
+.example p:last-child{margin-bottom:0;}
+.example em{color:var(--ink-soft); font-style:italic;}
+.example ul{margin:0 0 10px; padding-inline-start:20px;}
+.example li{margin-bottom:3px;}
+.example li:last-child{margin-bottom:0;}
+.reveal{
+  display:block;
+  font-family:'Fredoka','Rubik',sans-serif;
+  font-weight:600;
+  font-size:1.05rem;
+  color:var(--primary);
+  margin:6px 0 8px;
+}
+.guide-after{margin-top:12px;}
+
+.answer-block{margin-top:18px;}
+.answer-block label{
+  display:block;
+  font-size:.86rem;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:7px;
+}
+textarea, input[type=text]{
   width:100%;
   font-family:inherit;
   font-size:.95rem;
@@ -159,16 +219,60 @@ h1{
   resize:vertical;
   transition:border-color .15s ease, background .15s ease;
 }
-.field textarea{min-height:74px;}
-.field input[type=text]:focus,
-.field textarea:focus{
+textarea{min-height:96px;}
+textarea:focus, input[type=text]:focus{
   outline:none;
   border-color:var(--active);
   background:#fff;
 }
 
-.guide-text p{margin:0 0 14px; font-size:.95rem;}
-.guide-text p:last-child{margin-bottom:0;}
+.blank-row{margin-bottom:14px;}
+.blank-row label{
+  display:block;
+  font-size:.9rem;
+  font-weight:700;
+  color:var(--primary);
+  margin-bottom:6px;
+}
+
+.recap-chain{margin:6px 0 14px;}
+.recap-item{
+  padding:10px 0;
+  border-bottom:1px solid rgba(61,36,24,.08);
+}
+.recap-item:last-child{border-bottom:none;}
+.recap-item .label{
+  display:block;
+  font-size:.76rem;
+  font-weight:700;
+  color:var(--active);
+  letter-spacing:.02em;
+  margin-bottom:3px;
+}
+.recap-item .value{font-size:.96rem; font-weight:600;}
+
+.topics-row{display:flex; align-items:center; gap:10px; margin-bottom:12px;}
+.topics-row .num{
+  flex:none;
+  width:26px; height:26px;
+  border-radius:50%;
+  background:var(--primary);
+  color:#fff;
+  font-weight:700;
+  font-size:.82rem;
+  display:flex; align-items:center; justify-content:center;
+}
+.topics-row input{flex:1;}
+
+.closing-statement{
+  font-family:'Fredoka','Rubik',sans-serif;
+  font-weight:600;
+  font-size:1.12rem;
+  color:var(--primary);
+  text-align:center;
+  margin:16px 0 0;
+  text-wrap:balance;
+}
 
 
 .gender-picker{
@@ -202,15 +306,16 @@ h1{
   justify-content:center;
   gap:8px;
   width:100%;
-  margin-top:6px;
-  padding:14px 18px;
+  max-width:520px;
+  margin-top:4px;
+  padding:15px 18px;
   border:none;
   border-radius:999px;
   background:var(--active);
   color:#fff;
   font-family:'Rubik',sans-serif;
-  font-weight:600;
-  font-size:.98rem;
+  font-weight:700;
+  font-size:1rem;
   cursor:pointer;
   transition:transform .15s ease, box-shadow .15s ease;
   box-shadow:0 10px 24px -10px rgba(140,90,107,.6);
@@ -223,26 +328,12 @@ h1{
   display:flex;
   align-items:flex-start;
   gap:6px;
-  margin-top:12px;
+  max-width:520px;
   font-size:.78rem;
   color:var(--ink-soft);
+  text-align:center;
 }
 .privacy-note svg{flex:none; margin-top:2px;}
-
-.dev-note{
-  position:relative;
-  z-index:1;
-  max-width:460px;
-  width:100%;
-  margin-top:16px;
-  padding:12px 16px;
-  border:1.5px dashed var(--detail);
-  border-radius:var(--radius-md);
-  font-size:.78rem;
-  color:var(--ink-soft);
-  background:rgba(122,140,110,.08);
-}
-.dev-note b{color:var(--primary);}
 
 .footer-nav{
   position:fixed;
@@ -290,59 +381,283 @@ h1{
   box-shadow:0 16px 30px -10px rgba(140,90,107,.65), 0 3px 8px rgba(61,36,24,.12);
 }
 .footer-nav a.primary-link .ico{background:rgba(255,255,255,.22);}
-.footer-nav a.primary-link:hover{box-shadow:0 20px 36px -10px rgba(140,90,107,.72), 0 4px 10px rgba(61,36,24,.15);}
 
 @media print{
-  .topbar, .footer-nav, .download-btn, .dev-note, .blob, .privacy-note{display:none !important;}
+  .topbar, .footer-nav, .download-btn, .blob, .privacy-note{display:none !important;}
   body{background:#fff;}
-  .scene{padding:0;}
-  .content-card{box-shadow:none; border:none; max-width:100%; padding:0;}
-  h1{color:#000;}
+  .scene{padding:0; gap:22px;}
+  .card{box-shadow:none; border:none; max-width:100%; padding:0; break-inside:avoid;}
+  h1, h2.q-title{color:#000;}
+  .example{background:#f4f4f4;}
 }
 </style>
 
 <div class="scene">
   <div class="blob" style="width:220px;height:220px; top:-60px; left:-70px; background:var(--secondary);"></div>
-  <div class="blob" style="width:150px;height:150px; bottom:90px; right:-50px; background:var(--detail); opacity:.25;"></div>
+  <div class="blob" style="width:150px;height:150px; bottom:400px; right:-50px; background:var(--detail); opacity:.2;"></div>
 
-  <div class="content-card rise">
+  <div class="card rise">
     <span class="eyebrow">📩 אם אתם כאן, כנראה שגם אתם רוצים לגרום לעמוד העסקי שלכם לעבוד עבורכם</span>
-    <h1>[כאן נכנסת הכותרת של התוכן הספציפי]</h1>
-    <p class="lede">כל פוסט מוביל לתוכן אחר - לפעמים שאלון קצר למילוי, לפעמים מדריך כתוב. זו דוגמה לאיך שאלון עם שדות נראה, כדי שנוכל לבדוק יחד שההורדה עובדת:</p>
+    <h1>שאלון לדייק את הנישה שלכם</h1>
+    <div class="lede">
+      <p>בחרתם נישה? מעולה.</p>
+      <p>עכשיו בואו נרד <strong>לאט־לאט ברזולוציה</strong> ונבין איפה בתוך הנישה הזאת נמצא המקום שלכם.</p>
+      <p>המטרה היא לא להכניס אתכם לקופסה.</p>
+      <p>המטרה היא לעזור לכם להבין: <strong>על מה אתם רוצים לדבר, עם מי אתם רוצים לעבוד, ואיזה מקום אתם רוצים לתפוס בתוך הנישה שלכם.</strong></p>
+    </div>
+    <span class="hint-note">💡 לאורך השאלון נשתמש בדוגמה של צלמת, כדי לראות איך בכל שאלה התמונה הופכת ברורה יותר</span>
 
     <div class="gender-picker" role="group" aria-label="פנייה בלשון">
       <span class="gender-picker-label">איך נפנה אליך?</span>
       <button type="button" class="gender-btn" data-gender="m">זכר</button>
       <button type="button" class="gender-btn" data-gender="f">נקבה</button>
     </div>
-
-    <form id="demoForm">
-      <div class="field">
-        <label for="f1">מה הדבר שהכי מעכב אותך היום ביצירת תוכן?</label>
-        <textarea id="f1" name="f1" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
-      </div>
-      <div class="field">
-        <label for="f2">שם (לא חובה)</label>
-        <input type="text" id="f2" name="f2" placeholder="איך לפנות אליך">
-      </div>
-      <div class="field">
-        <label for="f3" data-text-m="עוד משהו שתרצה לספר לי?" data-text-f="עוד משהו שתרצי לספר לי?">עוד משהו שתרצה לספר לי?</label>
-        <textarea id="f3" name="f3" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
-      </div>
-    </form>
-
-    <button class="download-btn" id="downloadBtn" type="button">
-      <span aria-hidden="true">💾</span> <span data-text-m="שמור את התשובות שלך כ-PDF" data-text-f="שמרי את התשובות שלך כ-PDF">שמור את התשובות שלך כ-PDF</span>
-    </button>
-    <p class="privacy-note">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2 3 7v6c0 5 4 8.5 9 9 5-.5 9-4 9-9V7z"/></svg>
-      <span data-text-m="מה שאתה כותב נשמר אוטומטית בדפדפן שלך - אם תחזור לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי." data-text-f="מה שאת כותבת נשמר אוטומטית בדפדפן שלך - אם תחזרי לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי.">מה שאתה כותב נשמר אוטומטית בדפדפן שלך - אם תחזור לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי.</span>
-    </p>
   </div>
 
-  <div class="dev-note rise">
-    <b>הערת פיתוח (לא מוצג בהדפסה/PDF):</b> זה השלד הקבוע. בכל פוסט חדש - מחליפים את הכותרת ואת תוכן ה-<code>content-card</code> (שאלון או טקסט מדריך), ואת שלושת קישורי הפוטר למטה (עדיין placeholder עד שהעמוד העסקי ודף הנחיתה מוכנים).
-  </div>
+  <form id="nicheForm">
+
+    <div class="card rise q-block">
+      <span class="q-pill">שאלה 1 מתוך 7</span>
+      <h2 class="q-title">מה הנישה שלכם?</h2>
+      <div class="guide">
+        <p>נתחיל הכי רחב.</p>
+        <p><strong>באיזה עולם אתם רוצים ליצור תוכן ולעבוד?</strong></p>
+      </div>
+      <div class="example">
+        <span class="example-label">לדוגמה</span>
+        <span class="reveal">צילום.</span>
+        <p>זו הנישה שלנו.</p>
+        <p>באותה מידה זו יכולה להיות כושר, אוכל, שיווק, אופנה, עיצוב, פיננסים או כל עולם אחר.</p>
+      </div>
+      <div class="guide guide-after"><p>כרגע לא צריך לסבך את זה.</p></div>
+      <div class="answer-block">
+        <label for="q1">התשובה שלך</label>
+        <textarea id="q1" name="q1" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+      </div>
+    </div>
+
+    <div class="card rise q-block">
+      <span class="q-pill">שאלה 2 מתוך 7</span>
+      <h2 class="q-title">מה תת־הנישה שלכם?</h2>
+      <div class="guide">
+        <p>עכשיו נרד רמה אחת.</p>
+        <p><strong>איזה חלק בתוך הנישה הגדולה שלכם הכי מעניין אתכם?</strong></p>
+        <p>חשבו: במה יש לכם ידע או ניסיון? מה אתם הכי אוהבים לעשות? איזה סוג עבודה הייתם שמחים לעשות יותר?</p>
+      </div>
+      <div class="example">
+        <span class="example-label">לדוגמה</span>
+        <p>בתוך עולם הצילום אפשר לבחור:</p>
+        <ul>
+          <li>צילום אירועים</li>
+          <li>צילום אוכל</li>
+          <li>צילום תדמית</li>
+          <li>צילום אופנה</li>
+          <li>צילום משפחות</li>
+          <li>צילום הריון וניו־בורן</li>
+        </ul>
+        <p>הצלמת שלנו בוחרת:</p>
+        <span class="reveal">צילום משפחות.</span>
+        <p>עברנו מ־<strong>צילום</strong> ל־<strong>צילום משפחות.</strong></p>
+      </div>
+      <div class="answer-block">
+        <label for="q2">התשובה שלך</label>
+        <textarea id="q2" name="q2" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+      </div>
+    </div>
+
+    <div class="card rise q-block">
+      <span class="q-pill">שאלה 3 מתוך 7</span>
+      <h2 class="q-title">עם מי אתם הכי רוצים לעבוד?</h2>
+      <div class="guide">
+        <p>עכשיו בואו נדייק את האנשים שנמצאים בצד השני.</p>
+        <div class="subcase">
+          <b>אם העסק שלכם כבר עובד:</b>
+          <p><strong>אילו לקוחות אתם הכי נהנים לשרת? עם מי אתם מרגישים חיבור? מאילו לקוחות הייתם רוצים עוד?</strong></p>
+        </div>
+        <div class="subcase">
+          <b>אם אתם רק בתחילת הדרך:</b>
+          <p><strong>מי האנשים שהייתם הכי רוצים שיגיעו אליכם? את מי אתם מרגישים שאתם מבינים?</strong></p>
+        </div>
+      </div>
+      <div class="example">
+        <span class="example-label">לדוגמה</span>
+        <p>הצלמת שלנו יכולה לצלם המון סוגים של משפחות. אבל היא מגלה שהיא הכי רוצה לעבוד עם:</p>
+        <span class="reveal">משפחות עם ילדים קטנים.</span>
+        <p>עכשיו אנחנו כבר יודעים הרבה יותר על מי שנמצא בצד השני.</p>
+      </div>
+      <div class="answer-block">
+        <label for="q3">התשובה שלך</label>
+        <textarea id="q3" name="q3" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+      </div>
+    </div>
+
+    <div class="card rise q-block">
+      <span class="q-pill">שאלה 4 מתוך 7</span>
+      <h2 class="q-title">מה מאפיין במיוחד את האנשים שאתם רוצים לעבוד איתם?</h2>
+      <div class="guide">
+        <p>גם בתוך אותו קהל יש אנשים עם רצונות, חששות ובעיות שונות.</p>
+        <p>שאלו: <strong>מה עובר על האנשים שאני הכי רוצה למשוך אליי? מה חשוב להם? מה מקשה עליהם?</strong></p>
+      </div>
+      <div class="example">
+        <span class="example-label">לדוגמה</span>
+        <p>הצלמת שלנו רוצה לעבוד עם הורים לילדים קטנים שרוצים תמונות משפחתיות יפות — <strong>אבל חוששים שהילדים לא ישתפו פעולה בצילומים.</strong></p>
+        <p>הם כבר מדמיינים את עצמם אומרים:</p>
+        <p><em>"תסתכל למצלמה."</em><br><em>"תעמוד רגע במקום."</em><br><em>"רק תמונה אחת יפה ודי."</em></p>
+        <p>והם חוששים שכל החוויה תהפוך למאבק.</p>
+      </div>
+      <div class="answer-block">
+        <label for="q4">התשובה שלך</label>
+        <textarea id="q4" name="q4" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+      </div>
+    </div>
+
+    <div class="card rise q-block">
+      <span class="q-pill">שאלה 5 מתוך 7</span>
+      <h2 class="q-title">איזו בעיה אתם רוצים להיות טובים במיוחד בלפתור עבורם?</h2>
+      <div class="guide">
+        <p>אתם לא חייבים לפתור כל בעיה שקיימת בנישה שלכם.</p>
+        <p>שאלו: <strong>איזו בעיה הייתי רוצה שאנשים יזהו אותי איתה?</strong></p>
+      </div>
+      <div class="example">
+        <span class="example-label">לדוגמה</span>
+        <p>הצלמת שלנו לא רק רוצה "לצלם משפחות".</p>
+        <p>היא רוצה לעזור למשפחות שרוצות לתעד את התקופה הזאת — <strong>בלי להפוך את יום הצילום לאירוע מלחיץ שבו מנסים לגרום לילדים להתנהג ולהצטלם "יפה".</strong></p>
+        <p>כאן אנחנו כבר מתחילים להבין הרבה יותר טוב <strong>איזה סוג של צלמת היא רוצה להיות.</strong></p>
+      </div>
+      <div class="answer-block">
+        <label for="q5">התשובה שלך</label>
+        <textarea id="q5" name="q5" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+      </div>
+    </div>
+
+    <div class="card rise q-block">
+      <span class="q-pill">שאלה 6 מתוך 7</span>
+      <h2 class="q-title">מה הגישה שלכם בתוך הנישה?</h2>
+      <div class="guide">
+        <p>שני בעלי מקצוע יכולים לעבוד באותה נישה, עם אותו קהל ואפילו לפתור בעיה דומה — <strong>ועדיין לעשות את זה בדרך שונה לגמרי.</strong></p>
+        <p>אז שאלו את עצמכם: במה אתם מאמינים? מה חשוב לכם בדרך שבה אתם עובדים? מה אתם עושים אחרת? על מה אתם לא מוכנים להתפשר?</p>
+      </div>
+      <div class="example">
+        <span class="example-label">לדוגמה</span>
+        <p>הצלמת שלנו לא מאמינה שילדים צריכים לעמוד במקום, להסתכל למצלמה ולחייך לפי הוראה כדי שתצא תמונה יפה.</p>
+        <p>הגישה שלה היא:</p>
+        <span class="reveal">אני לא מנסה לגרום לילדים "להצטלם יפה".</span>
+        <p><strong>אני נותנת להם להיות ילדים, יוצרת רגעים טבעיים עם המשפחה — ומתעדת את מה שקורה ביניהם באמת.</strong></p>
+        <p>וזו כבר מתחילה להיות <strong>הזווית שלה בתוך הנישה.</strong></p>
+      </div>
+      <div class="answer-block">
+        <label for="q6">התשובה שלך</label>
+        <textarea id="q6" name="q6" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+      </div>
+    </div>
+
+    <div class="card rise q-block">
+      <span class="q-pill">שאלה 7 מתוך 7</span>
+      <h2 class="q-title">על אילו נושאים תוכלו ליצור תוכן שוב ושוב?</h2>
+      <div class="guide">
+        <p>עכשיו בואו נבדוק שהנישה שדייקנו באמת נותנת לכם מספיק מקום ליצור.</p>
+        <p>נסו לכתוב לפחות 5 נושאים שאתם יכולים לדבר עליהם שוב ושוב.</p>
+      </div>
+      <div class="example">
+        <span class="example-label">לדוגמה, הצלמת שלנו יכולה ליצור תוכן על</span>
+        <ul>
+          <li>איך להתכונן לצילומי משפחה.</li>
+          <li>מה עושים כשהילד לא משתף פעולה.</li>
+          <li>איך לבחור בגדים לצילומים.</li>
+          <li>איך לגרום לילדים להרגיש בנוח מול המצלמה.</li>
+          <li>למה התמונות הכי יפות לא תמיד קורות כשכולם מסתכלים למצלמה.</li>
+          <li>טעויות שהורים עושים לפני יום צילום.</li>
+          <li>מאחורי הקלעים של צילומי משפחות.</li>
+          <li>איך לתעד רגעים אמיתיים ולא רק תמונות "מושלמות".</li>
+        </ul>
+      </div>
+      <div class="guide guide-after">
+        <p>אם פתאום מתחילים לקפוץ לכם המון רעיונות לתוכן — <strong>זה סימן טוב.</strong></p>
+        <p>יש לכם פוקוס, אבל עדיין יש לכם מספיק מקום ליצור.</p>
+      </div>
+      <div class="answer-block">
+        <label for="q7">5 הנושאים שלי</label>
+        <textarea id="q7" name="q7" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+      </div>
+    </div>
+
+    <div class="card rise">
+      <span class="eyebrow">🔎 עכשיו תראו מה עשינו</span>
+      <h2 class="q-title">שרשרת הדיוק של הצלמת שלנו</h2>
+      <div class="recap-chain">
+        <div class="recap-item"><span class="label">הנישה</span><span class="value">צילום</span></div>
+        <div class="recap-item"><span class="label">תת־הנישה</span><span class="value">צילום משפחות</span></div>
+        <div class="recap-item"><span class="label">הקהל</span><span class="value">משפחות עם ילדים קטנים</span></div>
+        <div class="recap-item"><span class="label">הבעיה</span><span class="value">הם רוצים לתעד את המשפחה, אבל חוששים מיום צילום מלחיץ שבו הילדים לא משתפים פעולה.</span></div>
+        <div class="recap-item"><span class="label">הזווית</span><span class="value">צילום משפחתי טבעי שנותן לילדים להיות ילדים — במקום לנסות לגרום להם לעמוד ולחייך למצלמה.</span></div>
+      </div>
+      <div class="lede">
+        <p>פתאום אנחנו כבר לא רק יודעים שהעסק עוסק ב<strong>צילום</strong>.</p>
+        <p>אנחנו יודעים: <strong>עם מי אנחנו רוצים לעבוד. מה חשוב להם. איזו בעיה אנחנו רוצים לפתור. מה הגישה שלנו. ועל מה אנחנו יכולים ליצור תוכן.</strong></p>
+      </div>
+    </div>
+
+    <div class="card rise">
+      <span class="eyebrow">✍️ ועכשיו תעשו את זה עם העסק שלכם</span>
+      <div class="blank-row">
+        <label for="n1">הנישה שלי</label>
+        <input type="text" id="n1" name="n1" placeholder="...">
+      </div>
+      <div class="blank-row">
+        <label for="n2">תת־הנישה שלי</label>
+        <input type="text" id="n2" name="n2" placeholder="...">
+      </div>
+      <div class="blank-row">
+        <label for="n3">האנשים שאני הכי רוצה לעבוד איתם</label>
+        <input type="text" id="n3" name="n3" placeholder="...">
+      </div>
+      <div class="blank-row">
+        <label for="n4">מה מאפיין אותם</label>
+        <input type="text" id="n4" name="n4" placeholder="...">
+      </div>
+      <div class="blank-row">
+        <label for="n5">הבעיה שאני רוצה לעזור להם לפתור</label>
+        <input type="text" id="n5" name="n5" placeholder="...">
+      </div>
+      <div class="blank-row">
+        <label for="n6">הגישה / הזווית שלי</label>
+        <input type="text" id="n6" name="n6" placeholder="...">
+      </div>
+
+      <div class="answer-block">
+        <label>5 נושאים שאני יכולה ליצור סביבם תוכן</label>
+        <div class="topics-row"><span class="num">1</span><input type="text" id="t1" name="t1" placeholder="..."></div>
+        <div class="topics-row"><span class="num">2</span><input type="text" id="t2" name="t2" placeholder="..."></div>
+        <div class="topics-row"><span class="num">3</span><input type="text" id="t3" name="t3" placeholder="..."></div>
+        <div class="topics-row"><span class="num">4</span><input type="text" id="t4" name="t4" placeholder="..."></div>
+        <div class="topics-row"><span class="num">5</span><input type="text" id="t5" name="t5" placeholder="..."></div>
+      </div>
+    </div>
+
+    <div class="card rise">
+      <h2 class="q-title">והכי חשוב — זו לא גזירת גורל.</h2>
+      <div class="lede">
+        <p>הנישה שאתם בוחרים עכשיו <strong>לא חייבת להיות הנישה שלכם לנצח.</strong></p>
+        <p>אני בעצמי החלפתי נישה כמעט 5 פעמים בתוך עולם יצירת התוכן, עד שהבנתי מה באמת מעניין אותי, למי אני רוצה לדבר ואיפה אני מביאה הכי הרבה ערך.</p>
+        <p>וחלק גדול מהדיוק הזה הגיע <strong>דווקא כי התחלתי ליצור</strong> — לא כי ישבתי וחיכיתי שתהיה לי תשובה מושלמת.</p>
+        <p>אז אל תיתקעו עכשיו בניסיון למצוא את הנישה "המושלמת".</p>
+        <p>בחרו כיוון שמרגיש מספיק נכון <strong>למי שאתם היום.</strong></p>
+        <p>תתחילו ליצור. תראו למה אתם מתחברים. תגלו למה הקהל מגיב. תלמדו מהניסיון שלכם.</p>
+        <p><strong>ותנו לנישה שלכם להתחדד יחד איתכם.</strong></p>
+        <p>כי המטרה היא לא לבחור נישה מושלמת.</p>
+      </div>
+      <p class="closing-statement">המטרה היא לבחור נישה מספיק מדויקת כדי להתחיל.</p>
+    </div>
+
+  </form>
+
+  <button class="download-btn rise" id="downloadBtn" type="button">
+    <span aria-hidden="true">💾</span> <span data-text-m="שמור את התשובות שלך כ-PDF" data-text-f="שמרי את התשובות שלך כ-PDF">שמור את התשובות שלך כ-PDF</span>
+  </button>
+  <p class="privacy-note">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2 3 7v6c0 5 4 8.5 9 9 5-.5 9-4 9-9V7z"/></svg>
+    <span data-text-m="מה שאתה כותב נשמר אוטומטית בדפדפן שלך - אם תחזור לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי." data-text-f="מה שאת כותבת נשמר אוטומטית בדפדפן שלך - אם תחזרי לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי.">מה שאתה כותב נשמר אוטומטית בדפדפן שלך - אם תחזור לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי.</span>
+  </p>
 </div>
 
 <div class="footer-nav">
@@ -381,7 +696,7 @@ h1{
 
 (function(){
   var STORAGE_KEY = 'dm-answers:' + location.pathname;
-  var form = document.getElementById('demoForm');
+  var form = document.getElementById('nicheForm');
   var fields = Array.prototype.slice.call(form.querySelectorAll('input, textarea'));
 
   function loadSaved(){

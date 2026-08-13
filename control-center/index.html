@@ -40,20 +40,40 @@ header .sub{color:var(--ink-soft); font-size:1.08rem; margin:0 0 8px;}
   background:var(--warn-bg); border:1px solid var(--warn-border); color:var(--warn);
   border-radius:10px; padding:11px 16px; margin:18px 0 32px; font-size:.87rem; line-height:1.6;
 }
-section{margin-bottom:38px;}
-section{border-inline-start:5px solid var(--accent); border-radius:4px; padding-inline-start:18px;}
-section.sec-course{--accent:var(--primary);}
-section.sec-money{--accent:var(--secondary);}
-section.sec-brand{--accent:var(--active);}
-section.sec-services{--accent:#5E7C8C;}
-section.sec-files{--accent:#B99A6A;}
-section.sec-dm{--accent:#7B7FC0;}
-section.sec-agents{--accent:var(--detail);}
+.sec-course{--accent:var(--primary);}
+.sec-money{--accent:var(--secondary);}
+.sec-brand{--accent:var(--active);}
+.sec-services{--accent:#5E7C8C;}
+.sec-files{--accent:#B99A6A;}
+.sec-dm{--accent:#7B7FC0;}
+.sec-agents{--accent:var(--detail);}
 h2{
   font-family:'Fredoka','Rubik',sans-serif; font-weight:700;
-  font-size:1.3rem; color:var(--accent); margin:0 0 5px;
+  font-size:1.3rem; color:var(--accent); margin:0;
   display:flex; align-items:center; gap:8px;
 }
+details.acc{
+  margin-bottom:16px; background:var(--paper); border:1px solid var(--line);
+  border-inline-start:5px solid var(--accent); border-radius:14px;
+  box-shadow:0 1px 3px rgba(61,36,24,.05);
+}
+details.acc > summary{
+  list-style:none; cursor:pointer; padding:18px 20px;
+  display:flex; align-items:center; gap:10px;
+}
+details.acc > summary::-webkit-details-marker{display:none;}
+details.acc > summary::marker{content:'';}
+details.acc > summary .count{
+  font-size:.8rem; color:var(--ink-soft); font-weight:400; background:var(--bg);
+  border:1px solid var(--line); border-radius:99px; padding:2px 10px;
+}
+details.acc > summary .chev{
+  margin-inline-start:auto; color:var(--accent); font-size:1.1rem;
+  transition:transform .18s ease; flex:none;
+}
+details.acc[open] > summary .chev{transform:rotate(180deg);}
+details.acc > summary:hover{background:var(--bg); border-radius:14px;}
+details.acc .acc-body{padding:2px 20px 22px;}
 .section-sub{color:var(--ink-soft); font-size:.95rem; margin:0 0 18px;}
 h3.sub-h{
   font-family:'Fredoka','Rubik',sans-serif; font-weight:700;
@@ -110,8 +130,9 @@ footer{text-align:center; color:var(--ink-soft); font-size:.8rem; margin-top:40p
     ⚠️ זהו דף עזר סטטי, לא מחובר בזמן אמת לשום מערכת. אם משהו נראה לא מעודכן, תבקשי גרסה טרייה.
   </div>
 
-  <section class="sec-course">
-    <h2>🎓 קורס יצירת תוכן</h2>
+  <details class="acc sec-course">
+    <summary><h2>🎓 קורס יצירת תוכן</h2><span class="count">13</span><span class="chev">▾</span></summary>
+    <div class="acc-body">
     <p class="section-sub">קטגוריית-העל של הקורס. כשיתווסף קורס נוסף בעתיד, הוא יקבל קטגוריית-על משלו באותה צורה.</p>
 
     <h3 class="sub-h">🔗 כללי <span class="track-tag">משותף לשני המסלולים</span></h3>
@@ -190,10 +211,12 @@ footer{text-align:center; color:var(--ink-soft); font-size:.8rem; margin-top:40p
         <div class="arrow">פתחי ←</div>
       </a>
     </div>
-  </section>
+    </div>
+  </details>
 
-  <section class="sec-money">
-    <h2>💰 ניהול העסק</h2>
+  <details class="acc sec-money">
+    <summary><h2>💰 ניהול העסק</h2><span class="count">3</span><span class="chev">▾</span></summary>
+    <div class="acc-body">
     <p class="section-sub">המספרים האמיתיים שלך, מתעדכנים לבד</p>
     <div class="card-grid">
       <a class="card" href="https://docs.google.com/spreadsheets/d/1TzY7HCJKBQwHfHV4EQQ0XkWiePZuXAg_Rx_hz1RLaRM/edit" target="_blank">
@@ -212,10 +235,12 @@ footer{text-align:center; color:var(--ink-soft); font-size:.8rem; margin-top:40p
         <div class="arrow">פתחי ←</div>
       </a>
     </div>
-  </section>
+    </div>
+  </details>
 
-  <section class="sec-brand">
-    <h2>🎨 מותג ועיצוב</h2>
+  <details class="acc sec-brand">
+    <summary><h2>🎨 מותג ועיצוב</h2><span class="count">3</span><span class="chev">▾</span></summary>
+    <div class="acc-body">
     <p class="section-sub">הפלטה הנעולה: סיינה רוזה + ירוק שלו</p>
     <div class="card-grid">
       <a class="card" href="https://claude.ai/code/artifact/f06cefe2-13fb-4ba0-9e45-538f9bf7bc64" target="_blank">
@@ -234,10 +259,12 @@ footer{text-align:center; color:var(--ink-soft); font-size:.8rem; margin-top:40p
         <div class="arrow">פתחי ←</div>
       </a>
     </div>
-  </section>
+    </div>
+  </details>
 
-  <section class="sec-services">
-    <h2>🔧 שירותים שאני עובדת איתם</h2>
+  <details class="acc sec-services">
+    <summary><h2>🔧 שירותים שאני עובדת איתם</h2><span class="count">7</span><span class="chev">▾</span></summary>
+    <div class="acc-body">
     <p class="section-sub">כלים חיצוניים לניהול העסק</p>
     <div class="card-grid">
       <a class="card" href="https://business.facebook.com/" target="_blank">
@@ -276,10 +303,12 @@ footer{text-align:center; color:var(--ink-soft); font-size:.8rem; margin-top:40p
         <div class="arrow">פתחי ←</div>
       </a>
     </div>
-  </section>
+    </div>
+  </details>
 
-  <section class="sec-dm">
-    <h2>📩 טפסים להרחבת תנועה לעמוד</h2>
+  <details class="acc sec-dm">
+    <summary><h2>📩 טפסים להרחבת תנועה לעמוד</h2><span class="count">4</span><span class="chev">▾</span></summary>
+    <div class="acc-body">
     <p class="section-sub">כל פוסט קרוסלה באינסטגרם מוביל למילת מפתח → אוטומציה שולחת לינק → עמוד ייעודי (מדריך/שאלון). מבוסס על תבנית אחת קבועה.</p>
     <div class="card-grid">
       <a class="card" href="https://www.evecontent.co.il/dm/" target="_blank">
@@ -303,10 +332,12 @@ footer{text-align:center; color:var(--ink-soft); font-size:.8rem; margin-top:40p
         <div class="arrow">פתחי ←</div>
       </a>
     </div>
-  </section>
+    </div>
+  </details>
 
-  <section class="sec-agents">
-    <h2>🤖 סוכנים דיגיטליים</h2>
+  <details class="acc sec-agents">
+    <summary><h2>🤖 סוכנים דיגיטליים</h2><span class="count">2</span><span class="chev">▾</span></summary>
+    <div class="acc-body">
     <p class="section-sub">מי עובד/ת אצלך מאחורי הקלעים</p>
     <div class="card-grid">
       <a class="card" href="https://claude.ai/code/artifact/162b5b8e-4e73-404f-8dc1-ab79173ca868" target="_blank">
@@ -320,10 +351,12 @@ footer{text-align:center; color:var(--ink-soft); font-size:.8rem; margin-top:40p
         <div class="arrow">פתחי ←</div>
       </a>
     </div>
-  </section>
+    </div>
+  </details>
 
-  <section class="sec-files">
-    <h2>📁 קבצים בדסקטופ</h2>
+  <details class="acc sec-files">
+    <summary><h2>📁 קבצים בדסקטופ</h2><span class="count">4</span><span class="chev">▾</span></summary>
+    <div class="acc-body">
     <p class="section-sub">לא קישורי אינטרנט — קבצים אמיתיים על המחשב שלך</p>
     <div class="card-grid">
       <div class="file-card">
@@ -343,7 +376,8 @@ footer{text-align:center; color:var(--ink-soft); font-size:.8rem; margin-top:40p
         <div class="path">~/Desktop/תכנים קורס /eve-sheets-secret/</div>
       </div>
     </div>
-  </section>
+    </div>
+  </details>
 
-  <footer>עודכן לאחרונה: 12.8.2026 · תבקשי גרסה חדשה בכל פעם שנוסיף משהו</footer>
+  <footer>עודכן לאחרונה: 13.8.2026 · תבקשי גרסה חדשה בכל פעם שנוסיף משהו</footer>
 </div>

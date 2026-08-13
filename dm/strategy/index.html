@@ -241,18 +241,26 @@ textarea:focus, input[type=text]:focus{
   margin-bottom:6px;
 }
 
-.rating-row{
-  margin-top:16px;
-  padding-top:14px;
-  border-top:1px dashed rgba(61,36,24,.12);
+.rating-anchors{
+  margin:14px 0;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 }
-.rating-label{
-  display:block;
-  font-size:.86rem;
-  font-weight:700;
-  color:var(--ink);
-  margin-bottom:12px;
+.rating-anchor-hi, .rating-anchor-lo{
+  border-radius:var(--radius-md);
+  padding:10px 14px;
+  font-size:.88rem;
+  line-height:1.5;
 }
+.rating-anchor-hi{background:rgba(140,90,107,.1); color:var(--ink);}
+.rating-anchor-lo{background:var(--paper-soft); color:var(--ink-soft);}
+.rating-anchor-hi b, .rating-anchor-lo b{
+  font-family:'Fredoka','Rubik',sans-serif;
+  color:var(--primary);
+  margin-inline-end:6px;
+}
+.rating-row{margin-top:6px;}
 .rating-scale{
   display:flex;
   align-items:center;
@@ -260,13 +268,13 @@ textarea:focus, input[type=text]:focus{
 }
 .rating-end{
   flex:none;
-  width:50px;
+  width:20px;
   text-align:center;
-  font-size:.68rem;
-  line-height:1.35;
+  font-size:.78rem;
+  font-weight:700;
   color:var(--ink-soft);
+  font-family:'Fredoka','Rubik',sans-serif;
 }
-.rating-end b{display:block; font-size:.95rem; color:var(--primary); font-family:'Fredoka','Rubik',sans-serif;}
 .rating-slider{
   flex:1;
   -webkit-appearance:none;
@@ -339,6 +347,78 @@ textarea:focus, input[type=text]:focus{
   opacity:1;
   border-color:var(--active);
   background:rgba(140,90,107,.08);
+}
+
+.diagnosis-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 16px;
+  border-radius:var(--radius-md);
+  margin-bottom:10px;
+  font-size:.9rem;
+}
+.diagnosis-strength{background:rgba(122,140,110,.14);}
+.diagnosis-weak{background:rgba(168,70,46,.1);}
+.diagnosis-label{font-weight:700; color:var(--ink);}
+.diagnosis-value{
+  font-family:'Fredoka','Rubik',sans-serif;
+  font-weight:600;
+  color:var(--primary);
+}
+
+.breakdown-list{
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px dashed rgba(61,36,24,.12);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.breakdown-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.breakdown-name{
+  flex:none;
+  width:96px;
+  font-size:.82rem;
+  font-weight:700;
+  color:var(--ink);
+}
+.breakdown-bar{
+  flex:1;
+  height:10px;
+  border-radius:999px;
+  background:var(--paper-soft);
+  overflow:hidden;
+}
+.breakdown-fill{
+  display:block;
+  height:100%;
+  border-radius:999px;
+  background:var(--active);
+  transition:width .2s ease;
+}
+.breakdown-item.is-low .breakdown-fill{background:var(--primary);}
+.breakdown-num{
+  flex:none;
+  width:34px;
+  text-align:left;
+  font-family:'Fredoka','Rubik',sans-serif;
+  font-weight:600;
+  font-size:.86rem;
+  color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.breakdown-flag{
+  flex:none;
+  font-size:.72rem;
+  font-weight:700;
+  color:var(--primary);
+  white-space:nowrap;
 }
 
 
@@ -526,9 +606,8 @@ textarea:focus, input[type=text]:focus{
     <span class="eyebrow">🚀 בואו נצא לדרך</span>
     <h1>האם לעמוד העסקי שלך יש אסטרטגיית תוכן?</h1>
     <div class="lede">
-      <p>עמוד עסקי לא צריך רק תוכן.</p>
-      <p>הוא צריך למשוך את האנשים הנכונים, לגרום להם להבין למה כדאי להם להישאר — ולאורך זמן לבנות מספיק אמון כדי שהם ירצו לעבוד איתך.</p>
-      <p><span class="gv-m">השאלות הבאות יעזרו לך לבדוק אם לעמוד שלך יש כיוון ברור — או שאתה פשוט מעלה תוכן ומקווה שהוא יעבוד.</span><span class="gv-f" hidden>השאלות הבאות יעזרו לך לבדוק אם לעמוד שלך יש כיוון ברור — או שאת פשוט מעלה תוכן ומקווה שהוא יעבוד.</span></p>
+      <p><span class="gv-m">ענה בכנות על 7 השאלות הבאות ודַרג את העמוד שלך מ־1 עד 10.</span><span class="gv-f" hidden>עני בכנות על 7 השאלות הבאות ודַרגי את העמוד שלך מ־1 עד 10.</span></p>
+      <p><span class="gv-m">בסוף תקבל ציון שיעזור לך להבין עד כמה העמוד שלך באמת בנוי לעבוד בשביל העסק — ואיפה עדיין צריך לדייק.</span><span class="gv-f" hidden>בסוף תקבלי ציון שיעזור לך להבין עד כמה העמוד שלך באמת בנוי לעבוד בשביל העסק — ואיפה עדיין צריך לדייק.</span></p>
     </div>
 
     <div class="gender-picker" role="group" aria-label="פנייה בלשון">
@@ -541,194 +620,189 @@ textarea:focus, input[type=text]:focus{
   <form id="strategyForm">
 
     <div class="card rise q-block">
-      <span class="q-pill">שאלה 1 מתוך 7</span>
-      <h2 class="q-title"><span class="gv-m">מי האדם שאתה רוצה שיגיע לעמוד שלך?</span><span class="gv-f" hidden>מי האדם שאת רוצה שיגיע לעמוד שלך?</span></h2>
-      <div class="guide">
-        <p>לא "כולם".</p>
-        <p><span class="gv-m"><strong>מי האנשים שאתה באמת רוצה למשוך לעסק?</strong></span><span class="gv-f" hidden><strong>מי האנשים שאת באמת רוצה למשוך לעסק?</strong></span></p>
-        <p><span class="gv-m">נסה לתאר אותם במשפט אחד:</span><span class="gv-f" hidden>נסי לתאר אותם במשפט אחד:</span></p>
-      </div>
-      <div class="answer-block">
-        <label for="s1">התשובה שלך</label>
-        <input type="text" id="s1" name="s1" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן...">
+      <span class="q-pill">1. קהל יעד</span>
+      <h2 class="q-title">עד כמה ברור מהעמוד שלך מי קהל היעד שלך?</h2>
+      <div class="rating-anchors">
+        <div class="rating-anchor-hi"><b>10</b> ברור מאוד למי העמוד שלי מיועד</div>
+        <div class="rating-anchor-lo"><b>1</b> <span class="gv-m">אי אפשר להבין למי אני מדבר</span><span class="gv-f" hidden>אי אפשר להבין למי אני מדברת</span></div>
       </div>
       <div class="rating-row">
-        <label for="c1" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
         <div class="rating-scale">
-          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <span class="rating-end">1</span>
           <input type="range" id="c1" name="c1" class="rating-slider" min="1" max="10" step="1" value="5">
-          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+          <span class="rating-end">10</span>
         </div>
         <div class="rating-value"><span id="c1-val">5</span>/10</div>
       </div>
+      <div class="guide guide-after">
+        <p><span class="gv-m">עכשיו עצור רגע וחשוב:</span><span class="gv-f" hidden>עכשיו עצרי רגע וחשבי:</span></p>
+        <p>עם מי היית באמת רוצה לעבוד?</p>
+        <p>האם האדם הזה היה נכנס לעמוד ומבין מיד שהתוכן כאן מיועד גם אליו?</p>
+      </div>
     </div>
 
     <div class="card rise q-block">
-      <span class="q-pill">שאלה 2 מתוך 7</span>
-      <h2 class="q-title">כשהאדם הזה מגיע לעמוד — האם ברור לו שהוא במקום הנכון?</h2>
-      <div class="guide">
-        <p><span class="gv-m">פתח עכשיו את העמוד שלך והסתכל עליו כאילו אתה רואה אותו בפעם הראשונה.</span><span class="gv-f" hidden>פתחי עכשיו את העמוד שלך והסתכלי עליו כאילו את רואה אותו בפעם הראשונה.</span></p>
-        <p><span class="gv-m">האם תוך כמה שניות אפשר להבין: <strong>למי העמוד מיועד? במה אתה יכול לעזור? ולמה כדאי להישאר?</strong></span><span class="gv-f" hidden>האם תוך כמה שניות אפשר להבין: <strong>למי העמוד מיועד? במה את יכולה לעזור? ולמה כדאי להישאר?</strong></span></p>
-        <p>מה לדעתך אדם חדש מבין כרגע מהעמוד שלך?</p>
-      </div>
-      <div class="answer-block">
-        <label for="s2">התשובה שלך</label>
-        <textarea id="s2" name="s2" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן..."></textarea>
+      <span class="q-pill">2. המסר של העמוד</span>
+      <h2 class="q-title"><span class="gv-m">עד כמה ברור לאדם חדש במה אתה יכול לעזור לו?</span><span class="gv-f" hidden>עד כמה ברור לאדם חדש במה את יכולה לעזור לו?</span></h2>
+      <div class="rating-anchors">
+        <div class="rating-anchor-hi"><b>10</b> <span class="gv-m">ברור איזו בעיה אני עוזר לפתור ואיזה שינוי אני יכול ליצור</span><span class="gv-f" hidden>ברור איזו בעיה אני עוזרת לפתור ואיזה שינוי אני יכולה ליצור</span></div>
+        <div class="rating-anchor-lo"><b>1</b> רואים מה המקצוע שלי, אבל לא באמת מבינים מה יוצא מזה ללקוח</div>
       </div>
       <div class="rating-row">
-        <label for="c2" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
         <div class="rating-scale">
-          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <span class="rating-end">1</span>
           <input type="range" id="c2" name="c2" class="rating-slider" min="1" max="10" step="1" value="5">
-          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+          <span class="rating-end">10</span>
         </div>
         <div class="rating-value"><span id="c2-val">5</span>/10</div>
       </div>
+      <div class="guide guide-after">
+        <p>בדיקה קטנה:</p>
+        <p><span class="gv-m">אם היית צריך להשלים את המשפט:</span><span class="gv-f" hidden>אם היית צריכה להשלים את המשפט:</span></p>
+        <p><span class="gv-m">"אני עוזר ל_____ להגיע ל_____."</span><span class="gv-f" hidden>"אני עוזרת ל_____ להגיע ל_____."</span></p>
+        <p><span class="gv-m">האם היית יודע להשלים אותו בקלות?</span><span class="gv-f" hidden>האם היית יודעת להשלים אותו בקלות?</span></p>
+      </div>
     </div>
 
     <div class="card rise q-block">
-      <span class="q-pill">שאלה 3 מתוך 7</span>
-      <h2 class="q-title">למה שמישהו יעקוב אחריך גם אם הוא עדיין לא רוצה לקנות?</h2>
-      <div class="guide">
-        <p>זו אחת השאלות החשובות ביותר.</p>
-        <p><strong>איזה ערך הוא יקבל מעצם זה שהוא נשאר בסביבה שלך?</strong></p>
-      </div>
-      <div class="answer-block">
-        <label for="s3">התשובה שלך</label>
-        <textarea id="s3" name="s3" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן..."></textarea>
+      <span class="q-pill">3. סיבה לעקוב</span>
+      <h2 class="q-title">עד כמה יש לאדם הנכון סיבה ברורה לעקוב אחרי העמוד שלך?</h2>
+      <div class="rating-anchors">
+        <div class="rating-anchor-hi"><b>10</b> ברור מאוד איזה ערך יקבל מי שיישאר</div>
+        <div class="rating-anchor-lo"><b>1</b> אין הבטחה ברורה למה מקבלים כאן</div>
       </div>
       <div class="rating-row">
-        <label for="c3" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
         <div class="rating-scale">
-          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <span class="rating-end">1</span>
           <input type="range" id="c3" name="c3" class="rating-slider" min="1" max="10" step="1" value="5">
-          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+          <span class="rating-end">10</span>
         </div>
         <div class="rating-value"><span id="c3-val">5</span>/10</div>
       </div>
+      <div class="guide guide-after">
+        <p><span class="gv-m">שאל את עצמך:</span><span class="gv-f" hidden>שאלי את עצמך:</span></p>
+        <p>אם אותו אדם עדיין לא מוכן לקנות ממך היום — למה שיהיה לו שווה להישאר בסביבה שלך?</p>
+      </div>
     </div>
 
     <div class="card rise q-block">
-      <span class="q-pill">שאלה 4 מתוך 7</span>
-      <h2 class="q-title">האם התוכן שלך מדבר על מה שמעסיק את הלקוחות — או בעיקר על העסק שלך?</h2>
-      <div class="guide">
-        <p><span class="gv-m">עבור על 10 הפוסטים האחרונים שלך.</span><span class="gv-f" hidden>עברי על 10 הפוסטים האחרונים שלך.</span></p>
-        <p>כמה מהם מתחילים מ: <strong>בעיה, רצון, שאלה או מחשבה שיש ללקוח שלך?</strong></p>
-        <p><span class="gv-m">וכמה מהם מתחילים מ: <strong>מה שאתה רוצה לספר או למכור?</strong></span><span class="gv-f" hidden>וכמה מהם מתחילים מ: <strong>מה שאת רוצה לספר או למכור?</strong></span></p>
-        <p>מה גילית?</p>
-      </div>
-      <div class="answer-block">
-        <label for="s4">התשובה שלך</label>
-        <textarea id="s4" name="s4" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן..."></textarea>
+      <span class="q-pill">4. רלוונטיות התוכן</span>
+      <h2 class="q-title">עד כמה התוכן שלך עוסק במה שבאמת מעסיק את הלקוחות שלך?</h2>
+      <div class="rating-anchors">
+        <div class="rating-anchor-hi"><b>10</b> רוב התוכן מתחיל מבעיות, רצונות, שאלות ומחשבות של הלקוחות שלי</div>
+        <div class="rating-anchor-lo"><b>1</b> רוב התוכן מתחיל ממה שאני רוצה לספר</div>
       </div>
       <div class="rating-row">
-        <label for="c4" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
         <div class="rating-scale">
-          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <span class="rating-end">1</span>
           <input type="range" id="c4" name="c4" class="rating-slider" min="1" max="10" step="1" value="5">
-          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+          <span class="rating-end">10</span>
         </div>
         <div class="rating-value"><span id="c4-val">5</span>/10</div>
       </div>
+      <div class="guide guide-after">
+        <p>בדיקה קטנה:</p>
+        <p><span class="gv-m">עבור על 10 הפוסטים האחרונים שלך.</span><span class="gv-f" hidden>עברי על 10 הפוסטים האחרונים שלך.</span></p>
+        <p>כמה מהם גורמים ללקוח הנכון לחשוב: <span class="gv-m">"רגע, הוא מדבר בדיוק עליי"?</span><span class="gv-f" hidden>"רגע, היא מדברת בדיוק עליי"?</span></p>
+      </div>
     </div>
 
     <div class="card rise q-block">
-      <span class="q-pill">שאלה 5 מתוך 7</span>
-      <h2 class="q-title"><span class="gv-m">מה אתה רוצה שהקהל שלך יתחיל לחשוב עליך?</span><span class="gv-f" hidden>מה את רוצה שהקהל שלך יתחיל לחשוב עליך?</span></h2>
-      <div class="guide">
-        <p><span class="gv-m">השלם:</span><span class="gv-f" hidden>השלימי:</span></p>
-        <p>"אחרי שמישהו עוקב אחריי תקופה, אני רוצה שהוא יחשוב עליי כ__________."</p>
+      <span class="q-pill">5. מיצוב וזכירות</span>
+      <h2 class="q-title">עד כמה ברור על מה היית רוצה שהקהל יזכור אותך?</h2>
+      <div class="rating-anchors">
+        <div class="rating-anchor-hi"><b>10</b> יש לי עולם תוכן ברור שאנשים יכולים לקשר אליי</div>
+        <div class="rating-anchor-lo"><b>1</b> <span class="gv-m">אני מדבר על הרבה דברים ואין חיבור ברור ביניהם</span><span class="gv-f" hidden>אני מדברת על הרבה דברים ואין חיבור ברור ביניהם</span></div>
       </div>
-      <div class="answer-block">
-        <label for="s5">התשובה שלך</label>
-        <input type="text" id="s5" name="s5" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן...">
-      </div>
-      <div class="guide guide-after"><p>אם קשה לך להשלים את המשפט הזה — יכול להיות שגם לקהל שלך עדיין לא ברור במה לזכור אותך.</p></div>
       <div class="rating-row">
-        <label for="c5" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
         <div class="rating-scale">
-          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <span class="rating-end">1</span>
           <input type="range" id="c5" name="c5" class="rating-slider" min="1" max="10" step="1" value="5">
-          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+          <span class="rating-end">10</span>
         </div>
         <div class="rating-value"><span id="c5-val">5</span>/10</div>
       </div>
+      <div class="guide guide-after">
+        <p><span class="gv-m">נסה להשלים:</span><span class="gv-f" hidden>נסי להשלים:</span></p>
+        <p>"כשמישהו מהקהל שלי חושב על ______, אני רוצה שהוא יחשוב עליי."</p>
+        <p>מה נכנס בחסר?</p>
+      </div>
     </div>
 
     <div class="card rise q-block">
-      <span class="q-pill">שאלה 6 מתוך 7</span>
-      <h2 class="q-title">האם יש בעמוד שלך סיבה לסמוך עליך?</h2>
-      <div class="guide">
-        <p><span class="gv-m">לא רק לדעת <strong>מה אתה עושה</strong>.</span><span class="gv-f" hidden>לא רק לדעת <strong>מה את עושה</strong>.</span></p>
-        <p><span class="gv-m">אלא להבין: איך אתה חושב. מה אתה יודע. מה הניסיון שלך. ומה הגישה שלך.</span><span class="gv-f" hidden>אלא להבין: איך את חושבת. מה את יודעת. מה הניסיון שלך. ומה הגישה שלך.</span></p>
-        <p><strong>מה בעמוד שלך היום בונה את האמון הזה?</strong></p>
-      </div>
-      <div class="answer-block">
-        <label for="s6">התשובה שלך</label>
-        <textarea id="s6" name="s6" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן..."></textarea>
+      <span class="q-pill">6. אמון</span>
+      <h2 class="q-title">עד כמה התוכן שלך נותן לאנשים סיבה לסמוך עליך?</h2>
+      <div class="rating-anchors">
+        <div class="rating-anchor-hi"><b>10</b> <span class="gv-m">התוכן שלי מראה איך אני חושב, מה אני יודע ולמה כדאי להקשיב לי</span><span class="gv-f" hidden>התוכן שלי מראה איך אני חושבת, מה אני יודעת ולמה כדאי להקשיב לי</span></div>
+        <div class="rating-anchor-lo"><b>1</b> אפשר להבין מה אני עושה, אבל קשה באמת להכיר את הידע והגישה שלי</div>
       </div>
       <div class="rating-row">
-        <label for="c6" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
         <div class="rating-scale">
-          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <span class="rating-end">1</span>
           <input type="range" id="c6" name="c6" class="rating-slider" min="1" max="10" step="1" value="5">
-          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+          <span class="rating-end">10</span>
         </div>
         <div class="rating-value"><span id="c6-val">5</span>/10</div>
       </div>
+      <div class="guide guide-after">
+        <p><span class="gv-m">שאל את עצמך:</span><span class="gv-f" hidden>שאלי את עצמך:</span></p>
+        <p><span class="gv-m">אם הייתי מוחק מהעמוד את התואר, המקצוע וההבטחות שלי —</span><span class="gv-f" hidden>אם הייתי מוחקת מהעמוד את התואר, המקצוע וההבטחות שלי —</span></p>
+        <p><span class="gv-m">מה בתוכן עצמו היה גורם למישהו להבין שאני באמת יודע על מה אני מדבר?</span><span class="gv-f" hidden>מה בתוכן עצמו היה גורם למישהו להבין שאני באמת יודעת על מה אני מדברת?</span></p>
+      </div>
     </div>
 
     <div class="card rise q-block">
-      <span class="q-pill">שאלה 7 מתוך 7</span>
-      <h2 class="q-title">ואם מישהו כבר רוצה את העזרה שלך — הוא יודע מה לעשות?</h2>
-      <div class="guide">
-        <p><span class="gv-m">נניח שמישהו עקב אחריך תקופה והחליט: <strong>"אני רוצה לעבוד איתו."</strong></span><span class="gv-f" hidden>נניח שמישהו עקב אחריך תקופה והחליט: <strong>"אני רוצה לעבוד איתה."</strong></span></p>
-        <p>מה הצעד הבא שלו?</p>
-        <p>האם זה ברור לו?</p>
-      </div>
-      <div class="answer-block">
-        <label for="s7">התשובה שלך</label>
-        <textarea id="s7" name="s7" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן..."></textarea>
+      <span class="q-pill">7. הדרך להפוך מעוקב ללקוח</span>
+      <h2 class="q-title">עד כמה ברור למישהו שמתעניין בך מה הצעד הבא?</h2>
+      <div class="rating-anchors">
+        <div class="rating-anchor-hi"><b>10</b> יש דרך ברורה ופשוטה להתקדם</div>
+        <div class="rating-anchor-lo"><b>1</b> גם אם מישהו רוצה לעבוד איתי, לא ברור מה לעשות</div>
       </div>
       <div class="rating-row">
-        <label for="c7" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
         <div class="rating-scale">
-          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <span class="rating-end">1</span>
           <input type="range" id="c7" name="c7" class="rating-slider" min="1" max="10" step="1" value="5">
-          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+          <span class="rating-end">10</span>
         </div>
         <div class="rating-value"><span id="c7-val">5</span>/10</div>
+      </div>
+      <div class="guide guide-after">
+        <p><span class="gv-m">דמיין שמישהו עוקב אחריך כבר חודש ואומר לעצמו:</span><span class="gv-f" hidden>דמייני שמישהו עוקב אחריך כבר חודש ואומר לעצמו:</span></p>
+        <p><span class="gv-m">"אוקיי, השתכנעתי. אני רוצה את העזרה שלו."</span><span class="gv-f" hidden>"אוקיי, השתכנעתי. אני רוצה את העזרה שלה."</span></p>
+        <p>מה הוא עושה עכשיו? האם הוא יודע?</p>
       </div>
     </div>
 
     <div class="card rise">
-      <h2 class="q-title"><span class="gv-m">עכשיו תן לעמוד שלך ציון</span><span class="gv-f" hidden>עכשיו תני לעמוד שלך ציון</span></h2>
-      <div class="guide">
-        <p><span class="gv-m">בכל שאלה סימנת על הציר מ-1 עד 10 עד כמה זה נכון וברור לגבי העמוד שלך. הציון הסופי משקף עד כמה העמוד שלך בנוי בצורה שמעבירה ללקוח למה לסמוך עליך.</span><span class="gv-f" hidden>בכל שאלה סימנת על הציר מ-1 עד 10 עד כמה זה נכון וברור לגבי העמוד שלך. הציון הסופי משקף עד כמה העמוד שלך בנוי בצורה שמעבירה ללקוח למה לסמוך עליך.</span></p>
-      </div>
+      <h2 class="q-title">הציון שלך</h2>
 
       <div class="score-display">
         <span class="score-num" id="scoreNum">5.0</span><span class="score-of">מתוך 10</span>
       </div>
 
-      <div class="score-tier" data-range="8-10">
-        <b>8–10:</b>
-        <p>יש לך בסיס חזק. עכשיו העבודה היא לדייק ולחזק אותו דרך התוכן.</p>
+      <div class="diagnosis-row diagnosis-strength">
+        <span class="diagnosis-label">💪 החוזקה של העמוד שלך</span>
+        <span class="diagnosis-value" id="strengthCat">—</span>
       </div>
-      <div class="score-tier" data-range="4-7">
-        <b>4–7:</b>
-        <p>יש לך חלק מהחלקים, אבל כנראה שהעמוד עדיין לא עובד כמערכת אחת ברורה.</p>
-      </div>
-      <div class="score-tier" data-range="1-3">
-        <b>1–3:</b>
-        <p><span class="gv-m">יכול להיות שאתה משקיע הרבה ביצירת תוכן — בלי שהגדרת עדיין מה התוכן הזה אמור לעשות עבור העסק.</span><span class="gv-f" hidden>יכול להיות שאת משקיעה הרבה ביצירת תוכן — בלי שהגדרת עדיין מה התוכן הזה אמור לעשות עבור העסק.</span></p>
+      <div class="diagnosis-row diagnosis-weak">
+        <span class="diagnosis-label">🎯 המקום הראשון שכדאי לדייק</span>
+        <span class="diagnosis-value" id="weakCat">—</span>
       </div>
 
-      <div class="lede" style="margin-top:16px;">
-        <p>וזה בדיוק ההבדל בין: <strong>עמוד שמעלים אליו תוכן</strong> לבין <strong>עמוד שנבנה עם אסטרטגיה.</strong></p>
-        <p>המטרה כרגע היא לא לפתור הכול ביום אחד.</p>
-        <p>המטרה היא לזהות <strong>איפה העמוד שלך עדיין לא מספיק ברור — ומשם להתחיל לדייק.</strong></p>
+      <div class="score-tier" data-range="8-10">
+        <b>8–10</b>
+        <p>העמוד שלך בנוי על בסיס חזק. הכיוון ברור; עכשיו העבודה היא לחזק את התוכן ולהפוך את האסטרטגיה לעקבית.</p>
       </div>
+      <div class="score-tier" data-range="4-7.9">
+        <b>4–7.9</b>
+        <p>יש לך חלקים טובים, אבל הם עדיין לא עובדים יחד כמערכת אחת. הציון הנמוך ביותר שלך הוא מקום מצוין להתחיל ממנו.</p>
+      </div>
+      <div class="score-tier" data-range="1-3.9">
+        <b>1–3.9</b>
+        <p>כנראה שהתוכן הוא לא הבעיה הראשונה שצריך לפתור. לפני שמייצרים עוד ממנו, כדאי לדייק למי העמוד מדבר, מה הוא אמור לגרום לאנשים להבין ולאן הוא מוביל אותם.</p>
+      </div>
+
+      <div class="breakdown-list" id="breakdownList"></div>
     </div>
 
   </form>
@@ -832,26 +906,66 @@ textarea:focus, input[type=text]:focus{
 
   loadSaved();
 
-  // scoring: average the 1-10 rating sliders, highlight the matching tier
+  // scoring: average the 1-10 rating sliders, diagnose strength/weak category, render breakdown
+  var CATEGORIES = [
+    {id:'c1', name:'קהל יעד'},
+    {id:'c2', name:'מסר'},
+    {id:'c3', name:'סיבה לעקוב'},
+    {id:'c4', name:'רלוונטיות'},
+    {id:'c5', name:'מיצוב'},
+    {id:'c6', name:'אמון'},
+    {id:'c7', name:'המרה'}
+  ];
   var sliders = Array.prototype.slice.call(form.querySelectorAll('.rating-slider'));
   var scoreNum = document.getElementById('scoreNum');
+  var strengthCat = document.getElementById('strengthCat');
+  var weakCat = document.getElementById('weakCat');
+  var breakdownList = document.getElementById('breakdownList');
   var tiers = Array.prototype.slice.call(document.querySelectorAll('.score-tier'));
+
   function tierFor(avg){
     if (avg >= 8) return '8-10';
-    if (avg >= 4) return '4-7';
-    return '1-3';
+    if (avg >= 4) return '4-7.9';
+    return '1-3.9';
   }
+
   function updateScore(){
     var sum = 0;
-    sliders.forEach(function(s){
-      sum += Number(s.value);
-      var out = document.getElementById(s.id + '-val');
-      if (out) out.textContent = s.value;
+    var values = CATEGORIES.map(function(cat){
+      var el = document.getElementById(cat.id);
+      var v = Number(el.value);
+      sum += v;
+      var out = document.getElementById(cat.id + '-val');
+      if (out) out.textContent = v;
+      return { name: cat.name, value: v };
     });
-    var avg = sliders.length ? sum / sliders.length : 0;
+
+    var avg = values.length ? sum / values.length : 0;
     if (scoreNum) scoreNum.textContent = avg.toFixed(1);
+
+    var maxItem = values[0], minItem = values[0];
+    values.forEach(function(item){
+      if (item.value > maxItem.value) maxItem = item;
+      if (item.value < minItem.value) minItem = item;
+    });
+    if (strengthCat) strengthCat.textContent = maxItem.name + ' (' + maxItem.value + '/10)';
+    if (weakCat) weakCat.textContent = minItem.name + ' (' + minItem.value + '/10)';
+
     var active = tierFor(avg);
     tiers.forEach(function(t){ t.classList.toggle('match', t.dataset.range === active); });
+
+    if (breakdownList) {
+      breakdownList.innerHTML = values.map(function(item){
+        var isLow = item.value === minItem.value;
+        var flag = isLow ? '<span class="breakdown-flag">← כאן כדאי להתחיל</span>' : '';
+        return '<div class="breakdown-item' + (isLow ? ' is-low' : '') + '">' +
+          '<span class="breakdown-name">' + item.name + '</span>' +
+          '<span class="breakdown-bar"><span class="breakdown-fill" style="width:' + (item.value * 10) + '%"></span></span>' +
+          '<span class="breakdown-num">' + item.value + '/10</span>' +
+          flag +
+          '</div>';
+      }).join('');
+    }
   }
   sliders.forEach(function(s){
     s.addEventListener('input', updateScore);

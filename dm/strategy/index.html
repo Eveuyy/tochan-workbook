@@ -1048,10 +1048,39 @@ textarea:focus, input[type=text]:focus{
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
   }
 
+  var WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycby0ApueKVQ40xIi4gaedy57BhY2LomNuW9t5e1jpVQS6PzM1icu_zgei-Tl_BVtN-IY/exec';
+  var sendTimer;
+
+  function sendToServer(){
+    var data = {};
+    fields.forEach(function(f){
+      data[f.name] = (f.type === 'checkbox') ? f.checked : f.value;
+    });
+    var gender;
+    try { gender = localStorage.getItem('dm-gender-pref'); } catch(e) {}
+    try {
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ page: location.pathname, gender: gender === 'f' ? 'f' : 'm', answers: data })
+      });
+    } catch(e) {}
+  }
+
+  function scheduleSend(){
+    clearTimeout(sendTimer);
+    sendTimer = setTimeout(sendToServer, 2500);
+  }
+
   fields.forEach(function(f){
     f.addEventListener('input', persist);
     f.addEventListener('change', persist);
+    f.addEventListener('input', scheduleSend);
+    f.addEventListener('change', scheduleSend);
   });
+
+  window.addEventListener('pagehide', sendToServer);
 
   loadSaved();
 

@@ -383,9 +383,49 @@ textarea:focus, input[type=text]:focus{
 }
 .breakdown-name{
   flex:none;
-  width:96px;
+  width:112px;
+  display:flex;
+  align-items:center;
+  gap:5px;
   font-size:.82rem;
   font-weight:700;
+  color:var(--ink);
+}
+.info-btn{
+  flex:none;
+  width:16px; height:16px;
+  border-radius:50%;
+  border:1.3px solid var(--secondary);
+  background:#fff;
+  color:var(--secondary);
+  font-size:.62rem;
+  font-weight:700;
+  line-height:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  padding:0;
+}
+.info-btn:hover, .info-btn:focus-visible{
+  border-color:var(--active);
+  color:var(--active);
+  outline:none;
+}
+.info-tooltip{
+  position:fixed;
+  z-index:30;
+  background:#fff;
+  border:1px solid rgba(61,36,24,.1);
+  border-radius:var(--radius-md);
+  padding:12px 14px;
+  box-shadow:0 14px 30px -10px rgba(61,36,24,.4);
+}
+.info-tooltip[hidden]{display:none;}
+.info-tooltip p{
+  margin:0;
+  font-size:.82rem;
+  line-height:1.55;
   color:var(--ink);
 }
 .breakdown-bar{
@@ -419,6 +459,68 @@ textarea:focus, input[type=text]:focus{
   font-weight:700;
   color:var(--primary);
   white-space:nowrap;
+}
+
+.next-steps{
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px dashed rgba(61,36,24,.12);
+}
+.next-steps-title{
+  font-family:'Fredoka','Rubik',sans-serif;
+  font-weight:600;
+  font-size:1.1rem;
+  color:var(--primary);
+  margin:0 0 14px;
+}
+.next-focus, .next-strength{
+  border-radius:var(--radius-md);
+  padding:14px 16px;
+  margin-bottom:12px;
+}
+.next-focus{background:rgba(168,70,46,.1);}
+.next-strength{background:rgba(122,140,110,.14);}
+.next-focus-label, .next-strengthen-label, .next-strength-label{
+  display:block;
+  font-weight:700;
+  font-size:.86rem;
+  color:var(--ink);
+  margin-bottom:4px;
+}
+.next-focus-value, .next-strength-value{
+  display:block;
+  font-family:'Fredoka','Rubik',sans-serif;
+  font-weight:600;
+  font-size:1.05rem;
+  color:var(--primary);
+  margin-bottom:8px;
+}
+.next-focus-value:last-child, .next-strength-value:last-child{margin-bottom:0;}
+.next-focus-why{margin:0; font-size:.88rem; color:var(--ink-soft); line-height:1.55;}
+.next-strengthen{margin-bottom:12px;}
+.strengthen-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  font-size:.9rem;
+  padding:7px 0;
+  border-bottom:1px solid rgba(61,36,24,.06);
+}
+.strengthen-item:last-child{border-bottom:none;}
+.strengthen-item .cat-name{font-weight:600; color:var(--ink);}
+.strengthen-item .cat-score{
+  flex:none;
+  color:var(--ink-soft);
+  font-family:'Fredoka','Rubik',sans-serif;
+  font-variant-numeric:tabular-nums;
+}
+.next-steps-close{
+  margin-top:14px;
+  font-size:.86rem;
+  color:var(--ink-soft);
+  line-height:1.6;
+  font-style:italic;
 }
 
 
@@ -588,7 +690,7 @@ textarea:focus, input[type=text]:focus{
 .wa-modal-cta:focus-visible{outline:3px solid var(--detail); outline-offset:2px;}
 
 @media print{
-  .topbar, .footer-nav, .download-btn, .blob, .privacy-note, .wa-modal-backdrop{display:none !important;}
+  .topbar, .footer-nav, .download-btn, .blob, .privacy-note, .wa-modal-backdrop, .info-btn, .info-tooltip{display:none !important;}
   body{background:#fff;}
   .scene{padding:0; gap:22px;}
   .card{box-shadow:none; border:none; max-width:100%; padding:0; break-inside:avoid;}
@@ -823,6 +925,33 @@ textarea:focus, input[type=text]:focus{
       </div>
 
       <div class="breakdown-list" id="breakdownList"></div>
+      <div class="info-tooltip" id="infoTooltip" hidden>
+        <p id="infoTooltipText"></p>
+      </div>
+
+      <div class="next-steps">
+        <h3 class="next-steps-title">אז מאיפה מתחילים?</h3>
+
+        <div class="next-focus">
+          <span class="next-focus-label">🎯 הדבר הראשון שכדאי להתמקד בו</span>
+          <span class="next-focus-value" id="focusCat">—</span>
+          <p class="next-focus-why" id="focusWhy"></p>
+        </div>
+
+        <div class="next-strengthen">
+          <span class="next-strengthen-label">התחומים הבאים שכדאי לחזק</span>
+          <div id="strengthenList"></div>
+        </div>
+
+        <div class="next-strength">
+          <span class="next-strength-label">💪 החוזקה שכדאי להמשיך לבנות עליה</span>
+          <span class="next-strength-value" id="buildOnCat">—</span>
+        </div>
+
+        <p class="next-steps-close">
+          <span class="gv-m">הציון לא נועד להגיד אם העמוד שלך "טוב" או "לא טוב". הוא נועד לעזור לך לזהות איפה נמצא כרגע צוואר הבקבוק שלו — כדי שתדע במה להתמקד קודם.</span><span class="gv-f" hidden>הציון לא נועד להגיד אם העמוד שלך "טוב" או "לא טוב". הוא נועד לעזור לך לזהות איפה נמצא כרגע צוואר הבקבוק שלו — כדי שתדעי במה להתמקד קודם.</span>
+        </p>
+      </div>
     </div>
 
   </form>
@@ -928,14 +1057,14 @@ textarea:focus, input[type=text]:focus{
 
   // scoring: average the 1-10 rating sliders, diagnose strength/weak category, render breakdown
   var CATEGORIES = [
-    {id:'c1', name:'קהל יעד'},
-    {id:'c2', name:'מסר'},
-    {id:'c3', name:'סיבה לעקוב'},
-    {id:'c4', name:'רלוונטיות'},
-    {id:'c5', name:'מיצוב'},
-    {id:'c6', name:'אמון'},
-    {id:'c7', name:'המרה'},
-    {id:'c8', name:'מערכת ליצירת תוכן'}
+    {id:'c1', name:'קהל יעד', why:'בלי קהל יעד ברור, גם התוכן הכי טוב מדבר לאף אחד באופן ספציפי. שווה לבחון מי בדיוק האדם שהכי חשוב לך למשוך, ואיך זה בא לידי ביטוי בעמוד.'},
+    {id:'c2', name:'מסר', why:'אם למי שמגיע לעמוד לא ברור תוך שניות במה אפשר לעזור לו, הוא לא יישאר כדי לגלות. שווה לבחון אם המסר אומר בבירור איזו בעיה נפתרת.'},
+    {id:'c3', name:'סיבה לעקוב', why:'בלי סיבה ברורה להישאר בסביבה לפני שמישהו מוכן לקנות, מפסידים את כל התקופה שבה אפשר לבנות איתו קשר. שווה לבחון מה בדיוק מישהו מקבל מזה שהוא נשאר.'},
+    {id:'c4', name:'רלוונטיות', why:'תוכן שמדבר בעיקר על העסק, ולא על מה שמעסיק את הלקוח, מתקשה למשוך תשומת לב אמיתית. שווה לבחון מאיפה הפוסטים מתחילים.'},
+    {id:'c5', name:'מיצוב', why:'בלי חיבור ברור בין הנושאים, קשה לקהל לזכור למה לשייך את זה. שווה לבחון אם יש קו מקשר ברור בין התכנים.'},
+    {id:'c6', name:'אמון', why:'לקוחות לא בוחרים לעבוד עם מי שהם רק יודעים מה הוא עושה — הם בוחרים במי שהם מרגישים שמבינים אותם. שווה לבחון אם התוכן חושף גם איך חושבים על הדברים, לא רק מה מוצע.'},
+    {id:'c7', name:'המרה', why:'גם מי ששוכנע לגמרי לא יתקדם אם לא ברור מה הצעד הבא. שווה לבחון אם יש בעמוד דרך ברורה ופשוטה להתחיל.'},
+    {id:'c8', name:'מערכת ליצירת תוכן', why:'בלי כיוון ברור מראש, כל פרסום הופך למאבק מחדש מול דף ריק. שווה לבחון אם יש מקור קבוע של נושאים לחזור אליו.'}
   ];
   var sliders = Array.prototype.slice.call(form.querySelectorAll('.rating-slider'));
   var scoreNum = document.getElementById('scoreNum');
@@ -958,33 +1087,50 @@ textarea:focus, input[type=text]:focus{
       sum += v;
       var out = document.getElementById(cat.id + '-val');
       if (out) out.textContent = v;
-      return { name: cat.name, value: v };
+      return { id: cat.id, name: cat.name, why: cat.why, value: v };
     });
 
     var avg = values.length ? sum / values.length : 0;
     if (scoreNum) scoreNum.textContent = avg.toFixed(1);
 
-    var maxItem = values[0], minItem = values[0];
-    values.forEach(function(item){
-      if (item.value > maxItem.value) maxItem = item;
-      if (item.value < minItem.value) minItem = item;
-    });
-    if (strengthCat) strengthCat.textContent = maxItem.name + ' (' + maxItem.value + '/10)';
-    if (weakCat) weakCat.textContent = minItem.name + ' (' + minItem.value + '/10)';
+    // stable sorts preserve original question order among ties
+    var ascending = values.slice().sort(function(a, b){ return a.value - b.value; });
+    var descending = values.slice().sort(function(a, b){ return b.value - a.value; });
+    var weakest = ascending[0];
+    var nextTwo = ascending.slice(1, 3);
+    var strongest = descending[0];
+
+    if (strengthCat) strengthCat.textContent = strongest.name + ' (' + strongest.value + '/10)';
+    if (weakCat) weakCat.textContent = weakest.name + ' (' + weakest.value + '/10)';
 
     var active = tierFor(avg);
     tiers.forEach(function(t){ t.classList.toggle('match', t.dataset.range === active); });
 
     if (breakdownList) {
       breakdownList.innerHTML = values.map(function(item){
-        var isLow = item.value === minItem.value;
+        var isLow = item === weakest;
         var flag = isLow ? '<span class="breakdown-flag">← כאן כדאי להתחיל</span>' : '';
         return '<div class="breakdown-item' + (isLow ? ' is-low' : '') + '">' +
-          '<span class="breakdown-name">' + item.name + '</span>' +
+          '<span class="breakdown-name">' + item.name +
+            '<button type="button" class="info-btn" data-cat="' + item.id + '" aria-label="מה בודקת הקטגוריה ' + item.name + '">?</button>' +
+          '</span>' +
           '<span class="breakdown-bar"><span class="breakdown-fill" style="width:' + (item.value * 10) + '%"></span></span>' +
           '<span class="breakdown-num">' + item.value + '/10</span>' +
           flag +
           '</div>';
+      }).join('');
+    }
+
+    var focusCat = document.getElementById('focusCat');
+    var focusWhy = document.getElementById('focusWhy');
+    var buildOnCat = document.getElementById('buildOnCat');
+    var strengthenList = document.getElementById('strengthenList');
+    if (focusCat) focusCat.textContent = weakest.name + ' (' + weakest.value + '/10)';
+    if (focusWhy) focusWhy.textContent = weakest.why || '';
+    if (buildOnCat) buildOnCat.textContent = strongest.name + ' (' + strongest.value + '/10)';
+    if (strengthenList) {
+      strengthenList.innerHTML = nextTwo.map(function(item){
+        return '<div class="strengthen-item"><span class="cat-name">' + item.name + '</span><span class="cat-score">' + item.value + '/10</span></div>';
       }).join('');
     }
   }
@@ -992,6 +1138,67 @@ textarea:focus, input[type=text]:focus{
     s.addEventListener('input', updateScore);
   });
   updateScore();
+})();
+
+(function(){
+  var EXPLANATIONS = {
+    c1: 'עד כמה ברור למי העמוד שלך מדבר ומי האנשים שאתה רוצה למשוך אליו.',
+    c2: 'עד כמה ברור מה אתה עושה, איזו בעיה אתה פותר ומה הערך שאתה נותן.',
+    c3: 'עד כמה יש לאדם הנכון סיבה להישאר ולעקוב, גם אם הוא עדיין לא מוכן לקנות.',
+    c4: 'עד כמה התוכן שלך מדבר על הדברים שבאמת מעסיקים, מעניינים וכואבים לקהל שלך.',
+    c5: 'עד כמה ברור במה אתה רוצה שיזכרו אותך ומה מייחד את הדרך שבה אתה עושה את מה שאתה עושה.',
+    c6: 'עד כמה התוכן שלך מאפשר לאנשים להכיר את הידע, הניסיון, החשיבה והגישה שלך.',
+    c7: 'עד כמה ברור למי שכבר מעוניין בך מה הצעד הבא כדי להתקדם ולעבוד איתך.',
+    c8: 'עד כמה יש לך כיוון ברור ליצירת תוכן, בלי להתחיל בכל פעם מחדש מ"מה אני מעלה היום?"'
+  };
+  var tooltip = document.getElementById('infoTooltip');
+  var tooltipText = document.getElementById('infoTooltipText');
+  if (!tooltip || !tooltipText) return;
+  // reparent to <body> so position:fixed is relative to the real viewport,
+  // not a transformed ancestor (the .rise entrance animation leaves a
+  // lingering transform via animation-fill-mode, which would otherwise
+  // hijack the fixed-positioning containing block)
+  document.body.appendChild(tooltip);
+  var openBtn = null;
+  var MARGIN = 14;
+
+  function closeTooltip(){
+    tooltip.hidden = true;
+    openBtn = null;
+  }
+
+  function openTooltipFor(btn){
+    tooltipText.textContent = EXPLANATIONS[btn.dataset.cat] || '';
+    tooltip.style.maxWidth = Math.min(280, window.innerWidth - MARGIN * 2) + 'px';
+    tooltip.style.visibility = 'hidden';
+    tooltip.hidden = false;
+
+    var rect = btn.getBoundingClientRect();
+    var tw = tooltip.offsetWidth;
+    var th = tooltip.offsetHeight;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    left = Math.max(MARGIN, Math.min(left, window.innerWidth - tw - MARGIN));
+    var top = rect.bottom + 8;
+    if (top + th > window.innerHeight - MARGIN) top = rect.top - th - 8;
+    if (top < MARGIN) top = MARGIN;
+
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = top + 'px';
+    tooltip.style.visibility = 'visible';
+    openBtn = btn;
+  }
+
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest ? e.target.closest('.info-btn') : null;
+    if (btn) {
+      e.stopPropagation();
+      if (openBtn === btn) closeTooltip();
+      else openTooltipFor(btn);
+      return;
+    }
+    if (!tooltip.hidden && !tooltip.contains(e.target)) closeTooltip();
+  });
+  window.addEventListener('resize', closeTooltip);
 })();
 
 document.getElementById('downloadBtn').addEventListener('click', function(){

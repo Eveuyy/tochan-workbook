@@ -241,38 +241,68 @@ textarea:focus, input[type=text]:focus{
   margin-bottom:6px;
 }
 
-.clear-toggle-row{
+.rating-row{
   margin-top:16px;
   padding-top:14px;
   border-top:1px dashed rgba(61,36,24,.12);
 }
-.clear-toggle-row input[type=checkbox]{
-  position:absolute;
-  opacity:0;
-  width:1px; height:1px;
-}
-.clear-toggle-label{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  border:1.5px solid var(--secondary);
-  background:#fff;
-  color:var(--ink);
-  font-size:.85rem;
+.rating-label{
+  display:block;
+  font-size:.86rem;
   font-weight:700;
-  padding:8px 18px;
+  color:var(--ink);
+  margin-bottom:12px;
+}
+.rating-scale{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.rating-end{
+  flex:none;
+  width:50px;
+  text-align:center;
+  font-size:.68rem;
+  line-height:1.35;
+  color:var(--ink-soft);
+}
+.rating-end b{display:block; font-size:.95rem; color:var(--primary); font-family:'Fredoka','Rubik',sans-serif;}
+.rating-slider{
+  flex:1;
+  -webkit-appearance:none;
+  appearance:none;
+  height:6px;
   border-radius:999px;
-  cursor:pointer;
-  transition:background .15s ease, color .15s ease, border-color .15s ease;
+  background:var(--paper-soft);
+  outline:none;
+  margin:0;
 }
-.clear-toggle-row input:checked + .clear-toggle-label{
+.rating-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  appearance:none;
+  width:26px; height:26px;
+  border-radius:50%;
   background:var(--active);
-  border-color:var(--active);
-  color:#fff;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(61,36,24,.35);
+  border:3px solid #fff;
 }
-.clear-toggle-row input:focus-visible + .clear-toggle-label{
-  outline:3px solid var(--detail);
-  outline-offset:2px;
+.rating-slider::-moz-range-thumb{
+  width:26px; height:26px;
+  border-radius:50%;
+  background:var(--active);
+  cursor:pointer;
+  border:3px solid #fff;
+  box-shadow:0 2px 8px rgba(61,36,24,.35);
+}
+.rating-slider:focus-visible{outline:3px solid var(--detail); outline-offset:3px;}
+.rating-value{
+  text-align:center;
+  margin-top:10px;
+  font-family:'Fredoka','Rubik',sans-serif;
+  font-weight:600;
+  font-size:1.15rem;
+  color:var(--primary);
 }
 
 .score-display{
@@ -522,9 +552,14 @@ textarea:focus, input[type=text]:focus{
         <label for="s1">התשובה שלך</label>
         <input type="text" id="s1" name="s1" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן...">
       </div>
-      <div class="clear-toggle-row">
-        <input type="checkbox" id="c1" name="c1" class="clear-check">
-        <label for="c1" class="clear-toggle-label">✓ כן, זה ברור לי</label>
+      <div class="rating-row">
+        <label for="c1" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
+        <div class="rating-scale">
+          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <input type="range" id="c1" name="c1" class="rating-slider" min="1" max="10" step="1" value="5">
+          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+        </div>
+        <div class="rating-value"><span id="c1-val">5</span>/10</div>
       </div>
     </div>
 
@@ -540,9 +575,14 @@ textarea:focus, input[type=text]:focus{
         <label for="s2">התשובה שלך</label>
         <textarea id="s2" name="s2" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן..."></textarea>
       </div>
-      <div class="clear-toggle-row">
-        <input type="checkbox" id="c2" name="c2" class="clear-check">
-        <label for="c2" class="clear-toggle-label">✓ כן, זה ברור לי</label>
+      <div class="rating-row">
+        <label for="c2" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
+        <div class="rating-scale">
+          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <input type="range" id="c2" name="c2" class="rating-slider" min="1" max="10" step="1" value="5">
+          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+        </div>
+        <div class="rating-value"><span id="c2-val">5</span>/10</div>
       </div>
     </div>
 
@@ -557,9 +597,14 @@ textarea:focus, input[type=text]:focus{
         <label for="s3">התשובה שלך</label>
         <textarea id="s3" name="s3" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן..."></textarea>
       </div>
-      <div class="clear-toggle-row">
-        <input type="checkbox" id="c3" name="c3" class="clear-check">
-        <label for="c3" class="clear-toggle-label">✓ כן, זה ברור לי</label>
+      <div class="rating-row">
+        <label for="c3" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
+        <div class="rating-scale">
+          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <input type="range" id="c3" name="c3" class="rating-slider" min="1" max="10" step="1" value="5">
+          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+        </div>
+        <div class="rating-value"><span id="c3-val">5</span>/10</div>
       </div>
     </div>
 
@@ -576,9 +621,14 @@ textarea:focus, input[type=text]:focus{
         <label for="s4">התשובה שלך</label>
         <textarea id="s4" name="s4" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן..."></textarea>
       </div>
-      <div class="clear-toggle-row">
-        <input type="checkbox" id="c4" name="c4" class="clear-check">
-        <label for="c4" class="clear-toggle-label">✓ כן, זה ברור לי</label>
+      <div class="rating-row">
+        <label for="c4" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
+        <div class="rating-scale">
+          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <input type="range" id="c4" name="c4" class="rating-slider" min="1" max="10" step="1" value="5">
+          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+        </div>
+        <div class="rating-value"><span id="c4-val">5</span>/10</div>
       </div>
     </div>
 
@@ -594,9 +644,14 @@ textarea:focus, input[type=text]:focus{
         <input type="text" id="s5" name="s5" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן...">
       </div>
       <div class="guide guide-after"><p>אם קשה לך להשלים את המשפט הזה — יכול להיות שגם לקהל שלך עדיין לא ברור במה לזכור אותך.</p></div>
-      <div class="clear-toggle-row">
-        <input type="checkbox" id="c5" name="c5" class="clear-check">
-        <label for="c5" class="clear-toggle-label">✓ כן, זה ברור לי</label>
+      <div class="rating-row">
+        <label for="c5" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
+        <div class="rating-scale">
+          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <input type="range" id="c5" name="c5" class="rating-slider" min="1" max="10" step="1" value="5">
+          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+        </div>
+        <div class="rating-value"><span id="c5-val">5</span>/10</div>
       </div>
     </div>
 
@@ -612,9 +667,14 @@ textarea:focus, input[type=text]:focus{
         <label for="s6">התשובה שלך</label>
         <textarea id="s6" name="s6" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן..."></textarea>
       </div>
-      <div class="clear-toggle-row">
-        <input type="checkbox" id="c6" name="c6" class="clear-check">
-        <label for="c6" class="clear-toggle-label">✓ כן, זה ברור לי</label>
+      <div class="rating-row">
+        <label for="c6" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
+        <div class="rating-scale">
+          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <input type="range" id="c6" name="c6" class="rating-slider" min="1" max="10" step="1" value="5">
+          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+        </div>
+        <div class="rating-value"><span id="c6-val">5</span>/10</div>
       </div>
     </div>
 
@@ -630,30 +690,37 @@ textarea:focus, input[type=text]:focus{
         <label for="s7">התשובה שלך</label>
         <textarea id="s7" name="s7" placeholder="כתוב כאן..." data-text-m="כתוב כאן..." data-text-f="כתבי כאן..."></textarea>
       </div>
-      <div class="clear-toggle-row">
-        <input type="checkbox" id="c7" name="c7" class="clear-check">
-        <label for="c7" class="clear-toggle-label">✓ כן, זה ברור לי</label>
+      <div class="rating-row">
+        <label for="c7" class="rating-label">עד כמה זה נכון וברור לגבי העמוד שלך?</label>
+        <div class="rating-scale">
+          <span class="rating-end"><b>1</b>לא נכון בכלל</span>
+          <input type="range" id="c7" name="c7" class="rating-slider" min="1" max="10" step="1" value="5">
+          <span class="rating-end"><b>10</b>נכון לגמרי</span>
+        </div>
+        <div class="rating-value"><span id="c7-val">5</span>/10</div>
       </div>
     </div>
 
     <div class="card rise">
       <h2 class="q-title"><span class="gv-m">עכשיו תן לעמוד שלך ציון</span><span class="gv-f" hidden>עכשיו תני לעמוד שלך ציון</span></h2>
-      <div class="guide"><p>על כל שאלה שסימנת עליה <strong>"כן, זה ברור לי"</strong> — נקודה אחת.</p></div>
+      <div class="guide">
+        <p><span class="gv-m">בכל שאלה סימנת על הציר מ-1 עד 10 עד כמה זה נכון וברור לגבי העמוד שלך. הציון הסופי משקף עד כמה העמוד שלך בנוי בצורה שמעבירה ללקוח למה לסמוך עליך.</span><span class="gv-f" hidden>בכל שאלה סימנת על הציר מ-1 עד 10 עד כמה זה נכון וברור לגבי העמוד שלך. הציון הסופי משקף עד כמה העמוד שלך בנוי בצורה שמעבירה ללקוח למה לסמוך עליך.</span></p>
+      </div>
 
       <div class="score-display">
-        <span class="score-num" id="scoreNum">0</span><span class="score-of">מתוך 7</span>
+        <span class="score-num" id="scoreNum">5.0</span><span class="score-of">מתוך 10</span>
       </div>
 
-      <div class="score-tier" data-range="6-7">
-        <b>6–7 נקודות:</b>
+      <div class="score-tier" data-range="8-10">
+        <b>8–10:</b>
         <p>יש לך בסיס חזק. עכשיו העבודה היא לדייק ולחזק אותו דרך התוכן.</p>
       </div>
-      <div class="score-tier" data-range="3-5">
-        <b>3–5 נקודות:</b>
+      <div class="score-tier" data-range="4-7">
+        <b>4–7:</b>
         <p>יש לך חלק מהחלקים, אבל כנראה שהעמוד עדיין לא עובד כמערכת אחת ברורה.</p>
       </div>
-      <div class="score-tier" data-range="0-2">
-        <b>0–2 נקודות:</b>
+      <div class="score-tier" data-range="1-3">
+        <b>1–3:</b>
         <p><span class="gv-m">יכול להיות שאתה משקיע הרבה ביצירת תוכן — בלי שהגדרת עדיין מה התוכן הזה אמור לעשות עבור העסק.</span><span class="gv-f" hidden>יכול להיות שאת משקיעה הרבה ביצירת תוכן — בלי שהגדרת עדיין מה התוכן הזה אמור לעשות עבור העסק.</span></p>
       </div>
 
@@ -765,22 +832,30 @@ textarea:focus, input[type=text]:focus{
 
   loadSaved();
 
-  // scoring: count checked "clear" toggles, highlight the matching tier
-  var checks = Array.prototype.slice.call(form.querySelectorAll('.clear-check'));
+  // scoring: average the 1-10 rating sliders, highlight the matching tier
+  var sliders = Array.prototype.slice.call(form.querySelectorAll('.rating-slider'));
   var scoreNum = document.getElementById('scoreNum');
   var tiers = Array.prototype.slice.call(document.querySelectorAll('.score-tier'));
-  function tierFor(score){
-    if (score >= 6) return '6-7';
-    if (score >= 3) return '3-5';
-    return '0-2';
+  function tierFor(avg){
+    if (avg >= 8) return '8-10';
+    if (avg >= 4) return '4-7';
+    return '1-3';
   }
   function updateScore(){
-    var score = checks.filter(function(c){ return c.checked; }).length;
-    if (scoreNum) scoreNum.textContent = score;
-    var active = tierFor(score);
+    var sum = 0;
+    sliders.forEach(function(s){
+      sum += Number(s.value);
+      var out = document.getElementById(s.id + '-val');
+      if (out) out.textContent = s.value;
+    });
+    var avg = sliders.length ? sum / sliders.length : 0;
+    if (scoreNum) scoreNum.textContent = avg.toFixed(1);
+    var active = tierFor(avg);
     tiers.forEach(function(t){ t.classList.toggle('match', t.dataset.range === active); });
   }
-  checks.forEach(function(c){ c.addEventListener('change', updateScore); });
+  sliders.forEach(function(s){
+    s.addEventListener('input', updateScore);
+  });
   updateScore();
 })();
 

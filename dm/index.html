@@ -394,7 +394,7 @@ h1{
     </button>
     <p class="privacy-note">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2 3 7v6c0 5 4 8.5 9 9 5-.5 9-4 9-9V7z"/></svg>
-      <span data-text-m="מה שאתה כותב נשמר אוטומטית בדפדפן שלך - אם תחזור לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי." data-text-f="מה שאת כותבת נשמר אוטומטית בדפדפן שלך - אם תחזרי לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי.">מה שאתה כותב נשמר אוטומטית בדפדפן שלך - אם תחזור לעמוד מאותו מכשיר, התשובות יחכו לך. ההורדה עצמה נשארת רק אצלך - שום דבר לא נשלח אליי.</span>
+      <span data-text-m="מה שאתה כותב נשמר אוטומטית בדפדפן שלך - אם תחזור לעמוד מאותו מכשיר, התשובות יחכו לך." data-text-f="מה שאת כותבת נשמר אוטומטית בדפדפן שלך - אם תחזרי לעמוד מאותו מכשיר, התשובות יחכו לך.">מה שאתה כותב נשמר אוטומטית בדפדפן שלך - אם תחזור לעמוד מאותו מכשיר, התשובות יחכו לך.</span>
     </p>
   </div>
 
@@ -445,6 +445,8 @@ h1{
         el.textContent = text;
       }
     });
+    document.querySelectorAll('.gv-m, .gv-f').forEach(function(el){ el.hidden = true; });
+    document.querySelectorAll('.gv-' + g).forEach(function(el){ el.hidden = false; });
     genderBtns.forEach(function(b){ b.classList.toggle('active', b.dataset.gender === g); });
     try { localStorage.setItem(GENDER_KEY, g); } catch(e) {}
   }

@@ -773,6 +773,26 @@ textarea:focus, input[type=text]:focus{
       </div>
     </div>
 
+    <div class="card rise q-block">
+      <span class="q-pill">8. מערכת ליצירת תוכן</span>
+      <h2 class="q-title">עד כמה ברור לך מה לפרסם ולמה — בלי להתחיל בכל פעם מחדש מאפס?</h2>
+      <div class="rating-anchors">
+        <div class="rating-anchor-hi"><b>10</b> <span class="gv-m">יש לי כיוון ונושאים ברורים, ואני יודע איך להפוך אותם לתוכן באופן עקבי.</span><span class="gv-f" hidden>יש לי כיוון ונושאים ברורים, ואני יודעת איך להפוך אותם לתוכן באופן עקבי.</span></div>
+        <div class="rating-anchor-lo"><b>1</b> <span class="gv-m">בכל פעם שאני רוצה לפרסם אני שוב שואל את עצמי "מה אני מעלה היום?"</span><span class="gv-f" hidden>בכל פעם שאני רוצה לפרסם אני שוב שואלת את עצמי "מה אני מעלה היום?"</span></div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-scale">
+          <span class="rating-end">1</span>
+          <input type="range" id="c8" name="c8" class="rating-slider" min="1" max="10" step="1" value="5">
+          <span class="rating-end">10</span>
+        </div>
+        <div class="rating-value"><span id="c8-val">5</span>/10</div>
+      </div>
+      <div class="guide guide-after">
+        <p><span class="gv-m">אם הייתי מבקש ממך עכשיו לכתוב 10 רעיונות לתוכן שמשרתים את העסק שלך — היית יודע מאיפה להתחיל?</span><span class="gv-f" hidden>אם הייתי מבקשת ממך עכשיו לכתוב 10 רעיונות לתוכן שמשרתים את העסק שלך — היית יודעת מאיפה להתחיל?</span></p>
+      </div>
+    </div>
+
     <div class="card rise">
       <h2 class="q-title">הציון שלך</h2>
 
@@ -914,7 +934,8 @@ textarea:focus, input[type=text]:focus{
     {id:'c4', name:'רלוונטיות'},
     {id:'c5', name:'מיצוב'},
     {id:'c6', name:'אמון'},
-    {id:'c7', name:'המרה'}
+    {id:'c7', name:'המרה'},
+    {id:'c8', name:'מערכת ליצירת תוכן'}
   ];
   var sliders = Array.prototype.slice.call(form.querySelectorAll('.rating-slider'));
   var scoreNum = document.getElementById('scoreNum');

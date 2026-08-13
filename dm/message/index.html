@@ -72,7 +72,7 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:16px;
+  gap:26px;
 }
 
 .topbar{
@@ -205,13 +205,31 @@ h2.q-title{
 .example em{color:var(--ink-soft); font-style:italic;}
 .example .no{color:var(--ink-soft); text-decoration:line-through; text-decoration-color:var(--secondary);}
 
-.answer-block{margin-top:18px;}
+.answer-block{margin-top:22px;}
 .answer-block label{
   display:block;
   font-size:.86rem;
   font-weight:700;
   color:var(--ink);
   margin-bottom:7px;
+}
+
+.hard-check{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:14px;
+  font-size:.86rem;
+  color:var(--ink);
+  cursor:pointer;
+  user-select:none;
+}
+.hard-check input[type=checkbox]{
+  width:19px;
+  height:19px;
+  flex-shrink:0;
+  accent-color:var(--active);
+  cursor:pointer;
 }
 textarea, input[type=text]{
   width:100%;
@@ -468,6 +486,10 @@ textarea:focus, input[type=text]:focus{
       <div class="answer-block">
         <label for="q1">התשובה שלך</label>
         <textarea id="q1" name="q1" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+        <label class="hard-check">
+          <input type="checkbox" name="q1-hard">
+          <span>זו הייתה לי שאלה קשה לענות עליה</span>
+        </label>
       </div>
     </div>
 
@@ -495,6 +517,10 @@ textarea:focus, input[type=text]:focus{
       <div class="answer-block">
         <label for="q2">התשובה שלך</label>
         <textarea id="q2" name="q2" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+        <label class="hard-check">
+          <input type="checkbox" name="q2-hard">
+          <span>זו הייתה לי שאלה קשה לענות עליה</span>
+        </label>
       </div>
     </div>
 
@@ -517,6 +543,10 @@ textarea:focus, input[type=text]:focus{
       <div class="answer-block">
         <label for="q3">התשובה שלך</label>
         <textarea id="q3" name="q3" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+        <label class="hard-check">
+          <input type="checkbox" name="q3-hard">
+          <span>זו הייתה לי שאלה קשה לענות עליה</span>
+        </label>
       </div>
     </div>
 
@@ -539,6 +569,10 @@ textarea:focus, input[type=text]:focus{
       <div class="answer-block">
         <label for="q4">התשובה שלך</label>
         <textarea id="q4" name="q4" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+        <label class="hard-check">
+          <input type="checkbox" name="q4-hard">
+          <span>זו הייתה לי שאלה קשה לענות עליה</span>
+        </label>
       </div>
     </div>
 
@@ -561,6 +595,10 @@ textarea:focus, input[type=text]:focus{
       <div class="answer-block">
         <label for="q5">התשובה שלך</label>
         <textarea id="q5" name="q5" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+        <label class="hard-check">
+          <input type="checkbox" name="q5-hard">
+          <span>זו הייתה לי שאלה קשה לענות עליה</span>
+        </label>
       </div>
     </div>
 
@@ -581,6 +619,10 @@ textarea:focus, input[type=text]:focus{
       <div class="answer-block">
         <label for="q6">התשובה שלך</label>
         <textarea id="q6" name="q6" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+        <label class="hard-check">
+          <input type="checkbox" name="q6-hard">
+          <span>זו הייתה לי שאלה קשה לענות עליה</span>
+        </label>
       </div>
     </div>
 
@@ -611,6 +653,10 @@ textarea:focus, input[type=text]:focus{
       <div class="answer-block">
         <label for="q7">התשובה שלך</label>
         <textarea id="q7" name="q7" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+        <label class="hard-check">
+          <input type="checkbox" name="q7-hard">
+          <span>זו הייתה לי שאלה קשה לענות עליה</span>
+        </label>
       </div>
     </div>
 
@@ -635,6 +681,10 @@ textarea:focus, input[type=text]:focus{
       <div class="answer-block">
         <label for="q8">התשובה שלך</label>
         <textarea id="q8" name="q8" data-text-m="כתוב כאן..." data-text-f="כתבי כאן..." placeholder="כתוב כאן..."></textarea>
+        <label class="hard-check">
+          <input type="checkbox" name="q8-hard">
+          <span>זו הייתה לי שאלה קשה לענות עליה</span>
+        </label>
       </div>
     </div>
 
@@ -759,13 +809,15 @@ textarea:focus, input[type=text]:focus{
     var saved;
     try { saved = JSON.parse(raw); } catch(e) { return; }
     fields.forEach(function(f){
-      if (saved[f.name] !== undefined) f.value = saved[f.name];
+      if (saved[f.name] === undefined) return;
+      if (f.type === 'checkbox') { f.checked = !!saved[f.name]; }
+      else { f.value = saved[f.name]; }
     });
   }
 
   function persist(){
     var data = {};
-    fields.forEach(function(f){ data[f.name] = f.value; });
+    fields.forEach(function(f){ data[f.name] = (f.type === 'checkbox') ? f.checked : f.value; });
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
   }
 
@@ -774,7 +826,7 @@ textarea:focus, input[type=text]:focus{
 
   function sendToServer(){
     var data = {};
-    fields.forEach(function(f){ data[f.name] = f.value; });
+    fields.forEach(function(f){ data[f.name] = (f.type === 'checkbox') ? f.checked : f.value; });
     var gender;
     try { gender = localStorage.getItem('dm-gender-pref'); } catch(e) {}
     try {
@@ -794,7 +846,9 @@ textarea:focus, input[type=text]:focus{
 
   fields.forEach(function(f){
     f.addEventListener('input', persist);
+    f.addEventListener('change', persist);
     f.addEventListener('input', scheduleSend);
+    f.addEventListener('change', scheduleSend);
   });
 
   window.addEventListener('pagehide', sendToServer);

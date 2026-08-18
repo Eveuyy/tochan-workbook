@@ -55,7 +55,7 @@
   .page{
     max-width:720px;
     margin:0 auto;
-    padding:56px 24px 96px;
+    padding:56px 24px 64px;
   }
 
   .eyebrow{
@@ -279,18 +279,16 @@
   .save-status.show{opacity:1;}
 
   .send-bar{
-    position:sticky;
-    bottom:0;
-    margin:32px -24px -96px;
-    padding:14px 24px calc(14px + env(safe-area-inset-bottom));
+    margin-top:36px;
+    padding:18px 20px;
     background:var(--card);
-    border-top:1px solid var(--card-line);
+    border:1px solid var(--card-line);
+    border-radius:14px;
     display:flex;
     gap:10px;
     flex-wrap:wrap;
     align-items:center;
     justify-content:flex-end;
-    box-shadow:0 -8px 20px -12px rgba(0,0,0,0.25);
   }
   .send-bar .note{
     font-size:12.5px;
@@ -324,8 +322,8 @@
   footer b{color:var(--ink);}
 
   @media (max-width:480px){
-    .page{padding:40px 18px 72px;}
-    .send-bar{margin:32px -18px -72px;padding:14px 18px calc(14px + env(safe-area-inset-bottom));justify-content:stretch;}
+    .page{padding:40px 18px 48px;}
+    .send-bar{justify-content:stretch;}
     .send-bar .btn{flex:1;}
     .send-bar .note{order:3;flex-basis:100%;text-align:center;}
   }
@@ -421,7 +419,7 @@
   <div class="send-bar">
     <span class="note" id="sendNote">מה שתכתוב נשמר אוטומטית בדפדפן הזה</span>
     <button class="btn btn-secondary" id="copyBtn" type="button">העתקת הכל</button>
-    <button class="btn btn-primary" id="mailBtn" type="button">שליחה לאיב במייל</button>
+    <button class="btn btn-primary" id="mailBtn" type="button">שליחה לאיב</button>
   </div>
 </div>
 
@@ -476,7 +474,12 @@
   load();
 
   document.getElementById('mailBtn').addEventListener('click', function(){
-    var body = encodeURIComponent(buildText());
+    var text = buildText();
+    if (navigator.share) {
+      navigator.share({ title: 'הבריף שמילאתי - משחקיה', text: text }).catch(function(){});
+      return;
+    }
+    var body = encodeURIComponent(text);
     var subject = encodeURIComponent('הבריף שמילאתי - משחקיה');
     window.location.href = 'mailto:coheneve95@gmail.com?subject=' + subject + '&body=' + body;
   });

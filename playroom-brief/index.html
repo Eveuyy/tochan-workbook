@@ -308,6 +308,29 @@
   .btn-secondary{background:transparent;color:var(--accent2);border:1.5px solid var(--accent2);}
   .btn:active{transform:translateY(1px);}
 
+  .fallback-box{
+    margin-top:14px;
+    padding:14px 16px;
+    background:var(--card);
+    border:1px dashed var(--card-line);
+    border-radius:12px;
+  }
+  .fallback-box .hint{display:block;margin-bottom:8px;}
+  .fallback-box textarea{
+    width:100%;
+    min-height:70px;
+    resize:vertical;
+    border:1px solid var(--card-line);
+    border-radius:8px;
+    background:var(--bg);
+    color:var(--ink-soft);
+    font-family:inherit;
+    font-size:13px;
+    line-height:1.5;
+    padding:10px 12px;
+    direction:rtl;
+  }
+
   footer{
     margin-top:56px;
     padding-top:24px;
@@ -418,8 +441,13 @@
 
   <div class="send-bar">
     <span class="note" id="sendNote">מה שתכתוב נשמר אוטומטית בדפדפן הזה</span>
-    <button class="btn btn-secondary" id="copyBtn" type="button">העתקת הכל</button>
-    <button class="btn btn-primary" id="mailBtn" type="button">שליחה לאיב</button>
+    <button class="btn btn-primary" id="copyBtn" type="button">העתקת הכל</button>
+    <button class="btn btn-secondary" id="mailBtn" type="button">שליחה לאיב</button>
+  </div>
+
+  <div class="fallback-box">
+    <span class="hint">אם הכפתורים למעלה לא מגיבים — סמנו את הטקסט כאן למטה בעצמכם (לחיצה ארוכה ← "בחר הכל" ← "העתק") ותדביקו בוואטסאפ או במייל:</span>
+    <textarea id="summaryBox" readonly></textarea>
   </div>
 </div>
 
@@ -467,29 +495,52 @@
     return lines.join('\n');
   }
 
+  var summaryBox = document.getElementById('summaryBox');
+  function refreshSummary(){
+    summaryBox.value = buildText();
+  }
+
   fields.forEach(function(f){
     var el = document.getElementById(f.id);
-    if(el) el.addEventListener('input', save);
+    if(el) el.addEventListener('input', function(){ save(); refreshSummary(); });
   });
   load();
+  refreshSummary();
+
+  function mailFallback(text){
+    var body = encodeURIComponent(text);
+    var subject = encodeURIComponent('הבריף שמילאתי - משחקיה');
+    window.location.href = 'mailto:coheneve95@gmail.com?subject=' + subject + '&body=' + body;
+  }
 
   document.getElementById('mailBtn').addEventListener('click', function(){
     var text = buildText();
     if (navigator.share) {
-      navigator.share({ title: 'הבריף שמילאתי - משחקיה', text: text }).catch(function(){});
+      try{
+        navigator.share({ title: 'הבריף שמילאתי - משחקיה', text: text })
+          .catch(function(err){
+            if(err && err.name === 'AbortError') return; // user closed the share sheet on purpose
+            mailFallback(text);
+          });
+      }catch(e){
+        mailFallback(text);
+      }
       return;
     }
-    var body = encodeURIComponent(text);
-    var subject = encodeURIComponent('הבריף שמילאתי - משחקיה');
-    window.location.href = 'mailto:coheneve95@gmail.com?subject=' + subject + '&body=' + body;
+    mailFallback(text);
   });
 
   document.getElementById('copyBtn').addEventListener('click', function(){
     var text = buildText();
     var noteEl = document.getElementById('sendNote');
+    function selectFallback(){
+      summaryBox.focus();
+      summaryBox.select();
+    }
     function done(ok){
-      noteEl.textContent = ok ? 'הועתק! אפשר להדביק בוואטסאפ' : 'לא הצלחתי להעתיק אוטומטית — סמנו ידנית והעתיקו';
-      setTimeout(function(){ noteEl.textContent = 'מה שתכתוב נשמר אוטומטית בדפדפן הזה'; }, 3000);
+      noteEl.textContent = ok ? 'הועתק! אפשר להדביק בוואטסאפ' : 'סימנתי לך את הטקסט למטה — עכשיו רק להעתיק';
+      if(!ok) selectFallback();
+      setTimeout(function(){ noteEl.textContent = 'מה שתכתוב נשמר אוטומטית בדפדפן הזה'; }, 4000);
     }
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(text).then(function(){done(true);}, function(){done(false);});

@@ -51,7 +51,8 @@
 }
 
 *{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;scroll-padding-top:76px;}
+@media (max-width:760px){html{scroll-padding-top:68px;}}
 html,body{margin:0;padding:0;}
 body{
   background:
@@ -87,7 +88,7 @@ img,svg{display:block;max-width:100%;}
 .hero.hero-new{
   position:relative; overflow:hidden; width:100%;
   background: var(--studio-purple-mid) url('assets/eve-hero-photo-v5.jpg') 84% center / cover no-repeat;
-  height:78vh; max-height:760px; min-height:420px;
+  aspect-ratio:1536/1024; max-height:60vh; min-height:280px;
 }
 .hero.hero-new::before{
   content:''; position:absolute; inset:0;
@@ -95,8 +96,8 @@ img,svg{display:block;max-width:100%;}
   pointer-events:none;
 }
 .hero-side-text{
-  position:absolute; top:50%; left:6%; transform:translateY(-50%);
-  max-width:40%; text-align:start; z-index:1;
+  position:absolute; top:50%; left:24%; transform:translateY(-50%);
+  max-width:42%; text-align:start; z-index:1;
 }
 .hero-title-stack{
   font-family:'Fredoka','Rubik',sans-serif; font-weight:700; line-height:.98;
@@ -222,28 +223,6 @@ img,svg{display:block;max-width:100%;}
 .hero .wrap{position:relative;z-index:1;}
 .hero-editorial{max-width:620px;margin:0 auto;text-align:center;}
 
-/* ===== editorial composition variants for text-heavy sections ===== */
-/* mobile-first base: start-aligned column (reads like a real paragraph, not a centered block) */
-.hero-editorial-start, .hero-editorial-indent{max-width:600px;margin-inline:0 auto;text-align:start;}
-.hero-editorial-start .hero-body, .hero-editorial-indent .hero-body{margin-inline:0;max-width:none;}
-.hero-editorial-start .hero-stmt, .hero-editorial-indent .hero-stmt{margin-inline:0;max-width:none;text-align:start;}
-.hero-stmt.section-lead{
-  font-size:clamp(1.9rem,9vw,3.3rem);line-height:1.14;max-width:11ch;margin-bottom:28px;
-}
-/* desktop enhancement: true asymmetric offset + indent rule, only where there's room */
-@media (min-width:900px){
-  .hero-editorial-start{max-width:640px;}
-  .hero-editorial-start .hero-body{max-width:58ch;}
-  .hero-editorial-start .hero-stmt{max-width:24ch;}
-  .hero-editorial-indent{
-    max-width:600px;margin-inline-start:auto;margin-inline-end:0;
-    padding-inline-start:44px;border-inline-start:2px solid var(--line);
-  }
-  .hero-editorial-indent .hero-body{max-width:56ch;}
-  .hero-editorial-indent .hero-stmt{max-width:20ch;}
-  .hero-stmt.section-lead{margin-bottom:36px;}
-}
-
 /* mobile-first: small pinned photo beside the opening line, text stays start-aligned and full-width */
 .editorial-figure{display:flex;gap:16px;align-items:flex-start;text-align:start;margin-bottom:20px;}
 .editorial-figure-img{flex:0 0 96px;width:96px;border-radius:10px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.35);transform:rotate(-3deg);}
@@ -268,15 +247,10 @@ img,svg{display:block;max-width:100%;}
 .know-items-inline .know-item{margin:0;padding:4px 14px;position:relative;}
 .know-items-inline .know-item:not(:last-child)::after{content:'';position:absolute;inset-inline-end:-1px;top:50%;transform:translateY(-50%);width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.4;}
 .hero-h1{font-size:clamp(2rem,4.6vw,2.7rem);line-height:1.4;font-weight:900;margin-bottom:44px;text-wrap:balance;}
-.hero-statement-main{
-  font-size:clamp(2.6rem,7.2vw,3.9rem);line-height:1.22;font-weight:900;color:var(--purple-deep);
-  margin:0 0 40px;text-wrap:balance;
-}
 .hero-body{font-size:clamp(1.05rem,2.1vw,1.2rem);font-weight:400;line-height:1.5;color:var(--ink);margin:0 0 8px;max-width:52ch;margin-inline:auto;}
 .hero-stmt{
-  font-family:'Fredoka','Rubik',sans-serif;
-  font-size:clamp(1.9rem,5vw,2.9rem);line-height:1.28;font-weight:700;color:#fff;
-  margin:52px auto;max-width:20ch;text-wrap:balance;letter-spacing:-.005em;
+  font-size:clamp(1.8rem,4.4vw,2.5rem);line-height:1.4;font-weight:900;color:#fff;
+  margin:44px auto;max-width:22ch;text-wrap:balance;
 }
 .hero-stmt.stmt-gold{color:var(--orange-deep);}
 .hero-stmt.stmt-coral{color:var(--purple-deep);}
@@ -361,7 +335,7 @@ img,svg{display:block;max-width:100%;}
 @media (prefers-reduced-motion:reduce){.icon3d-glow-wrap::before{animation:none;}}
 
 /* 4. pull-quote / highlight-sentence - one per section, max */
-.pull-quote{position:relative;text-align:center;margin:64px auto;max-width:30ch;font-family:'Fredoka','Rubik',sans-serif;font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:700;line-height:1.4;}
+.pull-quote{position:relative;text-align:center;margin:56px auto;max-width:34ch;font-size:clamp(1.25rem,3vw,1.7rem);font-weight:800;line-height:1.55;}
 .pull-quote .quote-mark{display:block;font-size:3.2rem;line-height:.6;color:var(--orange-deep);opacity:.4;font-family:Georgia,serif;margin-bottom:8px;}
 .pull-quote.card{background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);color:var(--ink);border-radius:22px;padding:36px 30px;box-shadow:0 8px 0 rgba(61,36,24,.14),0 16px 32px rgba(61,36,24,.35);}
 .pull-quote.dark{color:#fff;}
@@ -432,14 +406,14 @@ img,svg{display:block;max-width:100%;}
 
 /* ===== social proof / viral track record ===== */
 .section.proof{padding-block:clamp(58px,9vw,112px);}
-.proof-title{font-size:clamp(2.2rem,5.6vw,3.2rem);font-weight:900;text-align:center;margin-bottom:56px;text-wrap:balance;}
+.proof-title{font-size:clamp(1.7rem,5.6vw,3.2rem);font-weight:900;text-align:center;margin-bottom:56px;text-wrap:balance;}
 .video-header{
   position:relative;overflow:hidden;border-radius:0;
   width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
-  height:200px;display:flex;align-items:center;justify-content:center;
-  margin-bottom:28px;
+  min-height:200px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:28px;padding:18px 0;
 }
-@media (max-width:640px){ .video-header{margin-bottom:24px;height:150px;} }
+@media (max-width:640px){ .video-header{margin-bottom:24px;min-height:150px;} }
 .video-header video{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   filter:blur(9px) brightness(.5) saturate(1.15);transform:scale(1.15);
@@ -571,23 +545,6 @@ img,svg{display:block;max-width:100%;}
 .testimonial-card-img .testimonial-name{margin-top:6px;padding:0 2px;}
 .testimonial-hint{text-align:center;font-size:.8rem;color:var(--ink-soft);margin-top:4px;}
 
-/* ===== social proof: messy overlapping pile ===== */
-.testimonial-eyebrow{
-  display:block;text-align:center;font-family:'Rubik',sans-serif;font-weight:700;
-  font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft-on-paper);
-  margin:0 0 28px;
-}
-.testimonial-wall{columns:2;column-gap:16px;padding:0;margin:0;}
-.testimonial-wall-item{
-  break-inside:avoid;margin-bottom:16px;border-radius:3px;overflow:hidden;
-  border:1px solid rgba(61,36,24,.08);
-  box-shadow:0 1px 2px rgba(61,36,24,.06),0 10px 24px rgba(61,36,24,.10);
-  background:#fff;
-}
-.testimonial-wall-item img{width:100%;display:block;}
-@media (min-width:640px){.testimonial-wall{columns:3;column-gap:22px;} .testimonial-wall-item{margin-bottom:22px;}}
-@media (min-width:960px){.testimonial-wall{columns:4;column-gap:26px;}}
-
 /* ===== future self (redesigned) ===== */
 .futureself-visual{margin:36px auto 0;max-width:420px;}
 .futureself-visual .media-placeholder{aspect-ratio:16/10;}
@@ -712,7 +669,7 @@ img,svg{display:block;max-width:100%;}
 .who-for-card h3{font-size:1.05rem;margin-bottom:6px;}
 .who-for-card p{color:var(--ink-soft);font-size:.94rem;line-height:1.7;}
 
-.section-title{font-family:'Fredoka','Rubik',sans-serif;font-size:clamp(2.1rem,5.4vw,3.8rem);line-height:1.05;letter-spacing:-.01em;margin-bottom:8px;}
+.section-title{font-size:clamp(1.7rem,3.6vw,2.4rem);margin-bottom:8px;}
 .section-eyebrow{color:var(--purple-deep);font-weight:700;font-size:.85rem;letter-spacing:.03em;margin-bottom:10px;display:block;}
 .section-sub{color:var(--ink-soft);max-width:60ch;font-size:1.05rem;margin-bottom:8px;}
 
@@ -838,13 +795,11 @@ img,svg{display:block;max-width:100%;}
 /* ===== pricing ===== */
 .price-grid{max-width:600px;margin:44px auto 0;}
 .price-card{
-  --ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);
-  border-top:2px solid var(--ink-on-paper);border-bottom:2px solid var(--ink-on-paper);
-  padding:clamp(30px,5vw,44px) 4px;
-  display:flex;flex-direction:column;gap:22px;position:relative;
+  background:var(--paper);--ink:var(--ink-on-paper);--ink-soft:var(--ink-soft-on-paper);--line:var(--line-on-paper);color:var(--ink);border:2px solid var(--line);border-radius:26px;padding:clamp(24px,4vw,34px);
+  display:flex;flex-direction:column;gap:18px;position:relative;
+  box-shadow:0 10px 0 rgba(61,36,24,.16), 0 16px 30px rgba(61,36,24,.35);
 }
-.price-card h3{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
-.price-card.featured{}
+.price-card.featured{border-color:var(--purple-deep);box-shadow:0 10px 0 rgba(168,70,46,.22), 0 20px 40px rgba(61,36,24,.4);}
 
 .compare-title{text-align:center;font-size:clamp(1.3rem,3vw,1.6rem);font-weight:800;margin:56px 0 24px;}
 .compare-table-wrap{
@@ -874,14 +829,13 @@ img,svg{display:block;max-width:100%;}
 .price-diff ul{display:flex;flex-direction:column;gap:6px;list-style:none;padding:0;margin:0;}
 .price-diff li{display:flex;gap:8px;align-items:flex-start;font-size:.92rem;}
 .price-diff p{font-size:.92rem;line-height:1.6;color:var(--ink-soft);}
-.price-amount{font-family:'Fredoka','Rubik',sans-serif;font-size:clamp(3.2rem,7vw,4.6rem);font-weight:700;display:flex;align-items:baseline;gap:8px;line-height:1;}
-.price-amount .currency{font-size:1.3rem;color:var(--ink-soft);font-weight:600;}
-.price-amount .num{letter-spacing:-.02em;}
-.price-features{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;padding-top:6px;border-top:1px solid var(--line);}
-@media (max-width:520px){.price-features{grid-template-columns:1fr;}}
-.price-features li{display:flex;gap:9px;align-items:flex-start;list-style:none;font-size:.92rem;line-height:1.4;}
-.price-features .icon{stroke:var(--coral);flex:none;margin-top:2px;width:15px;height:15px;}
-.price-card .btn{width:100%;margin-top:8px;}
+.price-amount{font-size:2.6rem;font-weight:700;display:flex;align-items:baseline;gap:6px;}
+.price-amount .currency{font-size:1.2rem;color:var(--ink-soft);font-weight:600;}
+.price-amount .num{font-family:'Rubik',sans-serif;letter-spacing:-.01em;}
+.price-features{display:flex;flex-direction:column;gap:10px;}
+.price-features li{display:flex;gap:10px;align-items:flex-start;list-style:none;font-size:.96rem;}
+.price-features .icon{stroke:var(--orange-deep);flex:none;margin-top:2px;}
+.price-card .btn{width:100%;margin-top:auto;}
 .price-after{max-width:52ch;margin:40px auto 0;text-align:center;}
 
 /* ===== why-now section ===== */
@@ -1118,7 +1072,7 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
 <div style="height:10px;background:var(--peach);"></div>
 
 <section class="section chapter-coffee" id="identify" style="padding-top:8px;">
-  <div class="wrap hero-editorial hero-editorial-start">
+  <div class="wrap hero-editorial">
     <div class="hero-video-bg">
       <video autoplay muted loop playsinline preload="auto" poster="assets/proof-header-montage-cover.jpg">
         <source src="assets/proof-header-montage.mp4" type="video/mp4">
@@ -1141,20 +1095,40 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
 </section>
 
 <section class="section chapter-cream" id="studentProof">
-  <div class="wrap">
-    <span class="testimonial-eyebrow">מהשיחות עם תלמידות</span>
-    <div class="testimonial-wall">
-      <div class="testimonial-wall-item"><img src="assets/testimonials/student-06.jpg" alt="עדות תלמידה על הקורס"></div>
-      <div class="testimonial-wall-item"><img src="assets/testimonials/student-09.jpg" alt="עדות תלמידה על הקורס"></div>
-      <div class="testimonial-wall-item"><img src="assets/testimonials/student-10.jpg" alt="עדות תלמידה על הקורס"></div>
-      <div class="testimonial-wall-item"><img src="assets/testimonials/student-07-ugc.jpg" alt="עדות תלמידה על הקורס"></div>
-      <div class="testimonial-wall-item"><img src="assets/testimonials/student-01.jpg" alt="עדות תלמידה על הקורס"></div>
-      <div class="testimonial-wall-item"><img src="assets/testimonials/student-02.jpg" alt="עדות תלמידה על הקורס"></div>
-      <div class="testimonial-wall-item"><img src="assets/testimonials/student-03.jpg" alt="עדות תלמידה על הקורס"></div>
-      <div class="testimonial-wall-item"><img src="assets/testimonials/student-04-madebyneta.jpg" alt="עדות תלמידה על הקורס"></div>
-      <div class="testimonial-wall-item"><img src="assets/testimonials/student-05.jpg" alt="עדות תלמידה על הקורס"></div>
-      <div class="testimonial-wall-item"><img src="assets/testimonials/student-08.jpg" alt="עדות תלמידה על הקורס"></div>
-      <div class="testimonial-wall-item"><img src="assets/testimonials/student-11.jpg" alt="עדות תלמידה על הקורס"></div>
+  <div class="wrap hero-editorial">
+    <h2 class="section-title" style="text-align:center;">אל תאמינו רק לי.<br>הודעות מתלמידי הקורס שהחליטו שהם מיישמים, ולא מחכים יותר.</h2>
+    <div class="testimonial-carousel">
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/student-new-05.jpg" alt="עדות תלמידה על הקורס">
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/student-10.jpg" alt="עדות תלמידה על הקורס">
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/student-new-01.jpg" alt="עדות תלמידה על הקורס">
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/student-05.jpg" alt="עדות תלמידה על הקורס">
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/student-new-03.jpg" alt="עדות תלמידה על הקורס">
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/student-08.jpg" alt="עדות תלמידה על הקורס">
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/student-new-04.jpg" alt="עדות תלמידה על הקורס">
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/student-06.jpg" alt="עדות תלמידה על הקורס">
+      </div>
+      <div class="testimonial-card testimonial-card-img">
+        <img src="assets/testimonials/student-new-02.jpg" alt="עדות תלמידה על הקורס">
+      </div>
+    </div>
+    <p class="testimonial-hint">← גררו לצדדים לעוד עדויות →</p>
+    <div style="display:flex;justify-content:center;margin-top:32px;">
+      <a class="btn btn-primary" href="#pricing">כן, גם אני רוצה להתחיל</a>
     </div>
   </div>
 </section>
@@ -1239,8 +1213,8 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
 </section>
 
 <section class="section chapter-coffee">
-  <div class="wrap hero-editorial hero-editorial-indent">
-    <p class="hero-stmt section-lead fade-in" style="color:var(--burgundy);">אתם לא צריכים לעבוד בשביל התוכן שלכם.<br><span class="marker-stroke">התוכן שלכם צריך לעבוד בשבילכם.</span></p>
+  <div class="wrap hero-editorial">
+    <p class="hero-stmt fade-in" style="color:var(--burgundy);">אתם לא צריכים לעבוד בשביל התוכן שלכם.<br><span class="marker-stroke">התוכן שלכם צריך לעבוד בשבילכם.</span></p>
 
     <p class="hero-body">גם אם אתם הכי מדהימים בתחום שלכם - זה לא שווה הרבה אם האנשים שצריכים אתכם לא מכירים אתכם.</p>
 
@@ -1278,7 +1252,7 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
 
     <p class="hero-body" style="font-weight:700;">אתם צריכים מסר שיגרום לאדם הנכון בצד השני לחשוב: "רגע. זה בדיוק בשבילי."</p>
 
-    <p class="hero-stmt fade-in" style="color:var(--burgundy);">ואני אלמד אתכם איך למצוא אותו - ואיך להפוך אותו לתוכן.</p>
+    <p class="hero-stmt fade-in">ואני אלמד אתכם איך למצוא אותו - ואיך להפוך אותו לתוכן.</p>
   </div>
 </section>
 
@@ -1393,7 +1367,7 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
     <h2 class="section-title" style="text-align:center;">בעוד כמה שבועות מהיום,<br>אתם יכולים להיות בדיוק באותו המקום...<br><span class="marker-stroke">או להיות אחרי הסרטון הראשון שלכם.</span></h2>
 
     <p class="hero-body" style="text-align:center;">ההבדל בין שני התרחישים האלה הוא לא כישרון.<br>לא ציוד.<br>ולא מזל.</p>
-    <p class="hero-stmt fade-in" style="text-align:center;">הוא פשוט ההחלטה להתחיל.</p>
+    <p class="hero-stmt fade-in" style="text-align:center;color:var(--purple-deep);">הוא פשוט ההחלטה להתחיל.</p>
     <p class="hero-body" style="text-align:center;">אם הגעתם עד לכאן, כנראה שכבר יש בכם רצון ליצור תוכן.<br>עכשיו נשאר רק לעשות את הצעד הראשון.</p>
 
     <h3 class="perks-title" style="margin-top:40px;">כל מה שאתם צריכים כדי להתחיל – כבר מחכה לכם בקורס.</h3>

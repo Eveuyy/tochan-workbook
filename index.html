@@ -545,6 +545,22 @@ img,svg{display:block;max-width:100%;}
 .testimonial-card-img .testimonial-name{margin-top:6px;padding:0 2px;}
 .testimonial-hint{text-align:center;font-size:.8rem;color:var(--ink-soft);margin-top:4px;}
 
+/* ===== social proof: overlapping pile ===== */
+.testimonial-pile{
+  display:flex;align-items:center;overflow-x:auto;
+  padding:50px 30px 40px;margin-top:8px;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.testimonial-pile::-webkit-scrollbar{display:none;}
+.testimonial-pile-item{
+  flex:0 0 auto;width:290px;margin-inline-start:14px;
+  transition:transform .25s ease,z-index 0s;
+}
+.testimonial-pile-item:first-child{margin-inline-start:0;}
+.testimonial-pile-item img{width:100%;border-radius:10px;display:block;box-shadow:0 14px 26px rgba(0,0,0,.45);}
+.testimonial-pile-item:hover,.testimonial-pile-item:active{transform:scale(1.08) rotate(0deg) translateY(0) !important;z-index:5;}
+@media (min-width:640px){.testimonial-pile-item{width:340px;margin-inline-start:20px;}}
+
 /* ===== future self (redesigned) ===== */
 .futureself-visual{margin:36px auto 0;max-width:420px;}
 .futureself-visual .media-placeholder{aspect-ratio:16/10;}
@@ -1094,35 +1110,79 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
   </div>
 </section>
 
+<section class="section chapter-black">
+  <div class="wrap hero-editorial">
+    <p class="hero-body">וזה הרבה יותר פשוט ממה שזה אולי נראה לכם עכשיו.</p>
+
+    <div class="thought-row">
+      <span class="thought-bubble t1">בלי להשתעבד לאינסטגרם.</span>
+      <span class="thought-bubble t2">בלי להפוך להיות יוצר תוכן.</span>
+      <span class="thought-bubble t3">בלי עריכות מסובכות.</span>
+    </div>
+
+    <p class="hero-body">אני לא הולכת להפוך אתכם לצלמים, עורכים או מומחי אינסטגרם ביום אחד. בקורס אנחנו מתקדמים צעד אחד בכל פעם, ביחד.</p>
+
+    <p class="hero-body">קודם נבין למי אתם מדברים. אחר כך נמצא מה באמת שווה לכם להגיד. נלמד להפוך את זה למסר טוב וברור. ורק אז נצלם, נערוך ונוציא אותו לעולם.</p>
+
+    <p class="pull-quote" style="color:var(--peach);margin:20px auto;">כי אנחנו לא מתחילים מהמצלמה.<br>אנחנו מתחילים ממה שיש לכם להגיד.</p>
+
+    <p class="hero-body">אתם לא צריכים את הציוד הכי טוב או את העריכה הכי מטורפת.</p>
+
+    <p class="hero-body" style="font-weight:700;">אתם צריכים מסר שיגרום לאדם הנכון בצד השני לחשוב: "רגע. זה בדיוק בשבילי."</p>
+
+    <p class="hero-stmt fade-in">ואני אלמד אתכם איך למצוא אותו - ואיך להפוך אותו לתוכן.</p>
+  </div>
+</section>
+
+<section class="section chapter-coffee">
+  <div class="wrap hero-editorial">
+    <p class="hero-stmt fade-in" style="color:var(--burgundy);">אתם לא צריכים לעבוד בשביל התוכן שלכם.<br><span class="marker-stroke">התוכן שלכם צריך לעבוד בשבילכם.</span></p>
+
+    <p class="hero-body">גם אם אתם הכי מדהימים בתחום שלכם - זה לא שווה הרבה אם האנשים שצריכים אתכם לא מכירים אתכם.</p>
+
+    <p class="hero-body">אבל זה גם לא אומר שמעכשיו אתם צריכים לבלות כל יום באינסטגרם.</p>
+
+    <p class="hero-body">תוכן טוב יכול להפוך לכרטיס הביקור שלכם ברשת - ולעבוד בשבילכם שוב ושוב. במקום להסביר את אותו הדבר בכל שיחת היכרות, אפשר להסביר אותו פעם אחת, טוב - ולתת לתוכן להמשיך לעשות את העבודה.</p>
+
+    <p class="hero-body">במקום שכל ליד יגיע אליכם מאפס, הוא יכול להגיע אחרי שכבר ראה אתכם, שמע אתכם, הבין איך אתם חושבים - ומכיר אתכם וסומך עליכם.</p>
+
+    <p class="hero-body" style="font-weight:700;">פחות זמן ואנרגיה על להתחיל בכל פעם מחדש. יותר אנשים שמגיעים אליכם כבר חמים.</p>
+
+    <p class="hero-body">ולא, אתם לא צריכים אלפי עוקבים בשביל שזה יתחיל לעבוד. אתם לא צריכים שכולם יכירו אתכם.</p>
+
+    <p class="hero-stmt fade-in" style="color:var(--burgundy);">אתם צריכים שהאנשים הנכונים יכירו אתכם.</p>
+  </div>
+</section>
+
 <section class="section chapter-cream" id="studentProof">
   <div class="wrap hero-editorial">
     <h2 class="section-title" style="text-align:center;">אל תאמינו רק לי.<br>הודעות מתלמידי הקורס שהחליטו שהם מיישמים, ולא מחכים יותר.</h2>
-    <div class="testimonial-carousel">
-      <div class="testimonial-card testimonial-card-img">
+    <div class="testimonial-pile">
+      <div class="testimonial-pile-item" style="transform:rotate(-6deg) translateY(-14px);">
         <img src="assets/testimonials/student-new-05.jpg" alt="עדות תלמידה על הקורס">
       </div>
-      <div class="testimonial-card testimonial-card-img">
+      <div class="testimonial-pile-item" style="transform:rotate(4deg) translateY(-14px);">
         <img src="assets/testimonials/student-10.jpg" alt="עדות תלמידה על הקורס">
       </div>
-      <div class="testimonial-card testimonial-card-img">
+      <div class="testimonial-pile-item" style="transform:rotate(-3deg) translateY(10px);">
         <img src="assets/testimonials/student-new-01.jpg" alt="עדות תלמידה על הקורס">
       </div>
-      <div class="testimonial-card testimonial-card-img">
+      <div class="testimonial-pile-item" style="transform:rotate(7deg) translateY(10px);">
         <img src="assets/testimonials/student-05.jpg" alt="עדות תלמידה על הקורס">
       </div>
-      <div class="testimonial-card testimonial-card-img">
+      <div class="testimonial-pile-item" style="transform:rotate(-5deg) translateY(10px);">
         <img src="assets/testimonials/student-new-03.jpg" alt="עדות תלמידה על הקורס">
       </div>
-      <div class="testimonial-card testimonial-card-img">
+      <div class="testimonial-pile-item" style="transform:rotate(3deg) translateY(10px);">
         <img src="assets/testimonials/student-08.jpg" alt="עדות תלמידה על הקורס">
       </div>
-      <div class="testimonial-card testimonial-card-img">
+      <div class="testimonial-pile-item" style="transform:rotate(-7deg) translateY(10px);">
         <img src="assets/testimonials/student-new-04.jpg" alt="עדות תלמידה על הקורס">
       </div>
-      <div class="testimonial-card testimonial-card-img">
+      <div class="testimonial-pile-item" style="transform:rotate(5deg) translateY(10px);">
         <img src="assets/testimonials/student-06.jpg" alt="עדות תלמידה על הקורס">
       </div>
-      <div class="testimonial-card testimonial-card-img">
+      <div class="testimonial-pile-item" style="transform:rotate(-2deg) translateY(-14px);">
         <img src="assets/testimonials/student-new-02.jpg" alt="עדות תלמידה על הקורס">
       </div>
     </div>
@@ -1209,50 +1269,6 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
       <img class="chip" src="assets/logos/nia-noach.png" alt="ניה נוח">
       <img class="sapporo" src="assets/logos/sapporo.png" alt="Sapporo">
     </div>
-  </div>
-</section>
-
-<section class="section chapter-coffee">
-  <div class="wrap hero-editorial">
-    <p class="hero-stmt fade-in" style="color:var(--burgundy);">אתם לא צריכים לעבוד בשביל התוכן שלכם.<br><span class="marker-stroke">התוכן שלכם צריך לעבוד בשבילכם.</span></p>
-
-    <p class="hero-body">גם אם אתם הכי מדהימים בתחום שלכם - זה לא שווה הרבה אם האנשים שצריכים אתכם לא מכירים אתכם.</p>
-
-    <p class="hero-body">אבל זה גם לא אומר שמעכשיו אתם צריכים לבלות כל יום באינסטגרם.</p>
-
-    <p class="hero-body">תוכן טוב יכול להפוך לכרטיס הביקור שלכם ברשת - ולעבוד בשבילכם שוב ושוב. במקום להסביר את אותו הדבר בכל שיחת היכרות, אפשר להסביר אותו פעם אחת, טוב - ולתת לתוכן להמשיך לעשות את העבודה.</p>
-
-    <p class="hero-body">במקום שכל ליד יגיע אליכם מאפס, הוא יכול להגיע אחרי שכבר ראה אתכם, שמע אתכם, הבין איך אתם חושבים - ומכיר אתכם וסומך עליכם.</p>
-
-    <p class="hero-body" style="font-weight:700;">פחות זמן ואנרגיה על להתחיל בכל פעם מחדש. יותר אנשים שמגיעים אליכם כבר חמים.</p>
-
-    <p class="hero-body">ולא, אתם לא צריכים אלפי עוקבים בשביל שזה יתחיל לעבוד. אתם לא צריכים שכולם יכירו אתכם.</p>
-
-    <p class="hero-stmt fade-in" style="color:var(--burgundy);">אתם צריכים שהאנשים הנכונים יכירו אתכם.</p>
-  </div>
-</section>
-
-<section class="section chapter-black">
-  <div class="wrap hero-editorial">
-    <p class="hero-body">וזה הרבה יותר פשוט ממה שזה אולי נראה לכם עכשיו.</p>
-
-    <div class="thought-row">
-      <span class="thought-bubble t1">בלי להשתעבד לאינסטגרם.</span>
-      <span class="thought-bubble t2">בלי להפוך להיות יוצר תוכן.</span>
-      <span class="thought-bubble t3">בלי עריכות מסובכות.</span>
-    </div>
-
-    <p class="hero-body">אני לא הולכת להפוך אתכם לצלמים, עורכים או מומחי אינסטגרם ביום אחד. בקורס אנחנו מתקדמים צעד אחד בכל פעם, ביחד.</p>
-
-    <p class="hero-body">קודם נבין למי אתם מדברים. אחר כך נמצא מה באמת שווה לכם להגיד. נלמד להפוך את זה למסר טוב וברור. ורק אז נצלם, נערוך ונוציא אותו לעולם.</p>
-
-    <p class="pull-quote" style="color:var(--peach);margin:20px auto;">כי אנחנו לא מתחילים מהמצלמה.<br>אנחנו מתחילים ממה שיש לכם להגיד.</p>
-
-    <p class="hero-body">אתם לא צריכים את הציוד הכי טוב או את העריכה הכי מטורפת.</p>
-
-    <p class="hero-body" style="font-weight:700;">אתם צריכים מסר שיגרום לאדם הנכון בצד השני לחשוב: "רגע. זה בדיוק בשבילי."</p>
-
-    <p class="hero-stmt fade-in">ואני אלמד אתכם איך למצוא אותו - ואיך להפוך אותו לתוכן.</p>
   </div>
 </section>
 

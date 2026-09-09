@@ -221,6 +221,52 @@ img,svg{display:block;max-width:100%;}
 .hero{padding-block:clamp(60px,10vw,116px);position:relative;overflow:hidden;}
 .hero .wrap{position:relative;z-index:1;}
 .hero-editorial{max-width:620px;margin:0 auto;text-align:center;}
+
+/* ===== editorial composition variants for text-heavy sections ===== */
+/* mobile-first base: start-aligned column (reads like a real paragraph, not a centered block) */
+.hero-editorial-start, .hero-editorial-indent{max-width:600px;margin-inline:0 auto;text-align:start;}
+.hero-editorial-start .hero-body, .hero-editorial-indent .hero-body{margin-inline:0;max-width:none;}
+.hero-editorial-start .hero-stmt, .hero-editorial-indent .hero-stmt{margin-inline:0;max-width:none;text-align:start;}
+.hero-stmt.section-lead{
+  font-size:clamp(1.9rem,9vw,3.3rem);line-height:1.14;max-width:11ch;margin-bottom:28px;
+}
+/* desktop enhancement: true asymmetric offset + indent rule, only where there's room */
+@media (min-width:900px){
+  .hero-editorial-start{max-width:640px;}
+  .hero-editorial-start .hero-body{max-width:58ch;}
+  .hero-editorial-start .hero-stmt{max-width:24ch;}
+  .hero-editorial-indent{
+    max-width:600px;margin-inline-start:auto;margin-inline-end:0;
+    padding-inline-start:44px;border-inline-start:2px solid var(--line);
+  }
+  .hero-editorial-indent .hero-body{max-width:56ch;}
+  .hero-editorial-indent .hero-stmt{max-width:20ch;}
+  .hero-stmt.section-lead{margin-bottom:36px;}
+}
+
+/* mobile-first: small pinned photo beside the opening line, text stays start-aligned and full-width */
+.editorial-figure{display:flex;gap:16px;align-items:flex-start;text-align:start;margin-bottom:20px;}
+.editorial-figure-img{flex:0 0 96px;width:96px;border-radius:10px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.35);transform:rotate(-3deg);}
+.editorial-figure-img img{width:100%;display:block;}
+.editorial-figure-text{flex:1 1 auto;min-width:0;}
+.editorial-figure-text .hero-body{margin-inline:0;max-width:none;text-align:start;}
+@media (min-width:640px){
+  .editorial-figure{gap:36px;align-items:center;margin-bottom:8px;}
+  .editorial-figure-img{flex-basis:168px;width:168px;border-radius:14px;transform:rotate(-2deg);}
+}
+
+.know-items-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 28px;text-align:start;max-width:640px;margin-inline:auto;}
+@media (max-width:640px){.know-items-grid{grid-template-columns:1fr;}}
+
+.know-items-flow{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 12px;list-style:none;padding:0;margin:0;}
+.know-items-flow .know-item{
+  background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:99px;
+  padding:8px 18px;font-size:.88rem;margin:0;display:inline-flex;align-items:center;gap:6px;
+}
+
+.know-items-inline{display:flex;flex-wrap:wrap;justify-content:center;gap:0;list-style:none;padding:0;margin:0;font-size:.92rem;}
+.know-items-inline .know-item{margin:0;padding:4px 14px;position:relative;}
+.know-items-inline .know-item:not(:last-child)::after{content:'';position:absolute;inset-inline-end:-1px;top:50%;transform:translateY(-50%);width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.4;}
 .hero-h1{font-size:clamp(2rem,4.6vw,2.7rem);line-height:1.4;font-weight:900;margin-bottom:44px;text-wrap:balance;}
 .hero-statement-main{
   font-size:clamp(2.6rem,7.2vw,3.9rem);line-height:1.22;font-weight:900;color:var(--purple-deep);
@@ -1072,7 +1118,7 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
 <div style="height:10px;background:var(--peach);"></div>
 
 <section class="section chapter-coffee" id="identify" style="padding-top:8px;">
-  <div class="wrap hero-editorial">
+  <div class="wrap hero-editorial hero-editorial-start">
     <div class="hero-video-bg">
       <video autoplay muted loop playsinline preload="auto" poster="assets/proof-header-montage-cover.jpg">
         <source src="assets/proof-header-montage.mp4" type="video/mp4">
@@ -1133,7 +1179,12 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
 
 <section class="section chapter-black">
   <div class="wrap hero-editorial">
-    <p class="hero-body">לא ידעתי לצלם, לערוך או לבנות סרטון, וכל פעם שהעליתי משהו הרגשתי שאני קצת מהמרת:</p>
+    <div class="editorial-figure">
+      <div class="editorial-figure-img"><img src="assets/whyme-photo.jpg" alt="איב מצלמת תוכן"></div>
+      <div class="editorial-figure-text">
+        <p class="hero-body">לא ידעתי לצלם, לערוך או לבנות סרטון, וכל פעם שהעליתי משהו הרגשתי שאני קצת מהמרת:</p>
+      </div>
+    </div>
 
     <p class="pull-quote" style="color:var(--peach);margin:20px auto;">אולי הפעם זה יעבוד.</p>
 
@@ -1188,8 +1239,8 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
 </section>
 
 <section class="section chapter-coffee">
-  <div class="wrap hero-editorial">
-    <p class="hero-stmt fade-in" style="color:var(--burgundy);">אתם לא צריכים לעבוד בשביל התוכן שלכם.<br><span class="marker-stroke">התוכן שלכם צריך לעבוד בשבילכם.</span></p>
+  <div class="wrap hero-editorial hero-editorial-indent">
+    <p class="hero-stmt section-lead fade-in" style="color:var(--burgundy);">אתם לא צריכים לעבוד בשביל התוכן שלכם.<br><span class="marker-stroke">התוכן שלכם צריך לעבוד בשבילכם.</span></p>
 
     <p class="hero-body">גם אם אתם הכי מדהימים בתחום שלכם - זה לא שווה הרבה אם האנשים שצריכים אתכם לא מכירים אתכם.</p>
 
@@ -1300,7 +1351,7 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
 <section class="section chapter-coffee">
   <div class="wrap hero-editorial">
     <h2 class="know-title" style="text-align:center;">ה<span class="marker-stroke">"אחרי"</span> שלכם נראה ככה:</h2>
-    <div class="know-items">
+    <div class="know-items know-items-grid">
       <p class="know-item"><span class="check-mark">✔</span> לא תתקעו יותר מול מסך ריק - רעיונות יזרמו כי תדעו בדיוק איך לייצר אותם</p>
       <p class="know-item"><span class="check-mark">✔</span> אנשים יעצרו כשהם יראו אתכם - במקום לגלול הלאה</p>
       <p class="know-item"><span class="check-mark">✔</span> איך להעביר מסר בצורה מעניינת, שאנשים רוצים להקשיב לה</p>
@@ -1316,7 +1367,7 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
   <div class="wrap">
     <div class="icon3d-wrap"><img class="icon3d icon3d-support anim-bob" src="assets/icons/bullseye_3d.png" alt=""></div>
     <span class="who-for-label">הקורס הזה בשבילכם אם יש לכם משהו שאתם רוצים שיותר אנשים יכירו.</span>
-    <div class="know-items" style="margin-top:24px;">
+    <div class="know-items know-items-flow" style="margin-top:24px;">
       <p class="know-item"><span class="check-mark">✔</span> מקצוע שאתם טובים בו.</p>
       <p class="know-item"><span class="check-mark">✔</span> עסק שאתם רוצים לגדל.</p>
       <p class="know-item"><span class="check-mark">✔</span> ידע שאתם רוצים ללמד.</p>
@@ -1346,7 +1397,7 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
     <p class="hero-body" style="text-align:center;">אם הגעתם עד לכאן, כנראה שכבר יש בכם רצון ליצור תוכן.<br>עכשיו נשאר רק לעשות את הצעד הראשון.</p>
 
     <h3 class="perks-title" style="margin-top:40px;">כל מה שאתם צריכים כדי להתחיל – כבר מחכה לכם בקורס.</h3>
-    <div class="know-items">
+    <div class="know-items know-items-inline">
       <p class="know-item"><span class="check-mark">✔</span> גישה ללא הגבלת זמן</p>
       <p class="know-item"><span class="check-mark">✔</span> צפייה מכל מכשיר</p>
       <p class="know-item"><span class="check-mark">✔</span> עדכונים עתידיים כלולים</p>

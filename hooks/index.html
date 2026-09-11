@@ -46,6 +46,10 @@
   }
   .card-embed{padding:0;}
   .card-embed iframe, .card-embed blockquote{width:100% !important; margin:0 !important;}
+  .loading{
+    aspect-ratio:9/16; display:flex; align-items:center; justify-content:center;
+    color:var(--ink-soft); font-size:.85rem;
+  }
   .placeholder{
     aspect-ratio:9/16; display:flex; align-items:center; justify-content:center;
     background:repeating-linear-gradient(135deg, rgba(61,36,24,.04) 0 12px, rgba(61,36,24,.02) 12px 24px);
@@ -67,11 +71,7 @@
       </div>
       <p class="category-desc">צבעים חזקים, כתוביות דינאמיות, זווית צילום מעניינת.</p>
       <div class="gallery">
-        <div class="card">
-          <div class="card-embed">
-            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DM7uj1xoKi_/" data-instgrm-version="14"></blockquote>
-          </div>
-        </div>
+        <div class="card"><div class="card-embed" data-permalink="https://www.instagram.com/reel/DM7uj1xoKi_/"><div class="loading">טוען...</div></div></div>
         <div class="card"><div class="placeholder">מקום לדוגמה הבאה</div></div>
         <div class="card"><div class="placeholder">מקום לדוגמה הבאה</div></div>
       </div>
@@ -84,11 +84,7 @@
       </div>
       <p class="category-desc">שיר מוכר, טון דיבור מסקרן/מוזר, צעקה/לחישה, סאונדים טרנדיים.</p>
       <div class="gallery">
-        <div class="card">
-          <div class="card-embed">
-            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Cs1Ov3qoabH/" data-instgrm-version="14"></blockquote>
-          </div>
-        </div>
+        <div class="card"><div class="card-embed" data-permalink="https://www.instagram.com/reel/Cs1Ov3qoabH/"><div class="loading">טוען...</div></div></div>
         <div class="card"><div class="placeholder">מקום לדוגמה הבאה</div></div>
         <div class="card"><div class="placeholder">מקום לדוגמה הבאה</div></div>
       </div>
@@ -101,11 +97,7 @@
       </div>
       <p class="category-desc">משהו שפותח שאלה, ומשאיר אתכם עם צורך לדעת מה קורה בהמשך.</p>
       <div class="gallery">
-        <div class="card">
-          <div class="card-embed">
-            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DQI2xxNjIxe/" data-instgrm-version="14"></blockquote>
-          </div>
-        </div>
+        <div class="card"><div class="card-embed" data-permalink="https://www.instagram.com/reel/DQI2xxNjIxe/"><div class="loading">טוען...</div></div></div>
         <div class="card"><div class="placeholder">מקום לדוגמה הבאה</div></div>
         <div class="card"><div class="placeholder">מקום לדוגמה הבאה</div></div>
       </div>
@@ -118,11 +110,7 @@
       </div>
       <p class="category-desc">משפט פתיח שתופס רגש - משהו שנוגע או מרגיש מוכר.</p>
       <div class="gallery">
-        <div class="card">
-          <div class="card-embed">
-            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DcgrTRPtLhl/" data-instgrm-version="14"></blockquote>
-          </div>
-        </div>
+        <div class="card"><div class="card-embed" data-permalink="https://www.instagram.com/reel/DcgrTRPtLhl/"><div class="loading">טוען...</div></div></div>
         <div class="card"><div class="placeholder">מקום לדוגמה הבאה</div></div>
         <div class="card"><div class="placeholder">מקום לדוגמה הבאה</div></div>
       </div>
@@ -131,6 +119,42 @@
     <footer>העמוד הזה יתעדכן עם עוד דוגמאות בהמשך.</footer>
   </div>
 
-<script async src="https://www.instagram.com/embed.js"></script>
+<script src="https://www.instagram.com/embed.js"></script>
+<script>
+  // Load embeds one at a time as they scroll into view, instead of all at once -
+  // Instagram's embed widget doesn't render reliably when many embeds fire simultaneously.
+  var queue = [];
+  var processing = false;
+
+  function processNext(){
+    if (processing || queue.length === 0) return;
+    processing = true;
+    var el = queue.shift();
+    var bq = document.createElement('blockquote');
+    bq.className = 'instagram-media';
+    bq.setAttribute('data-instgrm-permalink', el.dataset.permalink);
+    bq.setAttribute('data-instgrm-version', '14');
+    el.innerHTML = '';
+    el.appendChild(bq);
+    if (window.instgrm && window.instgrm.Embeds) {
+      window.instgrm.Embeds.process();
+    }
+    setTimeout(function(){ processing = false; processNext(); }, 1200);
+  }
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        queue.push(entry.target);
+        observer.unobserve(entry.target);
+        processNext();
+      }
+    });
+  }, { rootMargin: '200px' });
+
+  document.querySelectorAll('.card-embed[data-permalink]').forEach(function(el){
+    observer.observe(el);
+  });
+</script>
 </body>
 </html>

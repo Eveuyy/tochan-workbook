@@ -79,10 +79,6 @@ p {
 
   <!-- Meta Pixel Code -->
   <script>
-    var __params = new URLSearchParams(window.location.search);
-    var __value = parseFloat(__params.get('value')) || 0;
-    var __currency = 'ILS';
-
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -93,7 +89,6 @@ p {
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '2014675365814954');
     fbq('track', 'PageView');
-    fbq('track', 'Purchase', {value: __value, currency: __currency});
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"

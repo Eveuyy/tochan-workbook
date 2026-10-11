@@ -346,6 +346,23 @@ h1{
 }
 .next-btn:focus-visible{outline:2px solid #fff; outline-offset:3px;}
 .final-thanks{font-weight:600; margin:20px 0 4px !important;}
+.start-here{
+  margin:16px 0 4px;
+  padding:16px 16px 18px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.4);
+  background:rgba(255,255,255,.12);
+}
+.start-here[hidden]{display:none;}
+.start-here p{font-size:.92rem !important; margin:0 0 12px !important;}
+.start-here a{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:46px; padding:10px 26px;
+  border-radius:999px;
+  background:#fff; color:var(--ink);
+  font-weight:700; font-size:.94rem; text-decoration:none;
+}
+.start-here a:focus-visible{outline:2px solid #fff; outline-offset:3px;}
 .links{display:flex; flex-direction:column; gap:10px; margin-top:14px;}
 .links a{
   display:flex; align-items:center; justify-content:center;
@@ -440,7 +457,8 @@ h1{
       <div class="step" id="step2" hidden>
         <p class="ask" id="stageLabel"><span class="step-num">2/2</span> ומה הניסיון שלכם ביצירת תוכן ב-AI?</p>
         <div class="chips" role="radiogroup" aria-labelledby="stageLabel">
-          <label class="chip"><input type="radio" name="stage" value="מאפס"><span>ממש ממש מאפס</span></label>
+          <label class="chip"><input type="radio" name="stage" value="לא יוצר/ת תוכן"><span>עוד לא התחלתי ליצור תוכן בכלל</span></label>
+          <label class="chip"><input type="radio" name="stage" value="מאפס"><span>יוצרים תוכן, אבל ב-AI ממש מאפס</span></label>
           <label class="chip"><input type="radio" name="stage" value="ניסה קצת"><span>ניסיתי קצת</span></label>
           <label class="chip"><input type="radio" name="stage" value="יש ניסיון"><span>יש לי ניסיון</span></label>
         </div>
@@ -450,6 +468,10 @@ h1{
 
     <div id="finalBlock" hidden>
       <p class="final-thanks" id="finalThanks">תודה, זה עוזר לי מאוד 🙏</p>
+      <div class="start-here" id="startHere" hidden>
+        <p><strong>רגע, לפני AI:</strong> אם עוד לא התחלתם ליצור תוכן, הכי נכון להתחיל מהבסיס. בקורס יצירת התוכן שלי לומדים מסרים, אלגוריתם ועריכה בסיסית ב-CapCut.</p>
+        <a href="https://www.evecontent.co.il/?utm_source=ai-waitlist" target="_blank" rel="noopener">לקורס יצירת התוכן</a>
+      </div>
       <div class="links">
         <a class="wa" href="https://chat.whatsapp.com/LoKhCSVMrt5JOPCWzy4iaN" target="_blank" rel="noopener">קהילת הוואטסאפ ליצירת תוכן</a>
         <a href="https://www.instagram.com/by.eve___?igsh=MTg0NDY5ZTQ5cmtsZA%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener">לאינסטגרם שלי</a>
@@ -586,6 +608,7 @@ h1{
   document.getElementById('doneBtn').addEventListener('click', function(){
     var chosen = stageBoxes.filter(function(b){ return b.checked; })[0];
     sendAnswer('ניסיון ב-AI', 'stage', chosen ? chosen.value : '');
+    document.getElementById('startHere').hidden = !(chosen && chosen.value === 'לא יוצר/ת תוכן');
     showFinal(true);
   });
 

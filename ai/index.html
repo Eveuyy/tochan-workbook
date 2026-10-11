@@ -313,12 +313,39 @@ h1{
   transition:background .15s ease, color .15s ease, border-color .15s ease;
 }
 .chip input:checked + span{background:#fff; border-color:#fff; color:var(--ink); font-weight:700;}
-.saved{
-  min-height:1.3em;
-  margin:10px 0 0 !important;
-  font-size:.8rem !important;
+.follow .chips{gap:7px;}
+.follow .chip span{min-height:40px; padding:6px 15px;}
+.follow{margin-top:20px; padding-top:18px; border-top:1px solid rgba(255,255,255,.28);}
+.follow-intro{font-size:.9rem !important; opacity:.9; margin:0 0 4px !important;}
+.step[hidden]{display:none;}
+.step-num{
+  display:inline-block;
+  direction:ltr;
+  font-size:.72rem;
   font-weight:600;
+  letter-spacing:.06em;
+  padding:2px 9px;
+  margin-inline-end:6px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.5);
+  vertical-align:2px;
 }
+.next-btn{
+  margin-top:18px;
+  min-height:46px;
+  padding:10px 34px;
+  border-radius:999px;
+  border:1px solid rgba(255,208,218,.7);
+  background:linear-gradient(145deg, rgba(134,32,56,.66), rgba(96,18,38,.58));
+  color:#fff;
+  font-family:inherit;
+  font-weight:700;
+  font-size:.98rem;
+  cursor:pointer;
+  box-shadow:0 14px 28px -12px rgba(84,10,30,.85), inset 0 1px 0 rgba(255,255,255,.28);
+}
+.next-btn:focus-visible{outline:2px solid #fff; outline-offset:3px;}
+.final-thanks{font-weight:600; margin:20px 0 4px !important;}
 .links{display:flex; flex-direction:column; gap:10px; margin-top:14px;}
 .links a{
   display:flex; align-items:center; justify-content:center;
@@ -395,18 +422,40 @@ h1{
     <h1>אתם ברשימה 💌</h1>
     <p>ברגע שזה נפתח, תקבלו ממני הודעה לפני כולם.</p>
 
-    <p class="ask" id="interestLabel">ומה הכי מסקרן אתכם?</p>
-    <div class="chips" role="group" aria-labelledby="interestLabel">
-      <label class="chip"><input type="checkbox" name="interest" value="דמות ריאליסטית של עצמי"><span>דמות ריאליסטית של עצמי</span></label>
-      <label class="chip"><input type="checkbox" name="interest" value="ליפסינק בעברית"><span>שהדמות תדבר עברית</span></label>
-      <label class="chip"><input type="checkbox" name="interest" value="החלפת לוקים ורקע"><span>להחליף לוקים ורקע</span></label>
-      <label class="chip"><input type="checkbox" name="interest" value="החשיבה מאחורי הרעיון"><span>החשיבה מאחורי הרעיון</span></label>
-    </div>
-    <p class="saved" id="savedNote" aria-live="polite"></p>
+    <div class="follow" id="followUp">
+      <p class="follow-intro">וכמה שאלות כדי לעזור לי לדייק את התוכן עבורכם...</p>
 
-    <div class="links">
-      <a class="wa" href="https://chat.whatsapp.com/LoKhCSVMrt5JOPCWzy4iaN" target="_blank" rel="noopener">קהילת הוואטסאפ ליצירת תוכן</a>
-      <a href="https://www.instagram.com/by.eve___?igsh=MTg0NDY5ZTQ5cmtsZA%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener">לאינסטגרם שלי</a>
+      <div class="step" id="step1">
+        <p class="ask" id="interestLabel"><span class="step-num">1/2</span> מה הכי מעניין אתכם?</p>
+        <div class="chips" role="group" aria-labelledby="interestLabel">
+          <label class="chip"><input type="checkbox" name="interest" value="איך מגיעים לרעיון"><span>איך מגיעים לרעיון</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="איך מחליטים מה רואים על המסך"><span>איך מחליטים מה רואים על המסך</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="איך זה ערוך ככה"><span>איך זה ערוך ככה</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="איך זה נראה אמיתי ולא AI"><span>איך זה נראה אמיתי ולא AI</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="הפרומפטים והכלים"><span>הפרומפטים והכלים</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="שהדמות תדבר עברית"><span>שהדמות תדבר עברית</span></label>
+        </div>
+        <button type="button" class="next-btn" id="nextBtn">הבא</button>
+      </div>
+
+      <div class="step" id="step2" hidden>
+        <p class="ask" id="stageLabel"><span class="step-num">2/2</span> ואיפה אתם היום?</p>
+        <div class="chips" role="radiogroup" aria-labelledby="stageLabel">
+          <label class="chip"><input type="radio" name="stage" value="יש לי עסק, וכבר מעלה תוכן"><span>יש לי עסק, וכבר מעלה תוכן</span></label>
+          <label class="chip"><input type="radio" name="stage" value="יש לי עסק, ועוד לא מעלה תוכן"><span>יש לי עסק, ועוד לא מעלה תוכן</span></label>
+          <label class="chip"><input type="radio" name="stage" value="מעלה תוכן בשביל עצמי"><span>מעלה תוכן בשביל עצמי</span></label>
+          <label class="chip"><input type="radio" name="stage" value="עוד לא התחלתי"><span>עוד לא התחלתי</span></label>
+        </div>
+        <button type="button" class="next-btn" id="doneBtn">סיימתי</button>
+      </div>
+    </div>
+
+    <div id="finalBlock" hidden>
+      <p class="final-thanks" id="finalThanks">תודה, זה עוזר לי מאוד 🙏</p>
+      <div class="links">
+        <a class="wa" href="https://chat.whatsapp.com/LoKhCSVMrt5JOPCWzy4iaN" target="_blank" rel="noopener">קהילת הוואטסאפ ליצירת תוכן</a>
+        <a href="https://www.instagram.com/by.eve___?igsh=MTg0NDY5ZTQ5cmtsZA%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener">לאינסטגרם שלי</a>
+      </div>
     </div>
   </div>
 </div>
@@ -426,9 +475,7 @@ h1{
   var emailEl = document.getElementById('email');
   var consent = document.getElementById('consent');
   var interestBoxes = Array.prototype.slice.call(document.querySelectorAll('input[name=interest]'));
-  var savedNote = document.getElementById('savedNote');
   var lead = null;
-  var interestTimer;
 
   var videos = [document.getElementById('bgVideo'), document.getElementById('bgVideo2')];
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -510,24 +557,46 @@ h1{
     });
   });
 
-  function sendInterest(){
-    if (!lead) return;
-    var picked = interestBoxes.filter(function(b){ return b.checked; }).map(function(b){ return b.value; });
-    if (!picked.length) return;
-    send({ type: 'מה מסקרן', name: lead.name, phone: lead.phone, email: lead.email || '', interest: picked.join(', ') }).then(function(){
-      savedNote.textContent = 'נרשם, תודה!';
-    }).catch(function(){});
+  var ANSWERED_KEY = 'lead-answered:' + location.pathname;
+  var step1 = document.getElementById('step1');
+  var step2 = document.getElementById('step2');
+  var followUp = document.getElementById('followUp');
+  var finalBlock = document.getElementById('finalBlock');
+  var stageBoxes = Array.prototype.slice.call(document.querySelectorAll('input[name=stage]'));
+
+  function sendAnswer(type, field, value){
+    if (!lead || !value) return;
+    var answers = { type: type, name: lead.name, phone: lead.phone, email: lead.email || '' };
+    answers[field] = value;
+    send(answers).catch(function(){});
   }
 
-  interestBoxes.forEach(function(b){
-    b.addEventListener('change', function(){
-      savedNote.textContent = '';
-      clearTimeout(interestTimer);
-      interestTimer = setTimeout(sendInterest, 2000);
-    });
+  function showFinal(answered){
+    followUp.hidden = true;
+    finalBlock.hidden = false;
+    document.getElementById('finalThanks').hidden = !answered;
+    try { localStorage.setItem(ANSWERED_KEY, '1'); } catch(e) {}
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', function(){
+    var picked = interestBoxes.filter(function(b){ return b.checked; }).map(function(b){ return b.value; });
+    sendAnswer('מה מעניין', 'interest', picked.join(', '));
+    step1.hidden = true;
+    step2.hidden = false;
+  });
+
+  document.getElementById('doneBtn').addEventListener('click', function(){
+    var chosen = stageBoxes.filter(function(b){ return b.checked; })[0];
+    sendAnswer('איפה היום', 'stage', chosen ? chosen.value : '');
+    showFinal(true);
   });
 
   try { lead = JSON.parse(localStorage.getItem(LEAD_KEY) || 'null'); } catch(e) {}
-  if (lead) showThanks();
+  if (lead) {
+    showThanks();
+    var answeredBefore;
+    try { answeredBefore = localStorage.getItem(ANSWERED_KEY); } catch(e) {}
+    if (answeredBefore) showFinal(false);
+  }
 })();
 </script>

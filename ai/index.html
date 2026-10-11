@@ -68,7 +68,10 @@ body{
   height:calc(100% + 24px);
   object-fit:cover;
   filter:blur(1.5px);
+  opacity:0;
+  transition:opacity 1.6s ease;
 }
+.bg video.on{opacity:1;}
 .bg::before{
   content:'';
   position:absolute;
@@ -109,6 +112,7 @@ body{
   .dots i:nth-child(2){animation-delay:.25s;}
   .dots i:nth-child(3){animation-delay:.5s;}
   .bg video{animation:drift 22s ease-in-out infinite alternate;}
+  .submit-btn{animation:float 3.4s ease-in-out infinite;}
 }
 @keyframes rise{
   from{opacity:0; transform:translateY(18px);}
@@ -118,6 +122,10 @@ body{
   0%, 20%{opacity:.15;}
   50%{opacity:1;}
   100%{opacity:.15;}
+}
+@keyframes float{
+  0%, 100%{transform:translateY(0);}
+  50%{transform:translateY(-5px);}
 }
 @keyframes drift{
   from{transform:scale(1);}
@@ -252,21 +260,23 @@ h1{
   gap:8px;
   width:100%;
   padding:15px 18px;
-  border:none;
+  border:1px solid rgba(255,208,218,.7);
   border-radius:999px;
-  background:#fff;
-  color:var(--ink);
+  background:linear-gradient(145deg, rgba(134,32,56,.66), rgba(96,18,38,.58));
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+  color:#fff;
   font-family:'Rubik',sans-serif;
   font-weight:700;
-  font-size:1.02rem;
+  font-size:1.04rem;
+  letter-spacing:.01em;
   cursor:pointer;
-  transition:transform .15s ease, opacity .15s ease, box-shadow .15s ease;
-  box-shadow:0 14px 34px -12px rgba(0,0,0,.6), 0 0 0 0 rgba(255,255,255,.35);
+  transition:background .2s ease, box-shadow .2s ease, opacity .15s ease;
+  box-shadow:0 18px 34px -12px rgba(84,10,30,.85), 0 0 26px -6px rgba(190,60,90,.55), inset 0 1px 0 rgba(255,255,255,.28);
 }
-.submit-btn:hover{transform:translateY(-1px); box-shadow:0 16px 36px -12px rgba(0,0,0,.6), 0 0 0 5px rgba(255,255,255,.16);}
-.submit-btn:active{transform:translateY(0);}
+.submit-btn:hover{background:linear-gradient(145deg, rgba(150,38,64,.78), rgba(110,22,44,.7));}
 .submit-btn:focus-visible, .chip input:focus-visible + span, .links a:focus-visible, .field input:focus-visible{outline:2px solid #fff; outline-offset:3px;}
-.submit-btn[disabled]{opacity:.6; cursor:default; transform:none;}
+.submit-btn[disabled]{opacity:.6; cursor:default; animation:none;}
 
 .send-error{
   display:none;
@@ -326,8 +336,11 @@ h1{
 </style>
 
 <div class="bg" aria-hidden="true">
-  <video id="bgVideo" autoplay muted loop playsinline preload="auto" poster="bg.jpg">
+  <video id="bgVideo" class="on" autoplay muted playsinline preload="auto" poster="bg.jpg">
     <source src="bg.mp4" type="video/mp4">
+  </video>
+  <video id="bgVideo2" muted playsinline preload="none">
+    <source src="bg2.mp4" type="video/mp4">
   </video>
 </div>
 
@@ -417,10 +430,28 @@ h1{
   var lead = null;
   var interestTimer;
 
-  var video = document.getElementById('bgVideo');
+  var videos = [document.getElementById('bgVideo'), document.getElementById('bgVideo2')];
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    video.removeAttribute('autoplay');
-    video.pause();
+    videos[0].removeAttribute('autoplay');
+    videos[0].pause();
+  } else {
+    videos.forEach(function(v, i){
+      v.addEventListener('ended', function(){
+        var next = videos[(i + 1) % videos.length];
+        next.currentTime = 0;
+        var started = next.play();
+        if (!started || !started.then) { v.play(); return; }
+        started.then(function(){
+          next.classList.add('on');
+          v.classList.remove('on');
+        }).catch(function(){ v.play(); });
+      });
+    });
+    videos[0].addEventListener('playing', function warm(){
+      videos[0].removeEventListener('playing', warm);
+      videos[1].preload = 'auto';
+      videos[1].load();
+    });
   }
 
   function send(answers){

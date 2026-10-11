@@ -383,6 +383,7 @@ h1{
     return fetch(WEBHOOK_URL, {
       method: 'POST',
       mode: 'no-cors',
+      keepalive: true,
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({ page: location.pathname, gender: '', answers: answers })
     });
@@ -420,10 +421,13 @@ h1{
 
     lead = { name: name, phone: phone };
     submitBtn.disabled = true;
+    showThanks();
     send({ type: 'ליד', name: name, phone: phone, consent: 'כן' }).then(function(){
       try { localStorage.setItem(LEAD_KEY, JSON.stringify(lead)); } catch(err) {}
-      showThanks();
     }).catch(function(){
+      lead = null;
+      thanksCard.hidden = true;
+      formCard.hidden = false;
       submitBtn.disabled = false;
       sendError.classList.add('show');
     });

@@ -426,25 +426,23 @@ h1{
       <p class="follow-intro">וכמה שאלות כדי לעזור לי לדייק את התוכן עבורכם...</p>
 
       <div class="step" id="step1">
-        <p class="ask" id="interestLabel"><span class="step-num">1/2</span> מה הכי בא לכם לשאול אותי?</p>
+        <p class="ask" id="interestLabel"><span class="step-num">1/2</span> מה הכי מעניין אתכם?</p>
         <div class="chips" role="group" aria-labelledby="interestLabel">
-          <label class="chip"><input type="checkbox" name="interest" value="רעיון"><span>איך את מגיעה לרעיונות האלה</span></label>
-          <label class="chip"><input type="checkbox" name="interest" value="ויזואל"><span>איך את מחליטה מה רואים בכל רגע</span></label>
-          <label class="chip"><input type="checkbox" name="interest" value="עריכה וקצב"><span>איך את עורכת ככה</span></label>
-          <label class="chip"><input type="checkbox" name="interest" value="ריאליזם"><span>איך זה יוצא לך כל כך אמיתי</span></label>
-          <label class="chip"><input type="checkbox" name="interest" value="כלים ופרומפטים"><span>באילו כלים את משתמשת</span></label>
-          <label class="chip"><input type="checkbox" name="interest" value="עברית"><span>איך הדמות שלך מדברת עברית</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="רעיון"><span>איך בוחרים רעיון לתוכן</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="ויזואל"><span>איך מייצרים את השוטים הוויזואליים</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="ריאליזם"><span>איך לייצר דמות ריאליסטית של עצמי</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="כלים ופרומפטים"><span>באיזה כלים את משתמשת</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="עברית"><span>איך לעשות ליפסינק בעברית</span></label>
         </div>
         <button type="button" class="next-btn" id="nextBtn">הבא</button>
       </div>
 
       <div class="step" id="step2" hidden>
-        <p class="ask" id="stageLabel"><span class="step-num">2/2</span> ואיפה אתם היום?</p>
+        <p class="ask" id="stageLabel"><span class="step-num">2/2</span> ומה הניסיון שלכם ביצירת תוכן ב-AI?</p>
         <div class="chips" role="radiogroup" aria-labelledby="stageLabel">
-          <label class="chip"><input type="radio" name="stage" value="עסק, מעלה תוכן"><span>יש לי עסק ואני כבר מעלה תוכן</span></label>
-          <label class="chip"><input type="radio" name="stage" value="עסק, לא מעלה תוכן"><span>יש לי עסק, אבל עוד לא מעלה תוכן</span></label>
-          <label class="chip"><input type="radio" name="stage" value="יוצר/ת לעצמו"><span>מעלה תוכן בשביל הכיף</span></label>
-          <label class="chip"><input type="radio" name="stage" value="לא התחיל/ה"><span>עוד לא התחלתי, אבל רוצה</span></label>
+          <label class="chip"><input type="radio" name="stage" value="מאפס"><span>ממש ממש מאפס</span></label>
+          <label class="chip"><input type="radio" name="stage" value="ניסה קצת"><span>ניסיתי קצת</span></label>
+          <label class="chip"><input type="radio" name="stage" value="יש ניסיון"><span>יש לי ניסיון</span></label>
         </div>
         <button type="button" class="next-btn" id="doneBtn">סיימתי</button>
       </div>
@@ -587,7 +585,7 @@ h1{
 
   document.getElementById('doneBtn').addEventListener('click', function(){
     var chosen = stageBoxes.filter(function(b){ return b.checked; })[0];
-    sendAnswer('איפה היום', 'stage', chosen ? chosen.value : '');
+    sendAnswer('ניסיון ב-AI', 'stage', chosen ? chosen.value : '');
     showFinal(true);
   });
 

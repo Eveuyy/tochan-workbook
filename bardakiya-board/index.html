@@ -115,6 +115,8 @@ a.btn.primary { color: var(--cream); }
       <span class="sub" id="sourceNote">טוען את הגיליון…</span>
     </div>
     <div class="actions">
+      <span class="chip" id="editorBadge" hidden style="background:var(--green-t)">מצב עריכה</span>
+      <button class="btn" id="commentBtn" type="button" hidden>💬 הערה ל-Claude</button>
       <button class="btn" id="refreshBtn" type="button">רענון</button>
       <button class="btn primary" id="addBtn" type="button" hidden>עריכה בגיליון</button>
     </div>
@@ -223,13 +225,14 @@ function openView(id) {
     el("button", { class: "btn close", type: "button", onclick: closePanel, text: "סגירה" }),
     el("span", { class: "chip", style: "background:" + pl.tint }, el("span", { class: "dot", style: "background:" + pl.color }), p.pillar || "אווירה"),
     el("h2", { text: p.title || "בלי כותרת" }));
-  if (p.row) {
-    const cellUrl = (col) => SHEET_URL + "#gid=0&range=" + col + p.row;
-    panel.append(el("div", { class: "foot" },
-      el("a", { class: "btn primary", href: cellUrl("I"), target: "_blank", rel: "noopener", text: "✏️ הערות לתיקון" }),
-      el("a", { class: "btn", href: cellUrl("H"), target: "_blank", rel: "noopener", text: "📝 לערוך כיתוב" }),
-      el("a", { class: "btn ghost", href: cellUrl("F"), target: "_blank", rel: "noopener", text: "סטטוס ותאריך" })));
-    panel.append(el("div", { class: "small", text: "הכפתורים פותחים את הגיליון בדיוק בתא של הפוסט. אפשר גם מהטלפון, דרך הכפתורים בבוט המשרד." }));
+  if (editorKey && p.row) {
+    const tools = el("div", { class: "foot" });
+    const msg = el("div", { class: "small", role: "status" });
+    if (p.status !== "מאושר") tools.append(el("button", { class: "btn primary", type: "button", text: "✅ מאשרת", onclick: () => quickStatus(p, "מאושר", msg) }));
+    tools.append(el("button", { class: "btn", type: "button", text: "✏️ עריכה", onclick: () => openEditor(p) }));
+    tools.append(el("button", { class: "btn", type: "button", text: "💬 הערה ל-Claude", onclick: () => openComment(p) }));
+    if (p.status !== "נדחה") tools.append(el("button", { class: "btn ghost", type: "button", text: "לדחות", onclick: () => quickStatus(p, "נדחה", msg) }));
+    panel.append(tools, msg);
   }
   if (p.images && p.images.length) { const g = el("div", { class: "gallery" }); p.images.forEach(src => g.append(el("img", { src, alt: "" }))); panel.append(g); }
   const d = p.date ? new Date(p.date + "T12:00") : null;
@@ -320,6 +323,83 @@ document.getElementById("todayW").onclick = () => { weekStart = startOfWeek(new 
 
 render();
 
+// ---------- מצב עריכה לאיב (20.10.2026) ----------
+// הכניסה דרך קישור אישי שבוט המשרד שולח לאיב ("כניסה ללוח"). המפתח נשמר רק בדפדפן שלה.
+const API = "https://bardakiya-board-api.coheneve95.workers.dev";
+let editorKey = null;
+try { editorKey = localStorage.getItem("bardakiyaBoardKey"); } catch (e) {}
+(function takeKeyFromLink() {
+  const m = /[#&]k=([a-f0-9]{20,})/.exec(location.hash);
+  if (!m) return;
+  editorKey = m[1];
+  try { localStorage.setItem("bardakiyaBoardKey", editorKey); } catch (e) {}
+  history.replaceState(null, "", location.pathname + location.search);
+})();
+async function api(path, body) {
+  const r = await fetch(API + path, { method: "POST", headers: { "Content-Type": "application/json", "X-Board-Key": editorKey }, body: JSON.stringify(body || {}) });
+  const j = await r.json().catch(() => ({}));
+  if (r.status === 401) { editorKey = null; try { localStorage.removeItem("bardakiyaBoardKey"); } catch (e) {} setEditorUi(); }
+  if (!j.ok) throw new Error(j.error || "failed");
+  return j;
+}
+function setEditorUi() {
+  document.getElementById("commentBtn").hidden = !editorKey;
+  document.getElementById("editorBadge").hidden = !editorKey;
+}
+async function quickStatus(p, status, msg) {
+  msg.textContent = "שומרת…";
+  try { await api("/api/update", { id: p.id, changes: { status } }); msg.textContent = "✓ נשמר"; await loadSheet(); openView(p.id); }
+  catch (e) { msg.textContent = e.message === "auth" ? "הכניסה פגה. בקשי מהבוט קישור חדש (\u201cכניסה ללוח\u201d)." : "השמירה לא הצליחה. נסי שוב בעוד רגע."; }
+}
+function openEditor(p) {
+  const err = el("div", { class: "err", role: "alert" });
+  const sel = el("select", { id: "e-status" }); STATUSES.forEach(o => sel.append(el("option", { value: o, text: o, selected: o === p.status ? "selected" : false })));
+  const panel = el("div", { class: "panel", role: "dialog", "aria-modal": "true", "aria-label": "עריכת פוסט" },
+    el("button", { class: "btn close", type: "button", onclick: () => openView(p.id), text: "חזרה" }),
+    el("h2", { text: "עריכת פוסט" }),
+    el("div", { class: "field" }, el("label", { for: "e-title", text: "כותרת" }), el("input", { id: "e-title", value: p.title || "" })),
+    el("div", { class: "row2" },
+      el("div", { class: "field" }, el("label", { for: "e-date", text: "תאריך" }), el("input", { id: "e-date", type: "date", value: p.date || "" })),
+      el("div", { class: "field" }, el("label", { for: "e-time", text: "שעה" }), el("input", { id: "e-time", type: "time", value: p.time || "" }))),
+    el("div", { class: "field" }, el("label", { for: "e-status", text: "סטטוס" }), sel),
+    el("div", { class: "field" }, el("label", { for: "e-caption", text: "כיתוב" }), el("textarea", { id: "e-caption" }, p.caption || "")));
+  const save = el("button", { class: "btn primary", type: "button", text: "שמירה", onclick: async () => {
+    const g = id => panel.querySelector("#" + id).value;
+    const ch = {};
+    if (g("e-title").trim() !== (p.title || "")) ch.title = g("e-title").trim();
+    if (g("e-date") && g("e-date") !== p.date) ch.date = g("e-date");
+    if (g("e-time") && g("e-time") !== p.time) ch.time = g("e-time");
+    if (g("e-status") !== p.status) ch.status = g("e-status");
+    if (g("e-caption") !== (p.caption || "")) ch.caption = g("e-caption");
+    if (!Object.keys(ch).length) { openView(p.id); return; }
+    save.disabled = true; err.textContent = "שומרת…";
+    try { await api("/api/update", { id: p.id, changes: ch }); await loadSheet(); openView(p.id); }
+    catch (e) { save.disabled = false; err.textContent = e.message === "auth" ? "הכניסה פגה. בקשי מהבוט קישור חדש (\u201cכניסה ללוח\u201d)." : "השמירה לא הצליחה. נסי שוב בעוד רגע."; }
+  } });
+  panel.append(el("div", { class: "foot" }, save, el("button", { class: "btn ghost", type: "button", text: "ביטול", onclick: () => openView(p.id) }), err));
+  overlay.textContent = ""; overlay.append(panel); overlay.hidden = false; panel.querySelector("#e-title").focus();
+}
+function openComment(p) {
+  const err = el("div", { class: "small", role: "status" });
+  const ta = el("textarea", { id: "c-text", placeholder: p ? "מה לתקן, מה לשנות, רעיון…" : "כל דבר: רעיון לפוסט, משהו לשנות, שאלה…" });
+  const back = () => (p ? openView(p.id) : closePanel());
+  const panel = el("div", { class: "panel", role: "dialog", "aria-modal": "true", "aria-label": "הערה ל-Claude" },
+    el("button", { class: "btn close", type: "button", onclick: back, text: "חזרה" }),
+    el("h2", { text: p ? "הערה ל-Claude על הפוסט" : "הערה כללית ל-Claude" }),
+    p ? el("div", { class: "small", text: p.title }) : null,
+    el("div", { class: "field" }, el("label", { for: "c-text", text: "ההערה" }), ta),
+    el("div", { class: "small", text: "ההערה נשמרת בגיליון, בלשונית \u201cהערות לClaude\u201d, ואני עוברת עליהן בתחילת כל שיחה על הברדקיה." }));
+  const send = el("button", { class: "btn primary", type: "button", text: "שליחה", onclick: async () => {
+    if (!ta.value.trim()) { err.textContent = "ההערה ריקה."; return; }
+    send.disabled = true; err.textContent = "שולחת…";
+    try { await api("/api/comment", { id: p ? p.id : "", text: ta.value }); err.textContent = "✓ נשלח. תודה!"; ta.value = ""; if (p) { await loadSheet(); } setTimeout(back, 900); }
+    catch (e) { send.disabled = false; err.textContent = e.message === "auth" ? "הכניסה פגה. בקשי מהבוט קישור חדש (\u201cכניסה ללוח\u201d)." : "השליחה לא הצליחה. נסי שוב בעוד רגע."; }
+  } });
+  panel.append(el("div", { class: "foot" }, send, err));
+  overlay.textContent = ""; overlay.append(panel); overlay.hidden = false; ta.focus();
+}
+
+
 const SHEET_ID = "13y7oKy9j0hutShF95lLgHiRH_fPWYWE3nd7xdf9X7Eg";
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/edit";
 function toIso(f) { const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec((f || "").trim()); return m ? m[3] + "-" + pad(+m[2]) + "-" + pad(+m[1]) : ""; }
@@ -341,13 +421,16 @@ async function loadSheet() {
     showNotice("לא הצלחנו לטעון את הגיליון כרגע. בודקים את החיבור ולוחצים “רענון”.");
   }
 }
-document.getElementById("addBtn").hidden = false;
+document.getElementById("addBtn").hidden = !editorKey;
+document.getElementById("commentBtn").onclick = () => openComment(null);
+setEditorUi();
 document.getElementById("addBtn").textContent = "עריכה בגיליון";
 document.getElementById("addBtn").onclick = () => window.open(SHEET_URL, "_blank", "noopener");
 document.getElementById("refreshBtn").onclick = loadSheet;
 loadSheet();
 setInterval(loadSheet, 120000);
 document.addEventListener("visibilitychange", () => { if (!document.hidden) loadSheet(); });
+
 
 function showNotice(t) { const n = document.getElementById("notice"); n.textContent = t; n.hidden = false; }
 </script>

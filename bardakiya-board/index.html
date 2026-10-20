@@ -222,14 +222,6 @@ function openView(id) {
     el("button", { class: "btn close", type: "button", onclick: closePanel, text: "סגירה" }),
     el("span", { class: "chip", style: "background:" + pl.tint }, el("span", { class: "dot", style: "background:" + pl.color }), p.pillar || "אווירה"),
     el("h2", { text: p.title || "בלי כותרת" }));
-  if (p.images && p.images.length) { const g = el("div", { class: "gallery" }); p.images.forEach(src => g.append(el("img", { src, alt: "" }))); panel.append(g); }
-  const d = p.date ? new Date(p.date + "T12:00") : null;
-  panel.append(el("dl", { class: "kv" },
-    el("dt", { text: "מתי" }), el("dd", { text: d ? DAYS[d.getDay()] + " " + short(d) + (p.time ? ", " + p.time : "") : "עוד לא נקבע" }),
-    el("dt", { text: "פורמט" }), el("dd", { text: p.format || "" }),
-    el("dt", { text: "סטטוס" }), el("dd", {}, el("span", { class: "status", "data-s": p.status || "רעיון", text: p.status || "רעיון" }))));
-  if (p.caption) panel.append(el("div", { class: "field" }, el("label", { text: "כיתוב" }), el("div", { class: "caption", text: p.caption })));
-  if (p.notes) panel.append(el("div", { class: "field" }, el("label", { text: "הערות" }), el("div", { class: "caption", text: p.notes })));
   if (p.row) {
     const cellUrl = (col) => SHEET_URL + "#gid=0&range=" + col + p.row;
     panel.append(el("div", { class: "foot" },
@@ -238,6 +230,14 @@ function openView(id) {
       el("a", { class: "btn ghost", href: cellUrl("F"), target: "_blank", rel: "noopener", text: "סטטוס ותאריך" })));
     panel.append(el("div", { class: "small", text: "הכפתורים פותחים את הגיליון בדיוק בתא של הפוסט. אפשר גם מהטלפון, דרך הכפתורים בבוט המשרד." }));
   }
+  if (p.images && p.images.length) { const g = el("div", { class: "gallery" }); p.images.forEach(src => g.append(el("img", { src, alt: "" }))); panel.append(g); }
+  const d = p.date ? new Date(p.date + "T12:00") : null;
+  panel.append(el("dl", { class: "kv" },
+    el("dt", { text: "מתי" }), el("dd", { text: d ? DAYS[d.getDay()] + " " + short(d) + (p.time ? ", " + p.time : "") : "עוד לא נקבע" }),
+    el("dt", { text: "פורמט" }), el("dd", { text: p.format || "" }),
+    el("dt", { text: "סטטוס" }), el("dd", {}, el("span", { class: "status", "data-s": p.status || "רעיון", text: p.status || "רעיון" }))));
+  if (p.caption) panel.append(el("div", { class: "field" }, el("label", { text: "כיתוב" }), el("div", { class: "caption", text: p.caption })));
+  if (p.notes) panel.append(el("div", { class: "field" }, el("label", { text: "הערות" }), el("div", { class: "caption", text: p.notes })));
   const by = el("div", { class: "small" }); panel.append(by);
   if (p.createdBy && userCap && userCap.profiles) userCap.profiles([p.createdBy]).then(ps => { const n = (ps && ps[p.createdBy] && ps[p.createdBy].name) || ""; if (n) by.textContent = "נוסף על ידי " + n; }).catch(() => {});
   if (canWrite) {

@@ -34,6 +34,7 @@ header.top { display: flex; flex-wrap: wrap; align-items: center; justify-conten
 .brand .sub { font-size: 15px; color: var(--ink-soft); }
 .actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .btn { border: 2px solid var(--ink); background: var(--paper); border-radius: 999px; padding: 8px 18px 10px; font-weight: 700; font-size: 15px; }
+a.btn { text-decoration: none; display: inline-block; }
 .btn.primary { background: var(--ink); color: var(--cream); }
 .btn.ghost { border-color: transparent; background: transparent; text-decoration: underline; text-underline-offset: 4px; padding-inline: 8px; }
 .btn:disabled { opacity: .45; cursor: default; }
@@ -229,6 +230,14 @@ function openView(id) {
     el("dt", { text: "סטטוס" }), el("dd", {}, el("span", { class: "status", "data-s": p.status || "רעיון", text: p.status || "רעיון" }))));
   if (p.caption) panel.append(el("div", { class: "field" }, el("label", { text: "כיתוב" }), el("div", { class: "caption", text: p.caption })));
   if (p.notes) panel.append(el("div", { class: "field" }, el("label", { text: "הערות" }), el("div", { class: "caption", text: p.notes })));
+  if (p.row) {
+    const cellUrl = (col) => SHEET_URL + "#gid=0&range=" + col + p.row;
+    panel.append(el("div", { class: "foot" },
+      el("a", { class: "btn primary", href: cellUrl("I"), target: "_blank", rel: "noopener", text: "✏️ הערות לתיקון" }),
+      el("a", { class: "btn", href: cellUrl("H"), target: "_blank", rel: "noopener", text: "📝 לערוך כיתוב" }),
+      el("a", { class: "btn ghost", href: cellUrl("F"), target: "_blank", rel: "noopener", text: "סטטוס ותאריך" })));
+    panel.append(el("div", { class: "small", text: "הכפתורים פותחים את הגיליון בדיוק בתא של הפוסט. אפשר גם מהטלפון, דרך הכפתורים בבוט המשרד." }));
+  }
   const by = el("div", { class: "small" }); panel.append(by);
   if (p.createdBy && userCap && userCap.profiles) userCap.profiles([p.createdBy]).then(ps => { const n = (ps && ps[p.createdBy] && ps[p.createdBy].name) || ""; if (n) by.textContent = "נוסף על ידי " + n; }).catch(() => {});
   if (canWrite) {
@@ -320,7 +329,7 @@ async function loadSheet() {
     const json = JSON.parse(txt.slice(txt.indexOf("{"), txt.lastIndexOf("}") + 1));
     const cell = (r, i) => { const c = r.c[i]; return c ? (c.f != null ? String(c.f) : (c.v == null ? "" : String(c.v))) : ""; };
     posts = (json.table.rows || []).map((r, n) => ({
-      id: cell(r, 0) || "row" + n, date: toIso(cell(r, 1)), time: cell(r, 2), format: cell(r, 3), pillar: cell(r, 4), status: cell(r, 5) || "רעיון",
+      row: n + 2, id: cell(r, 0) || "row" + n, date: toIso(cell(r, 1)), time: cell(r, 2), format: cell(r, 3), pillar: cell(r, 4), status: cell(r, 5) || "רעיון",
       title: cell(r, 6), caption: cell(r, 7), notes: cell(r, 8), images: cell(r, 9).split(/[\s,]+/).filter(u => /^https?:\/\//.test(u)),
     })).filter(p => p.title || p.date);
     const now = new Date();

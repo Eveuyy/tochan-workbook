@@ -72,6 +72,7 @@ header.top { display: flex; flex-wrap: wrap; align-items: center; justify-conten
 .status[data-s="מחכה לאישור"] { background: var(--orange); border-color: var(--orange); }
 .status[data-s="מאושר"] { background: var(--green); border-color: #8fd18d; }
 .status[data-s="פורסם"] { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+.status[data-s="נדחה"] { text-decoration: line-through; border-color: var(--ink-soft); color: var(--ink-soft); opacity: .8; }
 
 /* חלון פרטים ועריכה */
 .overlay { position: fixed; inset: 0; background: rgba(92,74,99,.4); display: flex; justify-content: flex-start; z-index: 20; }
@@ -144,7 +145,7 @@ const PILLARS = [
   { name: "אווירה", color: "var(--ink-soft)", tint: "#f1ecf2" },
 ];
 const FORMATS = ["קרוסלה", "פוסט", "רילס", "סטורי"];
-const STATUSES = ["רעיון", "בהכנה", "מחכה לאישור", "מאושר", "פורסם"];
+const STATUSES = ["רעיון", "בהכנה", "מחכה לאישור", "מאושר", "פורסם", "נדחה"];
 const DAYS = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
 
 let posts = [];

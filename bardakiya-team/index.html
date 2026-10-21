@@ -99,6 +99,16 @@ textarea { resize: vertical; min-height: 84px; }
 .qa { background: var(--paper); border: 1.5px solid var(--line); border-radius: 14px; padding: 10px 12px; margin-bottom: 6px; }
 .qa b { display: block; font-size: 13px; color: var(--ink-soft); }
 .qa span { white-space: pre-wrap; overflow-wrap: anywhere; }
+.mine-forms { background: var(--paper); border: 1.5px solid var(--line); border-radius: 18px; padding: 14px; margin-bottom: 16px; }
+.mine-forms h2 { font-size: 22px; margin-bottom: 8px; }
+.form-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; border-top: 1.5px dashed var(--line); }
+.form-row:first-of-type { border-top: 0; }
+.form-row .ft { font-weight: 900; font-size: 16px; }
+.form-row .fs { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+.form-row .fs.todo { color: var(--alert); font-weight: 700; }
+.form-row .fs.ok { color: #2f7a3a; font-weight: 700; }
+a.btn { text-decoration: none; display: inline-flex; align-items: center; color: var(--ink); flex: none; }
+a.btn.primary { color: var(--cream); }
 a.link { color: var(--ink); font-weight: 700; text-underline-offset: 3px; }
 .toast { position: fixed; top: calc(14px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--cream); padding: 10px 18px; border-radius: 999px; font-weight: 700; z-index: 20; max-width: calc(100% - 32px); text-align: center; }
 </style>
@@ -137,6 +147,7 @@ a.link { color: var(--ink); font-weight: 700; text-underline-offset: 3px; }
     </nav>
 
     <section id="tab-track">
+      <div id="myForms"></div>
       <div class="filters" id="filters"></div>
       <div id="list"></div>
     </section>
@@ -296,7 +307,7 @@ function render() {
   if (FILTER === "done") shown = shown.slice(0, 60);
   $("list").innerHTML = shown.length ? shown.map(cardHTML).join("") : `<div class="empty">${FILTER === "mine" ? "אין כרגע משהו פתוח עלייך/עליך 🎉" : "אין כאן כלום כרגע."}</div>`;
   $("list").querySelectorAll(".card").forEach(bindCard);
-  renderWeek(); renderContent();
+  renderForms(); renderWeek(); renderContent();
 }
 function cardHTML(it) {
   const open = OPEN.has(it.id);
@@ -382,6 +393,32 @@ $("addForm").onsubmit = async (e) => {
   } catch (err) { $("aErr").textContent = "לא נשמר. כדאי לבדוק חיבור ולנסות שוב (הטקסט לא נמחק)."; $("aErr").hidden = false; }
   busy = false; $("aSave").disabled = false;
 };
+
+// ---- הטפסים הקבועים: מופיעים בראש המעקב אצל מי שממלא אותם ----
+const FORMS = [
+  { who: ["דניאלה"], title: "השבוע הבא בברדקיה", when: "כל רביעי", url: WEEK_FORM_URL, weekly: true },
+  { who: ["דניאלה"], title: "הפעילויות הקבועות", when: "כשחוג נפתח או משתנה (מילוי לכל חוג בנפרד)", url: FIXED_FORM_URL },
+];
+function upcomingSunday() { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + ((7 - d.getDay()) % 7 || 7)); return d; }
+const isoDate = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+function weeklyStatus() {
+  const sun = upcomingSunday(), day = new Date().getDay(), w = DATA.week;
+  if (w && w.week === isoDate(sun)) return { cls: "ok", text: `מולא לשבוע של ${fmtDate(isoDate(sun))} ✓` };
+  if (!w) return { cls: "", text: "ממלאים כל רביעי" };
+  if (day === 3) return { cls: "todo", text: `היום ממלאים, לשבוע של ${fmtDate(isoDate(sun))}` };
+  if (day === 4 || day === 5 || day === 6) return { cls: "todo", text: `עוד לא מולא לשבוע של ${fmtDate(isoDate(sun))}` };
+  return { cls: "", text: `הבא: ביום רביעי, לשבוע של ${fmtDate(isoDate(sun))}` };
+}
+function renderForms() {
+  const mine = FORMS.filter((f) => f.who.includes(ME));
+  if (!mine.length) { $("myForms").innerHTML = ""; return; }
+  $("myForms").innerHTML = `<div class="mine-forms"><h2>הטפסים שלי</h2>` + mine.map((f) => {
+    const st = f.weekly ? weeklyStatus() : { cls: "", text: f.when };
+    const primary = f.weekly && st.cls === "todo";
+    return `<div class="form-row"><div><div class="ft">${esc(f.title)}</div><div class="fs ${st.cls}">${esc(st.text)}</div></div>
+      <a class="btn ${primary ? "primary" : ""}" href="${f.url}" target="_blank" rel="noopener">למילוי</a></div>`;
+  }).join("") + `</div>`;
+}
 
 // ---- השבוע ----
 function renderWeek() {

@@ -471,6 +471,7 @@ $("addForm").onsubmit = async (e) => {
 const FORMS = [
   { who: ["דניאלה"], title: "השבוע הבא בברדקיה", when: "כל רביעי", url: WEEK_FORM_URL, weekly: true },
   { who: ["דניאלה"], title: "הפעילויות הקבועות", when: "כשחוג נפתח או משתנה (מילוי לכל חוג בנפרד)", url: FIXED_FORM_URL },
+  { who: ["דניאלה"], title: "תיקיית התמונות של המפעילים", when: "תמונה של מפעיל/ה לפעילות מיוחדת", url: "https://drive.google.com/drive/folders/1RgC2XJqjKL9KXbDBlPexKBk8-_rPIA9O", btn: "לפתיחה" },
 ];
 function upcomingSunday() { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + ((7 - d.getDay()) % 7 || 7)); return d; }
 const isoDate = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -485,11 +486,11 @@ function weeklyStatus() {
 function renderForms() {
   const mine = FORMS.filter((f) => f.who.includes(ME));
   if (!mine.length) { $("myForms").innerHTML = ""; return; }
-  $("myForms").innerHTML = `<div class="mine-forms"><h2>הטפסים שלי</h2>` + mine.map((f) => {
+  $("myForms").innerHTML = `<div class="mine-forms"><h2>הטפסים והקישורים שלי</h2>` + mine.map((f) => {
     const st = f.weekly ? weeklyStatus() : { cls: "", text: f.when };
     const primary = f.weekly && st.cls === "todo";
     return `<div class="form-row"><div><div class="ft">${esc(f.title)}</div><div class="fs ${st.cls}">${esc(st.text)}</div></div>
-      <a class="btn ${primary ? "primary" : ""}" href="${f.url}" target="_blank" rel="noopener">למילוי</a></div>`;
+      <a class="btn ${primary ? "primary" : ""}" href="${f.url}" target="_blank" rel="noopener">${f.btn || "למילוי"}</a></div>`;
   }).join("") + `</div>`;
 }
 

@@ -457,11 +457,11 @@ function renderShifts() {
   let h = `<h2>סידור המשמרות</h2>`;
   if (on.length) h += `<div class="now-on"><b>עכשיו במשמרת</b><div class="who">${on.map((x) => esc(x.employee) + (x.station ? ` <span class="sub">(${esc(x.station)})</span>` : "")).join(" · ")}</div></div>`;
   h += `<div class="filters">` + ["", ...names].map((n) => `<button class="f" data-n="${esc(n)}" aria-pressed="${n === SHIFT_WHO}">${n ? esc(n) : "כולם"}</button>`).join("") + `</div>`;
-  const by = {}; sh.filter((x) => !SHIFT_WHO || x.employee === SHIFT_WHO).forEach((x) => (by[x.date] = by[x.date] || []).push(x));
+  const by = {}; sh.filter((x) => /^\d{4}-\d{2}-\d{2}$/.test(x.date) && (!SHIFT_WHO || x.employee === SHIFT_WHO)).forEach((x) => (by[x.date] = by[x.date] || []).push(x));
   const days = Object.keys(by).sort();
   h += days.length ? days.map((d) => {
     const dt = new Date(d + "T12:00"), cls = d === today ? "today" : d < today ? "past" : "";
-    return `<div class="sday ${cls}"><h3>יום ${by[d][0].day || DAYS[dt.getDay()]} ${fmtDate(d)}</h3>` + by[d].map((x) =>
+    return `<div class="sday ${cls}"><h3>יום ${esc(by[d][0].day || DAYS[dt.getDay()])} ${fmtDate(d)}</h3>` + by[d].map((x) =>
       `<div class="shift ${isOn(x) ? "on" : ""}"><span class="tm">${esc(x.start)}–${esc(x.end)}</span><span class="emp">${esc(x.employee)}</span>${x.station ? `<span class="chip" style="--tint:var(--blue-t)">${esc(x.station)}</span>` : ""}</div>`).join("") + `</div>`;
   }).join("") : `<div class="empty">אין משמרות ל${esc(SHIFT_WHO)} בסידור הזה.</div>`;
   h += `<div class="sub" style="margin-top:8px">הסידור מגיע מהמערכת של נאור, לצפייה בלבד. שינויים עושים אצל נאור.</div>`;

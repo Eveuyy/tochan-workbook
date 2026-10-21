@@ -118,6 +118,19 @@ textarea { resize: vertical; min-height: 84px; }
 a.btn { text-decoration: none; display: inline-flex; align-items: center; color: var(--ink); flex: none; }
 a.btn.primary { color: var(--cream); }
 a.link { color: var(--ink); font-weight: 700; text-underline-offset: 3px; }
+.now-on { background: var(--green-t); border: 2px solid var(--green); border-radius: 18px; padding: 12px 14px; margin-bottom: 14px; }
+.now-on b { font-size: 15px; }
+.now-on .who { font-size: 18px; font-weight: 900; margin-top: 4px; }
+.sday { margin-bottom: 14px; }
+.sday h3 { font-size: 15px; font-weight: 900; margin: 0 0 6px; display: flex; align-items: center; gap: 7px; }
+.sday h3::before { content: ""; width: 12px; height: 12px; border-radius: 3px; background: var(--dc, var(--blue)); }
+.sday:nth-of-type(4n+2) { --dc: var(--peach); } .sday:nth-of-type(4n+3) { --dc: var(--green); } .sday:nth-of-type(4n+4) { --dc: var(--orange); }
+.sday.today h3::after { content: "היום"; background: var(--orange); border-radius: 999px; padding: 0 10px 2px; font-size: 13px; }
+.sday.past { opacity: .55; }
+.shift { background: var(--paper); border: 1.5px solid var(--line); border-radius: 14px; padding: 10px 12px; margin-bottom: 6px; display: flex; align-items: center; gap: 12px; }
+.shift .tm { font-weight: 900; font-variant-numeric: tabular-nums; flex: none; direction: ltr; }
+.shift .emp { font-weight: 700; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.shift.on { border-color: var(--green); box-shadow: 0 0 0 2px var(--green) inset; }
 .toast { position: fixed; top: calc(14px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--cream); padding: 10px 18px; border-radius: 999px; font-weight: 700; z-index: 20; max-width: calc(100% - 32px); text-align: center; }
 </style>
 </head>
@@ -163,9 +176,7 @@ a.link { color: var(--ink); font-weight: 700; text-underline-offset: 3px; }
     </section>
     <section id="tab-week" hidden></section>
     <section id="tab-content" hidden></section>
-    <section id="tab-shifts" hidden>
-      <div class="empty">כאן יופיעו המשמרות של העובדים, מהמערכת של נאור.<br>החיבור בשלב הבא.</div>
-    </section>
+    <section id="tab-shifts" hidden></section>
   </main>
 </div>
 
@@ -318,7 +329,7 @@ function render() {
   if (FILTER === "done") shown = shown.slice(0, 60);
   $("list").innerHTML = shown.length ? shown.map(cardHTML).join("") : `<div class="empty">${FILTER === "mine" ? "אין כרגע משהו פתוח עלייך/עליך 🎉" : "אין כאן כלום כרגע."}</div>`;
   $("list").querySelectorAll(".card").forEach(bindCard);
-  renderForms(); renderWeek(); renderContent();
+  renderForms(); renderWeek(); renderContent(); renderShifts();
 }
 function cardHTML(it) {
   const open = OPEN.has(it.id);
@@ -429,6 +440,33 @@ function renderForms() {
     return `<div class="form-row"><div><div class="ft">${esc(f.title)}</div><div class="fs ${st.cls}">${esc(st.text)}</div></div>
       <a class="btn ${primary ? "primary" : ""}" href="${f.url}" target="_blank" rel="noopener">למילוי</a></div>`;
   }).join("") + `</div>`;
+}
+
+// ---- משמרות (מהמערכת של נאור, לצפייה בלבד) ----
+let SHIFT_WHO = store.get("bt-shift-who") || "";
+const hm = (t) => { const m = /^(\d{1,2}):(\d{2})/.exec(t || ""); return m ? +m[1] * 60 + +m[2] : null; };
+function renderShifts() {
+  const el = $("tab-shifts"), sh = DATA.shifts;
+  if (!sh) { el.innerHTML = `<div class="empty">לא הצלחתי לקרוא כרגע את סידור המשמרות. כדאי לרענן בעוד רגע.</div>`; return; }
+  if (!sh.length) { el.innerHTML = `<h2>סידור המשמרות</h2><div class="empty">נאור עוד לא פרסם סידור לשבוע הזה.<br>ברגע שיפורסם, הוא יופיע כאן לבד.</div>`; return; }
+  const today = isoDate(new Date()), nowM = new Date().getHours() * 60 + new Date().getMinutes();
+  const isOn = (x) => x.date === today && hm(x.start) !== null && hm(x.end) !== null && hm(x.start) <= nowM && nowM < hm(x.end);
+  const names = [...new Set(sh.map((x) => x.employee).filter(Boolean))].sort((a, b) => a.localeCompare(b, "he"));
+  if (SHIFT_WHO && !names.includes(SHIFT_WHO)) SHIFT_WHO = "";
+  const on = sh.filter(isOn);
+  let h = `<h2>סידור המשמרות</h2>`;
+  if (on.length) h += `<div class="now-on"><b>עכשיו במשמרת</b><div class="who">${on.map((x) => esc(x.employee) + (x.station ? ` <span class="sub">(${esc(x.station)})</span>` : "")).join(" · ")}</div></div>`;
+  h += `<div class="filters">` + ["", ...names].map((n) => `<button class="f" data-n="${esc(n)}" aria-pressed="${n === SHIFT_WHO}">${n ? esc(n) : "כולם"}</button>`).join("") + `</div>`;
+  const by = {}; sh.filter((x) => !SHIFT_WHO || x.employee === SHIFT_WHO).forEach((x) => (by[x.date] = by[x.date] || []).push(x));
+  const days = Object.keys(by).sort();
+  h += days.length ? days.map((d) => {
+    const dt = new Date(d + "T12:00"), cls = d === today ? "today" : d < today ? "past" : "";
+    return `<div class="sday ${cls}"><h3>יום ${by[d][0].day || DAYS[dt.getDay()]} ${fmtDate(d)}</h3>` + by[d].map((x) =>
+      `<div class="shift ${isOn(x) ? "on" : ""}"><span class="tm">${esc(x.start)}–${esc(x.end)}</span><span class="emp">${esc(x.employee)}</span>${x.station ? `<span class="chip" style="--tint:var(--blue-t)">${esc(x.station)}</span>` : ""}</div>`).join("") + `</div>`;
+  }).join("") : `<div class="empty">אין משמרות ל${esc(SHIFT_WHO)} בסידור הזה.</div>`;
+  h += `<div class="sub" style="margin-top:8px">הסידור מגיע מהמערכת של נאור, לצפייה בלבד. שינויים עושים אצל נאור.</div>`;
+  el.innerHTML = h;
+  el.querySelectorAll(".f").forEach((b) => (b.onclick = () => { SHIFT_WHO = b.dataset.n; store.set("bt-shift-who", SHIFT_WHO); renderShifts(); }));
 }
 
 // ---- השבוע ----

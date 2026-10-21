@@ -131,6 +131,12 @@ a.link { color: var(--ink); font-weight: 700; text-underline-offset: 3px; }
 .shift .tm { font-weight: 900; font-variant-numeric: tabular-nums; flex: none; direction: ltr; }
 .shift .emp { font-weight: 700; flex: 1; min-width: 0; overflow-wrap: anywhere; }
 .shift.on { border-color: var(--green); box-shadow: 0 0 0 2px var(--green) inset; }
+.thumbs { display: flex; gap: 8px; flex-wrap: wrap; }
+.thumbs a, .thumbs .pv { position: relative; width: 78px; height: 78px; border-radius: 12px; overflow: hidden; border: 1.5px solid var(--line); background: var(--cream); flex: none; display: block; }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumbs .rm { position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; border: 0; background: var(--ink); color: var(--cream); font-size: 16px; line-height: 1; padding: 0; }
+.chead[aria-expanded="true"] .thumbs { display: none; }
+.photo-btn { border: 2px dashed var(--orange); background: var(--orange-t); border-radius: 14px; padding: 10px 16px 12px; font-weight: 700; font-size: 15px; min-height: 44px; }
 .toast { position: fixed; top: calc(14px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--cream); padding: 10px 18px; border-radius: 999px; font-weight: 700; z-index: 20; max-width: calc(100% - 32px); text-align: center; }
 </style>
 </head>
@@ -197,6 +203,12 @@ a.link { color: var(--ink); font-weight: 700; text-underline-offset: 3px; }
       <label class="lbl" for="aOwner">מי מטפל/ת?</label>
       <select id="aOwner"></select>
       <div class="hint" id="aOwnerHint"></div>
+    </div>
+    <div>
+      <span class="lbl">תמונה (לא חובה)</span>
+      <div class="thumbs" id="aThumbs"></div>
+      <button type="button" class="photo-btn" id="aPhotoBtn" style="margin-top:8px">📷 לצלם או לצרף תמונה</button>
+      <input type="file" id="aPhoto" accept="image/*" multiple hidden>
     </div>
     <div><span class="lbl">דחיפות</span><div class="seg" id="aUrg"><button type="button" data-v="0" aria-pressed="true">רגיל</button><button type="button" data-v="1" aria-pressed="false">דחוף</button></div></div>
     <div>
@@ -344,12 +356,15 @@ function cardHTML(it) {
         <span class="sub">${esc(it.domain)}</span>
       </div>
       <div class="txt">${esc(it.text)}</div>
+      ${photoIds(it).length ? `<div class="thumbs">${photoIds(it).map((id) => `<span class="pv"><img src="${API}/img/${id}" alt="תמונה שצורפה" loading="lazy"></span>`).join("")}</div>` : ""}
       <div class="sub">אחראי/ת: <b>${esc(it.owner)}</b> · ${esc(it.author)} · ${esc(ago(it.created))}${it.due ? ` · <span class="${isLate(it) ? "late" : ""}">עד ${fmtDate(it.due)}</span>` : ""}${isStale(it) && !isLate(it) ? ` · <span class="late">פתוח ${Math.floor(ageDays(it.created))} ימים</span>` : ""}</div>
     </button>
     <div class="cbody" ${open ? "" : "hidden"}>
       <div><span class="lbl">סטטוס</span><div class="seg st">${DATA.statuses.map((s) => `<button type="button" data-v="${esc(s)}" aria-pressed="${s === it.status}">${esc(s)}</button>`).join("")}</div></div>
       <div><label class="lbl">אחראי/ת</label><select class="own">${ownerOpts}</select></div>
+      ${photoIds(it).length ? `<div><span class="lbl">תמונות (לחיצה פותחת בגודל מלא)</span><div class="thumbs">${photoIds(it).map((id) => `<a href="${API}/img/${id}" target="_blank" rel="noopener"><img src="${API}/img/${id}" alt="תמונה שצורפה" loading="lazy"></a>`).join("")}</div></div>` : ""}
       <div><label class="lbl">עדכון קצר (לא חובה)</label><textarea class="note" rows="2" placeholder="מה נעשה, מה חסר, למי פנינו"></textarea></div>
+      <div><div class="thumbs upv"></div><button type="button" class="photo-btn addph" style="margin-top:6px">📷 להוסיף תמונה</button><input type="file" class="phin" accept="image/*" multiple hidden></div>
       <div class="row"><button class="btn primary save" type="button">לשמור עדכון</button><button class="btn urg" type="button">${it.urgency === "דחוף" ? "לסמן כרגיל" : "לסמן כדחוף"}</button></div>
       ${it.log ? `<div><span class="lbl">מה היה עד עכשיו</span><div class="log">${esc(it.log)}</div></div>` : ""}
     </div>
@@ -359,9 +374,12 @@ function bindCard(el) {
   const id = el.dataset.id, it = DATA.items.find((x) => x.id === id);
   const body = el.querySelector(".cbody"), head = el.querySelector(".chead");
   head.onclick = () => { const o = body.hidden; body.hidden = !o; head.setAttribute("aria-expanded", o); o ? OPEN.add(id) : OPEN.delete(id); };
-  let status = it.status;
+  let status = it.status, newPhotos = [];
+  const phin = el.querySelector(".phin"), upv = el.querySelector(".upv");
+  el.querySelector(".addph").onclick = () => phin.click();
+  phin.onchange = async () => { newPhotos = newPhotos.concat(await readPhotos(phin.files, 4 - newPhotos.length)); phin.value = ""; drawPreviews(upv, newPhotos, () => drawPreviews(upv, newPhotos)); };
   el.querySelectorAll(".st button").forEach((b) => (b.onclick = () => { status = b.dataset.v; el.querySelectorAll(".st button").forEach((x) => x.setAttribute("aria-pressed", x === b)); }));
-  el.querySelector(".save").onclick = () => update(it, { status, owner: el.querySelector(".own").value, note: el.querySelector(".note").value }, el.querySelector(".save"));
+  el.querySelector(".save").onclick = () => update(it, { status, owner: el.querySelector(".own").value, note: el.querySelector(".note").value, photos: newPhotos }, el.querySelector(".save"));
   el.querySelector(".urg").onclick = () => update(it, { urgent: it.urgency !== "דחוף" }, el.querySelector(".urg"));
 }
 async function update(it, ch, btn) {
@@ -370,16 +388,48 @@ async function update(it, ch, btn) {
   if (ch.owner !== undefined && ch.owner !== it.owner) body.owner = ch.owner;
   if (ch.urgent !== undefined) body.urgent = ch.urgent;
   if (ch.note && ch.note.trim()) body.note = ch.note.trim();
-  if (Object.keys(body).length === 2) return toast("לא שונה כלום");
+  if (Object.keys(body).length === 2 && !(ch.photos && ch.photos.length)) return toast("לא שונה כלום");
   if (busy) return; busy = true; btn.disabled = true;
-  try { await call("/api/update", body); if (body.status === "טופל") OPEN.delete(it.id); await load(); toast(body.status === "טופל" ? "סומן כטופל ✓" : "נשמר ✓"); }
+  try {
+    if (ch.photos && ch.photos.length) { toast("מעלה תמונות…"); body.photos = await uploadPhotos(ch.photos); }
+    await call("/api/update", body); if (body.status === "טופל") OPEN.delete(it.id); await load(); toast(body.status === "טופל" ? "סומן כטופל ✓" : "נשמר ✓"); }
   catch (e) { toast("לא נשמר. כדאי לנסות שוב"); btn.disabled = false; }
   busy = false;
 }
 
+// ---- תמונות: מקטינים בטלפון לפני ההעלאה (עד 1600 פיקסלים, JPEG), כדי שיעלו מהר גם בלי וויפיי ----
+const photoIds = (it) => (it.photos || "").split(",").filter((x) => /^[a-f0-9]{32}$/.test(x));
+async function shrink(file) {
+  const url = URL.createObjectURL(file);
+  try {
+    const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; });
+    const k = Math.min(1, 1600 / Math.max(img.naturalWidth, img.naturalHeight));
+    const c = document.createElement("canvas"); c.width = Math.round(img.naturalWidth * k); c.height = Math.round(img.naturalHeight * k);
+    c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+    return c.toDataURL("image/jpeg", 0.82);
+  } finally { URL.revokeObjectURL(url); }
+}
+async function readPhotos(files, room) {
+  const out = [];
+  for (const f of [...files].slice(0, Math.max(0, room))) { try { out.push(await shrink(f)); } catch (e) { toast("את התמונה הזו לא הצלחתי לפתוח"); } }
+  return out;
+}
+function drawPreviews(box, list, onChange) {
+  box.innerHTML = list.map((src, i) => `<span class="pv"><img src="${src}" alt="תמונה שנבחרה"><button type="button" class="rm" data-i="${i}" aria-label="להסיר תמונה">×</button></span>`).join("");
+  box.querySelectorAll(".rm").forEach((b) => (b.onclick = () => { list.splice(+b.dataset.i, 1); (onChange || (() => drawPreviews(box, list)))(); }));
+}
+async function uploadPhotos(list) {
+  const ids = [];
+  for (const d of list) ids.push((await call("/api/photo", { by: ME, data: d.split(",")[1] })).id);
+  return ids;
+}
+
 // ---- הוספה ----
-let aType = "צריך טיפול", aUrgent = false;
+let aType = "צריך טיפול", aUrgent = false, aPhotos = [];
+$("aPhotoBtn").onclick = () => $("aPhoto").click();
+$("aPhoto").onchange = async () => { aPhotos = aPhotos.concat(await readPhotos($("aPhoto").files, 4 - aPhotos.length)); $("aPhoto").value = ""; drawPreviews($("aThumbs"), aPhotos); };
 function openAdd() {
+  aPhotos = []; $("aThumbs").innerHTML = "";
   $("aText").value = ""; $("aDue").value = ""; $("aDueBox").hidden = true; $("aDueBtn").hidden = false; $("aErr").hidden = true; aUrgent = false; aType = "צריך טיפול";
   $("aType").innerHTML = DATA.types.map((t) => `<button type="button" data-v="${esc(t)}" aria-pressed="${t === aType}">${esc(t)}</button>`).join("");
   $("aType").querySelectorAll("button").forEach((b) => (b.onclick = () => { aType = b.dataset.v; $("aType").querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b)); }));
@@ -410,7 +460,8 @@ $("addForm").onsubmit = async (e) => {
   if (!text) { $("aErr").textContent = "צריך לכתוב מה קרה או מה צריך."; $("aErr").hidden = false; return; }
   if (busy) return; busy = true; $("aSave").disabled = true;
   try {
-    await call("/api/add", { by: ME, text, type: aType, domain: $("aDomain").value, owner: $("aOwner").value || undefined, urgent: aUrgent, due: $("aDue").value || undefined });
+    const photos = aPhotos.length ? await uploadPhotos(aPhotos) : [];
+    await call("/api/add", { by: ME, text, type: aType, domain: $("aDomain").value, owner: $("aOwner").value || undefined, urgent: aUrgent, due: $("aDue").value || undefined, photos });
     closeAdd(); FILTER = "open"; store.set("bt-filter", FILTER); await load(); toast("נשמר בלוח ✓");
   } catch (err) { $("aErr").textContent = "לא נשמר. כדאי לבדוק חיבור ולנסות שוב (הטקסט לא נמחק)."; $("aErr").hidden = false; }
   busy = false; $("aSave").disabled = false;

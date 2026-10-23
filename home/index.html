@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>הדף שלכם — קורס יצירת תוכן</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 @font-face{
   font-family:'Rubik'; font-style:normal; font-weight:400 700; font-display:swap;
@@ -104,6 +105,23 @@ body{margin:0; background:var(--bg); color:var(--ink); font-family:'Rubik','Sego
 
 footer{ text-align:center; margin-top:3rem; color:var(--ink-soft); font-size:.85rem; }
 .dev-note{ background:#FBF2E2; border:1px dashed #D9B679; border-radius:10px; padding:.8rem 1rem; font-size:.8rem; color:#8A6A2E; margin-top:2rem; }
+/* neon-2026-10-23 · warm-cream light variant (option A) */
+:root{
+  --bg:#FFF4EA; --paper:#FFFFFF; --ink:#2A1216; --ink-soft:#7A5A52; --line:#F0D9CB;
+  --primary:#E01F73; --secondary:#F0572A; --active:#D91E75; --active-deep:#B8165F; --detail:#9A6200; --detail-deep:#7A4D00;
+}
+body{font-family:'Heebo','Rubik','Segoe UI',Arial,sans-serif;}
+.hero{background:linear-gradient(135deg,#FF2E88 0%,#FF6A3D 100%);}
+.hero h1,.section-head h2,.card h3,.pitch-card h3,.eyebrow,.eyebrow-mini,.card-link{font-family:'Heebo','Rubik',sans-serif;}
+.hero h1{font-weight:900;}
+.hero p{font-weight:500;}
+.section-head h2{color:var(--ink);font-weight:900;}
+.pitch-card h3{color:var(--ink);font-weight:900;}
+.card-link:not(.ghost):not(.disabled){background:linear-gradient(90deg,#FF2E88,#FF6A3D);box-shadow:0 8px 20px -10px rgba(255,46,136,.6);}
+.card-link.ghost{color:#D91E75;border-color:#D91E75;}
+.badge-soon{background:#FFF1D6;}
+.card-link.disabled,.card-link.disabled:hover{background:#F0D9CB;}
+.pitch-card{background:linear-gradient(135deg,#fff 0%,#FFF1E4 100%);border-color:#FFD9BD;}
 </style>
 </head>
 <body>

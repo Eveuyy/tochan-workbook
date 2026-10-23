@@ -285,7 +285,7 @@ h1{
   transition:background .2s ease, box-shadow .2s ease, opacity .15s ease;
   box-shadow:0 18px 34px -12px rgba(84,10,30,.85), 0 0 26px -6px rgba(190,60,90,.55), inset 0 1px 0 rgba(255,255,255,.28);
 }
-.submit-btn:hover{background:linear-gradient(145deg, rgba(150,38,64,.78), rgba(110,22,44,.7));}
+@media (hover:hover){.submit-btn:hover{background:linear-gradient(145deg, rgba(150,38,64,.78), rgba(110,22,44,.7));}}
 .submit-btn:focus-visible, .chip input:focus-visible + span, .links a:focus-visible, .field input:focus-visible{outline:2px solid #fff; outline-offset:3px;}
 .submit-btn[disabled]{opacity:.6; cursor:default; animation:none;}
 
@@ -387,7 +387,24 @@ h1{
   background:rgba(255,255,255,.12);
   border:1px solid rgba(255,255,255,.55);
 }
-.links a.wa{background:#25D366; border-color:#25D366; font-weight:700;}
+.links a.wa{background:#25D366; border-color:#25D366; color:#0B2A17; font-weight:700;}
+/* press feedback on touch: buttons respond the instant they are pressed */
+.submit-btn, .next-btn, .links a, .start-here a, .chip span{transition-property:background, box-shadow, opacity, transform; transition-duration:.12s; transition-timing-function:ease-out;}
+.submit-btn:active{animation:none; transform:scale(.97);}
+.next-btn:active, .links a:active, .start-here a:active, .chip input:active + span{transform:scale(.97);}
+.nowrap{white-space:nowrap;}
+/* small phones (iPhone SE and similar): the main button fits on the first screen */
+@media (max-width:360px), (max-height:620px){
+  .scene{padding:22px 16px 28px; gap:16px;}
+  .glass{padding:24px 18px 20px;}
+  .follow .chip span{padding:6px 12px; font-size:.84rem;}
+  .teaser{font-size:2.15rem;}
+  .teaser-wrap{gap:10px;}
+  .lede{margin-bottom:14px;}
+  .field{margin-bottom:9px;}
+  .field input[type=text], .field input[type=tel], .field input[type=email]{padding:12px 16px;}
+  .consent-wrap{margin-bottom:14px;}
+}
 </style>
 
 <div class="bg" aria-hidden="true">
@@ -413,7 +430,7 @@ h1{
       <div class="field" id="fieldName">
         <label for="name" class="sr-only">שם</label>
         <input type="text" id="name" name="name" autocomplete="name" placeholder="שם">
-        <span class="error">חסר שם</span>
+        <span class="error" id="nameError">חסר שם</span>
       </div>
 
       <div class="field" id="fieldPhone">
@@ -460,7 +477,7 @@ h1{
           <label class="chip"><input type="checkbox" name="interest" value="ויזואל"><span>איך מייצרים את השוטים הוויזואליים</span></label>
           <label class="chip"><input type="checkbox" name="interest" value="עריכה וקצב"><span>העריכה של הסרטונים</span></label>
           <label class="chip"><input type="checkbox" name="interest" value="ריאליזם"><span>איך לייצר דמות ריאליסטית של עצמי</span></label>
-          <label class="chip"><input type="checkbox" name="interest" value="כלים ופרומפטים"><span>באיזה כלים את משתמשת</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="כלים ופרומפטים"><span>באילו כלים את משתמשת</span></label>
           <label class="chip"><input type="checkbox" name="interest" value="עברית"><span>איך לעשות ליפסינק בעברית</span></label>
         </div>
         <button type="button" class="next-btn" id="nextBtn">הבא</button>
@@ -481,7 +498,7 @@ h1{
     <div id="finalBlock" hidden>
       <p class="final-thanks" id="finalThanks">תודה, זה עוזר לי מאוד 🙏</p>
       <div class="start-here" id="startHere" hidden>
-        <p><strong>רגע, לפני AI:</strong> אם עוד לא התחלתם ליצור תוכן, הכי נכון להתחיל מהבסיס. בקורס יצירת התוכן שלי לומדים מסרים, אלגוריתם ועריכה בסיסית ב-CapCut.</p>
+        <p><strong>רגע, לפני AI:</strong> אם עוד לא התחלתם ליצור תוכן, הכי נכון להתחיל מהבסיס. בקורס יצירת התוכן שלי לומדים מסרים, אלגוריתם ועריכה בסיסית <span class="nowrap">ב-CapCut</span>.</p>
         <a href="https://www.evecontent.co.il/?utm_source=ai-waitlist" target="_blank" rel="noopener">לקורס יצירת התוכן</a>
       </div>
       <div class="links">
@@ -556,7 +573,9 @@ h1{
 
   function validate(name, phone, email){
     var digits = phone.replace(/\D/g, '');
-    var badName = setInvalid('fieldName', name.length < 2);
+    var letters = (name.match(/\p{L}/gu) || []).length;
+    document.getElementById('nameError').textContent = (name && letters === 1) ? 'השם קצר מדי' : 'חסר שם';
+    var badName = setInvalid('fieldName', letters < 2);
     var badPhone = setInvalid('fieldPhone', digits.length < 9 || digits.length > 13);
     var badEmail = setInvalid('fieldEmail', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
     var badConsent = setInvalid('fieldConsent', !consent.checked);

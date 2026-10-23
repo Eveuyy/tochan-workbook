@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>הציוד שלי לצילום</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 @font-face{
   font-family:'Rubik'; font-style:normal; font-weight:400 700; font-display:swap;
@@ -357,6 +358,19 @@ footer{
 .proscons li.pro::before{content:"✓";color:var(--accent2);}
 .proscons li.con::before{content:"–";color:var(--ink-soft);}
 .proscons li.con{opacity:.85;}
+/* neon-2026-10-23 */
+:root,:root[data-theme="dark"],:root[data-theme="light"],:root:not([data-theme="light"]){
+  --bg:#0F0608; --paper:#1C0D11; --ink:#FFF1E8; --ink-soft:#CFA596;
+  --primary:#FF8A5C; --secondary:#FF6A3D; --accent:#FF2E88; --accent2:#FFC23D;
+  --line:rgba(255,226,210,.12); --shadow:0 0 0 1px rgba(255,106,61,.16),0 10px 28px rgba(0,0,0,.5);
+}
+body{font-family:'Heebo','Rubik','Segoe UI',Arial,sans-serif;}
+h1,h2,h3,.num,.price{font-family:'Heebo','Rubik',sans-serif;font-weight:900;}
+h1{color:var(--ink);text-shadow:0 0 22px rgba(255,106,61,.55);}
+.eyebrow{color:#FF7AB4;}
+.card:hover{box-shadow:0 0 0 1px rgba(255,106,61,.4),0 14px 32px rgba(0,0,0,.6),0 0 24px -6px rgba(255,46,136,.4);}
+.buy{background:linear-gradient(90deg,#FF2E88,#FF6A3D);color:#fff;}
+.variants summary{color:#FF7AB4;}
 </style>
 </head>
 <body>

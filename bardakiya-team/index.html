@@ -240,8 +240,9 @@ let KEY = null, ME = store.get("bt-me"), DATA = null, FILTER = store.get("bt-fil
 // הקוד מגיע בקישור (#k=...), נשמר בטלפון ונמחק מהכתובת
 (function readKey() {
   // #reset clears what this phone remembered (stuck state from an older visit); the team code is asked again.
-  if (/[#&]reset\b/.test(location.hash)) { ["bt-key", "bt-me", "bt-tab", "bt-filter"].forEach((k) => store.del(k)); history.replaceState(null, "", location.pathname + location.search); }
-  const m = /[#&]k=([A-Za-z0-9]+)/.exec(location.hash);
+  const hash = location.hash; // read once: the reset below must not drop a code that came in the same link
+  if (/[#&]reset\b/.test(hash)) { ["bt-key", "bt-me", "bt-tab", "bt-filter"].forEach((k) => store.del(k)); history.replaceState(null, "", location.pathname + location.search); }
+  const m = /[#&]k=([A-Za-z0-9]+)/.exec(hash);
   if (m) { store.set("bt-key", m[1]); history.replaceState(null, "", location.pathname + location.search); }
   KEY = store.get("bt-key") || m?.[1] || null;
 })();

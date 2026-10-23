@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>שאלוני קבוצת המחקר</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 @font-face{
   font-family:'Rubik'; font-style:normal; font-weight:400 700; font-display:swap;
@@ -117,6 +118,13 @@ body{
 }
 .dlmsg{font-size:.8rem; color:var(--ink-soft);}
 
+/* neon-2026-10-23 · light = warm cream, dark = neon */
+:root,:root[data-theme="light"]{--paper:#FFF4EA;--ink:#2A1216;--ink-soft:#7A5A52;--sienna:#E01F73;--coral:#F0572A;--rose:#D91E75;--sage:#9A6200;--line:rgba(42,18,22,.14);}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#0F0608;--ink:#FFF1E8;--ink-soft:#CFA596;--sienna:#FF8A5C;--coral:#FF6A3D;--rose:#FF7AB4;--sage:#FFC23D;--line:rgba(255,226,210,.14);}}
+:root[data-theme="dark"]{--paper:#0F0608;--ink:#FFF1E8;--ink-soft:#CFA596;--sienna:#FF8A5C;--coral:#FF6A3D;--rose:#FF7AB4;--sage:#FFC23D;--line:rgba(255,226,210,.14);}
+body,h1,h2,h3,button,input,textarea{font-family:'Heebo','Rubik','Segoe UI',Arial,sans-serif;}
+h1,h2,h3{font-weight:900;}
+.dlbtn{background:linear-gradient(90deg,#FF2E88,#FF6A3D);box-shadow:0 8px 22px -8px rgba(255,46,136,.6);}
 </style>
 </head>
 <body>

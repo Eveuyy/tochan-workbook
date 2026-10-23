@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="שלד קבוע לתוכן שנשלח בתגובה למילת מפתח באינסטגרם - מדריך או שאלון להורדה, עם ניווט קבוע בתחתית">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%8C%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 @font-face{
   font-family:'Rubik'; font-style:normal; font-weight:400 700; font-display:swap;
@@ -357,6 +358,39 @@ h1{
   .content-card{box-shadow:none; border:none; max-width:100%; padding:0;}
   h1{color:#000;}
 }
+/* neon-2026-10-23: זריחה בניאון — overrides on top of the page's own CSS */
+:root{
+  --paper:#0F0608; --paper-soft:#261319; --ink:#FFF1E8; --ink-soft:#CFA596;
+  --primary:#FF8A5C; --secondary:#FF6A3D; --active:#FF2E88; --detail:#FFC23D;
+  --card-shadow:0 0 0 1px rgba(255,106,61,.2),0 18px 44px -18px rgba(0,0,0,.8);
+}
+body{font-family:'Heebo','Rubik','Segoe UI',Arial,sans-serif;}
+h1,h2.q-title,.wordmark,.wa-modal h3{font-family:'Heebo','Rubik',sans-serif;font-weight:900;}
+h1{color:var(--ink);text-shadow:0 0 22px rgba(255,106,61,.55);}
+h2.q-title,.wa-modal h3{color:var(--ink);}
+.blob{background:radial-gradient(circle,#FF2E88,#FF6A3D) !important;opacity:.16;}
+.card,.wa-modal{background:#1C0D11;border-color:rgba(255,226,210,.12);color:var(--ink);}
+.eyebrow,.q-pill{background:rgba(255,46,136,.14);color:#FF7AB4;}
+textarea,input[type=text]{background:var(--paper-soft);color:var(--ink);border-color:rgba(255,226,210,.1);}
+textarea::placeholder,input[type=text]::placeholder{color:#8F6F63;}
+textarea:focus,input[type=text]:focus{background:#2E1519;border-color:var(--secondary);box-shadow:0 0 0 3px rgba(255,106,61,.25);}
+.gender-picker{border-top-color:rgba(255,226,210,.14);}
+.gender-btn{background:transparent;color:var(--ink);border-color:rgba(255,106,61,.6);}
+.gender-btn.active{background:linear-gradient(90deg,#FF2E88,#FF6A3D);border-color:transparent;color:#fff;}
+.download-btn,.footer-nav a.primary-link{background:linear-gradient(90deg,#FF2E88,#FF6A3D);color:#fff;box-shadow:0 0 26px -4px rgba(255,46,136,.55);}
+.footer-nav a{background:#1C0D11;color:var(--ink);border-color:rgba(255,226,210,.14);box-shadow:0 14px 28px -12px rgba(0,0,0,.8);}
+.footer-nav a .ico{background:rgba(255,106,61,.2);}
+.footer-nav a.primary-link .ico{background:rgba(255,255,255,.22);}
+.wa-modal-backdrop{background:rgba(0,0,0,.72);}
+.wa-modal{box-shadow:0 -14px 40px rgba(0,0,0,.7);}
+.wa-modal-close{background:var(--paper-soft);color:var(--ink);}
+.example-toggle,.example-body{background:var(--paper-soft);}
+.example-toggle,.example-lead{color:#FF7AB4;}
+.hard-check{color:var(--ink);}
+
+.content-card{background:#1C0D11;border-color:rgba(255,226,210,.12);}
+.field textarea:focus{background:#2E1519;}
+.dev-note{background:rgba(255,194,61,.08);color:#FFD9A0;}
 </style>
 
 <div class="scene">

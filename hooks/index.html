@@ -6,34 +6,35 @@
 <title>בנק דוגמאות הוקים - איב יצירת תוכן</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F7EDE6; --ink:#3D2418; --ink-soft:#7A5C4C;
-    --coral:#C9573A; --peach:#E8A87C; --purple:#8C5A6B; --periwinkle:#7B7FC0;
-    --line:rgba(61,36,24,.15); --card-bg:#ffffff;
+    --paper:#0F0608; --ink:#FFF1E8; --ink-soft:#CFA596;
+    --pink:#FF2E88; --orange:#FF6A3D; --amber:#FFC23D;
+    --line:rgba(255,226,210,.12); --card-bg:#1C0D11;
   }
   *{box-sizing:border-box;}
   body{
     margin:0; background:var(--paper); color:var(--ink);
-    font-family:'Rubik','Segoe UI',Arial,sans-serif; line-height:1.6;
+    font-family:'Heebo','Segoe UI',Arial,sans-serif; line-height:1.6;
   }
   .wrap{max-width:1080px; margin:0 auto; padding:48px 20px 90px;}
-  a.back{display:inline-block; margin-bottom:24px; color:var(--ink-soft); font-size:.9rem; text-decoration:none;}
+  a.back{display:inline-block; margin-bottom:24px; color:var(--orange); font-size:.9rem; text-decoration:none;}
   h1{
-    font-family:'Fredoka','Rubik',sans-serif; font-weight:700;
-    font-size:clamp(1.9rem,5vw,2.6rem); color:var(--coral); margin:0 0 8px;
+    font-family:'Heebo',sans-serif; font-weight:900;
+    font-size:clamp(1.9rem,5vw,2.6rem); color:var(--ink); margin:0 0 8px;
+    text-shadow:0 0 22px rgba(255,106,61,.6);
   }
   .intro{color:var(--ink-soft); font-size:1.05rem; max-width:60ch; margin:0 0 48px;}
   .category{margin-bottom:56px;}
   .category-head{display:flex; align-items:baseline; gap:14px; margin-bottom:6px; flex-wrap:wrap;}
   h2{
-    font-family:'Fredoka','Rubik',sans-serif; font-weight:600;
+    font-family:'Heebo',sans-serif; font-weight:700;
     font-size:1.5rem; color:var(--ink); margin:0;
   }
   .category-desc{color:var(--ink-soft); font-size:.92rem; margin:0 0 22px;}
   .count-pill{
-    background:var(--peach); color:var(--ink); font-size:.78rem; font-weight:700;
+    background:linear-gradient(90deg,var(--pink),var(--orange)); color:#fff; font-size:.78rem; font-weight:700;
     padding:3px 12px; border-radius:20px;
   }
   .gallery{
@@ -42,7 +43,7 @@
   }
   .card{
     background:var(--card-bg); border-radius:16px; overflow:hidden;
-    box-shadow:0 2px 14px rgba(61,36,24,.08); border:1px solid var(--line);
+    box-shadow:0 0 0 1px rgba(255,106,61,.18),0 8px 28px rgba(0,0,0,.45); border:1px solid var(--line);
   }
   .card-embed{padding:0;}
   .card-embed iframe, .card-embed blockquote{width:100% !important; margin:0 !important;}
@@ -52,7 +53,7 @@
   }
   .placeholder{
     aspect-ratio:9/16; display:flex; align-items:center; justify-content:center;
-    background:repeating-linear-gradient(135deg, rgba(61,36,24,.04) 0 12px, rgba(61,36,24,.02) 12px 24px);
+    background:repeating-linear-gradient(135deg, rgba(255,226,210,.05) 0 12px, rgba(255,226,210,.02) 12px 24px);
     color:var(--ink-soft); font-size:.85rem; text-align:center; padding:20px;
   }
   footer{color:var(--ink-soft); font-size:.85rem; text-align:center; margin-top:40px;}

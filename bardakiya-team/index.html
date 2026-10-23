@@ -248,7 +248,12 @@ let KEY = null, ME = store.get("bt-me"), DATA = null, FILTER = store.get("bt-fil
 })();
 
 async function call(path, body = {}) {
-  const r = await fetch(API + path, { method: "POST", headers: { "Content-Type": "application/json", "X-Team-Key": KEY || "" }, body: JSON.stringify(body) });
+  // 15s cap: a request that never answers must end in a visible message, not a blank screen.
+  const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), 15000);
+  let r;
+  try { r = await fetch(API + path, { method: "POST", headers: { "Content-Type": "application/json", "X-Team-Key": KEY || "" }, body: JSON.stringify(body), signal: ctrl.signal }); }
+  catch (e) { const err = new Error(e.name === "AbortError" ? "timeout" : "net"); err.code = err.message; throw err; }
+  finally { clearTimeout(timer); }
   let j = {}; try { j = await r.json(); } catch (e) {}
   if (!r.ok || !j.ok) { const e = new Error(j.error || "net"); e.code = j.error || "net"; throw e; }
   return j;
@@ -288,14 +293,18 @@ $("switchMe").onclick = () => { ME = null; store.del("bt-me"); boot(); };
 
 async function boot() {
   if (!KEY) return showGate();
+  let loading = null;
+  if (!DATA) { loading = document.createElement("div"); loading.id = "loadingNote"; loading.style.cssText = "text-align:center;padding:48px 16px;color:#7E5E56;font:16px Heebo,Arial,sans-serif"; loading.textContent = "טוען את הלוח…"; document.body.appendChild(loading); }
   try {
     if (!DATA) await load(true);
   } catch (e) {
+    loading?.remove();
     if (e.code === "auth") { store.del("bt-key"); KEY = null; $("keyErr").hidden = false; return showGate(); }
     $("gate").hidden = false; $("gateKey").hidden = true; $("gateWho").hidden = true;
-    $("gate").insertAdjacentHTML("beforeend", `<div class="err">הלוח לא נטען. כדאי לבדוק חיבור לאינטרנט ולרענן.</div>`);
+    $("gate").insertAdjacentHTML("beforeend", `<div class="err">הלוח לא נטען${e.code === "timeout" ? " (השרת לא ענה תוך 15 שניות)" : ""}. כדאי לבדוק חיבור לאינטרנט ולרענן.<br><small style="direction:ltr;display:inline-block">${esc(e.code || "")}</small></div>`);
     return;
   }
+  loading?.remove();
   if (!ME || !DATA.people.includes(ME)) { renderPeople(DATA.people); return showGate(); }
   $("gate").hidden = true; $("app").hidden = false;
   $("meName").textContent = ME;

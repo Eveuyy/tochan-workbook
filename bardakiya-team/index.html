@@ -239,6 +239,8 @@ let KEY = null, ME = store.get("bt-me"), DATA = null, FILTER = store.get("bt-fil
 
 // הקוד מגיע בקישור (#k=...), נשמר בטלפון ונמחק מהכתובת
 (function readKey() {
+  // #reset clears what this phone remembered (stuck state from an older visit); the team code is asked again.
+  if (/[#&]reset\b/.test(location.hash)) { ["bt-key", "bt-me", "bt-tab", "bt-filter"].forEach((k) => store.del(k)); history.replaceState(null, "", location.pathname + location.search); }
   const m = /[#&]k=([A-Za-z0-9]+)/.exec(location.hash);
   if (m) { store.set("bt-key", m[1]); history.replaceState(null, "", location.pathname + location.search); }
   KEY = store.get("bt-key") || m?.[1] || null;
@@ -553,7 +555,20 @@ function renderContent() {
 
 // מרעננים לבד כשחוזרים ללשונית
 document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && DATA && ME && $("addBg").hidden) load().catch(() => {}); });
-boot();
+
+// Never a blank screen: if something breaks, say so and offer a one-tap reset of what this phone remembered.
+function stuck(err) {
+  if (document.getElementById("stuckBox")) return;
+  const box = document.createElement("div");
+  box.id = "stuckBox";
+  box.style.cssText = "position:fixed;inset:auto 16px 16px 16px;z-index:99;background:#fff;border:1px solid #e3c9bd;border-radius:16px;padding:16px;font:16px/1.6 Heebo,Arial,sans-serif;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.12)";
+  box.innerHTML = '<div style="font-weight:800">הלוח נתקע בטעינה</div><div style="color:#7E5E56;font-size:14px">אפשר לאפס את מה שנשמר בטלפון ולהתחיל מחדש. אחרי האיפוס יבקשו את קוד הצוות.</div><button id="stuckReset" style="margin-top:10px;padding:10px 22px;border-radius:999px;border:0;background:#F2207A;color:#fff;font-weight:800">איפוס</button><div style="margin-top:8px;color:#b9a39b;font-size:11px;direction:ltr">' + esc(String(err && (err.message || err)).slice(0, 120)) + "</div>";
+  document.body.appendChild(box);
+  document.getElementById("stuckReset").onclick = () => { ["bt-key", "bt-me", "bt-tab", "bt-filter"].forEach((k) => store.del(k)); location.replace(location.pathname); };
+}
+window.addEventListener("error", (e) => stuck(e.error || e.message));
+window.addEventListener("unhandledrejection", (e) => stuck(e.reason));
+boot().catch(stuck);
 </script>
 </body>
 </html>

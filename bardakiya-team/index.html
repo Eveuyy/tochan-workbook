@@ -223,7 +223,10 @@ a.link { color: var(--ink); font-weight: 700; text-underline-offset: 3px; }
 <div class="toast" id="toast" hidden></div>
 
 <script>
-const API = "https://bardakiya-team-api.coheneve95.workers.dev";
+// The server on Eve's own domain first (some mobile carriers block *.workers.dev); the workers.dev address is the fallback
+// (e.g. HOT's DNS until the old evecontent.co.il zone is gone). Whichever answers is remembered for this visit, images included.
+const APIS = ["https://bardakiya-api.evecontent.co.il", "https://bardakiya-team-api.coheneve95.workers.dev"];
+let API = (() => { try { return sessionStorage.getItem("bt-api") || APIS[0]; } catch (e) { return APIS[0]; } })();
 const WEEK_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSelJsQR_M-rPe_sldeabjdJk6BUbwL-lzPV6CgfIHXlpMWnVg/viewform";
 const FIXED_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdqSh2tnZlYHXYVfNKiwjYDWL9BaBSWXLb1bKavqXFUhlr4LQ/viewform";
 const BOARD_URL = "https://www.evecontent.co.il/bardakiya-board/";
@@ -248,12 +251,19 @@ let KEY = null, ME = store.get("bt-me"), DATA = null, FILTER = store.get("bt-fil
 })();
 
 async function call(path, body = {}) {
-  // 15s cap: a request that never answers must end in a visible message, not a blank screen.
-  const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), 15000);
-  let r;
-  try { r = await fetch(API + path, { method: "POST", headers: { "Content-Type": "application/json", "X-Team-Key": KEY || "" }, body: JSON.stringify(body), signal: ctrl.signal }); }
-  catch (e) { const err = new Error(e.name === "AbortError" ? "timeout" : "net"); err.code = err.message; throw err; }
-  finally { clearTimeout(timer); }
+  // Each address gets a time cap; if it can't be reached at all, the other one is tried. Never a blank screen.
+  const send = async (base, ms) => {
+    const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), ms);
+    try { return await fetch(base + path, { method: "POST", headers: { "Content-Type": "application/json", "X-Team-Key": KEY || "" }, body: JSON.stringify(body), signal: ctrl.signal }); }
+    finally { clearTimeout(timer); }
+  };
+  const order = [API, ...APIS.filter((a) => a !== API)];
+  let r, last;
+  for (const [i, base] of order.entries()) {
+    try { r = await send(base, i === 0 ? 8000 : 15000); if (base !== API) { API = base; try { sessionStorage.setItem("bt-api", base); } catch (e) {} } break; }
+    catch (e) { last = e; }
+  }
+  if (!r) { const err = new Error(last && last.name === "AbortError" ? "timeout" : "net"); err.code = err.message; throw err; }
   let j = {}; try { j = await r.json(); } catch (e) {}
   if (!r.ok || !j.ok) { const e = new Error(j.error || "net"); e.code = j.error || "net"; throw e; }
   return j;

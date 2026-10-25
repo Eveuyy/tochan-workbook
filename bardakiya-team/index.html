@@ -170,7 +170,7 @@ a.link { color: var(--ink); font-weight: 700; text-underline-offset: 3px; }
     <svg class="shapes" style="margin:0 auto" width="74" height="22" viewBox="0 0 74 22" aria-hidden="true"><rect x="52" y="2" width="18" height="18" rx="3" fill="#F7A892" transform="rotate(-8 61 11)"/><circle cx="35" cy="11" r="9.5" fill="#B1E7EA"/><path d="M4 20 L13 2 L22 20 Z" fill="#CAEEC9"/></svg>
     <h1>לוח הבקרה של הברדקיה</h1>
     <div id="gateKey">
-      <label class="lbl" for="keyIn">קוד הצוות</label>
+      <label class="lbl" for="keyIn">קוד הצוות או הקוד האישי שלך</label>
       <input id="keyIn" autocomplete="off" autocapitalize="off" spellcheck="false">
       <div class="row" style="justify-content:center;margin-top:12px"><button class="btn primary" id="keyGo">כניסה</button></div>
       <div class="err" id="keyErr" hidden>הקוד לא נכון. כדאי לפתוח שוב את הקישור שקיבלת.</div>
@@ -281,7 +281,7 @@ async function call(path, body = {}, opt = {}) {
   // Each address gets a time cap; if it can't be reached at all, the other one is tried. Never a blank screen.
   // opt.ms: a longer cap (Varda's chat). opt.once: never resend to the other address (a chat message must not run twice).
   const headers = { "Content-Type": "application/json", "X-Team-Key": KEY || "" };
-  if (path.startsWith("/api/appr/") || path === "/api/chat") headers["X-Approver-Key"] = store.get("bt-appr") || "";
+  if (store.get("bt-appr")) headers["X-Approver-Key"] = store.get("bt-appr");
   const send = async (base, ms) => {
     const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), ms);
     try { return await fetch(base + path, { method: "POST", headers, body: JSON.stringify(body), signal: ctrl.signal }); }
@@ -320,9 +320,14 @@ function showGate() {
   $("gateKey").hidden = true; $("gateWho").hidden = false;
 }
 $("keyGo").onclick = async () => {
-  KEY = $("keyIn").value.trim(); $("keyErr").hidden = true;
-  try { await call("/api/check"); store.set("bt-key", KEY); boot(); }
-  catch (e) { KEY = null; $("keyErr").hidden = false; }
+  // קוד הצוות, או הקוד האישי של איב / דור
+  const v = $("keyIn").value.trim(); $("keyErr").hidden = true;
+  if (!v) return;
+  KEY = v;
+  try { await call("/api/check"); store.set("bt-key", KEY); return boot(); } catch (e) { KEY = null; }
+  store.set("bt-appr", v);
+  try { const j = await call("/api/check"); if (j.me) { ME = j.me; store.set("bt-me", ME); } return boot(); }
+  catch (e) { store.del("bt-appr"); $("keyErr").hidden = false; }
 };
 $("keyIn").addEventListener("keydown", (e) => { if (e.key === "Enter") $("keyGo").click(); });
 function renderPeople(people) {
@@ -332,14 +337,16 @@ function renderPeople(people) {
 $("switchMe").onclick = () => { ME = null; store.del("bt-me"); boot(); };
 
 async function boot() {
-  if (!KEY) return showGate();
+  if (!KEY && !store.get("bt-appr")) return showGate();
+  // הקוד האישי מכניס בלי קוד צוות, ויודע מי נכנסה
+  if (!KEY) { try { const j = await call("/api/check"); if (j.me) { ME = j.me; store.set("bt-me", ME); } } catch (e) { if (e.code === "auth") { store.del("bt-appr"); return showGate(); } } }
   let loading = null;
   if (!DATA) { loading = document.createElement("div"); loading.id = "loadingNote"; loading.style.cssText = "text-align:center;padding:48px 16px;color:#7E5E56;font:16px Heebo,Arial,sans-serif"; loading.textContent = "טוען את הלוח…"; document.body.appendChild(loading); }
   try {
     if (!DATA) await load(true);
   } catch (e) {
     loading?.remove();
-    if (e.code === "auth") { store.del("bt-key"); KEY = null; $("keyErr").hidden = false; return showGate(); }
+    if (e.code === "auth") { store.del("bt-key"); store.del("bt-appr"); KEY = null; $("keyErr").hidden = false; return showGate(); }
     $("gate").hidden = false; $("gateKey").hidden = true; $("gateWho").hidden = true;
     $("gate").insertAdjacentHTML("beforeend", `<div class="err">הלוח לא נטען${e.code === "timeout" ? " (השרת לא ענה תוך 15 שניות)" : ""}. כדאי לבדוק חיבור לאינטרנט ולרענן.<br><small style="direction:ltr;display:inline-block">${esc(e.code || "")}</small></div>`);
     return;

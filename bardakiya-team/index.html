@@ -711,7 +711,7 @@ function drawMsgs(pending) {
   const el = $("chatMsgs"); if (!el) return;
   const log = (CHAT_LOG || []).slice(-30);
   el.innerHTML = (log.length || pending ? "" : `<div class="sub">עוד אין שיחה. אפשר לכתוב לוורדה מה השתנה, והיא תעדכן את לוח התוכן.</div>`) +
-    log.map((m) => `<div class="msg ${m.role === "varda" ? "v" : "u"}"><span class="who">${m.role === "varda" ? "ורדה" : esc(m.by)} · ${esc(m.at)}</span>${esc(m.text)}${m.changes && m.changes.length ? `<ul>${m.changes.map((c) => `<li>${esc(c)}</li>`).join("")}</ul>` : ""}</div>`).join("") +
+    log.map((m) => `<div class="msg ${m.role === "varda" ? "v" : "u"}"><span class="who">${m.role === "varda" ? "ורדה" : esc(m.by)} · ${esc(m.at)}</span>${esc(m.text.replace(/\*\*/g, ""))}${m.changes && m.changes.length ? `<ul>${m.changes.map((c) => `<li>${esc(c)}</li>`).join("")}</ul>` : ""}</div>`).join("") +
     (pending ? `<div class="msg u"><span class="who">${esc(ME)}</span>${esc(pending)}</div><div class="msg v wait">ורדה כותבת…</div>` : "");
   el.scrollTop = el.scrollHeight;
 }

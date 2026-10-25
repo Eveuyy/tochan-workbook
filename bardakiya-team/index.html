@@ -281,7 +281,7 @@ async function call(path, body = {}, opt = {}) {
   // Each address gets a time cap; if it can't be reached at all, the other one is tried. Never a blank screen.
   // opt.ms: a longer cap (Varda's chat). opt.once: never resend to the other address (a chat message must not run twice).
   const headers = { "Content-Type": "application/json", "X-Team-Key": KEY || "" };
-  if (path.startsWith("/api/appr/")) headers["X-Approver-Key"] = store.get("bt-appr") || "";
+  if (path.startsWith("/api/appr/") || path === "/api/chat") headers["X-Approver-Key"] = store.get("bt-appr") || "";
   const send = async (base, ms) => {
     const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), ms);
     try { return await fetch(base + path, { method: "POST", headers, body: JSON.stringify(body), signal: ctrl.signal }); }
@@ -621,7 +621,7 @@ function contentCard(p) {
   const open = COPEN.has(p.id), imgs = p.images || [];
   const thumbs = (n) => imgs.slice(0, n).map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener"><img src="${esc(u)}" alt="" loading="lazy"></a>`).join("");
   const done = p.status === "פורסם";
-  let actions = "";
+  let actions = done ? "" : `<div class="row"><button class="btn" type="button" data-fix="1">💬 לכתוב לוורדה על זה</button></div>`;
   if (isAppr() && !done) {
     actions = `<div class="row">` +
       (p.status !== "מאושר" ? `<button class="btn ok" type="button" data-s="מאושר">✅ מאשרת</button>` : `<button class="btn" type="button" data-s="מחכה לאישור">↩️ להחזיר לבדיקה</button>`) +
@@ -691,20 +691,21 @@ function renderApprBox() {
 let FIX_FOR = null;
 function renderChat() {
   const box = $("cChat");
-  if (!isAppr()) { box.innerHTML = ""; return; }
+  const mode = isAppr() ? "appr" : "team";
+  if (box.dataset.mode !== mode) { box.innerHTML = ""; box.dataset.mode = mode; }
   if (!box.firstChild) {
-    box.innerHTML = `<section class="chat"><button type="button" id="chatToggle" aria-expanded="false"><span>💬 לדבר עם ורדה</span><span id="chatArrow">▾</span></button>
+    box.innerHTML = `<section class="chat"><button type="button" id="chatToggle" aria-expanded="false"><span>💬 לדבר עם ורדה, מנהלת הסושיאל והאתר של הברדקיה</span><span id="chatArrow">▾</span></button>
       <div class="body" id="chatBody" hidden><div class="msgs" id="chatMsgs"></div>
       <div class="sub" id="chatFor" hidden></div>
-      <textarea id="chatIn" placeholder="למשל: הצגה של יום חמישי זזה ל-10:00, תעדכני את הסטורי"></textarea>
-      <div class="row"><button class="btn primary" type="button" id="chatSend">לשלוח לוורדה</button><span class="sub">ורדה משנה רק את לוח התוכן. אישור עדיין בכפתור.</span></div></div></section>`;
+      <textarea id="chatIn" placeholder="${mode === "appr" ? "למשל: ההצגה של חמישי זזה ל-10:00, תעדכני את הסטורי" : "למשל: החוג של שישי מבוטל השבוע"}"></textarea>
+      <div class="row"><button class="btn primary" type="button" id="chatSend">לשלוח לוורדה</button><span class="sub">${mode === "appr" ? "ורדה משנה רק את לוח התוכן. אישור עדיין בכפתור." : "כל הצוות רואה את הצ'אט. ורדה רושמת בקשות, ואיב או דור מאשרות שינויים."}</span></div></div></section>`;
     $("chatToggle").onclick = () => { CHAT_OPEN = !CHAT_OPEN; renderChat(); };
     $("chatSend").onclick = sendChat;
   }
   $("chatBody").hidden = !CHAT_OPEN; $("chatToggle").setAttribute("aria-expanded", CHAT_OPEN); $("chatArrow").textContent = CHAT_OPEN ? "▴" : "▾";
   $("chatFor").hidden = !FIX_FOR; if (FIX_FOR) $("chatFor").innerHTML = `לגבי: <b>${esc(FIX_FOR.title)}</b> · <button type="button" class="link" id="chatForX" style="border:0;background:none;padding:4px">ביטול</button>`;
   if (FIX_FOR) $("chatForX").onclick = () => { FIX_FOR = null; renderChat(); };
-  if (CHAT_OPEN && CHAT_LOG === null) { CHAT_LOG = []; call("/api/appr/chat-log", { by: ME }).then((j) => { CHAT_LOG = j.log; drawMsgs(); }).catch(() => { CHAT_LOG = null; }); }
+  if (CHAT_OPEN && CHAT_LOG === null) { CHAT_LOG = []; call("/api/chat-log", { by: ME }).then((j) => { CHAT_LOG = j.log; drawMsgs(); }).catch(() => { CHAT_LOG = null; }); }
   drawMsgs();
 }
 function drawMsgs(pending) {
@@ -720,12 +721,12 @@ async function sendChat() {
   if (!text || chatBusy) return;
   chatBusy = true; $("chatSend").disabled = true; drawMsgs(text);
   try {
-    const j = await call("/api/appr/chat", { by: ME, text, postId: FIX_FOR ? FIX_FOR.id : "" }, { ms: 110000, once: true });
+    const j = await call("/api/chat", { by: ME, text, postId: FIX_FOR ? FIX_FOR.id : "" }, { ms: 110000, once: true });
     CHAT_LOG = j.log; t.value = ""; FIX_FOR = null; renderChat();
     if (j.changes && j.changes.length) { await load(); toast("לוח התוכן עודכן ✓"); }
   } catch (e) {
     drawMsgs();
-    toast(e.code === "timeout" ? "ורדה לא ענתה בזמן. כדאי לרענן ולבדוק אם השינוי נכנס" : e.code === "no_ai_key" ? "ורדה עוד לא מחוברת. איב מטפלת בזה" : "ההודעה לא נשלחה. כדאי לנסות שוב");
+    toast(e.code === "timeout" ? "ורדה לא ענתה בזמן. כדאי לרענן ולבדוק אם השינוי נכנס" : e.code === "no_ai_key" ? "ורדה לא מחוברת כרגע. כדאי לכתוב לאיב" : "ההודעה לא נשלחה. כדאי לנסות שוב");
   }
   chatBusy = false; $("chatSend").disabled = false;
 }

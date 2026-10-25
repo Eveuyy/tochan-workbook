@@ -599,7 +599,7 @@ const isStory = (p) => p.format === "סטורי";
 function renderContent() {
   const el = $("tab-content");
   if (!$("cList")) el.innerHTML = `<div id="cAppr"></div><div id="cChat"></div><div class="subtabs" id="cSub"></div><div id="cList"></div>
-    <div class="row" style="margin-top:6px"><a class="link" href="${BOARD_URL}" target="_blank" rel="noopener">ללוח התוכן המלא ←</a></div>`;
+    <div class="row" style="margin-top:6px"><a class="link" href="${BOARD_URL}">ללוח התוכן המלא ←</a></div>`;
   renderApprBox(); renderChat();
   const c = DATA.content;
   if (!c) { $("cSub").innerHTML = ""; $("cList").innerHTML = `<div class="empty">לא הצלחתי לקרוא כרגע את לוח התוכן.</div>`; return; }

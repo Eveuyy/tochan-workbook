@@ -55,22 +55,51 @@ a.btn.primary { color: var(--cream); }
 
 .notice { font-size: 14px; background: var(--paper); border: 1.5px dashed var(--line); border-radius: 14px; padding: 10px 14px; margin-bottom: 14px; }
 
-/* מה שמחכה לאישור יושב בעמודה משלו מימין, ונכנס ללוח רק אחרי אישור */
-.board { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 12px; align-items: start; }
-.pending { background: var(--orange-t); border: 1.5px solid var(--orange); border-radius: 18px; padding: 10px; display: flex; flex-direction: column; gap: 10px; position: sticky; top: 10px; max-height: calc(100vh - 20px); overflow-y: auto; }
-.pending h2 { margin: 0; font-size: 17px; font-weight: 900; padding: 2px 4px 6px; border-bottom: 1.5px solid var(--orange); }
-.pending .plist { display: flex; flex-direction: column; gap: 10px; }
-.pitem { display: flex; flex-direction: column; gap: 6px; }
-.pitem .late { font-size: 12px; font-weight: 700; color: #9b3b2a; }
-.approve-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.approve-row .btn { padding: 5px 14px 7px; font-size: 14px; }
-.week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
-.day { background: var(--paper); border-radius: 18px; border: 1.5px solid var(--line); padding: 10px; display: flex; flex-direction: column; gap: 10px; min-height: 200px; min-width: 0; }
-.day.today { border-color: var(--orange); box-shadow: 0 0 0 2px var(--orange) inset; }
-.day.past { opacity: .72; }
+/* שלוש לשוניות: הלוח המאושר, ממתין לאישור (דף נפרד, ברצף), היסטוריה */
+.tabs { display: flex; gap: 4px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-top: 18px; border-bottom: 2px solid var(--line); }
+.tab { border: 2px solid transparent; border-bottom: 0; background: transparent; border-radius: 14px 14px 0 0; padding: 8px 16px 10px; font-weight: 900; font-size: 16px; color: var(--ink-soft); margin-bottom: -2px; }
+.tab[aria-selected="true"] { background: var(--paper); border-color: var(--line); color: var(--ink); }
+.tab .n { display: inline-block; min-width: 22px; border-radius: 999px; background: var(--orange); color: var(--ink); font-size: 13px; padding: 0 6px 2px; margin-inline-start: 4px; text-align: center; }
+
+/* הלוח המאושר: לכל שבוע שורת פוסטים ושורת סטוריז נפרדות */
+.week { display: flex; flex-direction: column; gap: 18px; }
+.wk { display: grid; grid-template-columns: 74px repeat(7, minmax(0, 1fr)); gap: 8px; }
+.dhead { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 8px 6px; border-radius: 12px; }
+.dhead b { font-size: 16px; font-weight: 900; }
+.dhead span { font-size: 14px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.dhead.today { background: var(--orange); } .dhead.today span { color: var(--ink); }
+.lane { display: flex; align-items: flex-start; justify-content: center; padding: 12px 4px; font-weight: 900; font-size: 14px; border-radius: 12px; text-align: center; }
+.l-post { background: var(--blue-t); } .l-story { background: var(--peach-t); }
+.cell { background: var(--paper); border: 1.5px solid var(--line); border-radius: 14px; padding: 8px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.cell.c-post { min-height: 140px; } .cell.c-story { min-height: 100px; }
+.cell.today, .mday.today { border-color: var(--orange); box-shadow: 0 0 0 2px var(--orange) inset; }
+.past { opacity: .72; }
 .dayhead { display: flex; justify-content: space-between; align-items: baseline; padding: 2px 4px 6px; border-bottom: 1.5px solid var(--line); }
 .dayhead b { font-size: 16px; font-weight: 900; }
 .dayhead span { font-size: 14px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+/* בטלפון: כל יום מחולק לשני טורים, פוסטים וסטוריז */
+.mday { background: var(--paper); border: 1.5px solid var(--line); border-radius: 18px; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+.mlanes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mlane { border-radius: 12px; padding: 6px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.mlane h3 { margin: 0; font-size: 13px; font-weight: 900; padding: 0 2px; }
+
+/* ממתין לאישור: דף משלו, הכל ברצף לפי תאריך */
+.seq { display: flex; flex-direction: column; gap: 14px; max-width: 980px; margin-top: 14px; }
+.seq h2 { font-size: 22px; margin: 6px 0 0; }
+.srow { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 16px; background: var(--paper); border: 1.5px solid var(--line); border-radius: 18px; padding: 12px; }
+.srow.is-story { grid-template-columns: 180px minmax(0, 1fr); }
+.srow .media { border-radius: 12px; overflow: hidden; background: var(--tint); align-self: start; }
+.srow .media img.one { width: 100%; display: block; aspect-ratio: 4 / 5; object-fit: cover; cursor: pointer; }
+.srow.is-story .media img.one { aspect-ratio: 9 / 16; }
+.srow .info { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.srow .when { font-weight: 900; font-size: 15px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.fmt { border-radius: 999px; padding: 1px 10px 3px; font-size: 13px; font-weight: 900; }
+.f-story { background: var(--peach); } .f-post { background: var(--blue); }
+.srow h3 { margin: 0; font-size: 19px; line-height: 1.3; }
+.srow .caption { max-height: 200px; overflow-y: auto; font-size: 14px; }
+.late { color: #9b3b2a; font-weight: 700; font-size: 14px; }
+.approve-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: auto; }
+.ideas { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
 .empty { font-size: 13px; color: var(--ink-soft); padding: 6px 4px; }
 .add-day { margin-top: auto; border: 1.5px dashed var(--line); background: transparent; border-radius: 12px; padding: 6px; font-size: 13px; color: var(--ink-soft); font-weight: 700; }
 .add-day:hover { border-color: var(--ink-soft); color: var(--ink); }
@@ -91,9 +120,9 @@ a.btn.primary { color: var(--cream); }
 .car .nav:disabled { opacity: 0; pointer-events: none; }
 /* סטוריז: שורה קטנה משלהם בתחתית כל יום */
 .sec { font-size: 12px; font-weight: 900; color: var(--ink-soft); padding: 4px 4px 0; border-top: 1.5px dashed var(--line); }
-.stories { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
-.story { flex: none; width: 76px; border: 0; padding: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; text-align: center; }
-.story img, .story .noimg { width: 76px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 10px; border: 2.5px solid var(--line); display: block; background: var(--cream); }
+.stories { display: grid; grid-template-columns: repeat(auto-fill, minmax(58px, 1fr)); gap: 6px; }
+.story { width: 100%; min-width: 0; border: 0; padding: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; text-align: center; }
+.story img, .story .noimg { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 10px; border: 2.5px solid var(--line); display: block; background: var(--cream); }
 .story .noimg { display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--ink-soft); }
 .story[data-s="מאושר"] img { border-color: #8fd18d; }
 .story .stime { font-size: 12px; font-weight: 700; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
@@ -129,15 +158,11 @@ a.btn.primary { color: var(--cream); }
 .err { color: #9b3b2a; font-size: 14px; font-weight: 700; }
 .small { font-size: 13px; color: var(--ink-soft); }
 
-@media (max-width: 1200px) {
-  .board { grid-template-columns: 1fr; }
-  .pending { position: static; max-height: none; }
-  .pending .plist { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-}
 @media (max-width: 900px) {
-  .week { grid-template-columns: 1fr; }
-  .day { min-height: 0; }
-  .day .posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .tab { font-size: 13px; padding: 7px 8px 9px; white-space: nowrap; }
+  .tab .n { font-size: 12px; min-width: 20px; }
+  .srow, .srow.is-story { grid-template-columns: 1fr; }
+  .srow.is-story .media { max-width: 240px; }
   .row2 { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { .post:hover { transform: none; } }
@@ -160,22 +185,25 @@ a.btn.primary { color: var(--cream); }
     </div>
   </header>
 
+  <nav class="tabs" role="tablist" aria-label="תצוגות">
+    <button class="tab" role="tab" id="tab-board" data-v="board" type="button">הלוח המאושר</button>
+    <button class="tab" role="tab" id="tab-pending" data-v="pending" type="button">ממתין לאישור<span class="n" id="nPending">0</span></button>
+    <button class="tab" role="tab" id="tab-history" data-v="history" type="button">היסטוריה</button>
+  </nav>
+
   <div class="bar">
-    <div class="weeknav">
+    <div class="weeknav" id="weeknav">
       <button class="btn" id="prevW" type="button" aria-label="שבוע קודם">→</button>
       <span class="range" id="range"></span>
       <button class="btn" id="nextW" type="button" aria-label="שבוע הבא">←</button>
       <button class="btn ghost" id="todayW" type="button">מהיום</button>
     </div>
     <div class="legend" id="legend" aria-label="סינון לפי סוג תוכן"></div>
-    <button class="btn ghost" id="histBtn" type="button" aria-pressed="false">🗂 היסטוריה</button>
   </div>
 
   <div class="notice" id="notice" hidden></div>
-  <div class="board">
-    <aside class="pending" id="pending" aria-label="ממתין לאישור"></aside>
-    <main class="week" id="week" aria-live="polite"></main>
-  </div>
+  <main class="week" id="week" aria-live="polite"></main>
+  <section class="seq" id="pending" hidden></section>
   <section class="hist" id="hist" hidden></section>
 </div>
 
@@ -201,7 +229,9 @@ const hidden = new Set();
 const CLOSED = ["פורסם", "נדחה"]; // מה שפורסם או נדחה עובר להיסטוריה ולא מופיע בלוח השבועי
 const PENDING = "מחכה לאישור"; // מחכה בעמודה משלו, ונכנס ללוח רק אחרי אישור
 const isStory = p => p.format === "סטורי";
-let showHist = false;
+const VIEWS = ["board", "pending", "history"]; // הלוח המאושר, ממתין לאישור, היסטוריה
+let view = (/^#(pending|history)$/.exec(location.hash) || [, "board"])[1];
+const narrow = matchMedia("(max-width: 900px)");
 let weekStart = startOfWeek(new Date());
 
 function pad(n) { return String(n).padStart(2, "0"); }
@@ -231,68 +261,111 @@ function renderLegend() {
 
 function render() {
   renderLegend();
-  const end = addDays(weekStart, 13);
-  document.getElementById("range").textContent = short(weekStart) + "–" + short(end);
+  for (const v of VIEWS) document.getElementById("tab-" + v).setAttribute("aria-selected", String(v === view));
+  document.getElementById("nPending").textContent = posts.filter(p => p.status === PENDING).length;
+  document.getElementById("tab-history").textContent = "היסטוריה (" + posts.filter(p => CLOSED.includes(p.status)).length + ")";
+  document.getElementById("weeknav").hidden = view !== "board";
+  document.getElementById("week").hidden = view !== "board";
+  document.getElementById("pending").hidden = view !== "pending";
+  document.getElementById("hist").hidden = view !== "history";
+  if (view === "board") renderBoard(); else if (view === "pending") renderPending(); else renderHist();
+}
+function setView(v) {
+  view = v;
+  history.replaceState(null, "", location.pathname + location.search + (v === "board" ? "" : "#" + v));
+  render(); window.scrollTo(0, 0);
+}
+for (const v of VIEWS) document.getElementById("tab-" + v).addEventListener("click", () => setView(v));
+window.addEventListener("hashchange", () => { const m = /^#(pending|history)$/.exec(location.hash); view = m ? m[1] : "board"; render(); });
+narrow.addEventListener("change", render);
+
+const byTime = (a, b) => (a.time || "").localeCompare(b.time || "");
+const byWhen = (a, b) => ((a.date || "9") + (a.time || "")).localeCompare((b.date || "9") + (b.time || ""));
+
+// בלוח הראשי רק מה שאושר. כל שבוע: שורת פוסטים ושורת סטוריז.
+function renderBoard() {
+  document.getElementById("range").textContent = short(weekStart) + "–" + short(addDays(weekStart, 13));
   const today = iso(new Date());
   const week = document.getElementById("week"); week.textContent = "";
-  for (let i = 0; i < 14; i++) {
-    const d = addDays(weekStart, i), key = iso(d);
-    const dayItems = posts.filter(p => p.date === key && !hidden.has(p.pillar) && !CLOSED.includes(p.status) && p.status !== PENDING).sort((a, b) => (a.time || "").localeCompare(b.time || ""));
-    const dayPosts = dayItems.filter(p => !isStory(p)), dayStories = dayItems.filter(isStory);
-    const col = el("section", { class: "day" + (key === today ? " today" : "") + (key < today ? " past" : ""), "aria-label": DAYS[i % 7] + " " + short(d) },
-      el("div", { class: "dayhead" }, el("b", { text: DAYS[i % 7] }), el("span", { text: short(d) })));
-    const list = el("div", { class: "posts" });
-    if (!dayItems.length) list.append(el("div", { class: "empty", text: "אין כלום" }));
-    for (const p of dayPosts) list.append(card(p));
-    col.append(list);
-    if (dayStories.length) {
-      const row = el("div", { class: "stories" });
-      for (const p of dayStories) row.append(storyCard(p));
-      col.append(el("div", { class: "sec", text: "סטוריז (" + dayStories.length + ")" }), row);
-    }
-    if (canWrite) col.append(el("button", { class: "add-day", type: "button", onclick: () => openEdit({ date: key }) , text: "+ הוספה" }));
-    week.append(col);
+  const shown = posts.filter(p => p.status === "מאושר" && !hidden.has(p.pillar));
+  for (let w = 0; w < 2; w++) {
+    const days = [0, 1, 2, 3, 4, 5, 6].map(i => {
+      const d = addDays(weekStart, w * 7 + i), key = iso(d), items = shown.filter(p => p.date === key).sort(byTime);
+      return { d, i, label: DAYS[i] + " " + short(d), cls: (key === today ? " today" : "") + (key < today ? " past" : ""), posts: items.filter(p => !isStory(p)), stories: items.filter(isStory) };
+    });
+    if (narrow.matches) { days.forEach(x => week.append(mobileDay(x))); continue; }
+    const g = el("section", { class: "wk", "aria-label": "שבוע " + short(days[0].d) + "–" + short(days[6].d) }, el("div"));
+    for (const x of days) g.append(el("div", { class: "dhead" + x.cls }, el("b", { text: DAYS[x.i] }), el("span", { text: short(x.d) })));
+    g.append(el("div", { class: "lane l-post", text: "פוסטים" }));
+    for (const x of days) { const c = el("div", { class: "cell c-post" + x.cls, "aria-label": "פוסטים, " + x.label }); x.posts.forEach(p => c.append(card(p))); g.append(c); }
+    g.append(el("div", { class: "lane l-story", text: "סטוריז" }));
+    for (const x of days) { const c = el("div", { class: "cell c-story" + x.cls, "aria-label": "סטוריז, " + x.label }); if (x.stories.length) c.append(storyRow(x.stories)); g.append(c); }
+    week.append(g);
   }
-  renderPending();
-  renderHist();
+}
+function storyRow(list) { const r = el("div", { class: "stories" }); list.forEach(p => r.append(storyCard(p))); return r; }
+function mobileDay(x) {
+  const box = el("section", { class: "mday" + x.cls, "aria-label": x.label }, el("div", { class: "dayhead" }, el("b", { text: DAYS[x.i] }), el("span", { text: short(x.d) })));
+  if (!x.posts.length && !x.stories.length) { box.append(el("div", { class: "empty", text: "אין כלום" })); return box; }
+  const pl = el("div", { class: "mlane l-post" }, el("h3", { text: "פוסטים" }));
+  x.posts.forEach(p => pl.append(card(p)));
+  if (!x.posts.length) pl.append(el("div", { class: "empty", text: "אין" }));
+  const sl = el("div", { class: "mlane l-story" }, el("h3", { text: "סטוריז" }), x.stories.length ? storyRow(x.stories) : el("div", { class: "empty", text: "אין" }));
+  box.append(el("div", { class: "mlanes" }, pl, sl));
+  return box;
 }
 
+// ממתין לאישור: דף נפרד, ברצף לפי תאריך. מתחת, מה שעוד ברעיון או בהכנה.
 function renderPending() {
   const box = document.getElementById("pending"); box.textContent = "";
   const today = iso(new Date());
-  const wait = posts.filter(p => p.status === PENDING && !hidden.has(p.pillar)).sort((a, b) => ((a.date || "") + (a.time || "")).localeCompare((b.date || "") + (b.time || "")));
-  box.append(el("h2", { text: "ממתין לאישור (" + wait.length + ")" }));
-  if (!wait.length) { box.append(el("div", { class: "empty", text: "אין כרגע מה לאשר" })); return; }
-  for (const [name, group] of [["פוסטים", wait.filter(p => !isStory(p))], ["סטוריז", wait.filter(isStory)]]) {
-    if (!group.length) continue;
-    const list = el("div", { class: "plist" });
-    for (const p of group) {
-      const item = el("div", { class: "pitem" }, card(p, true));
-      // תאריך שעבר: לא מאשרים בלחיצה אחת, כי מה שמאושר עולה לבד. קודם מעדכנים תאריך בחלון הפוסט.
-      if (p.date && p.date < today) item.append(el("div", { class: "late", text: "התאריך עבר. לעדכן תאריך לפני אישור" }));
-      else if (editorKey) item.append(approveRow(p));
-      list.append(item);
-    }
-    box.append(el("div", { class: "sec", text: name + " (" + group.length + ")" }), list);
+  const wait = posts.filter(p => p.status === PENDING && !hidden.has(p.pillar)).sort(byWhen);
+  box.append(el("h2", { text: "ממתין לאישור (" + wait.length + ")" }),
+    el("div", { class: "small", text: "לפי סדר התאריכים. מה שמאשרים עובר ללוח המאושר ועולה לבד בשעה שלו." + (editorKey ? "" : " כדי לאשר מכאן צריך את קישור הכניסה מהבוט (“כניסה ללוח”).") }));
+  if (!wait.length) box.append(el("div", { class: "empty", text: "אין כרגע מה לאשר" }));
+  for (const p of wait) box.append(seqRow(p, today));
+  const ideas = posts.filter(p => p.status !== "מאושר" && p.status !== PENDING && !CLOSED.includes(p.status) && !hidden.has(p.pillar)).sort(byWhen);
+  if (ideas.length) {
+    const g = el("div", { class: "ideas" }); ideas.forEach(p => g.append(card(p, true)));
+    box.append(el("h2", { text: "רעיונות ובהכנה (" + ideas.length + ")" }), el("div", { class: "small", text: "עוד לא מוכנים לאישור." }), g);
   }
 }
-
-function approveRow(p) {
+function seqRow(p, today) {
+  const st = isStory(p), pl = pillar(p.pillar), imgs = p.images || [];
+  const media = el("div", { class: "media" });
+  if (imgs.length > 1) media.append(slides(p));
+  else if (imgs[0]) media.append(el("img", { class: "one", src: imgs[0], alt: "", loading: "lazy", onclick: () => openView(p.id) }));
+  else media.append(el("div", { class: "empty", text: "אין תמונה" }));
+  const d = p.date ? new Date(p.date + "T12:00") : null;
+  const info = el("div", { class: "info" },
+    el("div", { class: "when" }, el("span", { text: d ? DAYS[d.getDay()] + " " + short(d) + (p.time ? " · " + p.time : "") : "בלי תאריך" }),
+      el("span", { class: "fmt " + (st ? "f-story" : "f-post"), text: p.format || "פוסט" }),
+      el("span", { class: "chip", style: "background:" + pl.tint }, el("span", { class: "dot", style: "background:" + pl.color }), p.pillar || "אווירה")),
+    el("h3", { text: p.title || "בלי כותרת" }));
+  if (p.caption) info.append(el("div", { class: "caption", text: p.caption }));
+  // תאריך שעבר: לא מאשרים בלחיצה אחת, כי מה שמאושר עולה לבד. קודם מעדכנים תאריך.
+  const late = p.date && p.date < today;
+  if (late) info.append(el("div", { class: "late", text: "התאריך עבר. לעדכן תאריך (בפתיחה ועריכה) לפני אישור" }));
   const msg = el("span", { class: "small", role: "status" });
-  const b = el("button", { class: "btn primary", type: "button", text: "✅ מאשרת", onclick: async () => {
+  const foot = el("div", { class: "approve-row" });
+  if (editorKey && !late) foot.append(statusBtn(p, "מאושר", "✅ מאשרת", "btn primary", msg));
+  if (editorKey) foot.append(statusBtn(p, "נדחה", "לא לפרסם", "btn", msg));
+  foot.append(el("button", { class: "btn ghost", type: "button", text: editorKey ? "פתיחה ועריכה" : "פתיחה", onclick: () => openView(p.id) }), msg);
+  info.append(foot);
+  return el("article", { class: "srow" + (st ? " is-story" : ""), style: "--tint:" + pl.tint }, media, info);
+}
+function statusBtn(p, status, label, cls, msg) {
+  const b = el("button", { class: cls, type: "button", text: label, onclick: async () => {
     b.disabled = true; msg.textContent = "שומרת…";
-    try { await api("/api/update", { id: p.id, changes: { status: "מאושר" } }); await loadSheet(); }
+    try { await api("/api/update", { id: p.id, changes: { status } }); await loadSheet(); }
     catch (e) { b.disabled = false; msg.textContent = e.message === "auth" ? "הכניסה פגה. בקשי מהבוט קישור חדש (“כניסה ללוח”)." : "השמירה לא הצליחה. נסי שוב בעוד רגע."; }
   } });
-  return el("div", { class: "approve-row" }, b, msg);
+  return b;
 }
 
 function renderHist() {
   const done = posts.filter(p => CLOSED.includes(p.status)).sort((a, b) => ((b.date || "") + (b.time || "")).localeCompare((a.date || "") + (a.time || "")));
-  const btn = document.getElementById("histBtn"), box = document.getElementById("hist");
-  btn.textContent = "🗂 היסטוריה (" + done.length + ")"; btn.setAttribute("aria-pressed", String(showHist));
-  box.hidden = !showHist; box.textContent = "";
-  if (!showHist) return;
+  const box = document.getElementById("hist"); box.textContent = "";
   box.append(el("h2", { text: "היסטוריה: מה שפורסם או נדחה" }));
   if (!done.length) box.append(el("div", { class: "empty", text: "עוד אין כאן כלום" }));
   const list = el("div", { class: "hlist" });
@@ -337,7 +410,6 @@ function storyCard(p) {
   return b;
 }
 
-document.getElementById("histBtn").addEventListener("click", () => { showHist = !showHist; renderHist(); if (showHist) document.getElementById("hist").scrollIntoView({ behavior: "smooth" }); });
 
 const overlay = document.getElementById("overlay");
 function closePanel() { overlay.hidden = true; overlay.textContent = ""; }

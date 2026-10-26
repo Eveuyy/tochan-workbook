@@ -48,6 +48,9 @@ a.btn.primary { color: var(--cream); }
 .chip { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 3px 12px 5px; font-size: 13px; font-weight: 700; border: 1.5px solid transparent; }
 .legend .chip { cursor: pointer; background: var(--paper); border-color: var(--line); }
 .legend .chip[aria-pressed="false"] { opacity: .4; }
+.hist { margin-top: 18px; display: flex; flex-direction: column; gap: 8px; }
+.hist h2 { margin: 0 0 4px; font-size: 18px; }
+.hist .post { max-width: 640px; }
 .dot { width: 12px; height: 12px; border-radius: 50%; flex: none; }
 
 .notice { font-size: 14px; background: var(--paper); border: 1.5px dashed var(--line); border-radius: 14px; padding: 10px 14px; margin-bottom: 14px; }
@@ -132,10 +135,12 @@ a.btn.primary { color: var(--cream); }
       <button class="btn ghost" id="todayW" type="button">מהיום</button>
     </div>
     <div class="legend" id="legend" aria-label="סינון לפי סוג תוכן"></div>
+    <button class="btn ghost" id="histBtn" type="button" aria-pressed="false">🗂 היסטוריה</button>
   </div>
 
   <div class="notice" id="notice" hidden></div>
   <main class="week" id="week" aria-live="polite"></main>
+  <section class="hist" id="hist" hidden></section>
 </div>
 
 <div class="overlay" id="overlay" dir="rtl" lang="he" hidden></div>
@@ -157,6 +162,8 @@ const DAYS = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
 let posts = [];
 let db = null, assets = null, userCap = null, canWrite = false, myId = null;
 const hidden = new Set();
+const CLOSED = ["פורסם", "נדחה"]; // מה שפורסם או נדחה עובר להיסטוריה ולא מופיע בלוח השבועי
+let showHist = false;
 let weekStart = startOfWeek(new Date());
 
 function pad(n) { return String(n).padStart(2, "0"); }
@@ -192,7 +199,7 @@ function render() {
   const week = document.getElementById("week"); week.textContent = "";
   for (let i = 0; i < 14; i++) {
     const d = addDays(weekStart, i), key = iso(d);
-    const dayPosts = posts.filter(p => p.date === key && !hidden.has(p.pillar)).sort((a, b) => (a.time || "").localeCompare(b.time || ""));
+    const dayPosts = posts.filter(p => p.date === key && !hidden.has(p.pillar) && !CLOSED.includes(p.status)).sort((a, b) => (a.time || "").localeCompare(b.time || ""));
     const col = el("section", { class: "day" + (key === today ? " today" : "") + (key < today ? " past" : ""), "aria-label": DAYS[i % 7] + " " + short(d) },
       el("div", { class: "dayhead" }, el("b", { text: DAYS[i % 7] }), el("span", { text: short(d) })));
     const list = el("div", { class: "posts" });
@@ -202,18 +209,32 @@ function render() {
     if (canWrite) col.append(el("button", { class: "add-day", type: "button", onclick: () => openEdit({ date: key }) , text: "+ הוספה" }));
     week.append(col);
   }
+  renderHist();
 }
 
-function card(p) {
+function renderHist() {
+  const done = posts.filter(p => CLOSED.includes(p.status)).sort((a, b) => ((b.date || "") + (b.time || "")).localeCompare((a.date || "") + (a.time || "")));
+  const btn = document.getElementById("histBtn"), box = document.getElementById("hist");
+  btn.textContent = "🗂 היסטוריה (" + done.length + ")"; btn.setAttribute("aria-pressed", String(showHist));
+  box.hidden = !showHist; box.textContent = "";
+  if (!showHist) return;
+  box.append(el("h2", { text: "היסטוריה: מה שפורסם או נדחה" }));
+  if (!done.length) box.append(el("div", { class: "empty", text: "עוד אין כאן כלום" }));
+  for (const p of done) box.append(card(p, true));
+}
+
+function card(p, withDate) {
   const pl = pillar(p.pillar);
   const b = el("button", { class: "post", type: "button", style: "--tint:" + pl.tint, onclick: () => openView(p.id) });
   if (p.images && p.images[0]) b.append(el("img", { class: "thumb", src: p.images[0], alt: "", loading: "lazy" }));
   b.append(el("div", { class: "pbody" },
-    el("div", { class: "meta" }, el("span", { text: (p.time || "") }), el("span", { text: p.format || "" })),
+    el("div", { class: "meta" }, el("span", { text: (withDate && p.date ? short(new Date(p.date + "T12:00")) + " · " : "") + (p.time || "") }), el("span", { text: p.format || "" })),
     el("div", { class: "title", text: p.title || "בלי כותרת" }),
     el("span", { class: "status", "data-s": p.status || "רעיון", text: p.status || "רעיון" })));
   return b;
 }
+
+document.getElementById("histBtn").addEventListener("click", () => { showHist = !showHist; renderHist(); if (showHist) document.getElementById("hist").scrollIntoView({ behavior: "smooth" }); });
 
 const overlay = document.getElementById("overlay");
 function closePanel() { overlay.hidden = true; overlay.textContent = ""; }

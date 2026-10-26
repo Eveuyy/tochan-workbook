@@ -602,6 +602,7 @@ let CTAB = store.get("bt-ctab") || "story", APPR_OK = null, CHAT_OPEN = false, C
 const COPEN = new Set();
 const isAppr = () => APPROVERS.includes(ME) && APPR_OK === true;
 const isStory = (p) => p.format === "סטורי";
+const isClosed = (p) => ["פורסם", "נדחה"].includes(p.status); // עובר להיסטוריה
 
 function renderContent() {
   const el = $("tab-content");
@@ -610,17 +611,19 @@ function renderContent() {
   renderApprBox(); renderChat();
   const c = DATA.content;
   if (!c) { $("cSub").innerHTML = ""; $("cList").innerHTML = `<div class="empty">לא הצלחתי לקרוא כרגע את לוח התוכן.</div>`; return; }
-  const stories = c.filter(isStory), posts = c.filter((p) => !isStory(p));
-  $("cSub").innerHTML = [["story", "סטוריז", stories.length], ["post", "פוסטים", posts.length]]
+  const live = c.filter((p) => !isClosed(p)), hist = c.filter(isClosed).reverse();
+  const stories = live.filter(isStory), posts = live.filter((p) => !isStory(p));
+  $("cSub").innerHTML = [["story", "סטוריז", stories.length], ["post", "פוסטים", posts.length], ["hist", "🗂 היסטוריה", hist.length]]
     .map(([k, l, n]) => `<button type="button" data-k="${k}" aria-pressed="${CTAB === k}">${l}<span class="n">${n}</span></button>`).join("");
   $("cSub").querySelectorAll("button").forEach((b) => (b.onclick = () => { CTAB = b.dataset.k; store.set("bt-ctab", CTAB); renderContent(); }));
-  const list = CTAB === "story" ? stories : posts;
+  const list = CTAB === "story" ? stories : CTAB === "post" ? posts : hist;
   const by = {}; list.forEach((p) => (by[p.date || ""] = by[p.date || ""] || []).push(p));
   const keys = Object.keys(by).sort((a, b) => (!a ? 1 : !b ? -1 : a < b ? -1 : 1));
+  if (CTAB === "hist") keys.reverse();
   $("cList").innerHTML = keys.length ? keys.map((d) => {
     const head = d ? `יום ${DAYS[new Date(d + "T12:00").getDay()]} ${fmtDate(d)}` : "עוד בלי תאריך";
     return `<div class="day"><h3>${head}</h3>${by[d].map(contentCard).join("")}</div>`;
-  }).join("") : `<div class="empty">${CTAB === "story" ? "אין סטוריז" : "אין פוסטים"} בשלושת השבועות הקרובים.</div>`;
+  }).join("") : `<div class="empty">${CTAB === "hist" ? "עוד אין כאן כלום. מה שפורסם או נדחה יעבור לכאן." : `${CTAB === "story" ? "אין סטוריז" : "אין פוסטים"} בשלושת השבועות הקרובים.`}</div>`;
   $("cList").querySelectorAll(".card.cp").forEach(bindContentCard);
 }
 

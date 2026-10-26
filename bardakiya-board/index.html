@@ -50,11 +50,20 @@ a.btn.primary { color: var(--cream); }
 .legend .chip[aria-pressed="false"] { opacity: .4; }
 .hist { margin-top: 18px; display: flex; flex-direction: column; gap: 8px; }
 .hist h2 { margin: 0 0 4px; font-size: 18px; }
-.hist .post { max-width: 640px; }
+.hist .hlist { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
 .dot { width: 12px; height: 12px; border-radius: 50%; flex: none; }
 
 .notice { font-size: 14px; background: var(--paper); border: 1.5px dashed var(--line); border-radius: 14px; padding: 10px 14px; margin-bottom: 14px; }
 
+/* מה שמחכה לאישור יושב בעמודה משלו מימין, ונכנס ללוח רק אחרי אישור */
+.board { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 12px; align-items: start; }
+.pending { background: var(--orange-t); border: 1.5px solid var(--orange); border-radius: 18px; padding: 10px; display: flex; flex-direction: column; gap: 10px; position: sticky; top: 10px; max-height: calc(100vh - 20px); overflow-y: auto; }
+.pending h2 { margin: 0; font-size: 17px; font-weight: 900; padding: 2px 4px 6px; border-bottom: 1.5px solid var(--orange); }
+.pending .plist { display: flex; flex-direction: column; gap: 10px; }
+.pitem { display: flex; flex-direction: column; gap: 6px; }
+.pitem .late { font-size: 12px; font-weight: 700; color: #9b3b2a; }
+.approve-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.approve-row .btn { padding: 5px 14px 7px; font-size: 14px; }
 .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
 .day { background: var(--paper); border-radius: 18px; border: 1.5px solid var(--line); padding: 10px; display: flex; flex-direction: column; gap: 10px; min-height: 200px; min-width: 0; }
 .day.today { border-color: var(--orange); box-shadow: 0 0 0 2px var(--orange) inset; }
@@ -66,10 +75,29 @@ a.btn.primary { color: var(--cream); }
 .add-day { margin-top: auto; border: 1.5px dashed var(--line); background: transparent; border-radius: 12px; padding: 6px; font-size: 13px; color: var(--ink-soft); font-weight: 700; }
 .add-day:hover { border-color: var(--ink-soft); color: var(--ink); }
 
-.post { text-align: right; border: 0; border-radius: 14px; padding: 0; overflow: hidden; display: flex; flex-direction: column; background: var(--tint); width: 100%; min-width: 0; }
-.post:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(92,74,99,.15); }
-.post .thumb { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; display: block; max-width: 100%; }
-.post .pbody { padding: 9px 10px 11px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.post { text-align: right; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; background: var(--tint); width: 100%; min-width: 0; }
+.post:hover { box-shadow: 0 6px 16px rgba(92,74,99,.15); }
+.post .thumb { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; display: block; max-width: 100%; cursor: pointer; }
+.post.is-story .thumb { aspect-ratio: 9 / 16; max-height: 300px; }
+.post .pbody { border: 0; background: transparent; text-align: right; padding: 9px 10px 11px; display: flex; flex-direction: column; gap: 6px; min-width: 0; width: 100%; }
+/* קרוסלה: כל התמונות בתוך הכרטיס, גוללים ימינה ושמאלה */
+.car { position: relative; }
+.slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; cursor: pointer; }
+.slides::-webkit-scrollbar { display: none; }
+.slides img { flex: 0 0 100%; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; scroll-snap-align: start; display: block; }
+.car .count { position: absolute; top: 6px; left: 6px; background: rgba(92,74,99,.75); color: var(--cream); font-size: 12px; font-weight: 700; border-radius: 999px; padding: 1px 8px 3px; pointer-events: none; font-variant-numeric: tabular-nums; }
+.car .nav { position: absolute; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%; border: 0; background: rgba(255,251,240,.9); color: var(--ink); font-size: 20px; font-weight: 900; line-height: 1; padding: 0 0 3px; box-shadow: 0 2px 6px rgba(92,74,99,.25); }
+.car .nav.prev { right: 6px; } .car .nav.next { left: 6px; }
+.car .nav:disabled { opacity: 0; pointer-events: none; }
+/* סטוריז: שורה קטנה משלהם בתחתית כל יום */
+.sec { font-size: 12px; font-weight: 900; color: var(--ink-soft); padding: 4px 4px 0; border-top: 1.5px dashed var(--line); }
+.stories { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+.story { flex: none; width: 76px; border: 0; padding: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 3px; text-align: center; }
+.story img, .story .noimg { width: 76px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 10px; border: 2.5px solid var(--line); display: block; background: var(--cream); }
+.story .noimg { display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--ink-soft); }
+.story[data-s="מאושר"] img { border-color: #8fd18d; }
+.story .stime { font-size: 12px; font-weight: 700; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.story .status { align-self: center; font-size: 11px; padding: 1px 7px 2px; }
 .post .meta { display: flex; justify-content: space-between; gap: 6px; font-size: 12px; font-weight: 700; color: var(--ink-soft); }
 .post .title { font-size: 15px; font-weight: 900; line-height: 1.25; overflow-wrap: anywhere; }
 .status { align-self: flex-start; font-size: 12px; font-weight: 900; border-radius: 999px; padding: 2px 10px 4px; background: var(--paper); border: 1.5px solid var(--ink); }
@@ -101,6 +129,11 @@ a.btn.primary { color: var(--cream); }
 .err { color: #9b3b2a; font-size: 14px; font-weight: 700; }
 .small { font-size: 13px; color: var(--ink-soft); }
 
+@media (max-width: 1200px) {
+  .board { grid-template-columns: 1fr; }
+  .pending { position: static; max-height: none; }
+  .pending .plist { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}
 @media (max-width: 900px) {
   .week { grid-template-columns: 1fr; }
   .day { min-height: 0; }
@@ -139,7 +172,10 @@ a.btn.primary { color: var(--cream); }
   </div>
 
   <div class="notice" id="notice" hidden></div>
-  <main class="week" id="week" aria-live="polite"></main>
+  <div class="board">
+    <aside class="pending" id="pending" aria-label="ממתין לאישור"></aside>
+    <main class="week" id="week" aria-live="polite"></main>
+  </div>
   <section class="hist" id="hist" hidden></section>
 </div>
 
@@ -163,6 +199,8 @@ let posts = [];
 let db = null, assets = null, userCap = null, canWrite = false, myId = null;
 const hidden = new Set();
 const CLOSED = ["פורסם", "נדחה"]; // מה שפורסם או נדחה עובר להיסטוריה ולא מופיע בלוח השבועי
+const PENDING = "מחכה לאישור"; // מחכה בעמודה משלו, ונכנס ללוח רק אחרי אישור
+const isStory = p => p.format === "סטורי";
 let showHist = false;
 let weekStart = startOfWeek(new Date());
 
@@ -199,17 +237,54 @@ function render() {
   const week = document.getElementById("week"); week.textContent = "";
   for (let i = 0; i < 14; i++) {
     const d = addDays(weekStart, i), key = iso(d);
-    const dayPosts = posts.filter(p => p.date === key && !hidden.has(p.pillar) && !CLOSED.includes(p.status)).sort((a, b) => (a.time || "").localeCompare(b.time || ""));
+    const dayItems = posts.filter(p => p.date === key && !hidden.has(p.pillar) && !CLOSED.includes(p.status) && p.status !== PENDING).sort((a, b) => (a.time || "").localeCompare(b.time || ""));
+    const dayPosts = dayItems.filter(p => !isStory(p)), dayStories = dayItems.filter(isStory);
     const col = el("section", { class: "day" + (key === today ? " today" : "") + (key < today ? " past" : ""), "aria-label": DAYS[i % 7] + " " + short(d) },
       el("div", { class: "dayhead" }, el("b", { text: DAYS[i % 7] }), el("span", { text: short(d) })));
     const list = el("div", { class: "posts" });
-    if (!dayPosts.length) list.append(el("div", { class: "empty", text: "אין פוסטים" }));
+    if (!dayItems.length) list.append(el("div", { class: "empty", text: "אין כלום" }));
     for (const p of dayPosts) list.append(card(p));
     col.append(list);
+    if (dayStories.length) {
+      const row = el("div", { class: "stories" });
+      for (const p of dayStories) row.append(storyCard(p));
+      col.append(el("div", { class: "sec", text: "סטוריז (" + dayStories.length + ")" }), row);
+    }
     if (canWrite) col.append(el("button", { class: "add-day", type: "button", onclick: () => openEdit({ date: key }) , text: "+ הוספה" }));
     week.append(col);
   }
+  renderPending();
   renderHist();
+}
+
+function renderPending() {
+  const box = document.getElementById("pending"); box.textContent = "";
+  const today = iso(new Date());
+  const wait = posts.filter(p => p.status === PENDING && !hidden.has(p.pillar)).sort((a, b) => ((a.date || "") + (a.time || "")).localeCompare((b.date || "") + (b.time || "")));
+  box.append(el("h2", { text: "ממתין לאישור (" + wait.length + ")" }));
+  if (!wait.length) { box.append(el("div", { class: "empty", text: "אין כרגע מה לאשר" })); return; }
+  for (const [name, group] of [["פוסטים", wait.filter(p => !isStory(p))], ["סטוריז", wait.filter(isStory)]]) {
+    if (!group.length) continue;
+    const list = el("div", { class: "plist" });
+    for (const p of group) {
+      const item = el("div", { class: "pitem" }, card(p, true));
+      // תאריך שעבר: לא מאשרים בלחיצה אחת, כי מה שמאושר עולה לבד. קודם מעדכנים תאריך בחלון הפוסט.
+      if (p.date && p.date < today) item.append(el("div", { class: "late", text: "התאריך עבר. לעדכן תאריך לפני אישור" }));
+      else if (editorKey) item.append(approveRow(p));
+      list.append(item);
+    }
+    box.append(el("div", { class: "sec", text: name + " (" + group.length + ")" }), list);
+  }
+}
+
+function approveRow(p) {
+  const msg = el("span", { class: "small", role: "status" });
+  const b = el("button", { class: "btn primary", type: "button", text: "✅ מאשרת", onclick: async () => {
+    b.disabled = true; msg.textContent = "שומרת…";
+    try { await api("/api/update", { id: p.id, changes: { status: "מאושר" } }); await loadSheet(); }
+    catch (e) { b.disabled = false; msg.textContent = e.message === "auth" ? "הכניסה פגה. בקשי מהבוט קישור חדש (“כניסה ללוח”)." : "השמירה לא הצליחה. נסי שוב בעוד רגע."; }
+  } });
+  return el("div", { class: "approve-row" }, b, msg);
 }
 
 function renderHist() {
@@ -220,17 +295,45 @@ function renderHist() {
   if (!showHist) return;
   box.append(el("h2", { text: "היסטוריה: מה שפורסם או נדחה" }));
   if (!done.length) box.append(el("div", { class: "empty", text: "עוד אין כאן כלום" }));
-  for (const p of done) box.append(card(p, true));
+  const list = el("div", { class: "hlist" });
+  for (const p of done) list.append(card(p, true));
+  box.append(list);
 }
 
 function card(p, withDate) {
   const pl = pillar(p.pillar);
-  const b = el("button", { class: "post", type: "button", style: "--tint:" + pl.tint, onclick: () => openView(p.id) });
-  if (p.images && p.images[0]) b.append(el("img", { class: "thumb", src: p.images[0], alt: "", loading: "lazy" }));
-  b.append(el("div", { class: "pbody" },
+  const b = el("article", { class: "post" + (isStory(p) ? " is-story" : ""), style: "--tint:" + pl.tint });
+  const imgs = p.images || [];
+  if (imgs.length > 1) b.append(slides(p));
+  else if (imgs[0]) b.append(el("img", { class: "thumb", src: imgs[0], alt: "", loading: "lazy", onclick: () => openView(p.id) }));
+  b.append(el("button", { class: "pbody", type: "button", onclick: () => openView(p.id) },
     el("div", { class: "meta" }, el("span", { text: (withDate && p.date ? short(new Date(p.date + "T12:00")) + " · " : "") + (p.time || "") }), el("span", { text: p.format || "" })),
     el("div", { class: "title", text: p.title || "בלי כותרת" }),
     el("span", { class: "status", "data-s": p.status || "רעיון", text: p.status || "רעיון" })));
+  return b;
+}
+
+// קרוסלה בתוך הכרטיס: גלילה ימינה ושמאלה (או החצים), עם מונה תמונות. לחיצה על תמונה פותחת את הפוסט.
+function slides(p) {
+  const n = p.images.length;
+  const strip = el("div", { class: "slides", dir: "rtl", tabindex: "0", "aria-label": "קרוסלה, " + n + " תמונות", onclick: () => openView(p.id) });
+  p.images.forEach(src => strip.append(el("img", { src, alt: "", loading: "lazy" })));
+  const count = el("span", { class: "count", text: "1/" + n });
+  const prev = el("button", { class: "nav prev", type: "button", "aria-label": "התמונה הקודמת", dir: "ltr", text: "›", disabled: "disabled" });
+  const next = el("button", { class: "nav next", type: "button", "aria-label": "התמונה הבאה", dir: "ltr", text: "‹" });
+  const at = () => Math.min(n - 1, Math.round(Math.abs(strip.scrollLeft) / (strip.clientWidth || 1)));
+  const go = step => strip.scrollTo({ left: -(at() + step) * strip.clientWidth, behavior: "smooth" });
+  prev.onclick = e => { e.stopPropagation(); go(-1); };
+  next.onclick = e => { e.stopPropagation(); go(1); };
+  strip.addEventListener("scroll", () => { const i = at(); count.textContent = (i + 1) + "/" + n; prev.disabled = i === 0; next.disabled = i === n - 1; }, { passive: true });
+  return el("div", { class: "car" }, strip, count, prev, next);
+}
+
+function storyCard(p) {
+  const st = p.status || "רעיון";
+  const b = el("button", { class: "story", type: "button", "data-s": st, title: p.title || "", "aria-label": "סטורי: " + (p.title || "") + ", " + st, onclick: () => openView(p.id) });
+  b.append(p.images && p.images[0] ? el("img", { src: p.images[0], alt: "", loading: "lazy" }) : el("span", { class: "noimg", text: "אין תמונה" }),
+    el("span", { class: "stime", text: p.time || "" }), el("span", { class: "status", "data-s": st, text: st }));
   return b;
 }
 

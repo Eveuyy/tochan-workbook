@@ -613,7 +613,7 @@ function renderContent() {
   if (!c) { $("cSub").innerHTML = ""; $("cList").innerHTML = `<div class="empty">לא הצלחתי לקרוא כרגע את לוח התוכן.</div>`; return; }
   const live = c.filter((p) => !isClosed(p)), hist = c.filter(isClosed).reverse();
   const stories = live.filter(isStory), posts = live.filter((p) => !isStory(p));
-  $("cSub").innerHTML = [["story", "סטוריז", stories.length], ["post", "פוסטים", posts.length], ["hist", "🗂 היסטוריה", hist.length]]
+  $("cSub").innerHTML = [["story", "סטוריז", stories.length], ["post", "פוסטים", posts.length], ["hist", "היסטוריה", hist.length]]
     .map(([k, l, n]) => `<button type="button" data-k="${k}" aria-pressed="${CTAB === k}">${l}<span class="n">${n}</span></button>`).join("");
   $("cSub").querySelectorAll("button").forEach((b) => (b.onclick = () => { CTAB = b.dataset.k; store.set("bt-ctab", CTAB); renderContent(); }));
   const list = CTAB === "story" ? stories : CTAB === "post" ? posts : hist;

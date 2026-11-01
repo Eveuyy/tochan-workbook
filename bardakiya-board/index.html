@@ -497,8 +497,6 @@ document.getElementById("prevW").onclick = () => { weekStart = addDays(weekStart
 document.getElementById("nextW").onclick = () => { weekStart = addDays(weekStart, 7); render(); };
 document.getElementById("todayW").onclick = () => { weekStart = startOfWeek(new Date()); render(); };
 
-render();
-
 // ---------- מצב עריכה לאיב (20.10.2026) ----------
 // הכניסה דרך קישור אישי שבוט המשרד שולח לאיב ("כניסה ללוח"). המפתח נשמר רק בדפדפן שלה.
 const API = "https://bardakiya-board-api.coheneve95.workers.dev";
@@ -511,6 +509,7 @@ try { editorKey = localStorage.getItem("bardakiyaBoardKey"); } catch (e) {}
   try { localStorage.setItem("bardakiyaBoardKey", editorKey); } catch (e) {}
   history.replaceState(null, "", location.pathname + location.search);
 })();
+render();  // אחרי קריאת המפתח: render משתמש ב-editorKey, ובטעינה ישירה של #pending הדף קרס (1.11.2026)
 async function api(path, body) {
   const r = await fetch(API + path, { method: "POST", headers: { "Content-Type": "application/json", "X-Board-Key": editorKey }, body: JSON.stringify(body || {}) });
   const j = await r.json().catch(() => ({}));

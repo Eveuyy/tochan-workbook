@@ -398,6 +398,11 @@ h1,h2,h3,.cover-title,.chapter-title,.page-title{font-weight:900;}
 
 <div class="book" id="book"></div>
 
+<div id="moveAnswersBox" style="display:none;text-align:center;padding:24px 20px 0;">
+  <a class="btn" id="moveAnswers" href="https://school.evecontent.co.il/workbook/import">להעביר את התשובות שלי</a>
+  <p style="margin:10px 0 0;color:var(--ink-soft);font-size:.85rem;">כל מה שכתבת כאן יעבור לחוברת החדשה באזור האישי.</p>
+</div>
+
 <footer class="done-footer">ההתקדמות שלך נשמרת אוטומטית בדפדפן הזה 🤍</footer>
 
 <script>
@@ -1425,4 +1430,20 @@ document.addEventListener('DOMContentLoaded',boot);
 
 </script>
 
+<script>
+/* Moves the answers from this browser to the new workbook. They travel in the URL fragment, which is never sent to any server. */
+(function(){
+  var raw = localStorage.getItem('tocan_workbook_v1');
+  if(!raw || raw === '{}') return;
+  document.getElementById('moveAnswersBox').style.display = 'block';
+  document.getElementById('moveAnswers').addEventListener('click', function(e){
+    e.preventDefault();
+    var bytes = new TextEncoder().encode(localStorage.getItem('tocan_workbook_v1') || '{}');
+    var bin = '';
+    for(var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    var d = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    location.href = this.href + '#d=' + d;
+  });
+})();
+</script>
 </body></html>

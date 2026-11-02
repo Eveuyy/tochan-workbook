@@ -198,6 +198,17 @@ main{position:relative;z-index:1}
 .dots i{width:6px;height:6px;border-radius:6px;background:var(--line);transition:width .3s,background .3s}
 .dots i.on{width:22px;background:var(--a1);box-shadow:0 0 10px var(--a1)}
 
+.ls{max-width:1100px;margin:0 auto;padding:0 16px;text-align:right}
+.ls-part{margin:44px 0 14px;font-size:clamp(19px,2.2vw,24px);font-weight:900}
+.ls-part span{display:inline-block;margin-inline-start:8px;font-size:14px;font-weight:500;color:var(--ink-2)}
+.ls-grid{display:grid;gap:10px}
+@media (min-width:900px){.ls-grid{grid-template-columns:1fr 1fr}}
+.li{display:grid;grid-template-columns:84px 1fr;gap:14px;align-items:center;padding:12px;border-radius:18px;background:var(--surface-solid);border:1px solid var(--line)}
+.li img{width:84px;height:104px;object-fit:cover;border-radius:12px;display:block}
+.li .n{font-size:13px;font-weight:700;color:var(--a1)}
+.li h3{font-size:17.5px;font-weight:900;line-height:1.25;margin:2px 0 4px}
+.li p{font-size:14.5px;line-height:1.4;color:var(--ink-2)}
+
 /* ---------- 8 RING ---------- */
 .ring-sec{overflow:hidden}
 .ring-stage{height:clamp(380px,46vw,440px);perspective:1200px;margin-top:20px;position:relative;z-index:2}
@@ -509,35 +520,40 @@ body.rv-on{overflow:hidden}
   </div>
 </section>
 
-<!-- 7 LESSON REEL -->
-<section class="center" id="learn" style="padding-block:90px;position:relative">
-  <div class="wrap narrow" style="padding-inline:16px">
+<!-- 7 LESSONS: a list you can scan, what you learn in each lesson -->
+<section class="sec center" id="learn">
+  <div class="wrap narrow">
     <h2 class="h2-s">20 שיעורים. <span class="lit">שני חלקים.</span></h2>
-    <p class="sub">בחלק הראשון בונים את המסר ואת הטקסט. בחלק השני מקימים אותו לתחייה. בכל שיעור: מה בדרך כלל לא עובד, ומה אני עושה אחרת. מחליקים ←</p>
+    <p class="sub">מה תדעו לעשות אחרי כל שיעור.</p>
   </div>
-  <div class="reel" id="reel" tabindex="0" aria-label="השיעורים, להחלקה">
-    <article class="lc led"><div class="clip"><video src="clips/coffee.mp4" poster="clips/coffee.jpg" muted loop playsinline preload="none"></video><span class="num">01</span><span class="tag mono">Part 01</span></div><div class="body"><h3>איפה נולדת מחשבה</h3><p class="miss">כשרוב האנשים יושבים לחשוב על תוכן, הם מתחילים מהנושא.</p><p class="q">״נושא הוא עדיין לא סרטון. אנחנו חיים בתוך רגעים קטנים.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/alone.mp4" poster="clips/alone.jpg" muted loop playsinline preload="none"></video><span class="num">02</span><span class="tag mono">Part 01</span></div><div class="body"><h3>מה אני רוצה שיקרה</h3><p class="miss">אפשר לקבל מאות אלפי צפיות על סרטון שלא קידם אתכם לשום מקום.</p><p class="q">״לפני שאני שואלת אם סרטון הצליח, אני צריכה לדעת מה המטרה שלו.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/washer.mp4" poster="clips/washer.jpg" muted loop playsinline preload="none"></video><span class="num">03</span><span class="tag mono">Part 01</span></div><div class="body"><h3>מה התוכן עושה לצופה</h3><p class="miss">ארבע דרכים לגרום לצופה לשמור, לשלוח או לפנות: לתת מילים, לעשות סדר, לשנות זווית ולפתוח אפשרות.</p><p class="q">״נתתי לה שפה למשהו שכבר היה בתוכה״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/sleep.mp4" poster="clips/sleep.jpg" muted loop playsinline preload="none"></video><span class="num">04</span><span class="tag mono">Part 01</span></div><div class="body"><h3>מסע הצופה</h3><p class="miss">איך לוקחים את הצופה למסקנה, בלי פשוט לזרוק אותה עליו.</p><p class="q">״מסר חזק לא רק נאמר לצופה, הוא לוקח אותו למקום אחר״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/brain.mp4" poster="clips/brain.jpg" muted loop playsinline preload="none"></video><span class="num">05</span><span class="tag mono">Part 01</span></div><div class="body"><h3>הטכניקות שלי לקפיצה יצירתית</h3><p class="miss">כמעט על כל נושא כבר דיברו. החוכמה היא למצוא דרך שעוד לא ראו להגיד אותו.</p><p class="q">״אם איבדנו בדרך את מה שרצינו להגיד, פשוט קפצנו רחוק מדי.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/drive.mp4" poster="clips/drive.jpg" muted loop playsinline preload="none"></video><span class="num">06</span><span class="tag mono">Part 01</span></div><div class="body"><h3>הצ׳אט כשותף לדרך</h3><p class="miss">״תכתוב לי סרטון על גבייה מלקוחות״ זה להגיע לצ׳אט בידיים ריקות.</p><p class="q">״הקול שלכם צריך להישאר שלכם״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/barbie.mp4" poster="clips/barbie.jpg" muted loop playsinline preload="none"></video><span class="num">07</span><span class="tag mono">Part 02</span></div><div class="body"><h3>מכירים את מגרש המשחקים</h3><p class="miss">ביקשתם ״אישה עומדת בים״ וקיבלתם כל פעם אישה אחרת?</p><p class="q">״את כל מה שלא אמרתי, המחולל צריך להשלים לבד.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/beach.mp4" poster="clips/beach.jpg" muted loop playsinline preload="none"></video><span class="num">08</span><span class="tag mono">Part 02</span></div><div class="body"><h3>בונים גיליון דמות של עצמנו</h3><p class="miss">הגיליון נראה בול אתם, ובווידאו יצאה גרסה שנראית יותר כמו אחותכם?</p><p class="q">״אחת הטעויות הכי נפוצות שאני רואה היא הכנה של גיליון דמות בעזרת AI.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/dress.mp4" poster="clips/dress.jpg" muted loop playsinline preload="none"></video><span class="num">09</span><span class="tag mono">Part 02</span></div><div class="body"><h3>בדיקת זהות</h3><p class="miss">בודקים את הדמות באיכות הכי זולה, ומתאכזבים מהדמיון?</p><p class="q">״בארבע מאות שמונים רמת הפרטים ממש יורדת, ולריאליזם זה קריטי.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/les-10.mp4" poster="clips/les-10.jpg" muted loop playsinline preload="none"></video><span class="num">10</span><span class="tag mono">Part 02</span></div><div class="body"><h3>יוצרים דמות חדשה ב-AI</h3><p class="miss">״למה היא נראית כל כך AI?״ נותנים לצ׳אט לאבחן בעצמו.</p><p class="q">״אנחנו רוצים פשוט לברוח משלמות, כי זה הדבר שהכי מסגיר AI שיש.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/les-11.mp4" poster="clips/les-11.jpg" muted loop playsinline preload="none"></video><span class="num">11</span><span class="tag mono">Part 02</span></div><div class="body"><h3>מה מסתכלים עליו בתמונה</h3><p class="miss">נתתם הוראות שסותרות זו את זו? המחולל מחליט לבד מה חשוב, ומשבש את התוצאה.</p><p class="q">״לא כמה שיותר מידע, אלא כמה שיותר מידע רלוונטי.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/les-12.mp4" poster="clips/les-12.jpg" muted loop playsinline preload="none"></video><span class="num">12</span><span class="tag mono">Part 02</span></div><div class="body"><h3>זוויות מצלמה</h3><p class="miss">אם לא אומרים למחולל איך לראות את הסצנה, משאירים לו עוד החלטה משמעותית.</p><p class="q">״המצלמה לא רק מראה לנו מה קורה, היא משפיעה על איך שאנחנו מרגישים את מה שקורה.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/les-13.mp4" poster="clips/les-13.jpg" muted loop playsinline preload="none"></video><span class="num">13</span><span class="tag mono">Part 02</span></div><div class="body"><h3>בונים פריים: מה לנעול ומה להשאיר פתוח</h3><p class="miss">גיליון בגד עם דוגמנית? תשעים ותשעה אחוז שהמחולל ייקח גם את הפנים שלה, גם אם ביקשתם שלא.</p><p class="q">״רפרנס תמונה למחולל הוא לא רק השראה, הוא ממש הוראה״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/baby.mp4" poster="clips/baby.jpg" muted loop playsinline preload="none"></video><span class="num">14</span><span class="tag mono">Part 02</span></div><div class="body"><h3>השוואת המחוללים</h3><p class="miss">חמישה מחוללים, אותה נקודת פתיחה, שלוש סצנות.</p><p class="q">״לא תמיד החדש או היקר הוא הטוב ביותר״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/embryo.mp4" poster="clips/embryo.jpg" muted loop playsinline preload="none"></video><span class="num">15</span><span class="tag mono">Part 02</span></div><div class="body"><h3>מתמונה לווידאו: הבסיס</h3><p class="miss">ביקשתם בעיטה זריזה וקיבלתם סלואו מושן? המחולל ממלא את כל הזמן שנתתם לו.</p><p class="q">״לא רק מה היא עושה, אלא איך היא עושה את זה.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/night.mp4" poster="clips/night.jpg" muted loop playsinline preload="none"></video><span class="num">16</span><span class="tag mono">Part 02</span></div><div class="body"><h3>מה לא עושים עם המחוללים</h3><p class="miss">חמישה ניסיונות יקרים על שוט אחד של שיער מסתובב.</p><p class="q">״לא לבדוק רעיון יקר בדרך הכי יקרה. למדתי את זה לגמרי מהכיס שלי.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/alone.mp4" poster="clips/alone.jpg" muted loop playsinline preload="none"></video><span class="num">17</span><span class="tag mono">Part 02</span></div><div class="body"><h3>כשזה לא יוצא</h3><p class="miss">עשיתם הכול נכון וזה עדיין לא יוצא? הרבה אנשים מתחילים לשנות הכול.</p><p class="q">״כשנותנים לצ׳אט עיניים הוא יכול לתקן את עצמו״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/dress.mp4" poster="clips/dress.jpg" muted loop playsinline preload="none"></video><span class="num">18</span><span class="tag mono">Part 02</span></div><div class="body"><h3>לצלם את עצמכם ולהחליף את העולם</h3><p class="miss">במקום עשרות ניסיונות להסביר למחולל תנועה, מצלמים את עצמכם ומחליפים את העולם.</p><p class="q">״במקום ׳תסיר לי את השרשרת׳, מבקשים ׳תחליף לי את השרשרת בצווארון חלק׳.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/drive.mp4" poster="clips/drive.jpg" muted loop playsinline preload="none"></video><span class="num">19</span><span class="tag mono">Part 02</span></div><div class="body"><h3>דיבור, עברית וליפסינק</h3><p class="miss">עברית תמיד נשארת מאחור. ככה בכל זאת גורמים לדמות לדבר עברית כמו שצריך.</p><p class="q">״לליפסינק הרבה יותר קל לעבוד על סרטון שכבר יש בו תנועות שפתיים.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/beach.mp4" poster="clips/beach.jpg" muted loop playsinline preload="none"></video><span class="num">20</span><span class="tag mono">Part 02</span></div><div class="body"><h3>יש לי טקסט. מה רואים?</h3><p class="miss">״איזו עריכה מטורפת!״ האמת? זה החלק הכי פשוט.</p><p class="q">״מה שנתן את אפקט הוואו הוא לא העריכה, אלא השוטים.״</p></div></article>
+  <div class="ls">
+    <h3 class="ls-part">חלק 1 · המסר והטקסט <span>בלי שום מנוי בתשלום</span></h3>
+    <div class="ls-grid">
+      <article class="li"><img src="clips/coffee.jpg" alt="" loading="lazy"><div><span class="n">שיעור 1</span><h3>למצוא רעיון שאנשים מזהים בו את עצמם</h3><p>נושא הוא עדיין לא סרטון. יורדים מהנושא הגדול לרגע הקטן שבו הצופה אומר ״רגע, זה אני״, ולמחשבה שהוא לא אומר בקול.</p></div></article>
+      <article class="li"><img src="clips/alone.jpg" alt="" loading="lazy"><div><span class="n">שיעור 2</span><h3>להחליט מה הסרטון צריך לעשות, לפני שמצלמים</h3><p>צפיות זה לא הכול. מפרידים בין מה הסרטון עושה בשבילכם לבין מה הצופה עושה איתו: שולח, שומר או פונה אליכם.</p></div></article>
+      <article class="li"><img src="clips/washer.jpg" alt="" loading="lazy"><div><span class="n">שיעור 3</span><h3>לגרום לצופה להרגיש בדיוק את מה שצריך</h3><p>ארבע הדרכים שאני חוזרת אליהן: לתת מילים, לעשות סדר, לשנות זווית ולפתוח אפשרות.</p></div></article>
+      <article class="li"><img src="clips/sleep.jpg" alt="" loading="lazy"><div><span class="n">שיעור 4</span><h3>לבנות סרטון שלוקח את הצופה ממקום למקום</h3><p>איך מובילים את הצופה למסקנה בלי לזרוק אותה עליו, על הדוגמה של סרטון ההורמונים.</p></div></article>
+      <article class="li"><img src="clips/brain.jpg" alt="" loading="lazy"><div><span class="n">שיעור 5</span><h3>להגיד משהו מוכר בדרך שעוד לא ראו</h3><p>שלוש הטכניקות שלי לקפיצה יצירתית: אנלוגיה שהופכת לעולם שלם, משפט מוכר עם טוויסט, וויזואל שמרים את הטקסט.</p></div></article>
+      <article class="li"><img src="clips/drive.jpg" alt="" loading="lazy"><div><span class="n">שיעור 6</span><h3>לכתוב את הטקסט עם הצ׳אט, בקול שלכם</h3><p>מגיעים לצ׳אט עם כל החשיבה ולא בידיים ריקות, ויוצאים עם טקסט שנשמע כמוכם. כולל הפרומפט המסודר שלי.</p></div></article>
+    </div>
+    <h3 class="ls-part">חלק 2 · מקימים את הסרטון לתחייה</h3>
+    <div class="ls-grid">
+      <article class="li"><img src="clips/barbie.jpg" alt="" loading="lazy"><div><span class="n">שיעור 7</span><h3>להבין איך מדברים עם מחוללים</h3><p>פרומפט, רפרנס וגיליון. למה ביקשתם ״אישה עומדת בים״ וקיבלתם כל פעם אישה אחרת, ואיך שולטים בזה.</p></div></article>
+      <article class="li"><img src="clips/beach.jpg" alt="" loading="lazy"><div><span class="n">שיעור 8</span><h3>לבנות גיליון ריאליסטי שנראה כמוכם באמת</h3><p>הטעויות הנפוצות בניסיון לייצר את עצמנו, ולמה גיליון שנראה ״בול אתם״ יוצא בווידאו כמו האחות שלכם.</p></div></article>
+      <article class="li"><img src="clips/dress.jpg" alt="" loading="lazy"><div><span class="n">שיעור 9</span><h3>לבדוק שהדמות באמת אתם, לפני שמשקיעים</h3><p>בדיקת זהות ראשונה בקולבו, ואיזו איכות מספיקה כדי לא לבזבז קרדיטים.</p></div></article>
+      <article class="li"><img src="clips/les-10.jpg" alt="" loading="lazy"><div><span class="n">שיעור 10</span><h3>ליצור דמות חדשה שלא נראית AI</h3><p>בורחים משלמות, שכבה אחרי שכבה, ונותנים לצ׳אט לאבחן בעצמו מה עדיין מסגיר AI.</p></div></article>
+      <article class="li"><img src="clips/les-11.jpg" alt="" loading="lazy"><div><span class="n">שיעור 11</span><h3>לכתוב פרומפט לתמונה ולשלוט באור</h3><p>שישה סוגי אור על אותו פרומפט, ולמה הוראות שסותרות זו את זו מקלקלות את התוצאה.</p></div></article>
+      <article class="li"><img src="clips/les-12.jpg" alt="" loading="lazy"><div><span class="n">שיעור 12</span><h3>לבחור זווית מצלמה לפי מה שרוצים שירגישו</h3><p>גדלי שוט, גובה מצלמה, POV ומה כל אחד עושה לצופה. עם קובץ שליפה, בלי לזכור בעל פה.</p></div></article>
+      <article class="li"><img src="clips/les-13.jpg" alt="" loading="lazy"><div><span class="n">שיעור 13</span><h3>לבנות פריים בשכבות: דמות, בגד ומקום</h3><p>מה נותנים למחולל ומה לצ׳אט, ולמה בגד של דוגמנית יכול להכניס לכם את הפנים שלה לסרטון.</p></div></article>
+      <article class="li"><img src="clips/baby.jpg" alt="" loading="lazy"><div><span class="n">שיעור 14</span><h3>לבחור מחולל וידאו לפי מה שהסרטון צריך</h3><p>חמישה מחוללים, אותה נקודת פתיחה, שלוש סצנות. החדש או היקר הוא לא תמיד הטוב ביותר.</p></div></article>
+      <article class="li"><img src="clips/embryo.jpg" alt="" loading="lazy"><div><span class="n">שיעור 15</span><h3>להפוך תמונה לווידאו: תנועה, זמן וסאונד</h3><p>איך מתארים תנועה, למה בעיטה זריזה יוצאת בסלואו מושן, ולמה תמיד מבקשים בלי מוזיקה.</p></div></article>
+      <article class="li"><img src="clips/night.jpg" alt="" loading="lazy"><div><span class="n">שיעור 16</span><h3>לחסוך כסף, זמן ותסכול מול המחוללים</h3><p>שלושה דברים שלא עושים, כולל לא לבדוק רעיון יקר בדרך הכי יקרה. למדתי את זה מהכיס שלי.</p></div></article>
+      <article class="li"><img src="clips/peek-real.jpg" alt="" loading="lazy"><div><span class="n">שיעור 17</span><h3>לתקן כשזה לא יוצא, בלי לשנות הכול</h3><p>מחזירים את התוצאה לצ׳אט ונותנים לו עיניים, גם כשאתם לא יודעים מה מפריע לכם.</p></div></article>
+      <article class="li"><img src="clips/peek-world.jpg" alt="" loading="lazy"><div><span class="n">שיעור 18</span><h3>לצלם את עצמכם ולהחליף את העולם</h3><p>שלוש דרכים, לפי השאלה כמה דומים לעצמכם תרצו להיות בסרטון. הפנים, התנועה והעברית נשארים שלכם.</p></div></article>
+      <article class="li"><img src="clips/curlers.jpg" alt="" loading="lazy"><div><span class="n">שיעור 19</span><h3>לגרום לדמות לדבר עברית</h3><p>עברית תמיד נשארת מאחור. ככה עושים ליפסינק שעובד, ומה מכינים מראש כדי שיצליח.</p></div></article>
+      <article class="li"><img src="clips/pvc-boss.jpg" alt="" loading="lazy"><div><span class="n">שיעור 20</span><h3>להרכיב את הסרטון: מטקסט לשוטים ולעריכה</h3><p>סדר העבודה שלי, עם הטבלה של ״הבוס״. אפקט הוואו מגיע מהשוטים, לא מהעריכה.</p></div></article>
+    </div>
   </div>
-  <div class="dots" id="dots" aria-hidden="true"></div>
 </section>
 
 <!-- 8 RING -->
@@ -813,7 +829,7 @@ body.rv-on{overflow:hidden}
   /* ---------- videos play only on screen ---------- */
   function play(v){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
   var reel = document.getElementById('reel');
-  var vids = Array.prototype.slice.call(document.querySelectorAll('video')).filter(function(v){ return !reel.contains(v); });
+  var vids = Array.prototype.slice.call(document.querySelectorAll('video')).filter(function(v){ return !(reel && reel.contains(v)); });
   var vio = new IntersectionObserver(function(es){
     es.forEach(function(e){ var v = e.target; if (e.isIntersecting && !reduce) { v.preload = 'auto'; play(v); } else v.pause(); });
   }, {rootMargin:'200px 0px'});
@@ -956,7 +972,8 @@ body.rv-on{overflow:hidden}
     });
   })();
 
-  /* ---------- lesson reel ---------- */
+  /* ---------- lesson reel (replaced by a static list; kept for reference) ---------- */
+  if (reel) {
   var lcs = Array.prototype.slice.call(reel.children), dotsEl = document.getElementById('dots');
   lcs.forEach(function(){ dotsEl.appendChild(document.createElement('i')); });
   var dots = Array.prototype.slice.call(dotsEl.children), current = -1, reelOn = false;
@@ -977,6 +994,7 @@ body.rv-on{overflow:hidden}
   reel.addEventListener('scroll', function(){ requestAnimationFrame(coverflow); }, {passive:true});
   addEventListener('resize', coverflow);
   new IntersectionObserver(function(es){ reelOn = es[0].isIntersecting; current = -1; coverflow(); }, {threshold:.2}).observe(reel);
+  }
 
   /* ---------- ring ---------- */
   var ring = document.getElementById('ring'), msgs = Array.prototype.slice.call(ring.children), ringAngle = 0, ringHover = false, R = 300, ringOn = false;
@@ -1023,7 +1041,7 @@ body.rv-on{overflow:hidden}
     fcta.setAttribute('aria-hidden', show ? 'false' : 'true');
     requestAnimationFrame(loop);
   }
-  ringFrame(); coverflow();
+  ringFrame(); if (reel) coverflow();
   requestAnimationFrame(loop);
 })();
 </script>

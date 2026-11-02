@@ -231,6 +231,15 @@ main{position:relative;z-index:1}
 .stats span{padding:10px 16px;border-radius:16px;font-size:14.5px}
 .stats b{font-weight:900;font-size:20px;margin-inline-end:6px}
 
+.fit2{display:grid;gap:16px;max-width:880px;margin:36px auto 0}
+@media (min-width:760px){.fit2{grid-template-columns:1fr 1fr}}
+.fitc{border-radius:24px;padding:26px 22px;display:grid;gap:10px;justify-items:center;align-content:start}
+.fitc .fq{font-size:18px;line-height:1.45;color:var(--ink-2)}
+.fitc .fa{font-size:clamp(22px,2.6vw,28px);font-weight:900}
+.fitc .fs{font-size:16px;color:var(--ink-2);margin-top:-4px}
+.fitc .btn{margin-top:8px}
+#tCourse,#tBundle{scroll-margin-top:96px}
+
 /* ---------- 10 OFFER ---------- */
 .anchor{display:grid;justify-items:center;gap:6px}
 .anchor .old{font:900 clamp(64px,11vw,128px)/1 var(--f);letter-spacing:-.04em;color:var(--line);-webkit-text-stroke:1.5px var(--ink-2);position:relative}
@@ -613,20 +622,23 @@ body.rv-on{overflow:hidden}
 <div class="strip" aria-hidden="true"></div>
 
 
-<!-- 9b FIT -->
+<!-- 9b FIT: two plain answers, Eve's wording -->
 <section class="sec center" id="fit">
-  <div class="wrap narrow">
-    <div class="anchor"><span class="old">5,000 ₪</span><p>המחיר של סרטון אחד בהזמנה ממני. בקורס לומדים ליצור אותו בעצמכם.</p></div>
-    <h2 class="h2-s">למי זה מתאים?</h2>
-    <p class="sub">הקורס הזה הוא קומה מעל קורס הבסיס שלי. איפה אתם היום?</p>
-    <div class="opts" role="group" aria-label="איפה אתם היום">
-      <button class="opt" id="o1" data-a="0" aria-pressed="false">עוד לא יוצרים תוכן</button>
-      <button class="opt" id="o2" data-a="1" aria-pressed="true">יוצרים תוכן, AI חדש לנו</button>
-      <button class="opt" id="o3" data-a="2" aria-pressed="false">כבר עובדים עם מחוללים</button>
+  <div class="wrap">
+    <h2 class="h2-s">איך יודעים אם הקורס <span class="lit">מתאים לי?</span></h2>
+    <div class="fit2">
+      <div class="fitc glass">
+        <p class="fq">כבר יוצרים תוכן? יודעים לערוך? מרגישים שאתם יודעים לבנות מסר ברמה בסיסית?</p>
+        <p class="fa">קורס ה-AI בשבילכם.</p>
+        <a class="btn" href="#tCourse">לקורס</a>
+      </div>
+      <div class="fitc glass">
+        <p class="fq">עוד צריכים ללמוד עריכה? לא יודעים מה זה הוק?</p>
+        <p class="fa">הבאנדל בשבילכם.</p>
+        <p class="fs">יש בו את כל מה שצריך: שילוב של שני הקורסים.</p>
+        <a class="btn" href="#tBundle">לבאנדל</a>
+      </div>
     </div>
-    <p class="ans" id="ans" aria-live="polite"></p>
-    <a class="btn fit-go" id="fitGo" href="#offer">למסלול שמתאים לכם</a>
-    <p class="fit-note">לא בטוחים? אם אתם לא יודעים מה זה הוק, איך מפתחים נושא או איך עורכים עריכה בסיסית, הבאנדל הוא בשבילכם.</p>
   </div>
 </section>
 
@@ -871,17 +883,6 @@ body.rv-on{overflow:hidden}
   }
 
   /* ---------- chat ---------- */
-  /* ---------- comfort ---------- */
-  var answers = [
-    '<b>הבאנדל בשבילכם.</b> בקורס הבסיס לומדים הוק, פיתוח נושא, צילום ועריכה ומעלים סרטון ראשון. משם ממשיכים לכאן, בלי חורים בדרך.',
-    '<b>הקורס בשבילכם.</b> החלק השני מתחיל מאפס: מה זה מחולל, מה זה פרומפט, ואיך בונים דמות שנראית ממש כמוכם. החלק הראשון לוקח את המסר שלכם הרבה מעבר ל״מה זה הוק״.',
-    '<b>הקורס בשבילכם.</b> שוט יפה כבר יוצא לכם. פה תלמדו לבנות סביבו מסר שאנשים מרגישים, לשמור על דמות אמיתית משוט לשוט, ולהפסיק לבזבז קרדיטים.'
-  ];
-  var opts = Array.prototype.slice.call(document.querySelectorAll('.opt')), ans = document.getElementById('ans');
-  function pick(o){ opts.forEach(function(x){ x.setAttribute('aria-pressed', x === o ? 'true' : 'false'); }); ans.innerHTML = answers[+o.dataset.a]; var b = o.dataset.a === '0'; document.getElementById('tCourse').classList.toggle('rec', !b); document.getElementById('tBundle').classList.toggle('rec', b); }
-  opts.forEach(function(o){ o.addEventListener('click', function(){ pick(o); }); });
-  pick(opts[1]);
-
   /* ---------- reel player: opens over the page, nothing links out ---------- */
   (function(){
     var REELS = [{"t": "חופשת לידה", "w": "מפורק בשיעור 1", "src": "clips/reel-leave.mp4", "poster": "clips/pvc-leave.jpg", "views": "549,643", "likes": "28,000", "comments": "1,618", "shares": "14,222", "saves": "3,297", "list": ["מדויק אמרת את מה שלא יכולתי להסביר במילים לבעלי ❤️", "זה יפה, נכון וסוף סוף מישהו מסביר לנו את עצמנו 🩷", "תודה, בזכותך אני מבין את אשתי קצת יותר 🙏", "רואה וכל הגוף שלי צמרמורת. את מדברת אותי.", "התעוררתי עם הסרטון הזה ופשוט התחלתי לבכות . כמה מדוייק", "שלחתי לבעלי"]}, {"t": "כבר נגעו בי היום", "w": "מפורק בשיעור 4", "src": "clips/reel-touch.mp4", "poster": "clips/pvc-touch.jpg", "views": "440,870", "likes": "17,492", "comments": "676", "shares": "8,871", "saves": "3,558", "list": ["לא מבינה איך את מצליחה לתרגם בצורה כל כך מדויקת את הסיטואציות של האמהות. תודה עליך! חשבתי שאני משתגעת. אני מבינה שאני ממש נורמלית", "אני בכלל הומו ורווק למה אני עם צמרמורת😢", "הבעל צופה ומזדהה. תודה לך❤️", "וואו גרמת לי לדמעות. כל כך הרבה נשים שאני מלווה מרגישות ככה. תודה שאת הקול שלהן", "יו אני ממש בבינג על העמוד שלך כל סרטון אני רואה לפחות 4 פעמים ומתרגשת ומרגישה. איזה מטורף לי שאת יוצאת ומספרת מה שאני חווה ובטח עוד אלפי אמהות . זהו בייי חפרתי"]}, {"t": "הבוס", "w": "מפורק בשיעור 5", "src": "clips/reel-boss.mp4", "poster": "clips/pvc-boss.jpg", "views": "316,300", "likes": "12,812", "comments": "578", "shares": "5,221", "saves": "802", "list": ["למה את כל כך מדויקת?! אומרת בקול את מה שרבות מאיתנו מרגישות הרבה פעמים", "מדהימה! תודה בזכותך אני יכולה להסביר לעצמי מה אני מרגישה ❤️", "את ככ טובה. כששאלו אותי מה קשה בחופשת לידה ואמרתי הרדמות וחיתולים כי פשוט לא היו לי מילים להסביר את התחושות שאת מצליחה לתאר. את מדהימה", "עם תינוק בן חודש וחצי בבית ודמעות בעיניים . תודה ❤️"]}, {"t": "קצת מטומטמת", "w": "מפורק בשיעור 1", "src": "clips/reel-dumb.mp4", "poster": "clips/pvc-dumb.jpg", "views": "241,097", "likes": "9,830", "comments": "528", "shares": "6,911", "saves": "1,336", "list": ["את מעולה ומדהימה, מתה על הסרטונים שלך!\nאומרת את מה שכולנו חושבות בקול וגורמת לכל אמא פה לא להרגיש לבד ❤️", "אמאלה סרטון שלישי שלך שאני צופה בו ואומרת לעצמי וואו כמה היא מתארת את האמת בצורה כל כך מדויקת !", "וואי את מעולה!!! 🔥🔥 איך את מצליחה לספר כל כך מדויק את כל מה שקורה לי בראש!!", "כשרון מטורף לדייק כל פעם מחדש את הרגשות שקשה לבטא 👏", "כאילו נכנסת למוח שלי ועשית על זה סרטון !!! אלופה 😍🤍"]}, {"t": "הורמונים", "w": "מפורק בשיעור 4", "src": "clips/reel-horm.mp4", "poster": "clips/pvc-horm.jpg", "views": "240,007", "likes": "12,277", "comments": "637", "shares": "8,060", "saves": "1,561", "list": ["ואווווו שלחתי לבעלי כדי שמישהו יסביר לו כי לי אין אפשרות\nזה מצויין זה בדיוק!!! מה שאני מרגישה", "אין אישה שלא תעשה פורוורד לבן זוג שלה פשוט אין!!", "איבוש אין עלייך!!! ♥️♥️ את מצילה מערכות זוגיות . כל אישה . חכמה שתעביר לבעלה בטוחה שזה יחדור אליהם ויבינו פעם אחת ולתמיד מה זאת א י ש ה", "וואי מסביר את מה שאני מרגישה בתוכי כל פעם מחדש ! תודה על זה! חייבת לשלוח לבחור ( או שניים )", "אני בדיוק ברגע הזה בחודש שהסרטון שלך גרם לי לבכות"]}];

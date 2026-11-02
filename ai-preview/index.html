@@ -181,6 +181,18 @@ main{position:relative;z-index:1}
 .lc .body{padding:18px 20px 20px;display:grid;gap:8px;text-align:right;flex:1;align-content:start}
 .lc h3{font-size:20px;font-weight:900;line-height:1.15}
 .lc .q{font-size:15.5px;color:var(--ink-2)}
+.lc .miss{font-size:15px;font-weight:700;line-height:1.35;color:var(--ink)}
+.peek{max-width:760px;margin:40px auto 0;border-radius:24px;overflow:hidden;aspect-ratio:16/9;background:#000}
+.peek video{width:100%;height:100%;display:block;object-fit:cover}
+.peek-h{margin-top:56px;font-size:clamp(20px,2.4vw,26px);font-weight:900}
+.peek-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px;margin:22px auto 0}
+.peek-mini{margin:0}
+.peek-mini .peek{margin:0;border-radius:18px}
+.peek-mini figcaption{margin-top:10px;font-size:15.5px;color:var(--ink-2);text-align:center}
+.peek-mini figcaption b{display:block;color:var(--ink);font-size:14px;letter-spacing:.02em}
+@media (max-width:760px){.peek-row{grid-template-columns:1fr;gap:26px}}
+.peek-lines{list-style:none;padding:0;margin:40px auto 0;max-width:620px;display:grid;gap:18px}
+.peek-lines li{font-size:clamp(20px,2.6vw,26px);font-weight:900;line-height:1.25}
 .dots{display:flex;justify-content:center;gap:6px}
 .dots i{width:6px;height:6px;border-radius:6px;background:var(--line);transition:width .3s,background .3s}
 .dots i.on{width:22px;background:var(--a1);box-shadow:0 0 10px var(--a1)}
@@ -400,6 +412,57 @@ body.rv-on{overflow:hidden}
   </div>
 </section>
 
+<!-- 9c PEEK: the opening of the course + short moments from lessons, Eve's own words -->
+<section class="sec center" id="peek">
+  <div class="wrap">
+    <h2 class="h2-s">הצצה <span class="lit">לתוך הקורס.</span></h2>
+    <p class="sub">ככה הוא נפתח: לוקחים דמות ושמים אותה בכל מקום בעולם. עם סאונד.</p>
+    <div class="peek led"><video src="clips/peek-opening.mp4" poster="clips/peek-opening.jpg" controls playsinline preload="none"></video></div>
+    <h3 class="peek-h">ומתוך השיעורים</h3>
+    <div class="peek-row">
+      <figure class="peek-mini"><div class="peek led"><video src="clips/peek-sheet.mp4" poster="clips/peek-sheet.jpg" controls playsinline preload="none"></video></div><figcaption><b>שיעור 8</b> הטעות הכי נפוצה בגיליון דמות</figcaption></figure>
+      <figure class="peek-mini"><div class="peek led"><video src="clips/peek-real.mp4" poster="clips/peek-real.jpg" controls playsinline preload="none"></video></div><figcaption><b>שיעור 10</b> ״למה היא נראית כל כך AI?״</figcaption></figure>
+      <figure class="peek-mini"><div class="peek led"><video src="clips/peek-swap.mp4" poster="clips/peek-swap.jpg" controls playsinline preload="none"></video></div><figcaption><b>שיעור 18</b> מצלמים את עצמכם ומחליפים את העולם</figcaption></figure>
+    </div>
+    <ul class="peek-lines">
+      <li>״היום? <span class="lit">הדמיון שלנו הוא ההפקה.</span>״</li>
+      <li>״ה-AI הוא רק הצינור. <span class="lit">אתם המקור.</span>״</li>
+      <li>״כלי אפשר להעתיק. סגנון אפשר לחקות. אבל הדרך שבה אתם חושבים, מרגישים ומסתכלים על העולם, <span class="lit">זה החומר שאין לאף אחד אחר.</span>״</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 7 LESSON REEL -->
+<section class="center" id="learn" style="padding-block:90px;position:relative">
+  <div class="wrap narrow" style="padding-inline:16px">
+    <h2 class="h2-s">20 שיעורים. <span class="lit">שני חלקים.</span></h2>
+    <p class="sub">בחלק הראשון בונים את המסר ואת הטקסט. בחלק השני מקימים אותו לתחייה. בכל שיעור: מה בדרך כלל לא עובד, ומה אני עושה אחרת. מחליקים ←</p>
+  </div>
+  <div class="reel" id="reel" tabindex="0" aria-label="השיעורים, להחלקה">
+    <article class="lc led"><div class="clip"><video src="clips/coffee.mp4" poster="clips/coffee.jpg" muted loop playsinline preload="none"></video><span class="num">01</span><span class="tag mono">Part 01</span></div><div class="body"><h3>איפה נולדת מחשבה</h3><p class="miss">כשרוב האנשים יושבים לחשוב על תוכן, הם מתחילים מהנושא.</p><p class="q">״נושא הוא עדיין לא סרטון. אנחנו חיים בתוך רגעים קטנים.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/alone.mp4" poster="clips/alone.jpg" muted loop playsinline preload="none"></video><span class="num">02</span><span class="tag mono">Part 01</span></div><div class="body"><h3>מה אני רוצה שיקרה</h3><p class="miss">אפשר לקבל מאות אלפי צפיות על סרטון שלא קידם אתכם לשום מקום.</p><p class="q">״לפני שאני שואלת אם סרטון הצליח, אני צריכה לדעת מה המטרה שלו.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/washer.mp4" poster="clips/washer.jpg" muted loop playsinline preload="none"></video><span class="num">03</span><span class="tag mono">Part 01</span></div><div class="body"><h3>מה התוכן עושה לצופה</h3><p class="miss">ארבע דרכים לגרום לצופה לשמור, לשלוח או לפנות: לתת מילים, לעשות סדר, לשנות זווית ולפתוח אפשרות.</p><p class="q">״נתתי לה שפה למשהו שכבר היה בתוכה״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/sleep.mp4" poster="clips/sleep.jpg" muted loop playsinline preload="none"></video><span class="num">04</span><span class="tag mono">Part 01</span></div><div class="body"><h3>מסע הצופה</h3><p class="miss">איך לוקחים את הצופה למסקנה, בלי פשוט לזרוק אותה עליו.</p><p class="q">״מסר חזק לא רק נאמר לצופה, הוא לוקח אותו למקום אחר״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/brain.mp4" poster="clips/brain.jpg" muted loop playsinline preload="none"></video><span class="num">05</span><span class="tag mono">Part 01</span></div><div class="body"><h3>הטכניקות שלי לקפיצה יצירתית</h3><p class="miss">כמעט על כל נושא כבר דיברו. החוכמה היא למצוא דרך שעוד לא ראו להגיד אותו.</p><p class="q">״אם איבדנו בדרך את מה שרצינו להגיד, פשוט קפצנו רחוק מדי.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/drive.mp4" poster="clips/drive.jpg" muted loop playsinline preload="none"></video><span class="num">06</span><span class="tag mono">Part 01</span></div><div class="body"><h3>הצ׳אט כשותף לדרך</h3><p class="miss">״תכתוב לי סרטון על גבייה מלקוחות״ זה להגיע לצ׳אט בידיים ריקות.</p><p class="q">״הקול שלכם צריך להישאר שלכם״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/barbie.mp4" poster="clips/barbie.jpg" muted loop playsinline preload="none"></video><span class="num">07</span><span class="tag mono">Part 02</span></div><div class="body"><h3>מכירים את מגרש המשחקים</h3><p class="miss">ביקשתם ״אישה עומדת בים״ וקיבלתם כל פעם אישה אחרת?</p><p class="q">״את כל מה שלא אמרתי, המחולל צריך להשלים לבד.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/beach.mp4" poster="clips/beach.jpg" muted loop playsinline preload="none"></video><span class="num">08</span><span class="tag mono">Part 02</span></div><div class="body"><h3>בונים גיליון דמות של עצמנו</h3><p class="miss">הגיליון נראה בול אתם, ובווידאו יצאה גרסה שנראית יותר כמו אחותכם?</p><p class="q">״אחת הטעויות הכי נפוצות שאני רואה היא הכנה של גיליון דמות בעזרת AI.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/dress.mp4" poster="clips/dress.jpg" muted loop playsinline preload="none"></video><span class="num">09</span><span class="tag mono">Part 02</span></div><div class="body"><h3>בדיקת זהות</h3><p class="miss">בודקים את הדמות באיכות הכי זולה, ומתאכזבים מהדמיון?</p><p class="q">״בארבע מאות שמונים רמת הפרטים ממש יורדת, ולריאליזם זה קריטי.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/les-10.mp4" poster="clips/les-10.jpg" muted loop playsinline preload="none"></video><span class="num">10</span><span class="tag mono">Part 02</span></div><div class="body"><h3>יוצרים דמות חדשה ב-AI</h3><p class="miss">״למה היא נראית כל כך AI?״ נותנים לצ׳אט לאבחן בעצמו.</p><p class="q">״אנחנו רוצים פשוט לברוח משלמות, כי זה הדבר שהכי מסגיר AI שיש.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/les-11.mp4" poster="clips/les-11.jpg" muted loop playsinline preload="none"></video><span class="num">11</span><span class="tag mono">Part 02</span></div><div class="body"><h3>מה מסתכלים עליו בתמונה</h3><p class="miss">נתתם הוראות שסותרות זו את זו? המחולל מחליט לבד מה חשוב, ומשבש את התוצאה.</p><p class="q">״לא כמה שיותר מידע, אלא כמה שיותר מידע רלוונטי.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/les-12.mp4" poster="clips/les-12.jpg" muted loop playsinline preload="none"></video><span class="num">12</span><span class="tag mono">Part 02</span></div><div class="body"><h3>זוויות מצלמה</h3><p class="miss">אם לא אומרים למחולל איך לראות את הסצנה, משאירים לו עוד החלטה משמעותית.</p><p class="q">״המצלמה לא רק מראה לנו מה קורה, היא משפיעה על איך שאנחנו מרגישים את מה שקורה.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/les-13.mp4" poster="clips/les-13.jpg" muted loop playsinline preload="none"></video><span class="num">13</span><span class="tag mono">Part 02</span></div><div class="body"><h3>בונים פריים: מה לנעול ומה להשאיר פתוח</h3><p class="miss">גיליון בגד עם דוגמנית? תשעים ותשעה אחוז שהמחולל ייקח גם את הפנים שלה, גם אם ביקשתם שלא.</p><p class="q">״רפרנס תמונה למחולל הוא לא רק השראה, הוא ממש הוראה״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/baby.mp4" poster="clips/baby.jpg" muted loop playsinline preload="none"></video><span class="num">14</span><span class="tag mono">Part 02</span></div><div class="body"><h3>השוואת המחוללים</h3><p class="miss">חמישה מחוללים, אותה נקודת פתיחה, שלוש סצנות.</p><p class="q">״לא תמיד החדש או היקר הוא הטוב ביותר״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/embryo.mp4" poster="clips/embryo.jpg" muted loop playsinline preload="none"></video><span class="num">15</span><span class="tag mono">Part 02</span></div><div class="body"><h3>מתמונה לווידאו: הבסיס</h3><p class="miss">ביקשתם בעיטה זריזה וקיבלתם סלואו מושן? המחולל ממלא את כל הזמן שנתתם לו.</p><p class="q">״לא רק מה היא עושה, אלא איך היא עושה את זה.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/night.mp4" poster="clips/night.jpg" muted loop playsinline preload="none"></video><span class="num">16</span><span class="tag mono">Part 02</span></div><div class="body"><h3>מה לא עושים עם המחוללים</h3><p class="miss">חמישה ניסיונות יקרים על שוט אחד של שיער מסתובב.</p><p class="q">״לא לבדוק רעיון יקר בדרך הכי יקרה. למדתי את זה לגמרי מהכיס שלי.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/alone.mp4" poster="clips/alone.jpg" muted loop playsinline preload="none"></video><span class="num">17</span><span class="tag mono">Part 02</span></div><div class="body"><h3>כשזה לא יוצא</h3><p class="miss">עשיתם הכול נכון וזה עדיין לא יוצא? הרבה אנשים מתחילים לשנות הכול.</p><p class="q">״כשנותנים לצ׳אט עיניים הוא יכול לתקן את עצמו״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/dress.mp4" poster="clips/dress.jpg" muted loop playsinline preload="none"></video><span class="num">18</span><span class="tag mono">Part 02</span></div><div class="body"><h3>לצלם את עצמכם ולהחליף את העולם</h3><p class="miss">במקום עשרות ניסיונות להסביר למחולל תנועה, מצלמים את עצמכם ומחליפים את העולם.</p><p class="q">״במקום ׳תסיר לי את השרשרת׳, מבקשים ׳תחליף לי את השרשרת בצווארון חלק׳.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/drive.mp4" poster="clips/drive.jpg" muted loop playsinline preload="none"></video><span class="num">19</span><span class="tag mono">Part 02</span></div><div class="body"><h3>דיבור, עברית וליפסינק</h3><p class="miss">עברית תמיד נשארת מאחור. ככה בכל זאת גורמים לדמות לדבר עברית כמו שצריך.</p><p class="q">״לליפסינק הרבה יותר קל לעבוד על סרטון שכבר יש בו תנועות שפתיים.״</p></div></article>
+    <article class="lc led"><div class="clip"><video src="clips/beach.mp4" poster="clips/beach.jpg" muted loop playsinline preload="none"></video><span class="num">20</span><span class="tag mono">Part 02</span></div><div class="body"><h3>יש לי טקסט. מה רואים?</h3><p class="miss">״איזו עריכה מטורפת!״ האמת? זה החלק הכי פשוט.</p><p class="q">״מה שנתן את אפקט הוואו הוא לא העריכה, אלא השוטים.״</p></div></article>
+  </div>
+  <div class="dots" id="dots" aria-hidden="true"></div>
+</section>
+
 <!-- 3 FLY-THROUGH -->
 <section class="fly" id="fly">
   <div class="stage">
@@ -414,7 +477,7 @@ body.rv-on{overflow:hidden}
 </section>
 
 <!-- 4 FORMULA -->
-<section class="sec center" id="formula">
+<section class="sec center" id="formula" hidden style="display:none">
   <div class="wrap">
     <p class="caption">הרגע שמישהי שולחת סרטון לבעלה, ומצליחה להסביר לו את מה שלא הצליחה להגיד בקול.</p>
     <p class="notai">זה לא עוד קורס AI. <span class="lit">זה הקורס שמלמד קודם מה שווה להגיד.</span></p>
@@ -424,7 +487,7 @@ body.rv-on{overflow:hidden}
 <!-- 5 PROOF: real numbers from the Instagram API -->
 <section class="sec center" id="proof">
   <div class="wrap">
-    <h2 class="h2-s">5 סרטונים <span class="lit">שאנשים שולחים הלאה.</span></h2>
+    <h2 class="h2-s">מכוונים לחיבור, <span class="lit">ומתוך חיבור נוצרת ויראליות.</span></h2>
     <div class="big3">
       <div class="glass main"><b class="lit">43,285</b>שליחות</div>
       <div class="glass"><b>10,554</b>שמירות</div>
@@ -517,7 +580,7 @@ body.rv-on{overflow:hidden}
 </section>
 
 <!-- 5 CHAT -->
-<section class="sec center dark" id="chat">
+<section class="sec center dark" id="chat" hidden style="display:none">
   <div class="bgv" aria-hidden="true"><video src="clips/drive.mp4" poster="clips/drive.jpg" muted loop playsinline preload="none"></video></div>
   <div class="wrap narrow">
     <h2 class="h2-s">הצ׳אט חושב איתכם. <span class="lit">לא במקומכם.</span></h2>
@@ -556,38 +619,6 @@ body.rv-on{overflow:hidden}
 
 <div class="strip" aria-hidden="true"></div>
 
-<!-- 7 LESSON REEL -->
-<section class="center" id="learn" style="padding-block:90px;position:relative">
-  <div class="wrap narrow" style="padding-inline:16px">
-    <h2 class="h2-s">20 שיעורים. <span class="lit">שני חלקים.</span></h2>
-    <p class="sub">בחלק הראשון בונים את המסר ואת הטקסט. בחלק השני מקימים אותו לתחייה. מחליקים ←</p>
-  </div>
-  <div class="reel" id="reel" tabindex="0" aria-label="השיעורים, להחלקה">
-    <article class="lc led"><div class="clip"><video src="clips/coffee.mp4" poster="clips/coffee.jpg" muted loop playsinline preload="none"></video><span class="num">01</span><span class="tag mono">Part 01</span></div><div class="body"><h3>איפה נולדת מחשבה</h3><p class="q">״נושא הוא עדיין לא סרטון״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/alone.mp4" poster="clips/alone.jpg" muted loop playsinline preload="none"></video><span class="num">02</span><span class="tag mono">Part 01</span></div><div class="body"><h3>מה אני רוצה שיקרה</h3><p class="q">״מכוונים לחיבור, ומתוך חיבור נוצרת ויראליות.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/washer.mp4" poster="clips/washer.jpg" muted loop playsinline preload="none"></video><span class="num">03</span><span class="tag mono">Part 01</span></div><div class="body"><h3>מה התוכן עושה לצופה</h3><p class="q">״נתתי לה שפה למשהו שכבר היה בתוכה״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/sleep.mp4" poster="clips/sleep.jpg" muted loop playsinline preload="none"></video><span class="num">04</span><span class="tag mono">Part 01</span></div><div class="body"><h3>מסע הצופה</h3><p class="q">״מסר חזק לא רק נאמר לצופה, הוא לוקח אותו למקום אחר״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/brain.mp4" poster="clips/brain.jpg" muted loop playsinline preload="none"></video><span class="num">05</span><span class="tag mono">Part 01</span></div><div class="body"><h3>הטכניקות שלי לקפיצה יצירתית</h3><p class="q">״הקפיצה היצירתית לא באה במקום המסר, היא באה לשרת אותו.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/drive.mp4" poster="clips/drive.jpg" muted loop playsinline preload="none"></video><span class="num">06</span><span class="tag mono">Part 01</span></div><div class="body"><h3>הצ׳אט כשותף לדרך</h3><p class="q">״הקול שלכם צריך להישאר שלכם״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/barbie.mp4" poster="clips/barbie.jpg" muted loop playsinline preload="none"></video><span class="num">07</span><span class="tag mono">Part 02</span></div><div class="body"><h3>מכירים את מגרש המשחקים</h3><p class="q">״המחוללים לא זוכרים אותנו״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/beach.mp4" poster="clips/beach.jpg" muted loop playsinline preload="none"></video><span class="num">08</span><span class="tag mono">Part 02</span></div><div class="body"><h3>בונים גיליון דמות של עצמנו</h3><p class="q">״מה שיש בגיליון המחולל ייקח.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/dress.mp4" poster="clips/dress.jpg" muted loop playsinline preload="none"></video><span class="num">09</span><span class="tag mono">Part 02</span></div><div class="body"><h3>בדיקת זהות</h3><p class="q">״נעשה פעם אחת ונקבל שקט ונוחות עבודה להרבה זמן קדימה״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/les-10.mp4" poster="clips/les-10.jpg" muted loop playsinline preload="none"></video><span class="num">10</span><span class="tag mono">Part 02</span></div><div class="body"><h3>יוצרים דמות חדשה ב-AI</h3><p class="q">״אנחנו רוצים פשוט לברוח משלמות, כי זה הדבר שהכי מסגיר AI שיש.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/les-11.mp4" poster="clips/les-11.jpg" muted loop playsinline preload="none"></video><span class="num">11</span><span class="tag mono">Part 02</span></div><div class="body"><h3>מה מסתכלים עליו בתמונה</h3><p class="q">״לא כמה שיותר מידע, אלא כמה שיותר מידע רלוונטי.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/les-12.mp4" poster="clips/les-12.jpg" muted loop playsinline preload="none"></video><span class="num">12</span><span class="tag mono">Part 02</span></div><div class="body"><h3>זוויות מצלמה</h3><p class="q">״המצלמה לא רק מראה לנו מה קורה, היא משפיעה על איך שאנחנו מרגישים את מה שקורה.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/les-13.mp4" poster="clips/les-13.jpg" muted loop playsinline preload="none"></video><span class="num">13</span><span class="tag mono">Part 02</span></div><div class="body"><h3>בונים פריים: מה לנעול ומה להשאיר פתוח</h3><p class="q">״רפרנס תמונה למחולל הוא לא רק השראה, הוא ממש הוראה״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/baby.mp4" poster="clips/baby.jpg" muted loop playsinline preload="none"></video><span class="num">14</span><span class="tag mono">Part 02</span></div><div class="body"><h3>השוואת המחוללים</h3><p class="q">״לא תמיד החדש או היקר הוא הטוב ביותר״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/embryo.mp4" poster="clips/embryo.jpg" muted loop playsinline preload="none"></video><span class="num">15</span><span class="tag mono">Part 02</span></div><div class="body"><h3>מתמונה לווידאו: הבסיס</h3><p class="q">״לא רק מה היא עושה, אלא איך היא עושה את זה.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/night.mp4" poster="clips/night.jpg" muted loop playsinline preload="none"></video><span class="num">16</span><span class="tag mono">Part 02</span></div><div class="body"><h3>מה לא עושים עם המחוללים</h3><p class="q">״לא לבדוק רעיון יקר בדרך הכי יקרה. למדתי את זה לגמרי מהכיס שלי.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/alone.mp4" poster="clips/alone.jpg" muted loop playsinline preload="none"></video><span class="num">17</span><span class="tag mono">Part 02</span></div><div class="body"><h3>כשזה לא יוצא</h3><p class="q">״כשנותנים לצ׳אט עיניים הוא יכול לתקן את עצמו״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/dress.mp4" poster="clips/dress.jpg" muted loop playsinline preload="none"></video><span class="num">18</span><span class="tag mono">Part 02</span></div><div class="body"><h3>לצלם את עצמכם ולהחליף את העולם</h3><p class="q">״כמה דומה לעצמי בא לי להיות בסרטון הזה?״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/drive.mp4" poster="clips/drive.jpg" muted loop playsinline preload="none"></video><span class="num">19</span><span class="tag mono">Part 02</span></div><div class="body"><h3>דיבור, עברית וליפסינק</h3><p class="q">״בשיעור הזה הדמות שלנו מתחילה לדבר.״</p></div></article>
-    <article class="lc led"><div class="clip"><video src="clips/beach.mp4" poster="clips/beach.jpg" muted loop playsinline preload="none"></video><span class="num">20</span><span class="tag mono">Part 02</span></div><div class="body"><h3>יש לי טקסט. מה רואים?</h3><p class="q">״עבודת העריכה זה באמת החלק הכי פשוט בסרטונים מהסוג הזה״</p></div></article>
-  </div>
-  <div class="dots" id="dots" aria-hidden="true"></div>
-</section>
-
-<div class="strip" aria-hidden="true"></div>
 
 <!-- 9b FIT -->
 <section class="sec center" id="fit">
@@ -614,7 +645,7 @@ body.rv-on{overflow:hidden}
       <div class="ticket led rec" id="tCourse">
         <span class="badge">מתאים לכם</span>
         <h3><span class="todo">[שם הקורס]</span></h3>
-        <div class="amount">490 ₪ <span class="was">690 ₪</span></div>
+        <div class="amount">690 ₪ <span class="was">890 ₪</span></div>
         <ul class="incl">
           <li>20 שיעורים בשני חלקים: המסר וה-AI</li>
           <li>גיליון דמות מתמונות אמיתיות, ובדיקת זהות</li>
@@ -628,14 +659,14 @@ body.rv-on{overflow:hidden}
       <div class="ticket led" id="tBundle">
         <span class="badge">מתאים לכם</span>
         <h3>הבאנדל: הקורס + קורס הבסיס</h3>
-        <div class="amount">590 ₪ <span class="was">790 ₪</span></div>
+        <div class="amount">859 ₪ <span class="was">1,090 ₪</span></div>
         <ul class="incl">
           <li>כל מה שיש בקורס ה-AI</li>
           <li>קורס יצירת תוכן המלא: הוק, פיתוח נושא, צילום ועריכה</li>
           <li>סרטון ראשון באוויר, ומשם ממשיכים לסרטוני AI</li>
-          <li>ב-100 ₪ יותר מהקורס לבד</li>
+          <li>ב-169 ₪ יותר מהקורס לבד</li>
         </ul>
-        <a class="btn" href="#offer">אני רוצה את הבאנדל</a>
+        <a class="btn" href="https://mrng.to/kp8uW01mzW">אני רוצה את הבאנדל</a>
         <p class="fine">גישה לתמיד · <span class="todo">[לאיב: קישור תשלום]</span></p>
       </div>
     </div>
@@ -779,11 +810,13 @@ body.rv-on{overflow:hidden}
   /* ---------- videos play only on screen ---------- */
   function play(v){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
   var reel = document.getElementById('reel');
-  var vids = Array.prototype.slice.call(document.querySelectorAll('video')).filter(function(v){ return !reel.contains(v); });
+  var vids = Array.prototype.slice.call(document.querySelectorAll('video')).filter(function(v){ return !reel.contains(v) && !v.closest('#peek'); });
   var vio = new IntersectionObserver(function(es){
     es.forEach(function(e){ var v = e.target; if (e.isIntersecting && !reduce) { v.preload = 'auto'; play(v); } else v.pause(); });
   }, {rootMargin:'200px 0px'});
   vids.forEach(function(v){ vio.observe(v); });
+  var peekVids = Array.prototype.slice.call(document.querySelectorAll('#peek video'));
+  peekVids.forEach(function(v){ v.addEventListener('play', function(){ peekVids.forEach(function(o){ if (o !== v) o.pause(); }); }); });
 
   /* ---------- curved screen ---------- */
   var screen = document.getElementById('screen'), arc = document.getElementById('arc'), arcIn = document.getElementById('arcIn');

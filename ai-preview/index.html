@@ -184,13 +184,14 @@ main{position:relative;z-index:1}
 .lc .miss{font-size:15px;font-weight:700;line-height:1.35;color:var(--ink)}
 .peek{max-width:760px;margin:40px auto 0;border-radius:24px;overflow:hidden;aspect-ratio:16/9;background:#000}
 .peek video{width:100%;height:100%;display:block;object-fit:cover}
-.peek-h{margin-top:56px;font-size:clamp(20px,2.4vw,26px);font-weight:900}
-.peek-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px;margin:22px auto 0}
-.peek-mini{margin:0}
-.peek-mini .peek{margin:0;border-radius:18px}
-.peek-mini figcaption{margin-top:10px;font-size:15.5px;color:var(--ink-2);text-align:center}
-.peek-mini figcaption b{display:block;color:var(--ink);font-size:14px;letter-spacing:.02em}
-@media (max-width:760px){.peek-row{grid-template-columns:1fr;gap:26px}}
+.pk-row{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:34px max(16px,calc(50% - 560px)) 10px;scrollbar-width:none}
+.pk-row::-webkit-scrollbar{display:none}
+.pk{flex:none;width:min(78vw,340px);margin:0;scroll-snap-align:center}
+.pk-v{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;border-radius:18px;overflow:hidden;background:#000;cursor:pointer;box-shadow:var(--shadow)}
+.pk-v video{width:100%;height:100%;object-fit:cover;display:block}
+.pk-snd{position:absolute;bottom:10px;left:10px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:15px}
+.pk figcaption{margin-top:10px;font-size:15px;color:var(--ink-2);text-align:right;line-height:1.35}
+.pk figcaption b{display:block;color:var(--ink);font-size:14px}
 .peek-lines{list-style:none;padding:0;margin:40px auto 0;max-width:620px;display:grid;gap:18px}
 .peek-lines li{font-size:clamp(20px,2.6vw,26px);font-weight:900;line-height:1.25}
 .dots{display:flex;justify-content:center;gap:6px}
@@ -412,18 +413,19 @@ body.rv-on{overflow:hidden}
   </div>
 </section>
 
-<!-- 9c PEEK: the opening of the course + short moments from lessons, Eve's own words -->
+<!-- 9c PEEK: short moments from the course, swipe sideways; muted until tapped -->
 <section class="sec center" id="peek">
-  <div class="wrap">
+  <div class="wrap narrow">
     <h2 class="h2-s">הצצה <span class="lit">לתוך הקורס.</span></h2>
-    <p class="sub">ככה הוא נפתח: לוקחים דמות ושמים אותה בכל מקום בעולם. עם סאונד.</p>
-    <div class="peek led"><video src="clips/peek-opening.mp4" poster="clips/peek-opening.jpg" controls playsinline preload="none"></video></div>
-    <h3 class="peek-h">ומתוך השיעורים</h3>
-    <div class="peek-row">
-      <figure class="peek-mini"><div class="peek led"><video src="clips/peek-sheet.mp4" poster="clips/peek-sheet.jpg" controls playsinline preload="none"></video></div><figcaption><b>שיעור 8</b> הטעות הכי נפוצה בגיליון דמות</figcaption></figure>
-      <figure class="peek-mini"><div class="peek led"><video src="clips/peek-real.mp4" poster="clips/peek-real.jpg" controls playsinline preload="none"></video></div><figcaption><b>שיעור 10</b> ״למה היא נראית כל כך AI?״</figcaption></figure>
-      <figure class="peek-mini"><div class="peek led"><video src="clips/peek-swap.mp4" poster="clips/peek-swap.jpg" controls playsinline preload="none"></video></div><figcaption><b>שיעור 18</b> מצלמים את עצמכם ומחליפים את העולם</figcaption></figure>
-    </div>
+    <p class="sub">קטעים קצרים מהשיעורים. נוגעים בסרטון לסאונד. מחליקים ←</p>
+  </div>
+  <div class="pk-row" tabindex="0" aria-label="קטעים מהקורס, להחלקה">
+      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: הפתיחה"><video src="clips/peek-world.mp4" poster="clips/peek-world.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>הפתיחה</b>להחליף לה בגדים, שיער, תאורה, תקופה</figcaption></figure>
+      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: שיעור 8"><video src="clips/peek-sheet.mp4" poster="clips/peek-sheet.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>שיעור 8</b>״אחת הטעויות הכי נפוצות שאני רואה...״</figcaption></figure>
+      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: שיעור 10"><video src="clips/peek-real.mp4" poster="clips/peek-real.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>שיעור 10</b>״למה היא נראית כל כך AI?״</figcaption></figure>
+      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: שיעור 18"><video src="clips/peek-swap.mp4" poster="clips/peek-swap.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>שיעור 18</b>מצלמים את עצמכם ומחליפים את העולם</figcaption></figure>
+  </div>
+  <div class="wrap">
     <ul class="peek-lines">
       <li>״היום? <span class="lit">הדמיון שלנו הוא ההפקה.</span>״</li>
       <li>״ה-AI הוא רק הצינור. <span class="lit">אתם המקור.</span>״</li>
@@ -810,13 +812,17 @@ body.rv-on{overflow:hidden}
   /* ---------- videos play only on screen ---------- */
   function play(v){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
   var reel = document.getElementById('reel');
-  var vids = Array.prototype.slice.call(document.querySelectorAll('video')).filter(function(v){ return !reel.contains(v) && !v.closest('#peek'); });
+  var vids = Array.prototype.slice.call(document.querySelectorAll('video')).filter(function(v){ return !reel.contains(v); });
   var vio = new IntersectionObserver(function(es){
     es.forEach(function(e){ var v = e.target; if (e.isIntersecting && !reduce) { v.preload = 'auto'; play(v); } else v.pause(); });
   }, {rootMargin:'200px 0px'});
   vids.forEach(function(v){ vio.observe(v); });
-  var peekVids = Array.prototype.slice.call(document.querySelectorAll('#peek video'));
-  peekVids.forEach(function(v){ v.addEventListener('play', function(){ peekVids.forEach(function(o){ if (o !== v) o.pause(); }); }); });
+  var pks = Array.prototype.slice.call(document.querySelectorAll('#peek .pk-v'));
+  pks.forEach(function(btn){ btn.addEventListener('click', function(){
+    var v = btn.querySelector('video'), on = v.muted;
+    pks.forEach(function(o){ var ov = o.querySelector('video'); ov.muted = true; o.querySelector('.pk-snd').textContent = '🔇'; });
+    if (on) { v.muted = false; v.currentTime = 0; play(v); btn.querySelector('.pk-snd').textContent = '🔊'; }
+  }); });
 
   /* ---------- curved screen ---------- */
   var screen = document.getElementById('screen'), arc = document.getElementById('arc'), arcIn = document.getElementById('arcIn');

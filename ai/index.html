@@ -453,7 +453,7 @@ h1{
       <div class="consent-wrap" id="fieldConsent">
         <label class="consent">
           <input type="checkbox" id="consent" name="consent">
-          <span>אפשר לשלוח לי עדכונים בוואטסאפ ובמייל כשזה נפתח. אפשר לבקש הסרה בכל רגע. <a href="/privacy/" target="_blank" rel="noopener">מדיניות פרטיות</a></span>
+          <span id="consentText">כן, אפשר לשלוח לי מאיב כהן הרוש דיוור שיווקי ופרסומות במייל, בוואטסאפ ובסמס, כולל עדכון כשהקורס נפתח. אפשר להסיר את עצמי בכל רגע. <a href="/privacy/" target="_blank" rel="noopener">מדיניות פרטיות</a></span>
         </label>
         <span class="error">צריך לסמן כדי שאוכל לעדכן אתכם</span>
       </div>
@@ -597,7 +597,7 @@ h1{
     lead = { name: name, phone: phone, email: email };
     submitBtn.disabled = true;
     showThanks();
-    send({ type: 'ליד', name: name, phone: phone, email: email, consent: 'כן' }).then(function(){
+    send({ type: 'ליד', name: name, phone: phone, email: email, consent: 'כן', consent_text: document.getElementById('consentText').textContent.replace(/\s+/g, ' ').trim(), consent_at: new Date().toISOString() }).then(function(){
       try { localStorage.setItem(LEAD_KEY, JSON.stringify(lead)); } catch(err) {}
     }).catch(function(){
       lead = null;

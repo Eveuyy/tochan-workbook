@@ -276,6 +276,13 @@ footer{text-align:center;color:var(--ink-2);font-size:13px;padding:0 16px 120px;
 footer a{color:inherit}
 .bonus{max-width:980px;margin:22px auto 0;border-radius:26px;padding:clamp(20px,3.4vw,30px);display:flex;gap:18px;align-items:flex-start;text-align:right;border-color:rgba(255,194,61,.45);box-shadow:0 0 40px -14px rgba(255,194,61,.55)}
 @media (max-width:820px){.bonus{max-width:520px}}
+.cd{max-width:520px;margin:0 auto 18px;padding:18px 20px 16px;border-radius:24px;border-color:rgba(255,46,136,.5);box-shadow:0 0 40px -12px var(--glow-2)}
+.cd[hidden]{display:none}
+.cd-label{font-size:15px;font-weight:700;color:var(--ink);margin:0 0 10px}
+.cd-n{display:flex;justify-content:center;align-items:flex-start;gap:clamp(6px,2vw,14px)}
+.cd-n span{display:grid;justify-items:center;gap:4px;min-width:clamp(54px,14vw,72px);font-size:12.5px;color:var(--ink-2)}
+.cd-n b{font:900 clamp(34px,8vw,52px)/1 var(--f);font-variant-numeric:tabular-nums;color:var(--ink);text-shadow:0 0 18px var(--glow-2)}
+.cd-n i{font:900 clamp(28px,6vw,40px)/1 var(--f);font-style:normal;color:var(--a1);padding-top:4px}
 .bonus .gift{flex:0 0 auto;font-size:clamp(44px,7vw,60px);line-height:1;filter:drop-shadow(0 0 14px rgba(255,194,61,.6))}
 .bonus-tag{display:inline-block;font-size:13px;font-weight:700;padding:4px 12px;border-radius:999px;color:#1a0b05;background:linear-gradient(110deg,var(--a3),var(--a2))}
 .bonus h3{font-size:22px;font-weight:900;line-height:1.2;margin:10px 0 2px}
@@ -730,7 +737,16 @@ body.rv-on{overflow:hidden}
 <!-- 10 OFFER -->
 <section class="sec center" id="offer">
   <div class="wrap">
-    <p class="sub">מחיר השקה. אחריו המחיר עולה.</p>
+    <div class="cd glass" id="cd" data-end="2026-11-06T22:00:00+02:00" role="timer" aria-live="off">
+      <p class="cd-label">מחיר ההשקה נגמר בעוד</p>
+      <div class="cd-n">
+        <span><b id="cdD">02</b>ימים</span><i aria-hidden="true">:</i>
+        <span><b id="cdH">00</b>שעות</span><i aria-hidden="true">:</i>
+        <span><b id="cdM">00</b>דקות</span><i aria-hidden="true">:</i>
+        <span><b id="cdS">00</b>שניות</span>
+      </div>
+    </div>
+    <p class="sub" id="cdSub">מחיר השקה. אחריו המחיר עולה.</p>
     <div class="tickets">
       <div class="ticket led rec" id="tCourse">
         <span class="badge">מתאים לכם</span>
@@ -1169,6 +1185,29 @@ body.rv-on{overflow:hidden}
   box.querySelectorAll('[data-lgclose]').forEach(function(x){x.addEventListener('click',close);});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
   if(L[location.hash.slice(1)])open(location.hash.slice(1));
+})();
+</script>
+<script>
+(function(){
+  var box=document.getElementById('cd'); if(!box) return;
+  var end=new Date(box.getAttribute('data-end')).getTime();
+  var D=document.getElementById('cdD'),H=document.getElementById('cdH'),M=document.getElementById('cdM'),S=document.getElementById('cdS');
+  function p(n){return (n<10?'0':'')+n;}
+  function over(){
+    box.hidden=true; var sub=document.getElementById('cdSub'); if(sub) sub.hidden=true;
+    document.querySelectorAll('#offer .ticket .amount').forEach(function(a){
+      var was=a.querySelector('.was'); if(!was) return;
+      a.textContent=was.textContent.trim();
+    });
+  }
+  var t;
+  function tick(){
+    var left=Math.floor((end-Date.now())/1000);
+    if(left<=0){ over(); if(t) clearInterval(t); return; }
+    D.textContent=p(Math.floor(left/86400)); H.textContent=p(Math.floor(left%86400/3600));
+    M.textContent=p(Math.floor(left%3600/60)); S.textContent=p(left%60);
+  }
+  t=setInterval(tick,1000); tick();
 })();
 </script>
 </body>

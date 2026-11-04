@@ -270,6 +270,7 @@ details.q p{padding:0 4px 18px;color:var(--ink-2)}
 .empty{max-width:520px;margin:34px auto 30px;padding:22px;border-radius:22px;font:900 clamp(22px,3vw,28px)/1.25 var(--f);background:var(--surface)}
 .cursor{display:inline-block;width:3px;height:1em;background:var(--a1);box-shadow:0 0 10px var(--a1);vertical-align:-.12em;margin-inline-start:5px;animation:blink 1s steps(2) infinite}
 footer{text-align:center;color:var(--ink-2);font-size:13px;padding:0 16px 120px;position:relative;z-index:1}
+footer a{color:inherit}
 .fcta{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;transform:translate(-50%,170%);transition:transform .45s cubic-bezier(.2,.9,.3,1.2);border-radius:20px;padding:8px;max-width:calc(100% - 32px)}
 .fcta.show{transform:translate(-50%,0)}
 .fcta{display:none}
@@ -292,7 +293,8 @@ footer{text-align:center;color:var(--ink-2);font-size:13px;padding:0 16px 120px;
 .pv-views b{font-size:32px;font-weight:900;letter-spacing:-.03em;margin-inline-end:4px}
 .pv-more{font-size:13.5px;color:var(--ink)}
 .pv-where{justify-self:start;margin-top:6px;font-size:12.5px;padding:3px 10px;border-radius:999px;border:1px solid var(--a3);box-shadow:0 0 12px -2px var(--a3);font-weight:500}
-.shots-slot{margin-top:18px;position:relative;z-index:2}
+.shots{display:flex;gap:14px;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;padding:22px max(20px,calc((100vw - 1100px)/2)) 8px;position:relative;z-index:2;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.shots img{flex:0 0 min(86vw,420px);width:min(86vw,420px);height:auto;border-radius:16px;scroll-snap-align:center;box-shadow:var(--shadow);border:1px solid var(--line)}
 .out{list-style:none;margin:34px auto 0;padding:0;max-width:640px;display:grid;gap:12px;text-align:right}
 .out li{padding:16px 18px;border-radius:18px;font-size:17.5px;font-weight:500;line-height:1.35}
 .fit-go{margin-top:6px}
@@ -402,7 +404,6 @@ body.rv-on{overflow:hidden}
 <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="dots-bg" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
-<div class="draft">טיוטה · הנתונים מהאינסטגרם נכונים ל-31.10.2026 · מה שבירוק <span class="todo">[לאיב]</span> רק את יכולה למלא</div>
 <div class="topbar"><a class="logo" href="#top" aria-label="איב, לראש הדף"><span>e.</span></a><a class="btn" href="#offer">להצטרף לקורס</a></div>
 <main>
 <!-- 1 HERO -->
@@ -592,7 +593,16 @@ body.rv-on{overflow:hidden}
     </div>
   </div>
   <p class="note" style="position:relative;z-index:2">תגובות לסרטונים, לא ביקורות על הקורס.</p>
-  <p class="shots-slot"><span class="todo">[לאיב: כאן נכנסים צילומי המסך האמיתיים של התגובות, אחרי שמטשטשים שמות ותמונות פרופיל]</span></p>
+  <div class="shots" aria-label="צילומי מסך של תגובות מהאינסטגרם, השמות מטושטשים">
+    <img src="comments/c1.jpg" alt="תגובה באינסטגרם: מה דחוף לי לבכות עכשיו בגלל זה" loading="lazy" width="900">
+    <img src="comments/c2.jpg" alt="תגובה באינסטגרם: ואוו תקשיבי את מעבירה תחושות ועולם שלם בכלכך חדות רגישות ועריכה מושלמת" loading="lazy" width="900">
+    <img src="comments/c3.jpg" alt="תגובה באינסטגרם: תוסיפי לזה הנקה. וזה שגוף שלך- לא שייך לך. במשך שנים. או שאת חרא אמא או שאת מאפשרת שיגעו בך, גם כשאת לא רוצה. אבל החדשות הטובות שזה עובר. כמו הכל בחיים. ואז הופכת להיות בעיקר ארנק חחח" loading="lazy" width="900">
+    <img src="comments/c4.jpg" alt="תגובה באינסטגרם: יו אני ממש בבינג על העמוד שלך כל סרטון אני רואה לפחות 4 פעמים ומתרגשת ומרגישה. איזה מטורף לי שאת יוצאת ומספרת מה שאני חווה ובטח עוד אלפי אמהות. זהו ביייי חפרתי" loading="lazy" width="900">
+    <img src="comments/c5.jpg" alt="תגובה באינסטגרם: ואי איב את גומרת אותי עם הסרטונים האלה בתור מישהי שחוותה דיכאון לידה את פשוט מתארת כל כך מדויק את כל הסיטואציות שכל כך קשות לי" loading="lazy" width="900">
+    <img src="comments/c6.jpg" alt="תגובה באינסטגרם: אמאלה גרמת לי לבכות. זה כל כך מדויק" loading="lazy" width="900">
+    <img src="comments/c7.jpg" alt="תגובה באינסטגרם: לא יודעת מה המילים הנכונות לתאר לך מה אני מרגישה בקשר לסרטון הזה.. כל קשת הרגשות. את מטורפת" loading="lazy" width="900">
+    <img src="comments/c8.jpg" alt="תגובה באינסטגרם: אני פשוט עוד לומדת איפה האישה שהייתי נכנסת בתוך האמא שנהייתי. חץ לנשמה ❤️" loading="lazy" width="900">
+  </div>
 </section>
 
 <!-- 6 OUTCOMES -->
@@ -682,7 +692,7 @@ body.rv-on{overflow:hidden}
 <!-- 10 OFFER -->
 <section class="sec center" id="offer">
   <div class="wrap">
-    <p class="sub">מחיר השקה עד <span class="todo">[לאיב: תאריך סיום]</span>. אחריו המחיר עולה.</p>
+    <p class="sub">מחיר השקה. אחריו המחיר עולה.</p>
     <div class="tickets">
       <div class="ticket led rec" id="tCourse">
         <span class="badge">מתאים לכם</span>
@@ -748,7 +758,7 @@ body.rv-on{overflow:hidden}
   </div>
 </section>
 </main>
-<footer>איב · <span class="todo">[לאיב: תקנון, פרטיות, נגישות]</span></footer>
+<footer>איב · <a href="/privacy/">מדיניות פרטיות</a></footer>
 
 <div class="rv" id="rv" role="dialog" aria-modal="true" aria-label="צפייה בסרטון" hidden>
   <div class="rv-back" data-close></div>

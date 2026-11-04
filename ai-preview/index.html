@@ -210,6 +210,13 @@ main{position:relative;z-index:1}
 .li-gift{width:84px;height:104px;border-radius:12px;display:grid;place-items:center;font-size:44px;background:rgba(255,194,61,.1);border:1px solid rgba(255,194,61,.45)}
 .li-bonus{border-color:rgba(255,194,61,.45)}
 .li-bonus .n{color:var(--a3)}
+.ls-d{margin-top:14px}
+.ls-d > summary{list-style:none;cursor:pointer}
+.ls-d > summary::-webkit-details-marker{display:none}
+.ls-open{display:inline-block;margin-top:8px;font-style:normal;font-size:14px;font-weight:700;color:var(--ink);padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.ls-open::after{content:" ▾"}
+.ls-d[open] .ls-open{display:none}
+.pv-q{margin-top:10px;font-size:14.5px;line-height:1.4;color:var(--ink);padding:10px 12px;border-radius:14px 14px 14px 4px;background:var(--surface);border:1px solid var(--line)}
 .li p{font-size:14.5px;line-height:1.4;color:var(--ink-2)}
 
 /* ---------- 8 RING ---------- */
@@ -556,6 +563,7 @@ body.rv-on{overflow:hidden}
           <p class="pv-views"><b class="lit">550K</b> צפיות</p>
           <p class="pv-more">28,000 לייקים · 1,618 תגובות</p>
           <p class="pv-where">מפורק בשיעור 1</p>
+          <p class="pv-q">״זה יפה, נכון וסוף סוף מישהו מסביר לנו את עצמנו 🩷״</p>
         </div>
       </article>
       <article class="pv led">
@@ -565,6 +573,7 @@ body.rv-on{overflow:hidden}
           <p class="pv-views"><b class="lit">441K</b> צפיות</p>
           <p class="pv-more">17,492 לייקים · 676 תגובות</p>
           <p class="pv-where">מפורק בשיעור 4</p>
+          <p class="pv-q">״…חשבתי שאני משתגעת. אני מבינה שאני ממש נורמלית״</p>
         </div>
       </article>
       <article class="pv led">
@@ -574,6 +583,7 @@ body.rv-on{overflow:hidden}
           <p class="pv-views"><b class="lit">316K</b> צפיות</p>
           <p class="pv-more">12,812 לייקים · 578 תגובות</p>
           <p class="pv-where">מפורק בשיעור 5</p>
+          <p class="pv-q">״מדהימה! תודה בזכותך אני יכולה להסביר לעצמי מה אני מרגישה ❤️״</p>
         </div>
       </article>
       <article class="pv led">
@@ -583,6 +593,7 @@ body.rv-on{overflow:hidden}
           <p class="pv-views"><b class="lit">241K</b> צפיות</p>
           <p class="pv-more">9,830 לייקים · 528 תגובות</p>
           <p class="pv-where">מפורק בשיעור 1</p>
+          <p class="pv-q">״כאילו נכנסת למוח שלי ועשית על זה סרטון !!! אלופה 😍🤍״</p>
         </div>
       </article>
       <article class="pv led">
@@ -592,10 +603,26 @@ body.rv-on{overflow:hidden}
           <p class="pv-views"><b class="lit">240K</b> צפיות</p>
           <p class="pv-more">12,277 לייקים · 637 תגובות</p>
           <p class="pv-where">מפורק בשיעור 4</p>
+          <p class="pv-q">״שלחתי לבעלי כדי שמישהו יסביר לו כי לי אין אפשרות״</p>
         </div>
       </article>
     </div>
     <p class="note">הנתונים מהאינסטגרם של @eve.harosh, נכונים ל-31.10.2026.</p>
+  </div>
+</section>
+
+<!-- 6 OUTCOMES -->
+<section class="sec center" id="outcomes">
+  <div class="wrap narrow">
+    <h2 class="h2-s">מה תדעו לעשות <span class="lit">בסוף הקורס.</span></h2>
+    <ul class="out">
+      <li class="glass">למצוא את הרגע הקטן שבו הצופה מזהה את עצמו</li>
+      <li class="glass">לכתוב טקסט שנותן לאנשים מילים למה שהם מרגישים</li>
+      <li class="glass">לבנות דמות שנראית ממש כמוכם, מתמונות אמיתיות</li>
+      <li class="glass">לשים אותה בכל מקום בעולם, ולהחליף לה בגדים, שיער, תאורה ותקופה</li>
+      <li class="glass">לצלם את עצמכם ולהחליף את העולם, עם העברית שלכם על השפתיים</li>
+      <li class="glass">לבחור מחולל לפי מה שהסרטון צריך, בלי לבזבז קרדיטים</li>
+    </ul>
   </div>
 </section>
 
@@ -606,7 +633,8 @@ body.rv-on{overflow:hidden}
     <p class="sub">מה תדעו לעשות אחרי כל שיעור.</p>
   </div>
   <div class="ls">
-    <h3 class="ls-part">חלק 1 · הופכים רעיון לטקסט שאנשים מרגישים <span>בלי שום מנוי בתשלום</span></h3>
+    <details class="ls-d">
+    <summary class="ls-part">חלק 1 · הופכים רעיון לטקסט שאנשים מרגישים <span>בלי שום מנוי בתשלום · שיעורים 1-6</span><em class="ls-open" aria-hidden="true">לכל השיעורים</em></summary>
     <div class="ls-grid">
       <article class="li"><img src="clips/coffee.jpg" alt="" loading="lazy"><div><span class="n">שיעור 1</span><h3>למצוא רעיון שאנשים מזהים בו את עצמם</h3><p>איפה מחפשים את הרגע שגורם לצופה לעצור ולהגיד ״רגע, זה אני״.</p></div></article>
       <article class="li"><img src="clips/alone.jpg" alt="" loading="lazy"><div><span class="n">שיעור 2</span><h3>להחליט מה הסרטון צריך לעשות</h3><p>למה סרטון עם מאות אלפי צפיות יכול לא לקדם אתכם בכלום, ואיך מכוונים מראש למה שאתם באמת רוצים.</p></div></article>
@@ -615,7 +643,9 @@ body.rv-on{overflow:hidden}
       <article class="li"><img src="clips/brain.jpg" alt="" loading="lazy"><div><span class="n">שיעור 5</span><h3>הטכניקות שלי לקפיצה יצירתית</h3><p>איך לוקחים נושא שכבר דיברו עליו מאה פעם, ומגישים אותו בדרך שאף אחד לא ציפה לה.</p></div></article>
       <article class="li"><img src="clips/drive.jpg" alt="" loading="lazy"><div><span class="n">שיעור 6</span><h3>לכתוב את הטקסט עם הצ׳אט, בקול שלכם</h3><p>איך עובדים עם הצ׳אט כך שהטקסט ייצא שלכם, ולא של רובוט.</p></div></article>
     </div>
-    <h3 class="ls-part">חלק 2 · הופכים את הטקסט לסרטון AI</h3>
+    </details>
+    <details class="ls-d">
+    <summary class="ls-part">חלק 2 · הופכים את הטקסט לסרטון AI <span>שיעורים 7-20 + בונוס</span><em class="ls-open" aria-hidden="true">לכל השיעורים</em></summary>
     <div class="ls-grid">
       <article class="li"><img src="clips/barbie.jpg" alt="" loading="lazy"><div><span class="n">שיעור 7</span><h3>להבין איך מדברים עם מחוללים</h3><p>למה אותה בקשה נותנת כל פעם תוצאה אחרת, ואיך מתחילים לשלוט במה שיוצא.</p></div></article>
       <article class="li"><img src="clips/beach.jpg" alt="" loading="lazy"><div><span class="n">שיעור 8</span><h3>לבנות גיליון דמות שבאמת נראה כמוכם</h3><p>ומה הטעויות הנפוצות שגורמות לדמות שלכם לצאת בווידאו כמו מישהי אחרת.</p></div></article>
@@ -633,6 +663,7 @@ body.rv-on{overflow:hidden}
       <article class="li"><img src="clips/pvc-boss.jpg" alt="" loading="lazy"><div><span class="n">שיעור 20</span><h3>להרכיב את הסרטון</h3><p>סדר העבודה שלי מטקסט לסרטון גמור, ולמה העריכה היא החלק הכי פשוט.</p></div></article>
       <article class="li li-bonus"><span class="li-gift" aria-hidden="true">🎁</span><div><span class="n">בונוס · נפתח ב-11.11</span><h3>קורס MCP של זוהר וענונו</h3><p>איך עובדים עם Claude&nbsp;Code&nbsp;ו&#8209;MCP ייעודי ליצירת תוכן, בצורה אוטומטית ויעילה. רמה מתקדמת יותר, אחרי שלמדנו את הבסיס.</p></div></article>
     </div>
+    </details>
   </div>
 </section>
 
@@ -661,21 +692,6 @@ body.rv-on{overflow:hidden}
     <img src="comments/c6.jpg" alt="תגובה באינסטגרם: אמאלה גרמת לי לבכות. זה כל כך מדויק" loading="lazy" width="900">
     <img src="comments/c7.jpg" alt="תגובה באינסטגרם: לא יודעת מה המילים הנכונות לתאר לך מה אני מרגישה בקשר לסרטון הזה.. כל קשת הרגשות. את מטורפת" loading="lazy" width="900">
     <img src="comments/c8.jpg" alt="תגובה באינסטגרם: אני פשוט עוד לומדת איפה האישה שהייתי נכנסת בתוך האמא שנהייתי. חץ לנשמה ❤️" loading="lazy" width="900">
-  </div>
-</section>
-
-<!-- 6 OUTCOMES -->
-<section class="sec center" id="outcomes">
-  <div class="wrap narrow">
-    <h2 class="h2-s">מה תדעו לעשות <span class="lit">בסוף הקורס.</span></h2>
-    <ul class="out">
-      <li class="glass">למצוא את הרגע הקטן שבו הצופה מזהה את עצמו</li>
-      <li class="glass">לכתוב טקסט שנותן לאנשים מילים למה שהם מרגישים</li>
-      <li class="glass">לבנות דמות שנראית ממש כמוכם, מתמונות אמיתיות</li>
-      <li class="glass">לשים אותה בכל מקום בעולם, ולהחליף לה בגדים, שיער, תאורה ותקופה</li>
-      <li class="glass">לצלם את עצמכם ולהחליף את העולם, עם העברית שלכם על השפתיים</li>
-      <li class="glass">לבחור מחולל לפי מה שהסרטון צריך, בלי לבזבז קרדיטים</li>
-    </ul>
   </div>
 </section>
 

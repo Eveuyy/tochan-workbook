@@ -339,6 +339,12 @@ footer a{color:inherit}
 .pv-where{justify-self:start;margin-top:6px;font-size:12.5px;padding:3px 10px;border-radius:999px;border:1px solid var(--a3);box-shadow:0 0 12px -2px var(--a3);font-weight:500}
 .shots{display:flex;gap:14px;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;padding:22px max(20px,calc((100vw - 1100px)/2)) 8px;position:relative;z-index:2;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
 .shots img{flex:0 0 min(86vw,420px);width:min(86vw,420px);height:auto;border-radius:16px;scroll-snap-align:center;box-shadow:var(--shadow);border:1px solid var(--line)}
+.get{list-style:none;margin:34px auto 0;padding:0;max-width:980px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;text-align:right}
+@media (max-width:700px){.get{grid-template-columns:minmax(0,1fr);max-width:520px}}
+.get li{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:18px}
+.get .gi{flex:none;font-size:28px;line-height:1}
+.get b{display:block;font-size:17.5px;font-weight:900;line-height:1.25}
+.get li span:not(.gi){display:block;margin-top:3px;font-size:15px;line-height:1.4;color:var(--ink-2)}
 .out{list-style:none;margin:34px auto 0;padding:0;max-width:640px;display:grid;gap:12px;text-align:right}
 .out li{padding:16px 18px;border-radius:18px;font-size:17.5px;font-weight:500;line-height:1.35}
 .fit-go{margin-top:6px}
@@ -664,6 +670,24 @@ body.rv-on{overflow:hidden}
       <article class="li li-bonus"><span class="li-gift" aria-hidden="true">🎁</span><div><span class="n">בונוס · נפתח ב-11.11</span><h3>קורס MCP של זוהר וענונו</h3><p>איך עובדים עם Claude&nbsp;Code&nbsp;ו&#8209;MCP ייעודי ליצירת תוכן, בצורה אוטומטית ויעילה. רמה מתקדמת יותר, אחרי שלמדנו את הבסיס.</p></div></article>
     </div>
     </details>
+  </div>
+</section>
+
+<!-- 7b GET: everything included in the course -->
+<section class="sec center" id="get">
+  <div class="wrap">
+    <h2 class="h2-s">מה מקבלים <span class="lit">בקורס.</span></h2>
+    <ul class="get">
+      <li class="glass"><span class="gi" aria-hidden="true">🎬</span><div><b>20 שיעורים מוקלטים</b><span>בשני חלקים: המסר וה-AI</span></div></li>
+      <li class="glass"><span class="gi" aria-hidden="true">🖥️</span><div><b>הדגמות מוקלטות בתוך הכלים</b><span>עם פיקסי, העוזרת הדיגיטלית שמלווה אתכם בכל ההדרכות הטכניות</span></div></li>
+      <li class="glass"><span class="gi" aria-hidden="true">🗺️</span><div><b>מפת המסר</b><span>דף עבודה שלוקח רעיון כללי לסרטון ובונה ממנו מסר מדויק, שלב אחרי שלב</span></div></li>
+      <li class="glass"><span class="gi" aria-hidden="true">📄</span><div><b>מסמכים לכל הדרך</b><span>זבוב על הקיר, הפרומפט לכתיבה, השוטים והזוויות, מתכוני הצילום וטבלת התכנון</span></div></li>
+      <li class="glass"><span class="gi" aria-hidden="true">📂</span><div><b>תיקיית קייס סטאדיז</b><span>איך נעשו הסרטונים שלי, ומה קרה בדרך</span></div></li>
+      <li class="glass"><span class="gi" aria-hidden="true">💬</span><div><b>קבוצת וואטסאפ</b><span>לשאלות, תמיכה והעשרה</span></div></li>
+      <li class="glass"><span class="gi" aria-hidden="true">🎁</span><div><b>בונוס: קורס MCP של זוהר וענונו</b><span>נפתח ב-11.11, עם הנחה בלעדית ב-Kolbo</span></div></li>
+      <li class="glass"><span class="gi" aria-hidden="true">♾️</span><div><b>גישה לתמיד</b><span>לצפות שוב בכל שיעור, מתי שרוצים</span></div></li>
+    </ul>
+    <p class="sub">בבאנדל מקבלים גם את קורס יצירת התוכן המלא.</p>
   </div>
 </section>
 

@@ -207,6 +207,9 @@ main{position:relative;z-index:1}
 .li img{width:84px;height:104px;object-fit:cover;border-radius:12px;display:block}
 .li .n{font-size:13px;font-weight:700;color:var(--a1)}
 .li h3{font-size:17.5px;font-weight:900;line-height:1.25;margin:2px 0 4px}
+.li-gift{width:84px;height:104px;border-radius:12px;display:grid;place-items:center;font-size:44px;background:rgba(255,194,61,.1);border:1px solid rgba(255,194,61,.45)}
+.li-bonus{border-color:rgba(255,194,61,.45)}
+.li-bonus .n{color:var(--a3)}
 .li p{font-size:14.5px;line-height:1.4;color:var(--ink-2)}
 
 /* ---------- 8 RING ---------- */
@@ -447,7 +450,6 @@ body.rv-on{overflow:hidden}
       <span class="htag t2">איך בונים מסר שנוגע באנשים, ומקימים אותו לתחייה עם AI</span>
     </div>
     <a class="btn" href="#offer">אני רוצה להצטרף</a>
-    <p class="hero-proof glass">כמעט 1.8 מיליון צפיות ב-5 סרטונים</p>
     <p class="works">עובד עם ChatGPT, קולבו ומחוללי וידאו</p>
   </div>
 </header>
@@ -474,6 +476,21 @@ body.rv-on{overflow:hidden}
   </div>
 </section>
 
+<!-- 9f ASKED: real messages and comments from Eve's Instagram (pulled by Ivy 3.11.2026), verbatim, no names -->
+<section class="sec center" id="asked">
+  <div class="wrap narrow">
+    <h2 class="h2-s">השאלה שהכי חוזרת <span class="lit">אצלי בהודעות.</span></h2>
+    <div class="dm-list">
+      <p class="dm glass">״כמה אני צריכה לשלם לך כדי שתעבירי אותי קורס ai ברמה שאת מייצרת?״<small>הודעה פרטית</small></p>
+      <p class="dm glass">״את מטורפת. את מדויקת. את חייבת לומר לנו איך את עושה את הסרטונים האלה״<small>תגובה</small></p>
+      <p class="dm glass">״...האם בקורס שלך את ממש מלמדת צעד אחרי צעד איך ליצור תוכן עם שימוש בכלי הזה…. אני מאוד רוצה להתחיל להשתמש בזה״<small>הודעה פרטית</small></p>
+      <p class="dm glass">״אמאלה הלוואי ואת מלמדת איכשהו איך עורכים ככה בai״<small>תגובה</small></p>
+      <p class="dm glass">״אוף ממש חיכיתי שיצא איזה קורס ליצירת תוכן כמוך בai חחחחח״<small>הודעה פרטית</small></p>
+    </div>
+    <p class="sub">אז הנה. זה הקורס.</p>
+  </div>
+</section>
+
 <!-- 9c PEEK: short moments from the course, swipe sideways; muted until tapped -->
 <section class="sec center" id="peek">
   <div class="wrap narrow">
@@ -483,9 +500,8 @@ body.rv-on{overflow:hidden}
   <div class="pk-row" tabindex="0" aria-label="קטעים מהקורס, להחלקה">
       <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: הפתיחה"><video src="clips/peek-world.mp4" poster="clips/peek-world.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>הפתיחה</b>להחליף לה בגדים, שיער, תאורה, תקופה</figcaption></figure>
       <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: הכירו את פיקסי"><video src="clips/peek-pixie.mp4" poster="clips/peek-pixie.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>הכירו את פיקסי</b>״היי, אני פיקסי, העוזרת הדיגיטלית שלכם״</figcaption></figure>
-      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: שיעור 5"><video src="clips/peek-boss.mp4" poster="clips/peek-boss.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>שיעור 5</b>איך נולד הרעיון של ״הבוס״</figcaption></figure>
       <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: שיעור 8"><video src="clips/peek-sheet.mp4" poster="clips/peek-sheet.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>שיעור 8</b>״אחת הטעויות הכי נפוצות שאני רואה...״</figcaption></figure>
-      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: שיעור 10"><video src="clips/peek-real.mp4" poster="clips/peek-real.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>שיעור 10</b>״למה היא נראית כל כך AI?״</figcaption></figure>
+      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: שיעור 10"><video src="clips/peek-real.mp4" poster="clips/peek-real.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>שיעור 10</b>״כי מה גורם לבן אדם להרגיש אמיתי?״</figcaption></figure>
       <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: פיקסי מדגימה"><video src="clips/peek-layers.mp4" poster="clips/peek-layers.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>פיקסי מדגימה</b>״שלוש שכבות בשוט אחד״</figcaption></figure>
       <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: שיעור 18"><video src="clips/peek-swap.mp4" poster="clips/peek-swap.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>שיעור 18</b>מצלמים את עצמכם ומחליפים את העולם</figcaption></figure>
   </div>
@@ -516,9 +532,9 @@ body.rv-on{overflow:hidden}
   <div class="wrap">
     <h2 class="h2-s">מכוונים לחיבור, <span class="lit">ומתוך חיבור נוצרת ויראליות.</span></h2>
     <div class="big3">
-      <div class="glass main"><b class="lit">43,285</b>שליחות</div>
+      <div class="glass main"><b class="lit">כמעט 1.8 מיליון צפיות</b>רק מחמישה סרטונים, ובפחות מחודש</div>
+      <div class="glass"><b>43,285</b>שליחות</div>
       <div class="glass"><b>10,554</b>שמירות</div>
-      <div class="glass"><b>כמעט 1.8M</b>צפיות</div>
     </div>
     <p class="sub">בקורס אני מפרקת אותם ומראה בדיוק איך הם נבנו.</p>
     <div class="pv-row" tabindex="0" aria-label="הסרטונים, להחלקה">
@@ -604,6 +620,7 @@ body.rv-on{overflow:hidden}
       <article class="li"><img src="clips/peek-world.jpg" alt="" loading="lazy"><div><span class="n">שיעור 18</span><h3>לצלם את עצמכם ולהחליף את העולם</h3><p>איך שומרים על הפנים, התנועה והקול שלכם, ומשנים את כל מה שמסביב.</p></div></article>
       <article class="li"><img src="clips/curlers.jpg" alt="" loading="lazy"><div><span class="n">שיעור 19</span><h3>לגרום לדמות לדבר עברית</h3><p>איך גורמים לדמות AI לדבר עברית בצורה טבעית.</p></div></article>
       <article class="li"><img src="clips/pvc-boss.jpg" alt="" loading="lazy"><div><span class="n">שיעור 20</span><h3>להרכיב את הסרטון</h3><p>סדר העבודה שלי מטקסט לסרטון גמור, ולמה העריכה היא החלק הכי פשוט.</p></div></article>
+      <article class="li li-bonus"><span class="li-gift" aria-hidden="true">🎁</span><div><span class="n">בונוס · נפתח ב-11.11</span><h3>קורס MCP של זוהר וענונו</h3><p>איך עובדים עם Claude&nbsp;Code&nbsp;ו&#8209;MCP ייעודי ליצירת תוכן, בצורה אוטומטית ויעילה. רמה מתקדמת יותר, אחרי שלמדנו את הבסיס.</p></div></article>
     </div>
   </div>
 </section>
@@ -682,20 +699,6 @@ body.rv-on{overflow:hidden}
   <p class="kr-link">מתוך הפודקאסט המושלם של קרן שחם ועדי עייש 💛 <a href="https://www.youtube.com/watch?v=i4y7M297tFk&amp;t=2574s" target="_blank" rel="noopener">לפודקאסט המלא ←</a></p>
 </section>
 
-<!-- 9f ASKED: real messages and comments from Eve's Instagram (pulled by Ivy 3.11.2026), verbatim, no names -->
-<section class="sec center" id="asked">
-  <div class="wrap narrow">
-    <h2 class="h2-s">השאלה שהכי חוזרת <span class="lit">אצלי בהודעות.</span></h2>
-    <div class="dm-list">
-      <p class="dm glass">״כמה אני צריכה לשלם לך כדי שתעבירי אותי קורס ai ברמה שאת מייצרת?״<small>הודעה פרטית</small></p>
-      <p class="dm glass">״את מטורפת. את מדויקת. את חייבת לומר לנו איך את עושה את הסרטונים האלה״<small>תגובה</small></p>
-      <p class="dm glass">״...האם בקורס שלך את ממש מלמדת צעד אחרי צעד איך ליצור תוכן עם שימוש בכלי הזה…. אני מאוד רוצה להתחיל להשתמש בזה״<small>הודעה פרטית</small></p>
-      <p class="dm glass">״אמאלה הלוואי ואת מלמדת איכשהו איך עורכים ככה בai״<small>תגובה</small></p>
-      <p class="dm glass">״אוף ממש חיכיתי שיצא איזה קורס ליצירת תוכן כמוך בai חחחחח״<small>הודעה פרטית</small></p>
-    </div>
-    <p class="sub">אז הנה. זה הקורס.</p>
-  </div>
-</section>
 
 <div class="strip" aria-hidden="true"></div>
 
@@ -761,7 +764,7 @@ body.rv-on{overflow:hidden}
         <span class="bonus-tag">בונוס · נפתח ב-11.11</span>
         <h3>קורס MCP של זוהר וענונו</h3>
         <p class="who">יוצר AI ומייסד KOLBO.AI</p>
-        <p>איך עובדים עם Claude Code ו-MCP ייעודי ליצירת תוכן, בצורה אוטומטית ויעילה. רמה מתקדמת יותר, אחרי שלמדנו את הבסיס.</p>
+        <p>איך עובדים עם Claude&nbsp;Code&nbsp;ו&#8209;MCP ייעודי ליצירת תוכן, בצורה אוטומטית ויעילה. רמה מתקדמת יותר, אחרי שלמדנו את הבסיס.</p>
         <p>הנחה בלעדית ב-Kolbo, לבחירתכם: 50% על החודש הראשון, או 30% לשלושה חודשים</p>
         <details class="bonus-more">
           <summary>מה בקורס של זוהר?</summary>
@@ -793,11 +796,12 @@ body.rv-on{overflow:hidden}
   <div class="wrap narrow">
     <h2 class="h2-s">יש לכם שאלה?</h2>
     <div class="faq">
-      <details class="q"><summary>צריך לשלם על כלים?</summary><p>בחלק הראשון אין שום צורך במנוי בתשלום. בחלק השני נגיע לכלים שדורשים מנוי וקרדיטים. סרטון אצלי עלה בערך 100 ₪, ואני הייתי ממש בזבזנית. בקורס תלמדו לבדוק בזול לפני שמשקיעים. המחירים משתנים כל הזמן, אז הפירוט נמצא בתיאור השיעור.</p></details>
-      <details class="q"><summary>צריך לדעת אנגלית?</summary><p>לא. אתם אומרים לצ׳אט בעברית מה אתם רוצים, והוא עוזר להפוך את זה לפרומפט מדויק באנגלית.</p></details>
+      <details class="q"><summary>אין לי בכלל רקע ב-AI. זה מתאים לי?</summary><p>כן, אנחנו מתחילים ממש מהבסיס.</p></details>
+      <details class="q"><summary>אני כבר יוצר ב-AI אבל לא מצליח להגיע לתוצאות טובות. זה יעזור לי?</summary><p>כן. הקורס בנוי מהיסודות, ולרוב כשהתוצאות לא טובות, הבעיה נמצאת בחוסרים בבסיס.</p></details>
+      <details class="q"><summary>צריך מנויים בתשלום?</summary><p>לחלק הראשון של הקורס, לא. יצירת תוכן בבינה מלאכותית היא דבר שעולה כסף, ולכן צריך מנוי בתשלום לפלטפורמות מתאימות.</p></details>
       <details class="q"><summary>הדמות יכולה לדבר עברית?</summary><p>כן, וזה שיעור שלם. או שאתם מצלמים את עצמכם מדברים והשפתיים עוברות מהסרטון, או שעושים ליפסינק על סרטון שיצרתם ב-AI.</p></details>
-      <details class="q"><summary>ואם הכלים ישתנו?</summary><p>הם ישתנו. בגלל זה לא לומדים פה רק איפה ללחוץ, אלא את ההיגיון שמאחורי הדברים. הכלים אולי ישתנו, אבל העין והחשיבה שלכם יישארו איתכם.</p></details>
-      <details class="q"><summary>אפשר מהטלפון?</summary><p>כל הכלים עובדים גם בטלפון, אבל אני ממש ממליצה לעבוד על מחשב.</p></details>
+      <details class="q"><summary>ואם הכלים ישתנו?</summary><p>הם ישתנו. בגלל זה לא לומדים פה רק איפה ללחוץ, אלא את ההיגיון שמאחורי הדברים, ואיך להיות יוצרים חכמים שמתקדמים יחד עם המערכות.</p></details>
+      <details class="q"><summary>אפשר מהטלפון?</summary><p>כן, כל הכלים עובדים גם בטלפון.</p></details>
       <details class="q"><summary>צריך לדעת לערוך?</summary><p>עריכה בסיסית, כן. בשיעור האחרון אני מראה את סדר העבודה וההרכבה שלי, והקורס מניח שאתם כבר עורכים ב-CapCut או בתוכנה אחרת. מי שעוד לא, הבאנדל בשבילו.</p></details>
       <details class="q"><summary>ואם זה לא בשבילי?</summary><p>אפשר לבטל תוך 14 יום, כל עוד לא נפתחה הגישה לתכני הקורס. אחרי פתיחת הגישה לתוכן דיגיטלי אין החזר כספי, בהתאם לחוק.</p></details>
     </div>

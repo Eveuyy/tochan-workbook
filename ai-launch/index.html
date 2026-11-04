@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>קורס יצירת תוכן ב-AI | איב כהן</title>
+<meta name="description" content="התהליך המלא שלי ליצירת סרטונים ב-AI, מרעיון ועד סרטון. מחיר השקה ל-48 שעות.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* layout: one centered column. Hero, countdown, two offer cards (price + button switch by time), what you get, small print */
+:root{--ink:#fff;--mute:#e8cdd7;--pink:#F2207A;--orange:#FF6A3D;--glass:rgba(255,255,255,.08);--line:rgba(255,255,255,.22);--font:'Heebo',system-ui,-apple-system,'Segoe UI',Arial,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--font);color:var(--ink);background:#14080d;line-height:1.55;-webkit-text-size-adjust:100%;
+ background-image:radial-gradient(900px 560px at 85% -5%,rgba(242,32,122,.38),transparent 60%),radial-gradient(800px 560px at 5% 100%,rgba(255,106,61,.28),transparent 60%)}
+main{max-width:860px;margin:0 auto;padding:28px 18px 70px}
+.pill{display:inline-block;padding:7px 18px;border-radius:999px;background:linear-gradient(90deg,var(--pink),var(--orange));font-weight:700;font-size:14px}
+h1{font-size:clamp(34px,7.4vw,58px);line-height:1.12;font-weight:900;margin:14px 0 10px;text-wrap:balance;text-shadow:0 0 36px rgba(242,32,122,.45)}
+.lead{font-size:clamp(17px,3.6vw,21px);color:var(--mute);margin:0 0 22px;max-width:640px;text-wrap:pretty}
+.clock-card{background:var(--glass);border:1px solid var(--line);border-radius:26px;padding:18px 18px 20px;margin:0 0 22px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.clock-lbl{font-weight:700;font-size:16px;margin:0 0 10px;color:#ffe9f1}
+.clock{display:flex;gap:10px;direction:ltr;justify-content:center}
+.unit{flex:1;max-width:120px;background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:18px;padding:10px 4px 8px;text-align:center}
+.unit b{display:block;font-size:clamp(28px,8vw,44px);font-weight:900;font-variant-numeric:tabular-nums;line-height:1.1}
+.unit span{font-size:12px;color:var(--mute)}
+.opens{margin:12px 0 0;text-align:center;font-size:14px;color:var(--mute)}
+.over .clock{display:none}
+.cards{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:26px}
+@media(min-width:700px){.cards{grid-template-columns:1fr 1fr}}
+.card{background:var(--glass);border:1px solid var(--line);border-radius:26px;padding:20px 18px;display:flex;flex-direction:column;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.card h2{margin:0 0 4px;font-size:22px;font-weight:800}
+.card .sub{margin:0 0 12px;color:var(--mute);font-size:15px}
+.price{display:flex;align-items:baseline;gap:12px;margin:2px 0 4px}
+.price .now{font-size:46px;font-weight:900;line-height:1}
+.price .was{font-size:17px;color:var(--mute);text-decoration:line-through}
+.price small{font-size:14px;color:var(--mute)}
+.tag{font-size:13px;font-weight:700;color:#ffd9c9;margin:0 0 14px}
+.card ul{margin:0 0 18px;padding:0;list-style:none;display:grid;gap:7px;font-size:15.5px}
+.card li{padding-inline-start:26px;position:relative}
+.card li::before{content:"";position:absolute;inset-inline-start:0;top:.55em;width:11px;height:11px;border-radius:3px;background:linear-gradient(135deg,var(--pink),var(--orange));box-shadow:0 0 10px rgba(242,32,122,.7)}
+.btn{margin-top:auto;display:block;text-align:center;text-decoration:none;color:#fff;font-weight:800;font-size:18px;padding:15px 20px;border-radius:999px;background:linear-gradient(90deg,var(--pink),var(--orange));box-shadow:0 8px 30px rgba(242,32,122,.4)}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.block{background:var(--glass);border:1px solid var(--line);border-radius:26px;padding:20px 18px;margin-bottom:14px}
+.block h3{margin:0 0 8px;font-size:20px}
+.block p,.block li{color:var(--mute);font-size:16px}
+.block ul{margin:0;padding-inline-start:20px;display:grid;gap:6px}
+.fine{font-size:13px;color:#cdb0bb;text-align:center;margin-top:20px}
+.fine a{color:#ffd9c9}
+</style>
+</head>
+<body>
+<main id="top">
+<span class="pill">מחיר ההשקה לקהילה: 48 שעות</span>
+<h1>קורס יצירת תוכן ב-AI</h1>
+<p class="lead">התהליך המלא שלי ליצירת סרטונים ב-AI, מרעיון ועד סרטון: איך חושבים, איך בונים מסר שנוגע, ואיך הופכים אותו לסרטון, צעד אחרי צעד.</p>
+
+<section class="clock-card" id="clockCard" aria-live="polite">
+  <p class="clock-lbl" id="clockLbl">מחיר ההשקה נגמר בעוד</p>
+  <div class="clock" role="timer" aria-label="הזמן שנשאר למחיר ההשקה">
+    <div class="unit"><b id="d">--</b><span>ימים</span></div>
+    <div class="unit"><b id="h">--</b><span>שעות</span></div>
+    <div class="unit"><b id="m">--</b><span>דקות</span></div>
+    <div class="unit"><b id="s">--</b><span>שניות</span></div>
+  </div>
+  <p class="opens" id="opens"></p>
+</section>
+
+<section class="cards">
+  <article class="card">
+    <h2>קורס ה-AI</h2>
+    <p class="sub">27 שיעורים בשני חלקים</p>
+    <div class="price"><span class="now" id="p1">690 ₪</span><span class="was" id="w1">890 ₪</span></div>
+    <p class="tag" id="t1">מחיר השקה. אחרי זה: 890 ₪</p>
+    <ul>
+      <li>חלק א: חושבים ובונים את המסר</li>
+      <li>חלק ב: יוצרים ב-AI, שוט אחרי שוט</li>
+      <li>חוברת עבודה וסיכום כתוב באזור האישי</li>
+      <li>פיקסי מלווה אתכם בהדגמות</li>
+    </ul>
+    <a class="btn" id="b1" href="https://mrng.to/3qKxyFFR8R">אני רוצה להצטרף</a>
+  </article>
+  <article class="card">
+    <h2>הבאנדל</h2>
+    <p class="sub">קורס ה-AI ועוד קורס יצירת תוכן</p>
+    <div class="price"><span class="now" id="p2">859 ₪</span><span class="was" id="w2">1,120 ₪</span></div>
+    <p class="tag" id="t2">מחיר השקה. אחרי זה: 1,120 ₪</p>
+    <ul>
+      <li>כל מה שבקורס ה-AI</li>
+      <li>קורס יצירת תוכן, בגישה לאותו אזור אישי</li>
+      <li>חוברות עבודה לשני הקורסים</li>
+    </ul>
+    <a class="btn" id="b2" href="https://mrng.to/kp8uW01mzW">אני רוצה את הבאנדל</a>
+  </article>
+</section>
+
+<section class="block">
+  <h3>איך זה עובד</h3>
+  <ul>
+    <li>משלמים, ומקבלים אימייל עם הגישה לאזור האישי.</li>
+    <li>הסרטונים, החוברת והסיכום הכתוב נמצאים באזור האישי, ואפשר לחזור אליהם בכל רגע.</li>
+    <li>בשיעורים תמצאו גם הטבה מיוחדת של קולבו, כדי להתחיל ליצור בקלות.</li>
+  </ul>
+</section>
+
+<p class="fine"><a href="/privacy/">מדיניות פרטיות</a></p>
+</main>
+
+<script>
+/* All times are Israel time (UTC+2 after the clock change of 25.10.2026). */
+var CFG = {
+  deadline: new Date('2026-11-07T00:00:00+02:00').getTime(),   // end of launch price
+  opens:    new Date('2026-11-05T00:00:00+02:00').getTime(),   // course opens
+  before: { c: 'https://mrng.to/3qKxyFFR8R', b: 'https://mrng.to/kp8uW01mzW', cp: 690, bp: 859 },
+  after:  { c: 'https://mrng.to/XeGb9OUChG', b: 'https://mrng.to/ZrmjqmJK3M', cp: 890, bp: 1120 }
+};
+var offset = 0;                 // server time minus device time, learned from the Date header
+var testNow = null;             // test hook, only on localhost / file
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('now') && (location.hostname === 'localhost' || location.hostname === '' || location.protocol === 'file:')) testNow = new Date(q.get('now')).getTime();
+} catch (e) {}
+function now() { return testNow !== null ? testNow : Date.now() + offset; }
+function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+function $(id) { return document.getElementById(id); }
+var lastState = null;
+function paint() {
+  var t = now(), left = CFG.deadline - t, over = left <= 0;
+  var st = over ? 'after' : 'before';
+  if (st !== lastState) {
+    lastState = st; var c = CFG[st];
+    $('b1').href = c.c; $('b2').href = c.b;
+    $('p1').textContent = fmt(c.cp) + ' ₪'; $('p2').textContent = fmt(c.bp) + ' ₪';
+    $('w1').style.display = over ? 'none' : ''; $('w2').style.display = over ? 'none' : '';
+    $('t1').textContent = over ? 'המחיר המלא' : 'מחיר השקה. אחרי זה: 890 ₪';
+    $('t2').textContent = over ? 'המחיר המלא' : 'מחיר השקה. אחרי זה: 1,120 ₪';
+    $('clockLbl').textContent = over ? 'מחיר ההשקה הסתיים' : 'מחיר ההשקה נגמר בעוד';
+    $('clockCard').className = 'clock-card' + (over ? ' over' : '');
+    pill();
+  }
+  if (!over) {
+    var x = Math.max(0, left);
+    $('d').textContent = String(Math.floor(x / 864e5)).padStart(2, '0');
+    $('h').textContent = String(Math.floor(x / 36e5) % 24).padStart(2, '0');
+    $('m').textContent = String(Math.floor(x / 6e4) % 60).padStart(2, '0');
+    $('s').textContent = String(Math.floor(x / 1e3) % 60).padStart(2, '0');
+  }
+  $('opens').textContent = (t < CFG.opens && !over) ? 'הקורס נפתח בחצות הלילה (5.11). מי שמצטרפת לפני כן מקבלת גישה מיד, והשיעורים נפתחים בשעה 00:00.' : '';
+}
+function pill() { var p = document.querySelector('.pill'); if (p) p.textContent = (lastState === 'after') ? 'הקורס פתוח להצטרפות' : 'מחיר ההשקה לקהילה: 48 שעות'; }
+paint(); setInterval(paint, 1000);
+if (testNow === null) {
+  var t0 = Date.now();
+  fetch(location.pathname + '?t=' + t0, { method: 'HEAD', cache: 'no-store' }).then(function (r) {
+    var d = r.headers.get('Date'); if (d) { var rtt = Date.now() - t0; offset = new Date(d).getTime() + rtt / 2 - Date.now(); paint(); }
+  }).catch(function () {});
+}
+</script>
+</body>
+</html>

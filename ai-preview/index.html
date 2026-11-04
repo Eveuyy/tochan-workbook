@@ -271,6 +271,20 @@ details.q p{padding:0 4px 18px;color:var(--ink-2)}
 .cursor{display:inline-block;width:3px;height:1em;background:var(--a1);box-shadow:0 0 10px var(--a1);vertical-align:-.12em;margin-inline-start:5px;animation:blink 1s steps(2) infinite}
 footer{text-align:center;color:var(--ink-2);font-size:13px;padding:0 16px 120px;position:relative;z-index:1}
 footer a{color:inherit}
+.bonus{max-width:980px;margin:22px auto 0;border-radius:26px;padding:clamp(20px,3.4vw,30px);display:flex;gap:18px;align-items:center;text-align:right;border-color:rgba(255,194,61,.45);box-shadow:0 0 40px -14px rgba(255,194,61,.55)}
+@media (max-width:820px){.bonus{max-width:520px}}
+.bonus .gift{flex:0 0 auto;font-size:clamp(44px,7vw,60px);line-height:1;filter:drop-shadow(0 0 14px rgba(255,194,61,.6))}
+.bonus-tag{display:inline-block;font-size:13px;font-weight:700;padding:4px 12px;border-radius:999px;color:#1a0b05;background:linear-gradient(110deg,var(--a3),var(--a2))}
+.bonus h3{font-size:22px;font-weight:900;line-height:1.2;margin:10px 0 2px}
+.bonus .who{color:var(--ink-2);font-size:14.5px;margin:0 0 8px}
+.bonus p{margin:0}
+.lg{position:fixed;inset:0;z-index:110;display:grid;place-items:center;padding:16px}
+.lg[hidden]{display:none}
+.lg-box{position:relative;width:min(680px,100%);max-height:88vh;overflow-y:auto;background:var(--surface-solid);border:1px solid var(--line);border-radius:24px;padding:28px clamp(20px,4vw,36px) 32px;text-align:right;line-height:1.7;font-size:15.5px}
+.lg-box h2{font-size:24px;font-weight:900;margin:4px 56px 14px 0}
+.lg-box h3{font-size:16.5px;margin:18px 0 4px}
+.lg-box p,.lg-box li{color:var(--ink);margin:0 0 8px}
+.lg-box ol{padding-inline-start:22px;margin:0 0 8px}
 .fcta{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;transform:translate(-50%,170%);transition:transform .45s cubic-bezier(.2,.9,.3,1.2);border-radius:20px;padding:8px;max-width:calc(100% - 32px)}
 .fcta.show{transform:translate(-50%,0)}
 .fcta{display:none}
@@ -723,6 +737,15 @@ body.rv-on{overflow:hidden}
         <p class="fine">גישה לתמיד</p>
       </div>
     </div>
+    <div class="bonus glass">
+      <span class="gift" aria-hidden="true">🎁</span>
+      <div>
+        <span class="bonus-tag">בונוס · נפתח ב-11.11</span>
+        <h3>קורס MCP של זוהר וענונו</h3>
+        <p class="who">יוצר AI ומייסד KOLBO.AI</p>
+        <p>הטבות שוות והנחות על קרדיטים ליצירה, לחברי הקהילה</p>
+      </div>
+    </div>
     <h2 class="h2-s" style="margin-top:80px">מה קורה <span class="lit">אחרי שמצטרפים?</span></h2>
     <ol class="after">
       <li><div><b>היום</b><span>מצטרפים במחיר ההשקה.</span></div></li>
@@ -759,7 +782,16 @@ body.rv-on{overflow:hidden}
   </div>
 </section>
 </main>
-<footer>איב · <a href="/privacy/">מדיניות פרטיות</a></footer>
+<footer>איב · <a href="#terms" data-legal="terms">תקנון</a> · <a href="#cancel" data-legal="cancel">מדיניות ביטולים</a> · <a href="/privacy/">מדיניות פרטיות</a> · <a href="#a11y" data-legal="a11y">הצהרת נגישות</a></footer>
+
+<div class="lg" id="lg" role="dialog" aria-modal="true" aria-labelledby="lgTitle" hidden>
+  <div class="rv-back" data-lgclose></div>
+  <div class="lg-box">
+    <button type="button" class="rv-x glass" data-lgclose aria-label="סגירה">×</button>
+    <h2 id="lgTitle"></h2>
+    <div id="lgBody"></div>
+  </div>
+</div>
 
 <div class="rv" id="rv" role="dialog" aria-modal="true" aria-label="צפייה בסרטון" hidden>
   <div class="rv-back" data-close></div>
@@ -1059,6 +1091,44 @@ body.rv-on{overflow:hidden}
   }
   ringFrame(); if (reel) coverflow();
   requestAnimationFrame(loop);
+})();
+</script>
+<script>
+(function(){
+  var BIZ='איב כהן הרוש, עוסק פטור 315531749';
+  var CONTACT='054-810-8481 (טלפון או וואטסאפ), evecohenh@gmail.com, דגניה 6 פתח תקווה';
+  var CANCEL='<ol>'+
+    '<li>בהתאם לחוק הגנת הצרכן, התשמ"א-1981, ולתקנות הגנת הצרכן (ביטול עסקה), התשע"א-2010, אפשר לבטל את הרכישה בתוך 14 ימים ממועד הרכישה, ובלבד שעוד לא ניתנה לכם גישה לתכני הקורס.</li>'+
+    '<li>הגישה לתכנים ניתנת מיד אחרי התשלום. מרגע שניתנה גישה לתוכן הדיגיטלי (השיעורים והמסמכים), אי אפשר לבטל את העסקה ולקבל החזר כספי, כי מדובר בתוכן דיגיטלי שנצרך מיד.</li>'+
+    '<li>הודעת ביטול (כשהיא רלוונטית, לפני שניתנה גישה) נמסרת בכתב, בוואטסאפ או במייל, לפרטי הקשר שבתחתית.</li>'+
+    '<li>ביטול שאינו בגלל פגם או אי-התאמה עשוי לחייב דמי ביטול של עד 5% ממחיר העסקה או 100 ₪, לפי הנמוך מביניהם.</li>'+
+    '<li>במקרה של ביטול מאושר, ההחזר יבוצע באמצעי התשלום שבו בוצעה הרכישה, בתוך 14 ימי עסקים ממועד קבלת הודעת הביטול.</li>'+
+    '</ol>';
+  var L={
+    terms:{t:'תקנון',b:
+      '<h3>1. כללי</h3><p>התקנון חל על רכישת "קורס יצירה וחשיבה ב-AI" ועל רכישת הבאנדל (הקורס + קורס יצירת התוכן) באתר evecontent.co.il, המופעל על ידי '+BIZ+'. ביצוע הרכישה הוא הסכמה לתנאים שבתקנון.</p>'+
+      '<h3>2. הגבלת גיל</h3><p>הרכישה מיועדת למי שמלאו לו/לה 18. רכישה על ידי קטין/ה מותנית באישור הורה או אפוטרופוס, ובביצוע הרכישה על ידו/ה.</p>'+
+      '<h3>3. גישה לקורס</h3><p>הגישה לשיעורים ולמסמכי הקורס ניתנת אוטומטית אחרי השלמת התשלום, באמצעות פרטי כניסה שנשלחים למייל שמסרתם ברכישה. ברכישת הבאנדל ניתנת גישה גם לקורס יצירת התוכן. לא קיבלתם פרטי גישה בתוך 24 שעות? פנו אלינו בפרטים שבתחתית. הגישה ניתנת ללא הגבלת זמן, כל עוד הקורס והאתר פעילים.</p>'+
+      '<h3>4. ביטול עסקה</h3>'+CANCEL+
+      '<h3>5. הבונוס</h3><p>קורס ה-MCP של זוהר וענונו ניתן במתנה לרוכשי הקורס, ונפתח ב-11.11.2026. ההטבות וההנחות על קרדיטים ב-KOLBO.AI ניתנות על ידי KOLBO.AI ובהתאם לתנאים שלה, ועשויות להשתנות.</p>'+
+      '<h3>6. כלים חיצוניים</h3><p>בחלק מהשיעורים עובדים עם כלים חיצוניים שדורשים מנוי או קרדיטים. התשלום עליהם נעשה ישירות לספקים, ואינו כלול במחיר הקורס. המחירים והתנאים של הכלים משתנים ואינם באחריותנו.</p>'+
+      '<h3>7. קבוצת הוואטסאפ</h3><p>ההצטרפות לקבוצת הוואטסאפ של הקורס היא מרצון. בקבוצת וואטסאפ מספר הטלפון שלכם גלוי לשאר חברי הקבוצה.</p>'+
+      '<h3>8. זכויות בתוכן</h3><p>כל תכני הקורס (סרטונים, מסמכים וטקסטים) שייכים ל'+BIZ.split(',')[0]+' ומיועדים לשימוש אישי של הרוכש/ת בלבד. אין להעתיק, להפיץ, למכור או לשתף את התכנים או את פרטי הגישה.</p>'+
+      '<h3>9. אחריות</h3><p>התוכן בקורס הוא הדרכה כללית ואינו ייעוץ עסקי, שיווקי או מקצועי מותאם אישית. אין התחייבות לתוצאה מסוימת, והאחריות על יישום התכנים ותוצאותיהם היא של הרוכש/ת.</p>'+
+      '<h3>10. פרטי קשר</h3><p>'+CONTACT+'</p>'},
+    cancel:{t:'מדיניות ביטולים',b:'<p>העסק: '+BIZ+'.</p>'+CANCEL+'<p>פרטי קשר לביטול: '+CONTACT+'</p>'},
+    a11y:{t:'הצהרת נגישות',b:
+      '<p>חשוב לנו שהדף יהיה נגיש לכל מי שנכנס אליו, כולל אנשים עם מוגבלות. אנחנו פועלים להתאים אותו לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג-2013, ולעקרונות התקן WCAG 2.0 ברמה AA, ככל הניתן.</p>'+
+      '<p>מה כבר קיים בדף: הדף מותאם לטלפון ולמחשב ואפשר להגדיל בו את הטקסט דרך הדפדפן. לכפתורים ולסרטונים יש תיאור טקסטואלי לקוראי מסך, ולצילומי המסך של התגובות יש טקסט חלופי. אפשר לנווט בדף במקלדת. מי שהגדיר במכשיר הפחתת תנועה יקבל דף עם פחות אנימציות.</p>'+
+      '<p>אם משהו בדף לא נגיש לכם, נשמח שתכתבו לנו ונטפל בזה בהקדם. רכזת הנגישות: איב כהן הרוש, 054-810-8481, evecohenh@gmail.com.</p>'}
+  };
+  var box=document.getElementById('lg'),T=document.getElementById('lgTitle'),B=document.getElementById('lgBody'),last=null;
+  function open(k){var d=L[k];if(!d)return;last=document.activeElement;T.textContent=d.t;B.innerHTML=d.b;box.hidden=false;document.body.style.overflow='hidden';box.querySelector('.rv-x').focus();}
+  function close(){if(box.hidden)return;box.hidden=true;document.body.style.overflow='';if(location.hash&&L[location.hash.slice(1)])history.replaceState(null,'',location.pathname+location.search);if(last)last.focus();}
+  document.querySelectorAll('[data-legal]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();open(a.dataset.legal);});});
+  box.querySelectorAll('[data-lgclose]').forEach(function(x){x.addEventListener('click',close);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  if(L[location.hash.slice(1)])open(location.hash.slice(1));
 })();
 </script>
 </body>

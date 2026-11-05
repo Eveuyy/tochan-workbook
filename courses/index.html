@@ -38,7 +38,7 @@ body{font-family:'Heebo','Segoe UI',Arial,sans-serif;color:var(--ink);min-height
 main{position:relative;z-index:3;max-width:520px;margin:0 auto;padding:calc(34px + env(safe-area-inset-top)) 20px calc(40px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:16px}
 header{text-align:center;padding:6px 0 10px}
 .handle{display:inline-block;font-size:14px;font-weight:500;letter-spacing:.04em;color:var(--ink-2);padding:6px 16px;border:1px solid var(--line);border-radius:99px;background:rgba(255,214,196,.06);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);direction:ltr}
-h1{margin-top:20px;font-size:clamp(54px,17vw,84px);line-height:.98;font-weight:900;letter-spacing:-.02em}
+h1{margin-top:20px;font-size:clamp(28px,8.2vw,48px);line-height:1.08;text-wrap:balance;font-weight:900;letter-spacing:-.02em}
 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .tag{margin-top:16px;font-size:18px;font-weight:500;color:var(--ink);text-shadow:0 2px 24px rgba(0,0,0,.7)}
 
@@ -85,7 +85,7 @@ body.after .full{display:inline}
 body.after .badge{display:none}
 body.after .timer{display:none}
 
-@media (prefers-reduced-motion:reduce){.cta,.lp{animation:none}.bg video{display:none}.card{animation:none;opacity:1;transform:none}.grain{animation:none}}
+@media (prefers-reduced-motion:reduce){.cta,.lp{animation:none}.bg video{animation:none}.card{animation:none;opacity:1;transform:none}.grain{animation:none}}
 </style>
 </head>
 <body>
@@ -96,7 +96,7 @@ body.after .timer{display:none}
   <header>
     <div class="lp launch">מחיר השקה</div>
     <span class="handle">@eve.harosh</span>
-    <h1 class="g">הקורסים<br>של איב</h1>
+    <h1 class="g">כל הידע שאתם צריכים<br>במקום אחד</h1>
     <p class="tag">תוכן ופרסומות מטורפים ב-AI,<br>לצד ההורות המצחיקה</p>
   </header>
 
@@ -144,7 +144,14 @@ body.after .timer{display:none}
   }
   if(tick()){var iv=setInterval(function(){if(!tick())clearInterval(iv)},1000)}
   var v=document.getElementById('v');
-  if(v){var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){})}
+  if(v){
+    v.muted=true;v.defaultMuted=true;v.setAttribute('muted','');
+    var go=function(){if(!v.paused)return;var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){})};
+    go();v.addEventListener('canplay',go);
+    ['touchstart','pointerdown','scroll'].forEach(function(e){window.addEventListener(e,go,{passive:true})});
+    document.addEventListener('visibilitychange',function(){if(!document.hidden)go()});
+    window.addEventListener('pageshow',go);
+  }
 })();
 </script>
 </body>

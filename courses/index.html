@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>הקורסים של איב</title>
+<meta name="description" content="קורס יצירה וחשיבה ב-AI, קורס יצירת תוכן והבאנדל. הכול במקום אחד.">
+<meta name="theme-color" content="#0F0608">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0F0608; --ink:#FFF1E8; --ink-2:#D2A797;
+  --a1:#FF2E88; --a2:#FF6A3D; --a3:#FFC23D;
+  --grad:linear-gradient(100deg,var(--a1) 0%,var(--a2) 45%,var(--a3) 90%);
+  --line:rgba(255,226,210,.16);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}
+body{font-family:'Heebo','Segoe UI',Arial,sans-serif;color:var(--ink);min-height:100vh;min-height:100dvh;overflow-x:hidden;position:relative;line-height:1.35}
+
+/* ---------- background: her videos, softly blurred ---------- */
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:var(--bg) url('bg.jpg') center/cover no-repeat}
+.bg video{position:absolute;left:50%;top:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%) scale(1.12);object-fit:cover;filter:blur(5px) saturate(1.15);animation:drift 22s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(-50%,-50%) scale(1.12)}to{transform:translate(-50%,-52%) scale(1.2)}}
+.veil{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+   radial-gradient(900px 600px at 85% 0%,rgba(255,46,136,.34),transparent 60%),
+   radial-gradient(800px 600px at 0% 100%,rgba(255,106,61,.30),transparent 60%),
+   linear-gradient(180deg,rgba(15,6,8,.55) 0%,rgba(15,6,8,.62) 45%,rgba(15,6,8,.86) 100%)}
+.grain{position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:.08;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain 1.2s steps(4) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(3%,3%)}}
+
+/* ---------- layout ---------- */
+main{position:relative;z-index:3;max-width:520px;margin:0 auto;padding:calc(34px + env(safe-area-inset-top)) 20px calc(40px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:16px}
+header{text-align:center;padding:6px 0 10px}
+.handle{display:inline-block;font-size:14px;font-weight:500;letter-spacing:.04em;color:var(--ink-2);padding:6px 16px;border:1px solid var(--line);border-radius:99px;background:rgba(255,214,196,.06);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);direction:ltr}
+h1{margin-top:20px;font-size:clamp(54px,17vw,84px);line-height:.98;font-weight:900;letter-spacing:-.02em}
+.g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tag{margin-top:16px;font-size:18px;font-weight:500;color:var(--ink);text-shadow:0 2px 24px rgba(0,0,0,.7)}
+
+/* ---------- cards ---------- */
+.card{position:relative;display:block;text-decoration:none;color:inherit;border-radius:28px;padding:24px 22px 22px;
+  background:linear-gradient(160deg,rgba(255,226,210,.13),rgba(255,214,196,.05));
+  border:1px solid var(--line);backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2);
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.12);
+  transition:transform .25s ease,border-color .25s ease;opacity:0;transform:translateY(18px);animation:in .7s cubic-bezier(.2,.8,.2,1) forwards}
+.card:nth-of-type(1){animation-delay:.15s}.card:nth-of-type(2){animation-delay:.3s}.card:nth-of-type(3){animation-delay:.45s}
+@keyframes in{to{opacity:1;transform:none}}
+.card:active{transform:scale(.985)}
+@media (hover:hover){.card:hover{transform:translateY(-3px);border-color:rgba(255,194,61,.5)}}
+.card.hero{padding-top:30px;border-color:transparent;background:
+  linear-gradient(160deg,rgba(40,14,22,.82),rgba(26,10,16,.78)) padding-box,
+  var(--grad) border-box;border:1.5px solid transparent;
+  box-shadow:0 0 0 1px rgba(255,255,255,.04),0 30px 90px -25px rgba(255,46,136,.55),0 10px 60px -20px rgba(255,194,61,.35)}
+.badge{position:absolute;top:-13px;right:22px;background:var(--grad);color:#1a0509;font-weight:900;font-size:14px;padding:6px 16px;border-radius:99px;box-shadow:0 8px 24px -6px rgba(255,46,136,.7)}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--a3);margin-bottom:6px}
+.card h2{font-size:27px;line-height:1.15;font-weight:900}
+.card p{margin-top:10px;font-size:16px;font-weight:400;color:var(--ink-2)}
+.price{display:flex;align-items:baseline;gap:12px;margin-top:16px;flex-wrap:wrap}
+.price b{font-size:52px;line-height:1;font-weight:900}.price b .cur{font-size:.58em;font-weight:700;margin-inline-start:4px}
+.price s{font-size:20px;color:var(--ink-2);font-weight:500}
+.price .note{font-size:15px;color:var(--ink-2);font-weight:500}
+.timer{margin-top:12px;display:inline-flex;gap:8px;align-items:center;font-size:15px;font-weight:700;color:var(--a3);direction:rtl}
+.timer .dot{width:9px;height:9px;border-radius:50%;background:var(--a1);box-shadow:0 0 0 0 rgba(255,46,136,.7);animation:pulse 1.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(255,46,136,0)}100%{box-shadow:0 0 0 0 rgba(255,46,136,0)}}
+.timer span.t{font-variant-numeric:tabular-nums;direction:ltr;display:inline-block}
+.cta{margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 22px;border-radius:99px;font-weight:900;font-size:19px;color:#1a0509;background:var(--grad);box-shadow:0 14px 34px -12px rgba(255,106,61,.8)}
+.cta svg{width:22px;height:22px;flex:none}
+.card[data-c="bundle"]{padding-top:30px}
+.cta{animation:ctaglow 2.6s ease-in-out infinite alternate}
+@keyframes ctaglow{from{box-shadow:0 10px 26px -12px rgba(255,106,61,.55)}to{box-shadow:0 14px 44px -8px rgba(255,46,136,.85),0 0 34px -6px rgba(255,194,61,.55)}}
+.lp{display:inline-block;margin-bottom:14px;font-weight:900;font-size:16px;letter-spacing:.02em;padding:7px 20px;border-radius:99px;color:#1a0509;background:var(--grad);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 10px 36px -8px rgba(255,46,136,.85),0 0 40px -6px rgba(255,194,61,.55);animation:glow 2.8s ease-in-out infinite alternate}
+@keyframes glow{from{box-shadow:0 0 0 1px rgba(255,255,255,.08),0 10px 30px -10px rgba(255,46,136,.7),0 0 26px -8px rgba(255,194,61,.4)}to{box-shadow:0 0 0 1px rgba(255,255,255,.12),0 10px 44px -6px rgba(255,46,136,.95),0 0 56px -4px rgba(255,194,61,.7)}}
+footer{text-align:center;margin-top:8px;font-size:13px;color:var(--ink-2);opacity:.85}
+footer a{color:inherit}
+
+/* ---------- after the launch price ends (flips on its own) ---------- */
+.full{display:none}
+body.after .launch{display:none}
+body.after .full{display:inline}
+body.after .badge{display:none}
+body.after .timer{display:none}
+
+@media (prefers-reduced-motion:reduce){.cta,.lp{animation:none}.bg video{display:none}.card{animation:none;opacity:1;transform:none}.grain{animation:none}}
+</style>
+</head>
+<body>
+<div class="bg"><video id="v" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="bg.jpg"><source src="bg.mp4" type="video/mp4"></video></div>
+<div class="veil"></div><div class="grain"></div>
+
+<main>
+  <header>
+    <div class="lp launch">מחיר השקה</div>
+    <span class="handle">@eve.harosh</span>
+    <h1 class="g">הקורסים<br>של איב</h1>
+    <p class="tag">תוכן ופרסומות מטורפים ב-AI,<br>לצד ההורות המצחיקה</p>
+  </header>
+
+  <a class="card hero" href="https://www.evecontent.co.il/ai-preview/" data-c="ai">
+    <span class="badge launch">יצא! מחיר השקה</span>
+    <div class="kicker">קורס חדש</div>
+    <h2>קורס יצירה וחשיבה ב-AI</h2>
+    <p>24 שיעורים: איך בונים מסר שאנשים מרגישים, ואיך מקימים אותו לתחייה בסרטוני AI.</p>
+    <div class="timer"><i class="dot"></i><span><span id="when">נגמר מחר ב-22:00</span> · עוד <span class="t" id="cd">--:--:--</span></span></div>
+    <div class="cta"><span>לקורס</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></div>
+  </a>
+
+  <a class="card" href="https://www.evecontent.co.il/" data-c="base">
+    <div class="kicker">הבסיס</div>
+    <h2>קורס יצירת תוכן עם איב</h2>
+    <p>בלי להפוך את אינסטגרם לעוד משרה, ובלי להיות מישהו שאתם לא.</p>
+    <div class="cta"><span>לקורס</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></div>
+  </a>
+
+  <a class="card" href="https://www.evecontent.co.il/ai-preview/#offer" data-c="bundle">
+    <span class="badge launch">מחיר השקה</span>
+    <div class="kicker">שני הקורסים יחד</div>
+    <h2>הבאנדל: קורס ה-AI + קורס יצירת התוכן</h2>
+    <p>גם הבסיס של יצירת תוכן, כולל עריכה והעברת מסרים, וגם כל קורס ה-AI.</p>
+    <div class="cta"><span>לבאנדל</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></div>
+  </a>
+
+  <footer><a href="https://www.evecontent.co.il/privacy/">מדיניות פרטיות</a></footer>
+</main>
+
+<script>
+(function(){
+  // launch price ends here; after this the page flips to the regular prices by itself
+  var END=new Date('2026-11-06T22:00:00+02:00').getTime();
+  var cd=document.getElementById("cd"),when=document.getElementById("when");
+  var today=new Date().toLocaleDateString("en-CA",{timeZone:"Asia/Jerusalem"});
+  if(today==="2026-11-06"&&when)when.textContent="נגמר היום ב-22:00";
+  function pad(n){return n<10?'0'+n:''+n}
+  function tick(){
+    var left=END-Date.now();
+    if(left<=0){document.body.classList.add('after');return false}
+    var s=Math.floor(left/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60);
+    cd.textContent=pad(h)+':'+pad(m)+':'+pad(s%60);
+    return true;
+  }
+  if(tick()){var iv=setInterval(function(){if(!tick())clearInterval(iv)},1000)}
+  var v=document.getElementById('v');
+  if(v){var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){})}
+})();
+</script>
+</body>
+</html>

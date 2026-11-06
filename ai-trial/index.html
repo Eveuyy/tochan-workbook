@@ -248,6 +248,12 @@ main{position:relative;z-index:1}
 .fitc .fa{font-size:clamp(22px,2.6vw,28px);font-weight:900}
 .fitc .fs{font-size:16px;color:var(--ink-2);margin-top:-4px}
 .fitc .btn{margin-top:8px}
+.fitc{text-align:center}
+.fitc .fl{font-size:15px;font-weight:800;letter-spacing:.02em;opacity:.8}
+.fitc .fa{font-size:clamp(24px,3vw,30px);font-weight:900}
+.fitc .fu{list-style:none;padding:0;margin:4px 0;display:grid;gap:8px;font-size:18px;line-height:1.4;color:var(--ink-2)}
+.fitc .fu li::before{content:"✓ ";font-weight:900}
+
 #tCourse,#tBundle{scroll-margin-top:96px}
 
 /* ---------- 10 OFFER ---------- */
@@ -509,6 +515,38 @@ body.rv-on{overflow:hidden}
       <p class="dm glass">״אוף ממש חיכיתי שיצא איזה קורס ליצירת תוכן כמוך בai חחחחח״<small>הודעה פרטית</small></p>
     </div>
     <p class="sub">אז הנה. זה הקורס.</p>
+  </div>
+</section>
+
+<!-- 9b FIT (moved up, expanded): right after the question, before the peek -->
+<section class="sec center" id="fit">
+  <div class="wrap">
+    <h2 class="h2-s">איך יודעים אם הקורס <span class="lit">מתאים לי?</span></h2>
+    <p class="sub">שתי דרכים להתחיל. בוחרים לפי המקום שבו אתם עכשיו.</p>
+    <div class="fit2">
+      <div class="fitc glass">
+        <span class="fl">קורס ה-AI</span>
+        <p class="fa">בשבילכם אם:</p>
+        <ul class="fu">
+          <li>אתם כבר יוצרים תוכן</li>
+          <li>אתם יודעים לערוך</li>
+          <li>אתם מרגישים שאתם יודעים לבנות מסר ברמה בסיסית</li>
+        </ul>
+        <p class="fs">24 שיעורים בשני חלקים: המסר וה-AI.</p>
+        <a class="btn" href="#tCourse">לקורס</a>
+      </div>
+      <div class="fitc glass">
+        <span class="fl">באנדל: שני הקורסים</span>
+        <p class="fa">בשבילכם אם:</p>
+        <ul class="fu">
+          <li>אתם עוד צריכים ללמוד עריכה</li>
+          <li>אתם לא יודעים מה זה הוק</li>
+          <li>אתם רוצים להתחיל מהבסיס ולהגיע עד סרטון AI</li>
+        </ul>
+        <p class="fs">יש בו את כל מה שצריך: שילוב של שני הקורסים.</p>
+        <a class="btn" href="#tBundle">לבאנדל</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -775,26 +813,6 @@ body.rv-on{overflow:hidden}
 
 <div class="strip" aria-hidden="true"></div>
 
-
-<!-- 9b FIT: two plain answers, Eve's wording -->
-<section class="sec center" id="fit">
-  <div class="wrap">
-    <h2 class="h2-s">איך יודעים אם הקורס <span class="lit">מתאים לי?</span></h2>
-    <div class="fit2">
-      <div class="fitc glass">
-        <p class="fq">כבר יוצרים תוכן? יודעים לערוך? מרגישים שאתם יודעים לבנות מסר ברמה בסיסית?</p>
-        <p class="fa">קורס ה-AI בשבילכם.</p>
-        <a class="btn" href="#tCourse">לקורס</a>
-      </div>
-      <div class="fitc glass">
-        <p class="fq">עוד צריכים ללמוד עריכה? לא יודעים מה זה הוק?</p>
-        <p class="fa">הבאנדל בשבילכם.</p>
-        <p class="fs">יש בו את כל מה שצריך: שילוב של שני הקורסים.</p>
-        <a class="btn" href="#tBundle">לבאנדל</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- 10 OFFER -->
 <section class="sec center" id="offer">

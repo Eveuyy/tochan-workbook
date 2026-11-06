@@ -186,7 +186,7 @@ main{position:relative;z-index:1}
 .peek video{width:100%;height:100%;display:block;object-fit:cover}
 .pk-row{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:34px max(16px,calc(50% - 560px)) 10px;scrollbar-width:none}
 .pk-row::-webkit-scrollbar{display:none}
-.pk{flex:none;width:min(78vw,340px);margin:0;scroll-snap-align:center}
+.pk{flex:none;width:min(90vw,560px);margin:0;scroll-snap-align:center}
 .pk-v{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;border-radius:18px;overflow:hidden;background:#000;cursor:pointer;box-shadow:var(--shadow)}
 .pk-v video{width:100%;height:100%;object-fit:cover;display:block}
 .pk-snd{position:absolute;bottom:10px;left:10px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:15px}
@@ -213,7 +213,7 @@ main{position:relative;z-index:1}
 .ls-d{margin-top:14px}
 .ls-d > summary{list-style:none;cursor:pointer}
 .ls-d > summary::-webkit-details-marker{display:none}
-.ls-open{display:inline-block;margin-top:8px;font-style:normal;font-size:14px;font-weight:700;color:var(--ink);padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.ls-open{display:block;width:fit-content;margin-top:10px;font-style:normal;font-size:15px;font-weight:800;color:#fff;padding:8px 18px;border-radius:999px;border:0;background:var(--grad);box-shadow:0 0 16px rgba(255,90,120,.35)}
 .ls-open::after{content:" ▾"}
 .ls-d[open] .ls-open{display:none}
 .pv-q{margin-top:10px;font-size:14.5px;line-height:1.4;color:var(--ink);padding:10px 12px;border-radius:14px 14px 14px 4px;background:var(--surface);border:1px solid var(--line)}
@@ -248,6 +248,12 @@ main{position:relative;z-index:1}
 .fitc .fa{font-size:clamp(22px,2.6vw,28px);font-weight:900}
 .fitc .fs{font-size:16px;color:var(--ink-2);margin-top:-4px}
 .fitc .btn{margin-top:8px}
+.fitc{text-align:center}
+.fitc .fl{font-size:15px;font-weight:800;letter-spacing:.02em;opacity:.8}
+.fitc .fa{font-size:clamp(24px,3vw,30px);font-weight:900}
+.fitc .fu{list-style:none;padding:0;margin:4px 0;display:grid;gap:8px;font-size:18px;line-height:1.4;color:var(--ink-2)}
+.fitc .fu li::before{content:"✓ ";font-weight:900}
+
 #tCourse,#tBundle{scroll-margin-top:96px}
 
 /* ---------- 10 OFFER ---------- */
@@ -479,14 +485,14 @@ body.rv-on{overflow:hidden}
 <section class="sec screen center" id="screen">
   <div class="arc" id="arc" aria-hidden="true">
     <div class="arc-in" id="arcIn">
-      <div class="panel clip" data-a="-2"><video src="clips/drive.mp4" poster="clips/drive.jpg" muted loop playsinline preload="none"></video></div>
-      <div class="panel clip" data-a="-1"><video src="clips/brain.mp4" poster="clips/brain.jpg" muted loop playsinline preload="none"></video></div>
-      <div class="panel clip" data-a="1"><video src="clips/baby.mp4" poster="clips/baby.jpg" muted loop playsinline preload="none"></video></div>
-      <div class="panel clip" data-a="2"><video src="clips/washer.mp4" poster="clips/washer.jpg" muted loop playsinline preload="none"></video></div>
+      <div class="panel clip" data-a="-2"><img src="../ai-preview/clips/drive.jpg" alt="" loading="lazy"></div>
+      <div class="panel clip" data-a="-1"><img src="../ai-preview/clips/brain.jpg" alt="" loading="lazy"></div>
+      <div class="panel clip" data-a="1"><img src="../ai-preview/clips/baby.jpg" alt="" loading="lazy"></div>
+      <div class="panel clip" data-a="2"><img src="../ai-preview/clips/washer.jpg" alt="" loading="lazy"></div>
       <div class="panel main led" data-a="0">
         <div class="clip">
           <span class="tc rec mono">Rec</span><span class="tc fmt mono">9:16 · 720p</span><span class="tc time mono" id="tc">00:00:00:00</span>
-          <video src="clips/hero.mp4" poster="clips/hero.jpg" muted loop playsinline preload="none"></video>
+          <video src="../ai-preview/clips/hero.mp4" poster="../ai-preview/clips/hero.jpg" muted loop playsinline preload="none"></video>
         </div>
       </div>
     </div>
@@ -516,19 +522,10 @@ body.rv-on{overflow:hidden}
 <section class="sec center" id="peek">
   <div class="wrap narrow">
     <h2 class="h2-s">הצצה <span class="lit">לתוך הקורס.</span></h2>
-    <p class="sub">קטעים קצרים מהשיעורים. נוגעים בסרטון לסאונד. מחליקים ←</p>
+    <p class="sub">קטע קצר מהקורס. נוגעים בסרטון לסאונד.</p>
   </div>
-  <div class="pk-row" tabindex="0" aria-label="קטעים מהקורס, להחלקה">
-      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: הפתיחה"><video src="clips/peek-world.mp4" poster="clips/peek-world.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>הפתיחה</b>להחליף לה בגדים, שיער, תאורה, תקופה</figcaption></figure>
-      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: בואו אני אראה לכם"><video src="clips/peek-how.mp4" poster="clips/peek-how.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>הפתיחה</b>״בואו אני אראה לכם איך אני פאקינג עושה את זה״</figcaption></figure>
-      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: הכירו את פיקסי"><video src="clips/peek-pixie.mp4" poster="clips/peek-pixie.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>הכירו את פיקסי</b>״היי, אני פיקסי, העוזרת הדיגיטלית שלכם״</figcaption></figure>
-      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: גיליון דמות"><video src="clips/peek-sheet.mp4" poster="clips/peek-sheet.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>גיליון דמות</b>״אחת הטעויות הכי נפוצות שאני רואה...״</figcaption></figure>
-      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: דמות חדשה"><video src="clips/peek-real.mp4" poster="clips/peek-real.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>דמות חדשה</b>״כי מה גורם לבן אדם להרגיש אמיתי?״</figcaption></figure>
-      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: גיליון בגד"><video src="clips/peek-faces.mp4" poster="clips/peek-faces.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>גיליון בגד</b>״99% שהמחולל ייקח את הפנים מהתמונה של הביגוד״</figcaption></figure>
-      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: פיקסי מדגימה"><video src="clips/peek-layers.mp4" poster="clips/peek-layers.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>פיקסי מדגימה</b>״שלוש שכבות בשוט אחד״</figcaption></figure>
-      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: כשזה לא יוצא"><video src="clips/peek-change.mp4" poster="clips/peek-change.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>כשזה לא יוצא</b>״הדבר הכי יקר והכי מתסכל: לשנות הכל!״</figcaption></figure>
-      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: עברית"><video src="clips/peek-hebrew.mp4" poster="clips/peek-hebrew.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>עברית</b>״איך גורמים לדמות שלנו לדבר עברית כמו שצריך?״</figcaption></figure>
-      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: החלפת עולם"><video src="clips/peek-swap.mp4" poster="clips/peek-swap.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>החלפת עולם</b>מצלמים את עצמכם ומחליפים את העולם</figcaption></figure>
+  <div class="pk-row" tabindex="0" aria-label="קטע מהקורס" style="justify-content:center;overflow:visible;">
+      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: הפתיחה"><video src="../ai-preview/clips/peek-world.mp4" poster="../ai-preview/clips/peek-world.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>הפתיחה</b>להחליף לה בגדים, שיער, תאורה, תקופה</figcaption></figure>
   </div>
   <div class="wrap">
     <ul class="peek-lines">
@@ -538,6 +535,39 @@ body.rv-on{overflow:hidden}
     </ul>
   </div>
 </section>
+
+<!-- 9b FIT (moved up, expanded): right after the question, before the peek -->
+<section class="sec center" id="fit">
+  <div class="wrap">
+    <h2 class="h2-s">איך יודעים אם הקורס <span class="lit">מתאים לי?</span></h2>
+    <p class="sub">שתי דרכים להתחיל. בוחרים לפי המקום שבו אתם עכשיו.</p>
+    <div class="fit2">
+      <div class="fitc glass">
+        <span class="fl">קורס ה-AI</span>
+        <p class="fa">למי קורס ה-AI?</p>
+        <ul class="fu">
+          <li>אתם כבר יוצרים תוכן, ויודעים לערוך</li>
+          <li>יש לכם בסיס בבניית מסר, ואתם רוצים להגיע לרמה הבאה</li>
+          <li>אתם יודעים למי אתם מדברים, ומי קהל היעד שלכם</li>
+          <li>אתם רוצים ליצור דמות AI שנראית ממש כמוכם, ועם ליפסינק בעברית</li>
+          <li>אתם רוצים לדעת איזה מחולל תמונות ווידאו לבחור, בלי לשרוף קרדיטים על ניסוי וטעייה</li>
+        </ul>
+        <a class="btn" href="#tCourse">לקורס</a>
+      </div>
+      <div class="fitc glass">
+        <span class="fl">באנדל: שני הקורסים</span>
+        <p class="fa">למי הבאנדל?</p>
+        <ul class="fu">
+          <li>אתם רק מתחילים בעולמות יצירת התוכן</li>
+          <li>אתם עוד לא יודעים לערוך, ולא יודעים מה זה הוק</li>
+          <li>אתם רוצים ללמוד הכול במקום אחד, מהבסיס ועד סרטון AI</li>
+        </ul>
+        <p class="fs">יש בו את כל מה שצריך: שילוב של שני הקורסים.</p>
+        <a class="btn" href="#tBundle">לבאנדל</a>
+      </div>
+  </div>
+</section>
+
 
 <!-- 3 FLY-THROUGH -->
 <section class="fly" id="fly">
@@ -564,7 +594,7 @@ body.rv-on{overflow:hidden}
     <p class="sub">בקורס אני מפרקת אותם ומראה בדיוק איך הם נבנו.</p>
     <div class="pv-row" tabindex="0" aria-label="הסרטונים, להחלקה">
       <article class="pv led">
-        <button type="button" class="pv-media clip" data-i="0" aria-label="לצפייה בסרטון חופשת לידה"><img src="clips/pvc-leave.jpg" alt="" loading="lazy"><span class="play glass" aria-hidden="true">▶</span></button>
+        <button type="button" class="pv-media clip" data-i="0" aria-label="לצפייה בסרטון חופשת לידה"><img src="../ai-preview/clips/pvc-leave.jpg" alt="" loading="lazy"><span class="play glass" aria-hidden="true">▶</span></button>
         <div class="pv-body">
           <h3>חופשת לידה</h3>
           <p class="pv-views"><b class="lit">550K</b> צפיות</p>
@@ -574,7 +604,7 @@ body.rv-on{overflow:hidden}
         </div>
       </article>
       <article class="pv led">
-        <button type="button" class="pv-media clip" data-i="1" aria-label="לצפייה בסרטון כבר נגעו בי היום"><img src="clips/pvc-touch.jpg" alt="" loading="lazy"><span class="play glass" aria-hidden="true">▶</span></button>
+        <button type="button" class="pv-media clip" data-i="1" aria-label="לצפייה בסרטון כבר נגעו בי היום"><img src="../ai-preview/clips/pvc-touch.jpg" alt="" loading="lazy"><span class="play glass" aria-hidden="true">▶</span></button>
         <div class="pv-body">
           <h3>כבר נגעו בי היום</h3>
           <p class="pv-views"><b class="lit">441K</b> צפיות</p>
@@ -584,7 +614,7 @@ body.rv-on{overflow:hidden}
         </div>
       </article>
       <article class="pv led">
-        <button type="button" class="pv-media clip" data-i="2" aria-label="לצפייה בסרטון הבוס"><img src="clips/pvc-boss.jpg" alt="" loading="lazy"><span class="play glass" aria-hidden="true">▶</span></button>
+        <button type="button" class="pv-media clip" data-i="2" aria-label="לצפייה בסרטון הבוס"><img src="../ai-preview/clips/pvc-boss.jpg" alt="" loading="lazy"><span class="play glass" aria-hidden="true">▶</span></button>
         <div class="pv-body">
           <h3>הבוס</h3>
           <p class="pv-views"><b class="lit">316K</b> צפיות</p>
@@ -594,7 +624,7 @@ body.rv-on{overflow:hidden}
         </div>
       </article>
       <article class="pv led">
-        <button type="button" class="pv-media clip" data-i="3" aria-label="לצפייה בסרטון קצת מטומטמת"><img src="clips/pvc-dumb.jpg" alt="" loading="lazy"><span class="play glass" aria-hidden="true">▶</span></button>
+        <button type="button" class="pv-media clip" data-i="3" aria-label="לצפייה בסרטון קצת מטומטמת"><img src="../ai-preview/clips/pvc-dumb.jpg" alt="" loading="lazy"><span class="play glass" aria-hidden="true">▶</span></button>
         <div class="pv-body">
           <h3>קצת מטומטמת</h3>
           <p class="pv-views"><b class="lit">241K</b> צפיות</p>
@@ -604,7 +634,7 @@ body.rv-on{overflow:hidden}
         </div>
       </article>
       <article class="pv led">
-        <button type="button" class="pv-media clip" data-i="4" aria-label="לצפייה בסרטון הורמונים"><img src="clips/pvc-horm.jpg" alt="" loading="lazy"><span class="play glass" aria-hidden="true">▶</span></button>
+        <button type="button" class="pv-media clip" data-i="4" aria-label="לצפייה בסרטון הורמונים"><img src="../ai-preview/clips/pvc-horm.jpg" alt="" loading="lazy"><span class="play glass" aria-hidden="true">▶</span></button>
         <div class="pv-body">
           <h3>הורמונים</h3>
           <p class="pv-views"><b class="lit">240K</b> צפיות</p>
@@ -645,35 +675,35 @@ body.rv-on{overflow:hidden}
     <details class="ls-d">
     <summary class="ls-part">חלק 1 · הופכים רעיון לטקסט שאנשים מרגישים <span>בלי שום מנוי בתשלום · שיעורים 1-6</span><em class="ls-open" aria-hidden="true">לכל השיעורים</em></summary>
     <div class="ls-grid">
-      <article class="li"><img src="clips/coffee.jpg" alt="" loading="lazy"><div><span class="n">שיעור 1 · איפה נולדת מחשבה</span><h3>למצוא רעיון שאנשים מזהים בו את עצמם</h3><p>איפה מחפשים את הרגע שגורם לצופה לעצור ולהגיד ״רגע, זה אני״.</p></div></article>
-      <article class="li"><img src="clips/alone.jpg" alt="" loading="lazy"><div><span class="n">שיעור 2 · מה אני רוצה שיקרה</span><h3>להחליט מה הסרטון צריך לעשות</h3><p>למה סרטון עם מאות אלפי צפיות יכול לא לקדם אתכם בכלום, ואיך מכוונים מראש למה שאתם באמת רוצים.</p></div></article>
-      <article class="li"><img src="clips/washer.jpg" alt="" loading="lazy"><div><span class="n">שיעור 3 · מה התוכן עושה לצופה</span><h3>לגרום לצופה להרגיש את מה שצריך</h3><p>מה צריך לקרות לצופה מבפנים כדי שישמור, ישלח או יפנה אליכם.</p></div></article>
-      <article class="li"><img src="clips/sleep.jpg" alt="" loading="lazy"><div><span class="n">שיעור 4 · מסע הצופה</span><h3>לקחת את הצופה ממקום למקום</h3><p>איך מובילים את הצופה למסקנה, בלי לזרוק אותה עליו.</p></div></article>
-      <article class="li"><img src="clips/brain.jpg" alt="" loading="lazy"><div><span class="n">שיעור 5 · הטכניקות שלי לקפיצה יצירתית</span><h3>הטכניקות שלי לקפיצה יצירתית</h3><p>איך לוקחים נושא שכבר דיברו עליו מאה פעם, ומגישים אותו בדרך שאף אחד לא ציפה לה.</p></div></article>
-      <article class="li"><img src="clips/drive.jpg" alt="" loading="lazy"><div><span class="n">שיעור 6 · הצ׳אט כשותף לדרך</span><h3>לכתוב את הטקסט עם הצ׳אט, בקול שלכם</h3><p>איך עובדים עם הצ׳אט כך שהטקסט ייצא שלכם, ולא של רובוט.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/coffee.jpg" alt="" loading="lazy"><div><span class="n">שיעור 1 · איפה נולדת מחשבה</span><h3>למצוא רעיון שאנשים מזהים בו את עצמם</h3><p>איפה מחפשים את הרגע שגורם לצופה לעצור ולהגיד ״רגע, זה אני״.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/alone.jpg" alt="" loading="lazy"><div><span class="n">שיעור 2 · מה אני רוצה שיקרה</span><h3>להחליט מה הסרטון צריך לעשות</h3><p>למה סרטון עם מאות אלפי צפיות יכול לא לקדם אתכם בכלום, ואיך מכוונים מראש למה שאתם באמת רוצים.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/washer.jpg" alt="" loading="lazy"><div><span class="n">שיעור 3 · מה התוכן עושה לצופה</span><h3>לגרום לצופה להרגיש את מה שצריך</h3><p>מה צריך לקרות לצופה מבפנים כדי שישמור, ישלח או יפנה אליכם.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/sleep.jpg" alt="" loading="lazy"><div><span class="n">שיעור 4 · מסע הצופה</span><h3>לקחת את הצופה ממקום למקום</h3><p>איך מובילים את הצופה למסקנה, בלי לזרוק אותה עליו.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/brain.jpg" alt="" loading="lazy"><div><span class="n">שיעור 5 · הטכניקות שלי לקפיצה יצירתית</span><h3>הטכניקות שלי לקפיצה יצירתית</h3><p>איך לוקחים נושא שכבר דיברו עליו מאה פעם, ומגישים אותו בדרך שאף אחד לא ציפה לה.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/drive.jpg" alt="" loading="lazy"><div><span class="n">שיעור 6 · הצ׳אט כשותף לדרך</span><h3>לכתוב את הטקסט עם הצ׳אט, בקול שלכם</h3><p>איך עובדים עם הצ׳אט כך שהטקסט ייצא שלכם, ולא של רובוט.</p></div></article>
     </div>
     </details>
     <details class="ls-d">
     <summary class="ls-part">חלק 2 · הופכים את הטקסט לסרטון AI <span>שיעורים 7-24</span><em class="ls-open" aria-hidden="true">לכל השיעורים</em></summary>
     <div class="ls-grid">
-      <article class="li"><img src="clips/barbie.jpg" alt="" loading="lazy"><div><span class="n">שיעור 7 · מכירים את מגרש המשחקים</span><h3>להבין איך מדברים עם מחוללים</h3><p>למה אותה בקשה נותנת כל פעם תוצאה אחרת, ואיך מתחילים לשלוט במה שיוצא.</p></div></article>
-      <article class="li"><img src="clips/peek-pixie.jpg" alt="" loading="lazy"><div><span class="n">שיעור 8 · להכיר את Kolbo</span><h3>להתמצא ב-Kolbo, הבית של כל המחוללים</h3><p>סיור עם פיקסי: איפה בוחרים מה לייצר, איך בוחרים מחולל, ואיפה רואים כמה קרדיטים נשארו.</p></div></article>
-      <article class="li"><img src="clips/beach.jpg" alt="" loading="lazy"><div><span class="n">שיעור 9 · בונים גיליון דמות של עצמנו</span><h3>לבנות גיליון דמות שבאמת נראה כמוכם</h3><p>ומה הטעויות הנפוצות שגורמות לדמות שלכם לצאת בווידאו כמו מישהי אחרת.</p></div></article>
-      <article class="li"><img src="clips/dress.jpg" alt="" loading="lazy"><div><span class="n">שיעור 10 · בדיקת זהות</span><h3>לוודא שהדמות באמת אתם</h3><p>הבדיקה שאני עושה לפני שמתחילים לבנות, שחוסכת הרבה קרדיטים וכאב ראש.</p></div></article>
-      <article class="li"><img src="clips/les-10.jpg" alt="" loading="lazy"><div><span class="n">שיעור 11 · יוצרים דמות חדשה ב-AI</span><h3>ליצור דמות חדשה שלא נראית AI</h3><p>מה בדיוק מסגיר תמונה של AI, ואיך בורחים מזה.</p></div></article>
-      <article class="li"><img src="clips/les-11.jpg" alt="" loading="lazy"><div><span class="n">שיעור 12 · מה מסתכלים עליו בתמונה</span><h3>לחשוב על תמונה לפני שמייצרים אותה</h3><p>מה באמת משנה את האווירה בתמונה, ומה רק נראה כאילו הוא עוזר.</p></div></article>
-      <article class="li"><img src="clips/les-12.jpg" alt="" loading="lazy"><div><span class="n">שיעור 13 · זוויות מצלמה</span><h3>לבחור זווית מצלמה לפי מה שרוצים שירגישו</h3><p>איך אותו רגע בדיוק יכול להרגיש אינטימי, מאיים או פגיע, רק בגלל המקום של המצלמה.</p></div></article>
-      <article class="li"><img src="clips/peek-faces.jpg" alt="" loading="lazy"><div><span class="n">שיעור 14 · מחוללי התמונות</span><h3>לבחור מחולל תמונות לפי מה שצריך</h3><p>למה הצ׳אט לפעמים משבש לנו את התוצאות, ואיזה מחולל הכי שומר על הפנים.</p></div></article>
-      <article class="li"><img src="clips/les-13.jpg" alt="" loading="lazy"><div><span class="n">שיעור 15 · בונים פריים: מה לנעול ומה להשאיר פתוח</span><h3>לבנות פריים בשכבות</h3><p>מתי תמונת רפרנס עוזרת לכם, ומתי היא משתלטת על כל התוצאה.</p></div></article>
-      <article class="li"><img src="clips/baby.jpg" alt="" loading="lazy"><div><span class="n">שיעור 16 · מכירים את מחוללי הווידאו</span><h3>לבחור את המחולל הנכון</h3><p>חמישה מחוללים מול אותה משימה, ולמה החדש או היקר הוא לא תמיד הטוב ביותר.</p></div></article>
-      <article class="li"><img src="clips/embryo.jpg" alt="" loading="lazy"><div><span class="n">שיעור 17 · מתמונה לווידאו: הבסיס</span><h3>להפוך תמונה לווידאו</h3><p>מה צריך להגיד למחולל כשיש תנועה, זמן וסאונד, ומה קורה כשלא אומרים.</p></div></article>
-      <article class="li"><img src="clips/night.jpg" alt="" loading="lazy"><div><span class="n">שיעור 18 · מה לא עושים עם המחוללים</span><h3>לחסוך כסף, זמן ותסכול</h3><p>שלושה דברים שלא עושים עם מחוללים. אחד מהם למדתי ישר מהכיס.</p></div></article>
-      <article class="li"><img src="clips/peek-real.jpg" alt="" loading="lazy"><div><span class="n">שיעור 19 · כשזה לא יוצא</span><h3>לתקן כשזה לא יוצא</h3><p>מה עושים כשעשיתם הכול נכון והתוצאה עדיין לא עובדת, בלי להתחיל מאפס.</p></div></article>
-      <article class="li"><img src="clips/peek-layers.jpg" alt="" loading="lazy"><div><span class="n">שיעור 20 · ריאליזם ותחושה קולנועית</span><h3>לגרום לשוט להרגיש קולנועי ואמיתי</h3><p>מה נותן לשוט עומק, ולמה זה קשור לאיך שהעין שלנו רואה.</p></div></article>
-      <article class="li"><img src="clips/croissant.jpg" alt="" loading="lazy"><div><span class="n">שיעור 21 · פרומפט ברמה הבאה</span><h3>לקרוא פרומפט ולקחת שליטה</h3><p>שני חוקים שאפשר להישען עליהם, כשהצ׳אט כותב את הפרומפט ולפעמים טועה.</p></div></article>
-      <article class="li"><img src="clips/peek-world.jpg" alt="" loading="lazy"><div><span class="n">שיעור 22 · לצלם את עצמכם ולהחליף את העולם</span><h3>לצלם את עצמכם ולהחליף את העולם</h3><p>איך שומרים על הפנים, התנועה והקול שלכם, ומשנים את כל מה שמסביב.</p></div></article>
-      <article class="li"><img src="clips/curlers.jpg" alt="" loading="lazy"><div><span class="n">שיעור 23 · דיבור, עברית וליפסינק</span><h3>לגרום לדמות לדבר עברית</h3><p>איך גורמים לדמות AI לדבר עברית בצורה טבעית.</p></div></article>
-      <article class="li"><img src="clips/pvc-boss.jpg" alt="" loading="lazy"><div><span class="n">שיעור 24 · יש לי טקסט. מה רואים?</span><h3>להרכיב את הסרטון</h3><p>סדר העבודה שלי מטקסט לסרטון גמור, ולמה העריכה היא החלק הכי פשוט.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/barbie.jpg" alt="" loading="lazy"><div><span class="n">שיעור 7 · מכירים את מגרש המשחקים</span><h3>להבין איך מדברים עם מחוללים</h3><p>למה אותה בקשה נותנת כל פעם תוצאה אחרת, ואיך מתחילים לשלוט במה שיוצא.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/peek-pixie.jpg" alt="" loading="lazy"><div><span class="n">שיעור 8 · להכיר את Kolbo</span><h3>להתמצא ב-Kolbo, הבית של כל המחוללים</h3><p>סיור עם פיקסי: איפה בוחרים מה לייצר, איך בוחרים מחולל, ואיפה רואים כמה קרדיטים נשארו.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/beach.jpg" alt="" loading="lazy"><div><span class="n">שיעור 9 · בונים גיליון דמות של עצמנו</span><h3>לבנות גיליון דמות שבאמת נראה כמוכם</h3><p>ומה הטעויות הנפוצות שגורמות לדמות שלכם לצאת בווידאו כמו מישהי אחרת.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/dress.jpg" alt="" loading="lazy"><div><span class="n">שיעור 10 · בדיקת זהות</span><h3>לוודא שהדמות באמת אתם</h3><p>הבדיקה שאני עושה לפני שמתחילים לבנות, שחוסכת הרבה קרדיטים וכאב ראש.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/les-10.jpg" alt="" loading="lazy"><div><span class="n">שיעור 11 · יוצרים דמות חדשה ב-AI</span><h3>ליצור דמות חדשה שלא נראית AI</h3><p>מה בדיוק מסגיר תמונה של AI, ואיך בורחים מזה.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/les-11.jpg" alt="" loading="lazy"><div><span class="n">שיעור 12 · מה מסתכלים עליו בתמונה</span><h3>לחשוב על תמונה לפני שמייצרים אותה</h3><p>מה באמת משנה את האווירה בתמונה, ומה רק נראה כאילו הוא עוזר.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/les-12.jpg" alt="" loading="lazy"><div><span class="n">שיעור 13 · זוויות מצלמה</span><h3>לבחור זווית מצלמה לפי מה שרוצים שירגישו</h3><p>איך אותו רגע בדיוק יכול להרגיש אינטימי, מאיים או פגיע, רק בגלל המקום של המצלמה.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/peek-faces.jpg" alt="" loading="lazy"><div><span class="n">שיעור 14 · מחוללי התמונות</span><h3>לבחור מחולל תמונות לפי מה שצריך</h3><p>למה הצ׳אט לפעמים משבש לנו את התוצאות, ואיזה מחולל הכי שומר על הפנים.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/les-13.jpg" alt="" loading="lazy"><div><span class="n">שיעור 15 · בונים פריים: מה לנעול ומה להשאיר פתוח</span><h3>לבנות פריים בשכבות</h3><p>מתי תמונת רפרנס עוזרת לכם, ומתי היא משתלטת על כל התוצאה.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/baby.jpg" alt="" loading="lazy"><div><span class="n">שיעור 16 · מכירים את מחוללי הווידאו</span><h3>לבחור את המחולל הנכון</h3><p>חמישה מחוללים מול אותה משימה, ולמה החדש או היקר הוא לא תמיד הטוב ביותר.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/embryo.jpg" alt="" loading="lazy"><div><span class="n">שיעור 17 · מתמונה לווידאו: הבסיס</span><h3>להפוך תמונה לווידאו</h3><p>מה צריך להגיד למחולל כשיש תנועה, זמן וסאונד, ומה קורה כשלא אומרים.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/night.jpg" alt="" loading="lazy"><div><span class="n">שיעור 18 · מה לא עושים עם המחוללים</span><h3>לחסוך כסף, זמן ותסכול</h3><p>שלושה דברים שלא עושים עם מחוללים. אחד מהם למדתי ישר מהכיס.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/peek-real.jpg" alt="" loading="lazy"><div><span class="n">שיעור 19 · כשזה לא יוצא</span><h3>לתקן כשזה לא יוצא</h3><p>מה עושים כשעשיתם הכול נכון והתוצאה עדיין לא עובדת, בלי להתחיל מאפס.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/peek-opening.jpg" alt="" loading="lazy"><div><span class="n">שיעור 20 · ריאליזם ותחושה קולנועית</span><h3>לגרום לשוט להרגיש קולנועי ואמיתי</h3><p>מה נותן לשוט עומק, ולמה זה קשור לאיך שהעין שלנו רואה.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/croissant.jpg" alt="" loading="lazy"><div><span class="n">שיעור 21 · פרומפט ברמה הבאה</span><h3>לקרוא פרומפט ולקחת שליטה</h3><p>שני חוקים שאפשר להישען עליהם, כשהצ׳אט כותב את הפרומפט ולפעמים טועה.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/peek-world.jpg" alt="" loading="lazy"><div><span class="n">שיעור 22 · לצלם את עצמכם ולהחליף את העולם</span><h3>לצלם את עצמכם ולהחליף את העולם</h3><p>איך שומרים על הפנים, התנועה והקול שלכם, ומשנים את כל מה שמסביב.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/curlers.jpg" alt="" loading="lazy"><div><span class="n">שיעור 23 · דיבור, עברית וליפסינק</span><h3>לגרום לדמות לדבר עברית</h3><p>איך גורמים לדמות AI לדבר עברית בצורה טבעית.</p></div></article>
+      <article class="li"><img src="../ai-preview/clips/pvc-boss.jpg" alt="" loading="lazy"><div><span class="n">שיעור 24 · יש לי טקסט. מה רואים?</span><h3>להרכיב את הסרטון</h3><p>סדר העבודה שלי מטקסט לסרטון גמור, ולמה העריכה היא החלק הכי פשוט.</p></div></article>
     </div>
     </details>
   </div>
@@ -740,14 +770,14 @@ body.rv-on{overflow:hidden}
   </div>
   <p class="note" style="position:relative;z-index:2">תגובות לסרטונים, לא ביקורות על הקורס.</p>
   <div class="shots" aria-label="צילומי מסך של תגובות מהאינסטגרם, השמות מטושטשים">
-    <img src="comments/c1.jpg" alt="תגובה באינסטגרם: מה דחוף לי לבכות עכשיו בגלל זה" loading="lazy" width="900">
-    <img src="comments/c2.jpg" alt="תגובה באינסטגרם: ואוו תקשיבי את מעבירה תחושות ועולם שלם בכלכך חדות רגישות ועריכה מושלמת" loading="lazy" width="900">
-    <img src="comments/c3.jpg" alt="תגובה באינסטגרם: תוסיפי לזה הנקה. וזה שגוף שלך- לא שייך לך. במשך שנים. או שאת חרא אמא או שאת מאפשרת שיגעו בך, גם כשאת לא רוצה. אבל החדשות הטובות שזה עובר. כמו הכל בחיים. ואז הופכת להיות בעיקר ארנק חחח" loading="lazy" width="900">
-    <img src="comments/c4.jpg" alt="תגובה באינסטגרם: יו אני ממש בבינג על העמוד שלך כל סרטון אני רואה לפחות 4 פעמים ומתרגשת ומרגישה. איזה מטורף לי שאת יוצאת ומספרת מה שאני חווה ובטח עוד אלפי אמהות. זהו ביייי חפרתי" loading="lazy" width="900">
-    <img src="comments/c5.jpg" alt="תגובה באינסטגרם: ואי איב את גומרת אותי עם הסרטונים האלה בתור מישהי שחוותה דיכאון לידה את פשוט מתארת כל כך מדויק את כל הסיטואציות שכל כך קשות לי" loading="lazy" width="900">
-    <img src="comments/c6.jpg" alt="תגובה באינסטגרם: אמאלה גרמת לי לבכות. זה כל כך מדויק" loading="lazy" width="900">
-    <img src="comments/c7.jpg" alt="תגובה באינסטגרם: לא יודעת מה המילים הנכונות לתאר לך מה אני מרגישה בקשר לסרטון הזה.. כל קשת הרגשות. את מטורפת" loading="lazy" width="900">
-    <img src="comments/c8.jpg" alt="תגובה באינסטגרם: אני פשוט עוד לומדת איפה האישה שהייתי נכנסת בתוך האמא שנהייתי. חץ לנשמה ❤️" loading="lazy" width="900">
+    <img src="../ai-preview/comments/c1.jpg" alt="תגובה באינסטגרם: מה דחוף לי לבכות עכשיו בגלל זה" loading="lazy" width="900">
+    <img src="../ai-preview/comments/c2.jpg" alt="תגובה באינסטגרם: ואוו תקשיבי את מעבירה תחושות ועולם שלם בכלכך חדות רגישות ועריכה מושלמת" loading="lazy" width="900">
+    <img src="../ai-preview/comments/c3.jpg" alt="תגובה באינסטגרם: תוסיפי לזה הנקה. וזה שגוף שלך- לא שייך לך. במשך שנים. או שאת חרא אמא או שאת מאפשרת שיגעו בך, גם כשאת לא רוצה. אבל החדשות הטובות שזה עובר. כמו הכל בחיים. ואז הופכת להיות בעיקר ארנק חחח" loading="lazy" width="900">
+    <img src="../ai-preview/comments/c4.jpg" alt="תגובה באינסטגרם: יו אני ממש בבינג על העמוד שלך כל סרטון אני רואה לפחות 4 פעמים ומתרגשת ומרגישה. איזה מטורף לי שאת יוצאת ומספרת מה שאני חווה ובטח עוד אלפי אמהות. זהו ביייי חפרתי" loading="lazy" width="900">
+    <img src="../ai-preview/comments/c5.jpg" alt="תגובה באינסטגרם: ואי איב את גומרת אותי עם הסרטונים האלה בתור מישהי שחוותה דיכאון לידה את פשוט מתארת כל כך מדויק את כל הסיטואציות שכל כך קשות לי" loading="lazy" width="900">
+    <img src="../ai-preview/comments/c6.jpg" alt="תגובה באינסטגרם: אמאלה גרמת לי לבכות. זה כל כך מדויק" loading="lazy" width="900">
+    <img src="../ai-preview/comments/c7.jpg" alt="תגובה באינסטגרם: לא יודעת מה המילים הנכונות לתאר לך מה אני מרגישה בקשר לסרטון הזה.. כל קשת הרגשות. את מטורפת" loading="lazy" width="900">
+    <img src="../ai-preview/comments/c8.jpg" alt="תגובה באינסטגרם: אני פשוט עוד לומדת איפה האישה שהייתי נכנסת בתוך האמא שנהייתי. חץ לנשמה ❤️" loading="lazy" width="900">
   </div>
 </section>
 
@@ -756,7 +786,7 @@ body.rv-on{overflow:hidden}
   <div class="wrap">
     <div class="eve-grid">
       <div class="portrait led">
-        <div class="clip"><span class="tc rec mono">Rec</span><video src="clips/beach.mp4" poster="clips/beach.jpg" muted loop playsinline preload="none"></video></div>
+        <div class="clip"><span class="tc rec mono">Rec</span><video src="../ai-preview/clips/beach.mp4" poster="../ai-preview/clips/beach.jpg" muted loop playsinline preload="none"></video></div>
         <span class="handle glass">@eve.harosh</span>
       </div>
       <div>
@@ -777,7 +807,7 @@ body.rv-on{overflow:hidden}
     <p class="quote kr-q">״כמה שאני ואתה יש לנו לפעמים סלידה מ-AI... היא באמת יוצרת סרטונים. <span class="lit">רמה גבוהה מאוד מאוד.</span>״</p>
   </div>
   <div class="kr led">
-    <video src="clips/keren-podcast.mp4" poster="clips/keren-podcast.jpg" controls playsinline preload="none" data-tap></video>
+    <video src="../ai-preview/clips/keren-podcast.mp4" poster="../ai-preview/clips/keren-podcast.jpg" controls playsinline preload="none" data-tap></video>
   </div>
   <p class="kr-link">מתוך הפודקאסט המושלם של קרן שחם ועדי עייש 💛 <a href="https://www.youtube.com/watch?v=i4y7M297tFk&amp;t=2574s" target="_blank" rel="noopener">לפודקאסט המלא ←</a></p>
 </section>
@@ -785,26 +815,6 @@ body.rv-on{overflow:hidden}
 
 <div class="strip" aria-hidden="true"></div>
 
-
-<!-- 9b FIT: two plain answers, Eve's wording -->
-<section class="sec center" id="fit">
-  <div class="wrap">
-    <h2 class="h2-s">איך יודעים אם הקורס <span class="lit">מתאים לי?</span></h2>
-    <div class="fit2">
-      <div class="fitc glass">
-        <p class="fq">כבר יוצרים תוכן? יודעים לערוך? מרגישים שאתם יודעים לבנות מסר ברמה בסיסית?</p>
-        <p class="fa">קורס ה-AI בשבילכם.</p>
-        <a class="btn" href="#tCourse">לקורס</a>
-      </div>
-      <div class="fitc glass">
-        <p class="fq">עוד צריכים ללמוד עריכה? לא יודעים מה זה הוק?</p>
-        <p class="fa">הבאנדל בשבילכם.</p>
-        <p class="fs">יש בו את כל מה שצריך: שילוב של שני הקורסים.</p>
-        <a class="btn" href="#tBundle">לבאנדל</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- 10 OFFER -->
 <section class="sec center" id="offer">
@@ -880,7 +890,7 @@ body.rv-on{overflow:hidden}
 
 <!-- 12 END -->
 <section class="sec center end" id="end">
-  <div class="bgv" aria-hidden="true"><video src="clips/night.mp4" poster="clips/night.jpg" muted loop playsinline preload="none"></video></div>
+  <div class="bgv" aria-hidden="true"><video src="../ai-preview/clips/night.mp4" poster="../ai-preview/clips/night.jpg" muted loop playsinline preload="none"></video></div>
   <div class="wrap narrow">
     <h2 class="h2">ההודעה הבאה <span class="lit">על הסרטון שלכם.</span></h2>
     <div class="empty led"><span id="typed">ההודעה הבאה, על הסרטון שלכם.</span><span class="cursor" aria-hidden="true"></span></div>
@@ -1036,14 +1046,14 @@ body.rv-on{overflow:hidden}
   var cards = frames.map(function(n, i){
     var el = document.createElement('div');
     el.className = 'card3d';
-    el.innerHTML = '<img src="clips/' + n + '.jpg" alt="" loading="lazy">';
+    el.innerHTML = '<img src="../ai-preview/clips/' + n + '.jpg" alt="" loading="lazy">';
     space.appendChild(el);
     var ang = i * 2.4, rad = .55 + ((i * 7) % 10) / 22;
     return {el:el, x:Math.cos(ang) * rad, y:Math.sin(ang) * rad * .8, z:-200 - i * 150, r:(i % 2 ? 1 : -1) * (8 + i % 5 * 4)};
   });
   var heroCard = document.createElement('div');
   heroCard.className = 'card3d hero-card led';
-  heroCard.innerHTML = '<div class="clip"><video src="clips/beach.mp4" poster="clips/beach.jpg" muted loop playsinline preload="none"></video></div><div class="bub">מדויק. אמרת את מה שלא יכולתי להסביר במילים לבעלי ❤️</div>';
+  heroCard.innerHTML = '<div class="clip"><video src="../ai-preview/clips/beach.mp4" poster="../ai-preview/clips/beach.jpg" muted loop playsinline preload="none"></video></div><div class="bub">מדויק. אמרת את מה שלא יכולתי להסביר במילים לבעלי ❤️</div>';
   space.appendChild(heroCard);
   var hv = heroCard.querySelector('video');
   var lines = Array.prototype.slice.call(document.querySelectorAll('.lines h2')), prog = document.getElementById('prog');
@@ -1071,7 +1081,7 @@ body.rv-on{overflow:hidden}
   /* ---------- chat ---------- */
   /* ---------- reel player: opens over the page, nothing links out ---------- */
   (function(){
-    var REELS = [{"t": "חופשת לידה", "w": "מפורק בשיעור 1", "src": "clips/reel-leave.mp4", "poster": "clips/pvc-leave.jpg", "views": "549,643", "likes": "28,000", "comments": "1,618", "shares": "14,222", "saves": "3,297", "list": ["מדויק אמרת את מה שלא יכולתי להסביר במילים לבעלי ❤️", "זה יפה, נכון וסוף סוף מישהו מסביר לנו את עצמנו 🩷", "תודה, בזכותך אני מבין את אשתי קצת יותר 🙏", "רואה וכל הגוף שלי צמרמורת. את מדברת אותי.", "התעוררתי עם הסרטון הזה ופשוט התחלתי לבכות . כמה מדוייק", "שלחתי לבעלי"]}, {"t": "כבר נגעו בי היום", "w": "מפורק בשיעור 4", "src": "clips/reel-touch.mp4", "poster": "clips/pvc-touch.jpg", "views": "440,870", "likes": "17,492", "comments": "676", "shares": "8,871", "saves": "3,558", "list": ["לא מבינה איך את מצליחה לתרגם בצורה כל כך מדויקת את הסיטואציות של האמהות. תודה עליך! חשבתי שאני משתגעת. אני מבינה שאני ממש נורמלית", "אני בכלל הומו ורווק למה אני עם צמרמורת😢", "הבעל צופה ומזדהה. תודה לך❤️", "וואו גרמת לי לדמעות. כל כך הרבה נשים שאני מלווה מרגישות ככה. תודה שאת הקול שלהן", "יו אני ממש בבינג על העמוד שלך כל סרטון אני רואה לפחות 4 פעמים ומתרגשת ומרגישה. איזה מטורף לי שאת יוצאת ומספרת מה שאני חווה ובטח עוד אלפי אמהות . זהו בייי חפרתי"]}, {"t": "הבוס", "w": "מפורק בשיעור 5", "src": "clips/reel-boss.mp4", "poster": "clips/pvc-boss.jpg", "views": "316,300", "likes": "12,812", "comments": "578", "shares": "5,221", "saves": "802", "list": ["למה את כל כך מדויקת?! אומרת בקול את מה שרבות מאיתנו מרגישות הרבה פעמים", "מדהימה! תודה בזכותך אני יכולה להסביר לעצמי מה אני מרגישה ❤️", "את ככ טובה. כששאלו אותי מה קשה בחופשת לידה ואמרתי הרדמות וחיתולים כי פשוט לא היו לי מילים להסביר את התחושות שאת מצליחה לתאר. את מדהימה", "עם תינוק בן חודש וחצי בבית ודמעות בעיניים . תודה ❤️"]}, {"t": "קצת מטומטמת", "w": "מפורק בשיעור 1", "src": "clips/reel-dumb.mp4", "poster": "clips/pvc-dumb.jpg", "views": "241,097", "likes": "9,830", "comments": "528", "shares": "6,911", "saves": "1,336", "list": ["את מעולה ומדהימה, מתה על הסרטונים שלך!\nאומרת את מה שכולנו חושבות בקול וגורמת לכל אמא פה לא להרגיש לבד ❤️", "אמאלה סרטון שלישי שלך שאני צופה בו ואומרת לעצמי וואו כמה היא מתארת את האמת בצורה כל כך מדויקת !", "וואי את מעולה!!! 🔥🔥 איך את מצליחה לספר כל כך מדויק את כל מה שקורה לי בראש!!", "כשרון מטורף לדייק כל פעם מחדש את הרגשות שקשה לבטא 👏", "כאילו נכנסת למוח שלי ועשית על זה סרטון !!! אלופה 😍🤍"]}, {"t": "הורמונים", "w": "מפורק בשיעור 4", "src": "clips/reel-horm.mp4", "poster": "clips/pvc-horm.jpg", "views": "240,007", "likes": "12,277", "comments": "637", "shares": "8,060", "saves": "1,561", "list": ["ואווווו שלחתי לבעלי כדי שמישהו יסביר לו כי לי אין אפשרות\nזה מצויין זה בדיוק!!! מה שאני מרגישה", "אין אישה שלא תעשה פורוורד לבן זוג שלה פשוט אין!!", "איבוש אין עלייך!!! ♥️♥️ את מצילה מערכות זוגיות . כל אישה . חכמה שתעביר לבעלה בטוחה שזה יחדור אליהם ויבינו פעם אחת ולתמיד מה זאת א י ש ה", "וואי מסביר את מה שאני מרגישה בתוכי כל פעם מחדש ! תודה על זה! חייבת לשלוח לבחור ( או שניים )", "אני בדיוק ברגע הזה בחודש שהסרטון שלך גרם לי לבכות"]}];
+    var REELS = [{"t": "חופשת לידה", "w": "מפורק בשיעור 1", "src": "../ai-preview/clips/reel-leave.mp4", "poster": "../ai-preview/clips/pvc-leave.jpg", "views": "549,643", "likes": "28,000", "comments": "1,618", "shares": "14,222", "saves": "3,297", "list": ["מדויק אמרת את מה שלא יכולתי להסביר במילים לבעלי ❤️", "זה יפה, נכון וסוף סוף מישהו מסביר לנו את עצמנו 🩷", "תודה, בזכותך אני מבין את אשתי קצת יותר 🙏", "רואה וכל הגוף שלי צמרמורת. את מדברת אותי.", "התעוררתי עם הסרטון הזה ופשוט התחלתי לבכות . כמה מדוייק", "שלחתי לבעלי"]}, {"t": "כבר נגעו בי היום", "w": "מפורק בשיעור 4", "src": "../ai-preview/clips/reel-touch.mp4", "poster": "../ai-preview/clips/pvc-touch.jpg", "views": "440,870", "likes": "17,492", "comments": "676", "shares": "8,871", "saves": "3,558", "list": ["לא מבינה איך את מצליחה לתרגם בצורה כל כך מדויקת את הסיטואציות של האמהות. תודה עליך! חשבתי שאני משתגעת. אני מבינה שאני ממש נורמלית", "אני בכלל הומו ורווק למה אני עם צמרמורת😢", "הבעל צופה ומזדהה. תודה לך❤️", "וואו גרמת לי לדמעות. כל כך הרבה נשים שאני מלווה מרגישות ככה. תודה שאת הקול שלהן", "יו אני ממש בבינג על העמוד שלך כל סרטון אני רואה לפחות 4 פעמים ומתרגשת ומרגישה. איזה מטורף לי שאת יוצאת ומספרת מה שאני חווה ובטח עוד אלפי אמהות . זהו בייי חפרתי"]}, {"t": "הבוס", "w": "מפורק בשיעור 5", "src": "../ai-preview/clips/reel-boss.mp4", "poster": "../ai-preview/clips/pvc-boss.jpg", "views": "316,300", "likes": "12,812", "comments": "578", "shares": "5,221", "saves": "802", "list": ["למה את כל כך מדויקת?! אומרת בקול את מה שרבות מאיתנו מרגישות הרבה פעמים", "מדהימה! תודה בזכותך אני יכולה להסביר לעצמי מה אני מרגישה ❤️", "את ככ טובה. כששאלו אותי מה קשה בחופשת לידה ואמרתי הרדמות וחיתולים כי פשוט לא היו לי מילים להסביר את התחושות שאת מצליחה לתאר. את מדהימה", "עם תינוק בן חודש וחצי בבית ודמעות בעיניים . תודה ❤️"]}, {"t": "קצת מטומטמת", "w": "מפורק בשיעור 1", "src": "../ai-preview/clips/reel-dumb.mp4", "poster": "../ai-preview/clips/pvc-dumb.jpg", "views": "241,097", "likes": "9,830", "comments": "528", "shares": "6,911", "saves": "1,336", "list": ["את מעולה ומדהימה, מתה על הסרטונים שלך!\nאומרת את מה שכולנו חושבות בקול וגורמת לכל אמא פה לא להרגיש לבד ❤️", "אמאלה סרטון שלישי שלך שאני צופה בו ואומרת לעצמי וואו כמה היא מתארת את האמת בצורה כל כך מדויקת !", "וואי את מעולה!!! 🔥🔥 איך את מצליחה לספר כל כך מדויק את כל מה שקורה לי בראש!!", "כשרון מטורף לדייק כל פעם מחדש את הרגשות שקשה לבטא 👏", "כאילו נכנסת למוח שלי ועשית על זה סרטון !!! אלופה 😍🤍"]}, {"t": "הורמונים", "w": "מפורק בשיעור 4", "src": "../ai-preview/clips/reel-horm.mp4", "poster": "../ai-preview/clips/pvc-horm.jpg", "views": "240,007", "likes": "12,277", "comments": "637", "shares": "8,060", "saves": "1,561", "list": ["ואווווו שלחתי לבעלי כדי שמישהו יסביר לו כי לי אין אפשרות\nזה מצויין זה בדיוק!!! מה שאני מרגישה", "אין אישה שלא תעשה פורוורד לבן זוג שלה פשוט אין!!", "איבוש אין עלייך!!! ♥️♥️ את מצילה מערכות זוגיות . כל אישה . חכמה שתעביר לבעלה בטוחה שזה יחדור אליהם ויבינו פעם אחת ולתמיד מה זאת א י ש ה", "וואי מסביר את מה שאני מרגישה בתוכי כל פעם מחדש ! תודה על זה! חייבת לשלוח לבחור ( או שניים )", "אני בדיוק ברגע הזה בחודש שהסרטון שלך גרם לי לבכות"]}];
     var rv = document.getElementById('rv'), stage = document.getElementById('rvStage'), bar = document.getElementById('rvBar');
     var v = document.createElement('video');
     v.playsInline = true; v.setAttribute('playsinline',''); v.preload = 'metadata';

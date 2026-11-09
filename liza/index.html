@@ -23,7 +23,10 @@ main{max-width:860px;margin:0 auto;padding:28px 18px 60px}
 h1{font-size:clamp(34px,7.4vw,58px);line-height:1.12;font-weight:900;margin:14px 0 10px;text-wrap:balance;text-shadow:0 0 36px rgba(242,32,122,.45)}
 .lead{font-size:clamp(17px,3.6vw,21px);color:var(--mute);margin:0 0 24px;max-width:640px;text-wrap:pretty}
 .cards{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:22px}
-@media(min-width:760px){.cards{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:760px){.cards{grid-template-columns:1fr 1fr}}
+.bundle{grid-column:1/-1}
+.bundle h2{margin:0 0 4px}
+@media(min-width:760px){.bundle{flex-direction:row;align-items:center;justify-content:space-between;gap:24px}.bundle .btn{margin-top:0;flex:none;min-width:240px}.bundle .tag{margin-bottom:0}}
 .card{background:var(--glass);border:1px solid var(--line);border-radius:26px;padding:20px 18px;display:flex;flex-direction:column;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
 .card h2{margin:0 0 4px;font-size:22px;font-weight:800}
@@ -33,8 +36,7 @@ h1{font-size:clamp(34px,7.4vw,58px);line-height:1.12;font-weight:900;margin:14px
 .info:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .price{display:flex;align-items:baseline;gap:12px;margin:2px 0 4px}
 .price .now{font-size:46px;font-weight:900;line-height:1;white-space:nowrap}
-@media(min-width:760px){.price .now{font-size:36px}.price .was{font-size:16px}}
-@media(min-width:760px){.head{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:6px}}
+
 .price .was{font-size:18px;color:var(--mute);text-decoration:line-through;white-space:nowrap}
 .tag{font-size:13px;font-weight:700;color:#ffd9c9;margin:0 0 18px}
 .btn{margin-top:auto;display:block;text-align:center;text-decoration:none;color:#fff;font-weight:800;font-size:18px;padding:15px 20px;border-radius:999px;background:linear-gradient(90deg,var(--pink),var(--orange));box-shadow:0 8px 28px rgba(242,32,122,.4)}
@@ -51,6 +53,15 @@ h1{font-size:clamp(34px,7.4vw,58px);line-height:1.12;font-weight:900;margin:14px
 
 <section class="cards">
   <article class="card">
+    <div class="head"><h2>קורס הבסיס</h2>
+      <a class="info" href="https://www.evecontent.co.il/landing/" target="_blank" rel="noopener" aria-label="לעמוד של קורס הבסיס">לעמוד הקורס <span aria-hidden="true">←</span></a></div>
+    <p class="sub">יצירת תוכן למתחילים</p>
+    <div class="price"><span class="now">242 ₪</span><span class="was">269 ₪</span></div>
+    <p class="tag">10% הנחה לקהילה של ליזה</p>
+    <a class="btn" href="https://mrng.to/IzmQFDIC2S">לרכישה</a>
+  </article>
+
+  <article class="card">
     <div class="head"><h2>קורס ה-AI</h2>
       <a class="info" href="https://www.evecontent.co.il/ai-launch/" target="_blank" rel="noopener" aria-label="לעמוד של קורס ה-AI">לעמוד הקורס <span aria-hidden="true">←</span></a></div>
     <p class="sub">27 שיעורים בשני חלקים</p>
@@ -59,26 +70,18 @@ h1{font-size:clamp(34px,7.4vw,58px);line-height:1.12;font-weight:900;margin:14px
     <a class="btn" href="https://mrng.to/NYDX5HtvUF">לרכישה</a>
   </article>
 
-  <article class="card">
-    <div class="head"><h2>הבאנדל</h2>
-      <a class="info" href="https://www.evecontent.co.il/ai-launch/" target="_blank" rel="noopener" aria-label="לעמוד של הבאנדל">לעמוד הקורס <span aria-hidden="true">←</span></a></div>
-    <p class="sub">קורס ה-AI + קורס הבסיס שלי</p>
-    <div class="price"><span class="now">1,008 ₪</span><span class="was">1,120 ₪</span></div>
-    <p class="tag">10% הנחה לקהילה של ליזה</p>
-    <a class="btn" href="https://mrng.to/KeNXm73WjW">לרכישה</a>
-  </article>
-
-  <article class="card">
-    <div class="head"><h2>קורס הבסיס</h2>
-      <a class="info" href="https://www.evecontent.co.il/landing/" target="_blank" rel="noopener" aria-label="לעמוד של קורס הבסיס">לעמוד הקורס <span aria-hidden="true">←</span></a></div>
-    <p class="sub">יצירת תוכן למתחילים</p>
-    <div class="price"><span class="now">242 ₪</span><span class="was">269 ₪</span></div>
-    <p class="tag">10% הנחה לקהילה של ליזה</p>
-    <a class="btn" href="https://mrng.to/IzmQFDIC2S">לרכישה</a>
+  <article class="card bundle">
+    <div class="bundle-txt">
+      <h2>רוצות את שניהם? בנדל</h2>
+      <p class="sub">קורס הבסיס + קורס ה-AI במחיר אחד</p>
+      <div class="price"><span class="now">1,008 ₪</span><span class="was">1,120 ₪</span></div>
+      <p class="tag">10% הנחה לקהילה של ליזה</p>
+    </div>
+    <a class="btn" href="https://mrng.to/KeNXm73WjW">לרכישת הבנדל</a>
   </article>
 </section>
 
-<div class="block"><p><b>איך זה עובד:</b> לוחצים על "לרכישה", משלמים בעמוד התשלום, והגישה לקורס נפתחת מיד אחרי התשלום. הכפתור "לעמוד הקורס" מוביל לעמוד עם כל הפרטים על הקורס.</p></div>
+<div class="block"><p><b>איך זה עובד:</b> לוחצים על "לרכישה", משלמים בעמוד התשלום, והגישה לקורס נפתחת מיד אחרי התשלום. הכפתור "לעמוד הקורס" מוביל לעמוד עם כל הפרטים על הקורס, והבנדל מוביל ישר לתשלום.</p></div>
 
 <p class="fine">שאלות? כתבו לנו: <bdi dir="ltr"><a href="mailto:evecohenh@gmail.com" style="color:#ffd9c9">evecohenh@gmail.com</a></bdi></p>
 </main>

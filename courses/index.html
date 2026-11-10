@@ -20,19 +20,12 @@
 html{background:var(--bg)}
 body{font-family:'Heebo','Segoe UI',Arial,sans-serif;color:var(--ink);min-height:100vh;min-height:100dvh;overflow-x:hidden;position:relative;line-height:1.35}
 
-/* ---------- background: her videos, softly blurred ---------- */
-.bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:var(--bg) url('bg.jpg') center/cover no-repeat}
-.bg video{position:absolute;left:50%;top:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%) scale(1.12);object-fit:cover;filter:blur(5px) saturate(1.15);animation:drift 22s ease-in-out infinite alternate}
-@keyframes drift{from{transform:translate(-50%,-50%) scale(1.12)}to{transform:translate(-50%,-52%) scale(1.2)}}
+/* ---------- background: static and dark (Eve 10.11: no video, nothing moving, calm before the landing page) ---------- */
 .veil{position:fixed;inset:0;z-index:1;pointer-events:none;
   background:
-   radial-gradient(900px 600px at 85% 0%,rgba(255,46,136,.34),transparent 60%),
-   radial-gradient(800px 600px at 0% 100%,rgba(255,106,61,.30),transparent 60%),
+   radial-gradient(900px 600px at 85% 0%,rgba(255,46,136,.16),transparent 60%),
+   radial-gradient(800px 600px at 0% 100%,rgba(255,106,61,.13),transparent 60%),
    linear-gradient(180deg,rgba(15,6,8,.55) 0%,rgba(15,6,8,.62) 45%,rgba(15,6,8,.86) 100%)}
-.grain{position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:.08;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  animation:grain 1.2s steps(4) infinite}
-@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(3%,3%)}}
 
 /* ---------- layout ---------- */
 main{position:relative;z-index:3;max-width:520px;margin:0 auto;padding:calc(34px + env(safe-area-inset-top)) 20px calc(40px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:16px}
@@ -47,9 +40,7 @@ h1{margin-top:20px;font-size:clamp(28px,8.2vw,48px);line-height:1.08;text-wrap:b
   background:linear-gradient(160deg,rgba(255,226,210,.13),rgba(255,214,196,.05));
   border:1px solid var(--line);backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2);
   box-shadow:0 30px 70px -30px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.12);
-  transition:transform .25s ease,border-color .25s ease;opacity:0;transform:translateY(18px);animation:in .7s cubic-bezier(.2,.8,.2,1) forwards}
-.card:nth-of-type(1){animation-delay:.15s}.card:nth-of-type(2){animation-delay:.3s}.card:nth-of-type(3){animation-delay:.45s}
-@keyframes in{to{opacity:1;transform:none}}
+  transition:transform .25s ease,border-color .25s ease}
 .card:active{transform:scale(.985)}
 @media (hover:hover){.card:hover{transform:translateY(-3px);border-color:rgba(255,194,61,.5)}}
 .card.hero{padding-top:30px;border-color:transparent;background:
@@ -65,16 +56,12 @@ h1{margin-top:20px;font-size:clamp(28px,8.2vw,48px);line-height:1.08;text-wrap:b
 .price s{font-size:20px;color:var(--ink-2);font-weight:500}
 .price .note{font-size:15px;color:var(--ink-2);font-weight:500}
 .timer{margin-top:12px;display:inline-flex;gap:8px;align-items:center;font-size:15px;font-weight:700;color:var(--a3);direction:rtl}
-.timer .dot{width:9px;height:9px;border-radius:50%;background:var(--a1);box-shadow:0 0 0 0 rgba(255,46,136,.7);animation:pulse 1.6s infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(255,46,136,0)}100%{box-shadow:0 0 0 0 rgba(255,46,136,0)}}
+.timer .dot{width:9px;height:9px;border-radius:50%;background:var(--a1)}
 .timer span.t{font-variant-numeric:tabular-nums;direction:ltr;display:inline-block}
 .cta{margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 22px;border-radius:99px;font-weight:900;font-size:19px;color:#1a0509;background:var(--grad);box-shadow:0 14px 34px -12px rgba(255,106,61,.8)}
 .cta svg{width:22px;height:22px;flex:none}
 .card[data-c="bundle"]{padding-top:30px}
-.cta{animation:ctaglow 2.6s ease-in-out infinite alternate}
-@keyframes ctaglow{from{box-shadow:0 10px 26px -12px rgba(255,106,61,.55)}to{box-shadow:0 14px 44px -8px rgba(255,46,136,.85),0 0 34px -6px rgba(255,194,61,.55)}}
-.lp{display:inline-block;margin-bottom:14px;font-weight:900;font-size:16px;letter-spacing:.02em;padding:7px 20px;border-radius:99px;color:#1a0509;background:var(--grad);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 10px 36px -8px rgba(255,46,136,.85),0 0 40px -6px rgba(255,194,61,.55);animation:glow 2.8s ease-in-out infinite alternate}
-@keyframes glow{from{box-shadow:0 0 0 1px rgba(255,255,255,.08),0 10px 30px -10px rgba(255,46,136,.7),0 0 26px -8px rgba(255,194,61,.4)}to{box-shadow:0 0 0 1px rgba(255,255,255,.12),0 10px 44px -6px rgba(255,46,136,.95),0 0 56px -4px rgba(255,194,61,.7)}}
+.lp{display:inline-block;margin-bottom:14px;font-weight:900;font-size:16px;letter-spacing:.02em;padding:7px 20px;border-radius:99px;color:#1a0509;background:var(--grad);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 10px 36px -8px rgba(255,46,136,.85),0 0 40px -6px rgba(255,194,61,.55)}
 footer{text-align:center;margin-top:8px;font-size:13px;color:var(--ink-2);opacity:.85}
 footer a{color:inherit}
 
@@ -85,12 +72,6 @@ body.after .full{display:inline}
 body.after .badge{display:none}
 body.after .timer{display:none}
 
-.stills{position:absolute;inset:0;opacity:0;transition:opacity .8s}
-.stills i{position:absolute;inset:-6%;background:center/cover no-repeat;filter:blur(5px) saturate(1.15);opacity:0;animation:sl 21s linear infinite}
-@keyframes sl{0%{opacity:0;transform:scale(1.08)}3%{opacity:1}14.3%{opacity:1}18%{opacity:0;transform:scale(1.18)}100%{opacity:0;transform:scale(1.18)}}
-body.still .stills{opacity:1}
-body.still .bg video{opacity:0}
-@media (prefers-reduced-motion:reduce){.cta,.lp{animation:none}.bg video{animation:none}.card{animation:none;opacity:1;transform:none}.grain{animation:none}}
 .ask{margin-top:14px;font-size:20px;font-weight:900}
 .fitl{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:7px;font-size:16px;line-height:1.4;color:var(--ink-2)}
 .fitl li::before{content:"✓ ";font-weight:900;color:var(--a3)}
@@ -101,8 +82,7 @@ body.still .bg video{opacity:0}
 </script>
 </head>
 <body>
-<div class="bg"><video id="v" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="bg.jpg"><source src="bg.mp4" type="video/mp4"></video><div class="stills" aria-hidden="true"><i style="background-image:url(s1.jpg);animation-delay:0s"></i><i style="background-image:url(s2.jpg);animation-delay:3s"></i><i style="background-image:url(s3.jpg);animation-delay:6s"></i><i style="background-image:url(s4.jpg);animation-delay:9s"></i><i style="background-image:url(s5.jpg);animation-delay:12s"></i><i style="background-image:url(s6.jpg);animation-delay:15s"></i><i style="background-image:url(s7.jpg);animation-delay:18s"></i></div></div>
-<div class="veil"></div><div class="grain"></div>
+<div class="veil"></div>
 
 <main>
   <header>
@@ -156,18 +136,6 @@ body.still .bg video{opacity:0}
     return true;
   }
   if(tick()){var iv=setInterval(function(){if(!tick())clearInterval(iv)},1000)}
-  var v=document.getElementById('v');
-  if(v){
-    v.muted=true;v.defaultMuted=true;v.setAttribute('muted','');
-    var go=function(){if(!v.paused)return;var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){})};
-    go();v.addEventListener('canplay',go);
-    ['touchstart','pointerdown','scroll'].forEach(function(e){window.addEventListener(e,go,{passive:true})});
-    document.addEventListener('visibilitychange',function(){if(!document.hidden)go()});
-    window.addEventListener('pageshow',go);
-    var ok=function(){if(v.currentTime>0.3&&!v.paused)document.body.classList.remove('still')};
-    v.addEventListener('timeupdate',ok);
-    setTimeout(function(){if(v.paused||v.currentTime<0.3)document.body.classList.add('still')},2500);
-  }
 })();
 </script>
 </body>

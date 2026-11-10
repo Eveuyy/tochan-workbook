@@ -240,6 +240,17 @@ main{position:relative;z-index:1}
 .stats span{padding:10px 16px;border-radius:16px;font-size:14.5px}
 .stats b{font-weight:900;font-size:20px;margin-inline-end:6px}
 
+.fitq{display:grid;gap:14px;max-width:640px;margin:30px auto 0;text-align:right}
+.fitd{border-radius:20px;padding:0 20px}
+.fitd>summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:20px 2px;cursor:pointer;font-weight:800;font-size:19px;color:var(--ink)}
+.fitd>summary::-webkit-details-marker{display:none}
+.fitd>summary::after{content:"+";font-weight:300;font-size:28px;line-height:1;transition:transform .25s;color:var(--a2);flex:none}
+.fitd[open]>summary::after{transform:rotate(45deg)}
+.fitb{display:grid;gap:10px;justify-items:center;text-align:center;padding:0 0 22px}
+.fitb .fa{font-size:clamp(22px,2.6vw,26px);font-weight:900;margin:0}
+.fitb .fu{list-style:none;padding:0;margin:4px 0;display:grid;gap:8px;font-size:17px;line-height:1.4;color:var(--ink-2)}
+.fitb .fu li::before{content:"✓ ";font-weight:900}
+.fitb .fs{font-size:15.5px;color:var(--ink-2);margin:0}
 .fit2{display:grid;gap:16px;max-width:880px;margin:36px auto 0}
 @media (min-width:760px){.fit2{grid-template-columns:1fr 1fr}}
 .fitc{border-radius:24px;padding:26px 22px;display:grid;gap:10px;justify-items:center;align-content:start}
@@ -527,6 +538,7 @@ body.rv-on{overflow:hidden}
   <div class="pk-row" tabindex="0" aria-label="קטעים מהקורס">
       <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: הפתיחה"><video src="../ai-preview/clips/peek-world.mp4" poster="../ai-preview/clips/peek-world.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>הפתיחה</b>להחליף לה בגדים, שיער, תאורה, תקופה</figcaption></figure>
       <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: הקייס"><video src="../ai-preview/clips/peek-case-inside.mp4" poster="../ai-preview/clips/peek-case-inside.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>הקייס</b>כל מחולל, כל פרומפט, למה הוא עבד ומה לא</figcaption></figure>
+      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: הדגש הכי חשוב"><video src="../ai-preview/clips/peek-tip.mp4" poster="../ai-preview/clips/peek-tip.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>הדגש הכי חשוב</b>ואת ההמשך שומעים בקורס</figcaption></figure>
   </div>
   <div class="wrap">
     <ul class="peek-lines">
@@ -553,38 +565,6 @@ body.rv-on{overflow:hidden}
         <div class="stats"><span class="glass"><b class="lit">34K+</b>עוקבים</span><span class="glass"><b class="lit">מותגים</b>סרטונים בהזמנה</span></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- 9b FIT: moved below "היי אני איב" (Eve, 10.11) -->
-<section class="sec center" id="fit">
-  <div class="wrap">
-    <h2 class="h2-s">איך יודעים אם הקורס <span class="lit">מתאים לי?</span></h2>
-    <p class="sub">שתי דרכים להתחיל. בוחרים לפי המקום שבו אתם עכשיו.</p>
-    <div class="fit2">
-      <div class="fitc glass">
-        <span class="fl">קורס ה-AI</span>
-        <p class="fa">למי קורס ה-AI?</p>
-        <ul class="fu">
-          <li>אתם כבר יוצרים תוכן, ויודעים לערוך</li>
-          <li>יש לכם בסיס בבניית מסר, ואתם רוצים להגיע לרמה הבאה</li>
-          <li>אתם יודעים למי אתם מדברים, ומי קהל היעד שלכם</li>
-          <li>אתם רוצים ליצור דמות AI שנראית ממש כמוכם, ועם ליפסינק בעברית</li>
-          <li>אתם רוצים לדעת איזה מחולל תמונות ווידאו לבחור, בלי לשרוף קרדיטים על ניסוי וטעייה</li>
-        </ul>
-        <a class="btn" href="#tCourse">לקורס</a>
-      </div>
-      <div class="fitc glass">
-        <span class="fl">באנדל: שני הקורסים</span>
-        <p class="fa">למי הבאנדל?</p>
-        <ul class="fu">
-          <li>אתם רק מתחילים בעולמות יצירת התוכן</li>
-          <li>אתם עוד לא יודעים לערוך, ולא יודעים מה זה הוק</li>
-          <li>אתם רוצים ללמוד הכול במקום אחד, מהבסיס ועד סרטון AI</li>
-        </ul>
-        <p class="fs">יש בו את כל מה שצריך: שילוב של שני הקורסים.</p>
-        <a class="btn" href="#tBundle">לבאנדל</a>
-      </div>
   </div>
 </section>
 
@@ -786,6 +766,42 @@ body.rv-on{overflow:hidden}
       <li class="glass"><span class="gi" aria-hidden="true">♾️</span><div><b>גישה לתמיד</b><span>לצפות שוב בכל שיעור, מתי שרוצים</span></div></li>
     </ul>
     <p class="sub">בבאנדל מקבלים גם את קורס יצירת התוכן המלא.</p>
+  </div>
+</section>
+
+<!-- 9b FIT: two tap-to-open questions, after "מה מקבלים" (Eve, 10.11) -->
+<section class="sec center" id="fit">
+  <div class="wrap">
+    <h2 class="h2-s">איך יודעים אם הקורס <span class="lit">מתאים לי?</span></h2>
+    <p class="sub">שתי דרכים להתחיל. נוגעים בשאלה שמתאימה לכם.</p>
+    <div class="fitq">
+      <details class="fitd glass">
+        <summary>כבר יוצרים תוכן ויודעים לערוך?</summary>
+        <div class="fitb">
+          <p class="fa">קורס ה-AI בשבילכם</p>
+          <ul class="fu">
+            <li>יש לכם בסיס בבניית מסר, ואתם רוצים להגיע לרמה הבאה</li>
+            <li>אתם יודעים למי אתם מדברים, ומי קהל היעד שלכם</li>
+            <li>אתם רוצים ליצור דמות AI שנראית ממש כמוכם, ועם ליפסינק בעברית</li>
+            <li>אתם רוצים לדעת איזה מחולל תמונות ווידאו לבחור, בלי לשרוף קרדיטים על ניסוי וטעייה</li>
+          </ul>
+          <a class="btn" href="#tCourse">לקורס ה-AI</a>
+        </div>
+      </details>
+      <details class="fitd glass">
+        <summary>חדשים בעולם יצירת התוכן ויוצרים מאפס?</summary>
+        <div class="fitb">
+          <p class="fa">הבאנדל בשבילכם</p>
+          <ul class="fu">
+            <li>אתם רק מתחילים בעולמות יצירת התוכן</li>
+            <li>אתם עוד לא יודעים לערוך, ולא יודעים מה זה הוק</li>
+            <li>אתם רוצים ללמוד הכול במקום אחד, מהבסיס ועד סרטון AI</li>
+          </ul>
+          <p class="fs">שילוב של שני הקורסים: קודם קורס הבסיס, ואז ה-AI.</p>
+          <a class="btn" href="#tBundle">לבאנדל</a>
+        </div>
+      </details>
+    </div>
   </div>
 </section>
 

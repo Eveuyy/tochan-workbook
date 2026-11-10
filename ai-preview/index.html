@@ -297,7 +297,7 @@ details.q p{padding:0 4px 18px;color:var(--ink-2)}
 .cursor{display:inline-block;width:3px;height:1em;background:var(--a1);box-shadow:0 0 10px var(--a1);vertical-align:-.12em;margin-inline-start:5px;animation:blink 1s steps(2) infinite}
 footer{text-align:center;color:var(--ink-2);font-size:13px;padding:0 16px 120px;position:relative;z-index:1}
 footer a{color:inherit}
-.bonus{max-width:980px;margin:22px auto 0;border-radius:26px;padding:clamp(20px,3.4vw,30px);display:flex;gap:18px;align-items:flex-start;text-align:right;border-color:rgba(255,194,61,.45);box-shadow:0 0 40px -14px rgba(255,194,61,.55)}
+.bonus{max-width:520px;margin:22px auto 0;border-radius:20px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;text-align:right;border-color:rgba(255,194,61,.45);box-shadow:0 0 40px -14px rgba(255,194,61,.55)}
 @media (max-width:820px){.bonus{max-width:520px}}
 #offer{scroll-margin-top:84px}
 .cd{max-width:520px;margin:0 auto 18px;padding:18px 20px 16px;border-radius:24px;border-color:rgba(255,46,136,.5);box-shadow:0 0 40px -12px var(--glow-2)}
@@ -307,19 +307,20 @@ footer a{color:inherit}
 .cd-n span{display:grid;justify-items:center;gap:4px;min-width:clamp(54px,14vw,72px);font-size:12.5px;color:var(--ink-2)}
 .cd-n b{font:900 clamp(34px,8vw,52px)/1 var(--f);font-variant-numeric:tabular-nums;color:var(--ink);text-shadow:0 0 18px var(--glow-2)}
 .cd-n i{font:900 clamp(28px,6vw,40px)/1 var(--f);font-style:normal;color:var(--a1);padding-top:4px}
-.bonus .gift{flex:0 0 auto;font-size:clamp(44px,7vw,60px);line-height:1;filter:drop-shadow(0 0 14px rgba(255,194,61,.6))}
+.bonus .gift{flex:0 0 auto;font-size:30px;line-height:1;filter:drop-shadow(0 0 14px rgba(255,194,61,.6))}
 .bonus-tag{display:inline-block;font-size:13px;font-weight:700;padding:4px 12px;border-radius:999px;color:#1a0b05;background:linear-gradient(110deg,var(--a3),var(--a2))}
-.bonus h3{font-size:22px;font-weight:900;line-height:1.2;margin:10px 0 2px}
-.bonus .who{color:var(--ink-2);font-size:14.5px;margin:0 0 8px}
+.bonus h3{font-size:18px;font-weight:900;line-height:1.25;margin:8px 0 2px}
+.bonus .who{color:var(--ink-2);font-size:13.5px;margin:0 0 6px}
+.bonus .bonus-deal{font-size:14px;color:var(--ink-2)}
 .bonus p{margin:0}
 .bonus p+p{margin-top:6px}
-.bonus-more{margin-top:14px}
+.bonus-more{margin-top:10px}
 .bonus-more summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;font-size:14.5px;font-weight:700;padding:7px 16px;border-radius:999px;border:1px solid rgba(255,194,61,.55);color:var(--ink);background:rgba(255,194,61,.08)}
 .bonus-more summary::-webkit-details-marker{display:none}
 .bonus-more summary::after{content:"▾";transition:transform .2s}
 .bonus-more[open] summary::after{transform:rotate(180deg)}
-.bonus-more .bm-sub{margin:12px 0 6px;color:var(--ink-2);font-size:14px}
-.bonus-more ol{margin:0;padding-inline-start:22px;display:grid;gap:4px;font-size:15.5px}
+.bonus-more .bm-sub{margin:10px 0 8px;color:var(--ink-2);font-size:14px;line-height:1.5}
+.bonus-more ol{margin:0;padding-inline-start:22px;display:grid;gap:4px;font-size:14.5px}
 .lg{position:fixed;inset:0;z-index:110;display:grid;place-items:center;padding:16px}
 .lg[hidden]{display:none}
 .lg-box{position:relative;width:min(680px,100%);max-height:88vh;overflow-y:auto;background:var(--surface-solid);border:1px solid var(--line);border-radius:24px;padding:28px clamp(20px,4vw,36px) 32px;text-align:right;line-height:1.7;font-size:15.5px}
@@ -727,15 +728,13 @@ body.rv-on{overflow:hidden}
     <div class="bonus glass">
       <span class="gift" aria-hidden="true">🎁</span>
       <div>
-        <span class="bonus-tag">בונוס · נפתח ב-11.11</span>
-        <h3>עבודה עם Claude בתוך Kolbo</h3>
-        <p class="who">זוהר וענונו, יוצר AI ומייסד KOLBO.AI</p>
-        <p>זוהר מראה איך מחברים את Claude, עוזרת שעובדת במחשב, ל-Kolbo, ונותנים לה לנהל הפקה שלמה: מהודעה מבולגנת של לקוח לקטלוג, תמונות וסרטון. הדגמה על מחשב, ברמה מתקדמת יותר, אחרי שלמדנו את הבסיס.</p>
-        <p>מתאים למי שסיימה את הקורס ועובדת במחשב. מדגים, ולא מלמד צעד אחר צעד.</p>
-        <p>הנחה בלעדית ב-Kolbo, לבחירתכם: 50% על החודש הראשון, או 30% לשלושה חודשים</p>
+        <span class="bonus-tag">מתנה לרוכשי הקורס</span>
+        <h3>קורס מתנה של זוהר וענונו</h3>
+        <p class="who">מייסד קולבו · עבודה עם קלוד בתוך קולבו · 7 שיעורים, כשעה</p>
+        <p class="bonus-deal">ועוד הנחה בלעדית בקולבו: 50% על החודש הראשון, או 30% לשלושה חודשים</p>
         <details class="bonus-more">
-          <summary>מה בבונוס?</summary>
-          <p class="bm-sub">7 שיעורים, כשעה של צפייה</p>
+          <summary>מה בקורס המתנה?</summary>
+          <p class="bm-sub">זוהר מראה איך מחברים את Claude, עוזרת שעובדת במחשב, ל-Kolbo, ונותנים לה לנהל הפקה שלמה: מהודעה מבולגנת של לקוח לקטלוג, תמונות וסרטון. ברמה מתקדמת, למי שסיימה את הקורס ועובדת במחשב. מדגים, ולא מלמד צעד אחר צעד.</p>
           <ol>
             <li>פתיחה: מה נבנה בקורס</li>
             <li>התקנת Claude Code וחיבור Kolbo MCP</li>
@@ -762,7 +761,7 @@ body.rv-on{overflow:hidden}
       <li class="glass"><span class="gi" aria-hidden="true">📄</span><div><b>מסמכים לכל הדרך</b><span>זבוב על הקיר, הפרומפט לכתיבה, השוטים והזוויות, מתכוני הצילום וטבלת התכנון</span></div></li>
       <li class="glass"><span class="gi" aria-hidden="true">📂</span><div><b>תיקיית קייס סטאדיז</b><span>איך נעשו הסרטונים שלי, ומה קרה בדרך</span></div></li>
       <li class="glass"><span class="gi" aria-hidden="true">💬</span><div><b>קבוצת וואטסאפ</b><span>לשאלות, תמיכה והעשרה</span></div></li>
-      <li class="glass"><span class="gi" aria-hidden="true">🎁</span><div><b>בונוס: עבודה עם Claude בתוך Kolbo, עם זוהר וענונו</b><span>נפתח ב-11.11, עם הנחה בלעדית ב-Kolbo</span></div></li>
+      <li class="glass"><span class="gi" aria-hidden="true">🎁</span><div><b>מתנה: קורס קצר של זוהר וענונו, עבודה עם Claude בתוך Kolbo</b><span>ועוד הנחה בלעדית ב-Kolbo</span></div></li>
       <li class="glass"><span class="gi" aria-hidden="true">♾️</span><div><b>גישה לתמיד</b><span>לצפות שוב בכל שיעור, מתי שרוצים</span></div></li>
     </ul>
     <p class="sub">בבאנדל מקבלים גם את קורס יצירת התוכן המלא.</p>

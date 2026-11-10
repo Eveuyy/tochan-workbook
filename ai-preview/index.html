@@ -297,6 +297,15 @@ details.q p{padding:0 4px 18px;color:var(--ink-2)}
 .cursor{display:inline-block;width:3px;height:1em;background:var(--a1);box-shadow:0 0 10px var(--a1);vertical-align:-.12em;margin-inline-start:5px;animation:blink 1s steps(2) infinite}
 footer{text-align:center;color:var(--ink-2);font-size:13px;padding:0 16px 120px;position:relative;z-index:1}
 footer a{color:inherit}
+.gift-line{max-width:620px;margin:18px auto 0;text-align:right}
+.gift-line>summary{list-style:none;cursor:pointer;display:flex;gap:8px;align-items:center;justify-content:center;font-size:15.5px;font-weight:700;color:var(--ink);padding:10px 14px;border-radius:14px;border:1px dashed rgba(255,194,61,.55);background:rgba(255,194,61,.06)}
+.gift-line>summary::-webkit-details-marker{display:none}
+.gift-line>summary::after{content:"▾";transition:transform .2s;flex:none}
+.gift-line[open]>summary::after{transform:rotate(180deg)}
+.gift-body{padding:12px 6px 0;font-size:15px;line-height:1.55;color:var(--ink-2);display:grid;gap:8px}
+.gift-body p{margin:0}
+.gift-body ol{margin:0;padding-inline-start:22px;display:grid;gap:3px;font-size:14.5px}
+.gift-body .gift-deal{color:var(--ink);font-weight:600}
 .bonus{max-width:520px;margin:22px auto 0;border-radius:20px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;text-align:right;border-color:rgba(255,194,61,.45);box-shadow:0 0 40px -14px rgba(255,194,61,.55)}
 @media (max-width:820px){.bonus{max-width:520px}}
 #offer{scroll-margin-top:84px}
@@ -724,30 +733,6 @@ body.rv-on{overflow:hidden}
     </div>
     </details>
   </div>
-  <div class="wrap">
-    <div class="bonus glass">
-      <span class="gift" aria-hidden="true">🎁</span>
-      <div>
-        <span class="bonus-tag">מתנה לרוכשי הקורס</span>
-        <h3>קורס מתנה של זוהר וענונו</h3>
-        <p class="who">מייסד קולבו · עבודה עם קלוד בתוך קולבו · 7 שיעורים, כשעה</p>
-        <p class="bonus-deal">ועוד הנחה בלעדית בקולבו: 50% על החודש הראשון, או 30% לשלושה חודשים</p>
-        <details class="bonus-more">
-          <summary>מה בקורס המתנה?</summary>
-          <p class="bm-sub">זוהר מראה איך מחברים את Claude, עוזרת שעובדת במחשב, ל-Kolbo, ונותנים לה לנהל הפקה שלמה: מהודעה מבולגנת של לקוח לקטלוג, תמונות וסרטון. ברמה מתקדמת, למי שסיימה את הקורס ועובדת במחשב. מדגים, ולא מלמד צעד אחר צעד.</p>
-          <ol>
-            <li>פתיחה: מה נבנה בקורס</li>
-            <li>התקנת Claude Code וחיבור Kolbo MCP</li>
-            <li>מבריף קולי לפרויקט מסודר</li>
-            <li>מחקר רפרנסים וסקיל</li>
-            <li>דוגמניות, Visual DNA וקטלוג</li>
-            <li>סרטון אופנה עם Seedance</li>
-            <li>Black Friday, Premiere וסיכום</li>
-          </ol>
-        </details>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- 7b GET: everything included in the course -->
@@ -761,9 +746,25 @@ body.rv-on{overflow:hidden}
       <li class="glass"><span class="gi" aria-hidden="true">📄</span><div><b>מסמכים לכל הדרך</b><span>זבוב על הקיר, הפרומפט לכתיבה, השוטים והזוויות, מתכוני הצילום וטבלת התכנון</span></div></li>
       <li class="glass"><span class="gi" aria-hidden="true">📂</span><div><b>תיקיית קייס סטאדיז</b><span>איך נעשו הסרטונים שלי, ומה קרה בדרך</span></div></li>
       <li class="glass"><span class="gi" aria-hidden="true">💬</span><div><b>קבוצת וואטסאפ</b><span>לשאלות, תמיכה והעשרה</span></div></li>
-      <li class="glass"><span class="gi" aria-hidden="true">🎁</span><div><b>מתנה: קורס קצר של זוהר וענונו, עבודה עם Claude בתוך Kolbo</b><span>ועוד הנחה בלעדית ב-Kolbo</span></div></li>
       <li class="glass"><span class="gi" aria-hidden="true">♾️</span><div><b>גישה לתמיד</b><span>לצפות שוב בכל שיעור, מתי שרוצים</span></div></li>
     </ul>
+    <details class="gift-line">
+      <summary>🎁 ועוד במתנה: קורס קצר של זוהר וענונו, מותאם במיוחד לעבודה בקולבו</summary>
+      <div class="gift-body">
+        <p>זוהר וענונו הוא מייסד קולבו. בקורס הזה, שנבנה במיוחד לעבודה בתוך קולבו, הוא מראה איך מחברים את קלוד, עוזרת שעובדת במחשב, לקולבו, ונותנים לה לנהל הפקה שלמה: מהודעה מבולגנת של לקוח לקטלוג, תמונות וסרטון.</p>
+        <p>7 שיעורים, כשעה של צפייה. ברמה מתקדמת, למי שסיימה את הקורס ועובדת במחשב. מדגים, ולא מלמד צעד אחר צעד.</p>
+        <ol>
+          <li>פתיחה: מה נבנה בקורס</li>
+          <li>התקנת Claude Code וחיבור Kolbo MCP</li>
+          <li>מבריף קולי לפרויקט מסודר</li>
+          <li>מחקר רפרנסים וסקיל</li>
+          <li>דוגמניות, Visual DNA וקטלוג</li>
+          <li>סרטון אופנה עם Seedance</li>
+          <li>Black Friday, Premiere וסיכום</li>
+        </ol>
+        <p class="gift-deal">ובנוסף, הנחה בלעדית בקולבו לרוכשי הקורס: 50% על החודש הראשון, או 30% לשלושה חודשים.</p>
+      </div>
+    </details>
     <p class="sub">בבאנדל מקבלים גם את קורס יצירת התוכן המלא.</p>
   </div>
 </section>

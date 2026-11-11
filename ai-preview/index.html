@@ -444,6 +444,14 @@ body.rv-on{overflow:hidden}
 .dm{justify-self:start;max-width:88%;text-align:right;padding:14px 18px;border-radius:22px 22px 22px 6px;font-size:clamp(16px,1.7vw,18px);line-height:1.5}
 .dm:nth-child(even){justify-self:end;border-radius:22px 22px 6px 22px}
 .dm small{display:block;margin-top:6px;font:500 12px/1 var(--f);color:var(--ink-2)}
+@media (max-width:759px){
+  #asked .dm-list{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;max-width:none;margin:26px -20px 0;padding:4px 20px 8px}
+  #asked .dm-list::-webkit-scrollbar{display:none}
+  #asked .dm{flex:none;width:72vw;max-width:none;scroll-snap-align:center;font-size:15.5px;padding:12px 16px}
+}
+@media (min-width:760px){#asked .dm-list{grid-template-columns:1fr 1fr;max-width:820px}#asked .dm{max-width:none;justify-self:stretch}}
+#asked .dm-hint{margin-top:10px;font-size:13px;color:var(--ink-2)}
+@media (min-width:760px){#asked .dm-hint{display:none}}
 .kr-link a{color:var(--ink);font-weight:700;text-decoration:underline;text-underline-offset:4px}
 @media (max-width:560px){
   body{font-size:16px}
@@ -528,13 +536,13 @@ body.rv-on{overflow:hidden}
 <section class="sec center" id="asked">
   <div class="wrap narrow">
     <h2 class="h2-s">השאלה שהכי חוזרת <span class="lit">אצלי בהודעות.</span></h2>
-    <div class="dm-list">
+    <div class="dm-list" tabindex="0" aria-label="הודעות ותגובות, גוללים הצידה">
       <p class="dm glass">״כמה אני צריכה לשלם לך כדי שתעבירי אותי קורס ai ברמה שאת מייצרת?״<small>הודעה פרטית</small></p>
       <p class="dm glass">״את מטורפת. את מדויקת. את חייבת לומר לנו איך את עושה את הסרטונים האלה״<small>תגובה</small></p>
       <p class="dm glass">״...האם בקורס שלך את ממש מלמדת צעד אחרי צעד איך ליצור תוכן עם שימוש בכלי הזה…. אני מאוד רוצה להתחיל להשתמש בזה״<small>הודעה פרטית</small></p>
-      <p class="dm glass">״אמאלה הלוואי ואת מלמדת איכשהו איך עורכים ככה בai״<small>תגובה</small></p>
-      <p class="dm glass">״אוף ממש חיכיתי שיצא איזה קורס ליצירת תוכן כמוך בai חחחחח״<small>הודעה פרטית</small></p>
+      <p class="dm glass">״אמאלה הלוואי ואת מלמדת איכשהו איך עורכים ככה ב-AI״<small>תגובה</small></p>
     </div>
+    <p class="dm-hint">← גוללים הצידה →</p>
     <p class="sub">אז הנה. זה הקורס.</p>
   </div>
 </section>

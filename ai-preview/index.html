@@ -191,6 +191,12 @@ main{position:relative;z-index:1}
 .pk-snd{position:absolute;bottom:10px;left:10px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:15px}
 .pk figcaption{margin-top:10px;font-size:15px;color:var(--ink-2);text-align:right;line-height:1.35}
 .pk figcaption b{display:block;color:var(--ink);font-size:14px}
+#outcomes .pk figcaption b{font-size:17.5px;line-height:1.3;margin-bottom:3px}
+.out-tag{position:absolute;top:10px;padding:4px 11px;font-size:12.5px;gap:6px;line-height:1.3;pointer-events:none}
+.out-tag.r{right:10px}.out-tag.l{left:10px}
+.out-cmts{position:absolute;right:10px;bottom:10px;left:54px;display:flex;flex-direction:column;align-items:flex-start;gap:5px;pointer-events:none;text-align:right}
+.out-cmt{max-width:100%;padding:4px 10px;border-radius:14px 14px 4px 14px;font-size:12px;line-height:1.35;font-weight:500;color:var(--ink);background:rgba(20,12,24,.5);border:1px solid var(--line);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);text-shadow:0 1px 2px rgba(0,0,0,.6)}
+@media(min-width:1100px){#outcomes .pk-row{justify-content:center;padding-inline:24px}#outcomes .pk{width:min(320px,calc((100vw - 120px)/4))}}
 .peek-lines{list-style:none;padding:0;margin:40px auto 0;max-width:620px;display:grid;gap:18px}
 .peek-lines li{font-size:clamp(20px,2.6vw,26px);font-weight:900;line-height:1.25}
 .dots{display:flex;justify-content:center;gap:6px}
@@ -709,10 +715,16 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <section class="sec center" id="outcomes">
   <div class="wrap narrow">
     <h2 class="h2-s">מה תדעו לעשות <span class="lit">בסוף הקורס.</span></h2>
+    <p class="sub">נוגעים בסרטון לסאונד. מחליקים ←</p>
+  </div>
+  <div class="pk-row" tabindex="0" aria-label="מה תדעו לעשות בסוף הקורס, להחלקה">
+      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: לצלם בסלון ולהופיע בכל מקום בעולם"><video src="clips/peek-world.mp4" poster="clips/peek-world.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>לצלם בסלון, ולהופיע בכל מקום בעולם</b>כל שוט שתדמיינו, בלי לטוס ובלי הפקה.</figcaption></figure>
+      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: שוטים שלכם שאי אפשר להבדיל מצילום אמיתי"><video src="clips/peek-real.mp4" poster="clips/peek-real.jpg" muted loop playsinline preload="none"></video><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>שוטים שלכם שאי אפשר להבדיל מצילום אמיתי</b></figcaption></figure>
+      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: אני האמיתית מול התאום הדיגיטלי שלי"><video src="clips/twin-compare.mp4" poster="clips/twin-compare.jpg" muted loop playsinline preload="none"></video><span class="chip out-tag r">אני האמיתית</span><span class="chip out-tag l">התאום הדיגיטלי שלי</span><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>תאום דיגיטלי שנראה ומדבר בדיוק כמוכם</b></figcaption></figure>
+      <figure class="pk"><button type="button" class="pk-v" aria-label="הפעלת סאונד: חופשת לידה"><video src="clips/out-leave.mp4" poster="clips/out-leave-eve.jpg" muted loop playsinline preload="none"></video><span class="chip out-tag r">549 אלף צפיות · 1,618 תגובות</span><span class="out-cmts" aria-label="תגובות אמיתיות לסרטון"><span class="out-cmt">תודה, בזכותך אני מבין את אשתי קצת יותר 🙏</span><span class="out-cmt">שלחתי לבעלי</span></span><span class="pk-snd glass" aria-hidden="true">🔇</span></button><figcaption><b>סרטונים שאי אפשר להישאר אדישים אליהם</b>מסר שנוגע גם במי שלא מתחבר ל-AI.</figcaption></figure>
+  </div>
+  <div class="wrap narrow">
     <ul class="out">
-      <li class="glass">לדעת איך לכתוב סרטונים שאי אפשר להתעלם מהם</li>
-      <li class="glass">להיות בכל מקום בעולם, בלי לצאת מהסלון</li>
-      <li class="glass">לייצר את דמות ה-AI שלכם הכי ריאליסטית שיכולה להיות</li>
       <li class="glass">לדעת איך לייצר ליפסינק בעברית</li>
       <li class="glass">לדעת איך לעבוד עם מחוללי התמונות והווידאו הכי חזקים בשוק</li>
       <li class="glass">להפסיק לשרוף קרדיטים על ניסוי וטעייה</li>
@@ -1082,7 +1094,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
     es.forEach(function(e){ var v = e.target; if (e.isIntersecting && !reduce) { v.preload = 'auto'; play(v); } else v.pause(); });
   }, {rootMargin:'200px 0px'});
   vids.forEach(function(v){ vio.observe(v); });
-  var pks = Array.prototype.slice.call(document.querySelectorAll('#peek .pk-v'));
+  var pks = Array.prototype.slice.call(document.querySelectorAll('#peek .pk-v, #outcomes .pk-v'));
   pks.forEach(function(btn){ btn.addEventListener('click', function(){
     var v = btn.querySelector('video'), on = v.muted;
     pks.forEach(function(o){ var ov = o.querySelector('video'); ov.muted = true; o.querySelector('.pk-snd').textContent = '🔇'; });

@@ -520,7 +520,20 @@ src="https://www.facebook.com/tr?id=2014675365814954&ev=PageView&noscript=1"
 (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","z9b8e3iupu");
 </script>
 <script>
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="mrng.to"]');if(!a)return;try{if(window.fbq)fbq('track','InitiateCheckout');if(window.clarity)clarity('event','checkout_click');}catch(x){}},true);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="mrng.to"]');if(!a)return;try{if(window.fbq)fbq('track','InitiateCheckout');if(window.clarity)clarity('event','checkout_click');clarity('event',a.closest('#tBundle')?'checkout_bundle':'checkout_course');}catch(x){}},true);
+/* funnel events for Clarity (15.11): which part of the funnel people reach. Clarity only, nothing sent to the ad pixel. */
+(function(){
+  function ev(n){try{if(window.clarity)clarity('event',n);}catch(x){}}
+  var seen={};
+  function watch(id,name){var el=document.getElementById(id);if(!el||!('IntersectionObserver' in window))return;
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!seen[name]){seen[name]=1;ev(name);io.disconnect();}});},{threshold:0,rootMargin:'0px 0px -40% 0px'});io.observe(el);}
+  document.addEventListener('DOMContentLoaded',function(){
+    watch('outcomes','reached_outcomes');watch('learn','reached_syllabus');watch('free','reached_free_lesson');watch('offer','reached_price');watch('faq','reached_faq');
+  });
+  /* a tap inside the Vimeo player moves focus into the iframe and blurs the page */
+  addEventListener('blur',function(){setTimeout(function(){var f=document.activeElement;if(f&&f.tagName==='IFRAME'&&f.closest('#free')&&!seen.fl){seen.fl=1;ev('free_lesson_play');}},0);});
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href="#free"]');if(a)ev('to_free_lesson_link');},true);
+})();
 </script>
 </head>
 <body>

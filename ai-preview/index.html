@@ -485,7 +485,9 @@ body.rv-on{overflow:hidden}
 .big3 b{font-size:clamp(24px,3.4vw,38px);font-weight:900;color:var(--ink);line-height:1.1}
 .big3 .main b{font-size:clamp(32px,4.8vw,54px)}
 @media (max-width:560px){.big3{grid-template-columns:1fr 1fr}.big3 .main{grid-column:1/-1}}
-.hero h1{font-size:clamp(46px,7.4vw,104px)}
+.hero h1{font-size:clamp(38px,6.2vw,88px)}
+.hero .hero-p{font-size:clamp(16px,1.7vw,18px);max-width:34em;line-height:1.55}
+.hero .works{max-width:34em;line-height:1.5}
 .hero .kicker{font-size:clamp(18px,2.1vw,22px);font-weight:700}
 .hero h1 .solid{text-shadow:0 2px 8px rgba(30,5,15,.75),0 0 36px rgba(60,10,30,.8)}
 .hero h1 .lit{text-shadow:0 2px 8px rgba(30,5,15,.7),0 0 10px var(--a1),0 0 30px var(--a1),0 0 70px var(--a2)}
@@ -534,16 +536,12 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   <div class="veil" aria-hidden="true"></div>
   <div class="hero-in">
     <span class="chip glass"><span class="dot"></span>קורס יצירה וחשיבה ב-AI</span>
-    <h1><span class="solid">איך יוצרים תוכן אנושי</span><span class="lit">בתוך עולם וירטואלי?</span></h1>
-    <p class="kicker">הקורס הדיגיטלי שבו תלמדו ליצור סרטוני AI שאי אפשר להתעלם מהם.</p>
-    <p class="works" style="margin-top:6px">כמעט 1.8 מיליון צפיות, מחמישה סרטונים, בפחות מחודש</p>
-    <div class="hero-tags">
-      <span class="htag t1">ליצור דמות שנראית ממש כמוכם ולשים אותה בכל מקום בעולם</span>
-      <span class="htag t2">איך בונים מסר שנוגע באנשים, ומקימים אותו לתחייה עם AI</span>
-    </div>
-    <a class="btn" href="#offer">אני רוצה להצטרף</a>
-    <p class="works" style="margin-top:2px;font-weight:700">גם אם לא נגעתם אף פעם ב-AI.</p>
-    <p class="works">עובד עם ChatGPT, קולבו ומחוללי וידאו</p>
+    <h1><span class="solid">מהרעיון בראש,</span><span class="lit">לסרטון שלא האמנתם שתוכלו ליצור.</span></h1>
+    <p class="kicker">מהרעיון והטקסט, דרך יצירת דמות שנראית בדיוק כמוכם, ועד שוטים קולנועיים, תנועה ודיבור בעברית.</p>
+    <p class="works hero-p">אני מלמדת אתכם את תהליך היצירה שלי, שלב אחרי שלב. איך אני מתכננת, באילו כלים אני בוחרת, מה אני עושה כשמשהו לא עובד, ואיך הכול הופך לסרטון מוגמר.</p>
+    <p class="works" style="font-weight:700">כמעט 1.8 מיליון צפיות מחמישה סרטונים, בפחות מחודש.</p>
+    <a class="btn" href="#offer">אני רוצה ללמוד ליצור ככה</a>
+    <p class="works">24 שיעורים מוקלטים בעברית. לא צריך ניסיון קודם ב-AI. אם אין לכם רקע בעריכה, יש גם מסלול שמתחיל מהבסיס.</p>
   </div>
 </header>
 
@@ -565,14 +563,15 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   </div>
   <div class="cap wrap">
     <p>כל מה שמתנגן כאן <span class="lit">נוצר על ידי, ב-AI.</span></p>
-    <a class="btn" href="#offer">אני רוצה להצטרף</a>
+    <a class="btn" href="#free">תראו לי איך לומדים את זה</a>
   </div>
 </section>
 
 <!-- 9f ASKED: real messages and comments from Eve's Instagram (pulled by Ivy 3.11.2026), verbatim, no names -->
 <section class="sec center" id="asked">
   <div class="wrap narrow">
-    <h2 class="h2-s">השאלה שהכי חוזרת <span class="lit">אצלי בהודעות.</span></h2>
+    <h2 class="h2-s">״איב, איך את עושה <span class="lit">את הסרטונים האלה?״</span></h2>
+    <p class="sub">זו השאלה שחוזרת אליי כמעט אחרי כל סרטון.</p>
     <div class="dm-list" tabindex="0" aria-label="הודעות ותגובות, גוללים הצידה">
       <p class="dm glass">״כמה אני צריכה לשלם לך כדי שתעבירי אותי קורס ai ברמה שאת מייצרת?״<small>הודעה פרטית</small></p>
       <p class="dm glass">״את מטורפת. את מדויקת. את חייבת לומר לנו איך את עושה את הסרטונים האלה״<small>תגובה</small></p>
@@ -580,7 +579,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
       <p class="dm glass">״אמאלה הלוואי ואת מלמדת איכשהו איך עורכים ככה ב-AI״<small>תגובה</small></p>
     </div>
     <p class="dm-hint">← גוללים הצידה →</p>
-    <p class="sub">אז הנה. זה הקורס.</p>
+    <p class="sub">אז לקחתי את כל תהליך העבודה שלי, מהרעיון הראשון ועד הסרטון הסופי, ובניתי ממנו קורס.<br>כולל כל מה שלא רואים בתוצאה: הניסיונות, הטעויות, ההחלטות הקטנות והדברים שעושים את ההבדל.</p>
   </div>
 </section>
 
@@ -598,7 +597,6 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   <div class="wrap">
     <ul class="peek-lines">
       <li>״היום? <span class="lit">הדמיון שלנו הוא ההפקה.</span>״</li>
-      <li>״ה-AI הוא רק הצינור. <span class="lit">אתם המקור.</span>״</li>
       <li>״כלי אפשר להעתיק. סגנון אפשר לחקות. אבל הדרך שבה אתם חושבים, מרגישים ומסתכלים על העולם, <span class="lit">זה החומר שאין לאף אחד אחר.</span>״</li>
     </ul>
   </div>
@@ -649,35 +647,31 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <!-- 9a PAIN: the realism problem, between the DMs and the peek -->
 <section class="sec center" id="pain">
   <div class="wrap narrow">
-    <h2 class="h2-s">מוכר <span class="lit">לכם?</span></h2>
+    <h2 class="h2-s">יש לכם רעיון מדהים בראש. <span class="lit">אז למה הוא לא נראה ככה על המסך?</span></h2>
     <div class="dm-list">
-      <p class="dm glass">משקיעים זמן וכסף ביצירת תוכן, ועדיין לא מצליחים לייצר פניות, צפיות ותגובות מהקהל שלכם.</p>
-      <p class="dm glass">ניסיתם ליצור את עצמכם ב-AI, ואתם פשוט לא דומים לעצמכם.</p>
-      <p class="dm glass">השוט יוצא AI שמזהים מקילומטרים. העוקבים קולטים את זה בשנייה.</p>
-      <p class="dm glass">יש לכם רעיונות מטורפים, אבל אי אפשר להוציא אותם לפועל ברמה גבוהה בלי ציוד. אתם מרגישים שאתם לא מצליחים לתת ביטוי ליצירתיות שלכם.</p>
+      <p class="dm glass">אתם מנסים ליצור את עצמכם ב-AI, אבל בכל פעם יוצא מישהו שקצת מזכיר אתכם.</p>
+      <p class="dm glass">אתם מבקשים מהמחולל משהו פשוט, והוא מחליט לעשות משהו אחר לגמרי.</p>
+      <p class="dm glass">התמונה דווקא נראית טוב, אבל ברגע שהיא מתחילה לזוז — הכול פתאום נראה מלאכותי.</p>
+      <p class="dm glass">או שיש לכם רעיון לסרטון שאתם מתים ליצור, אבל אין לכם מושג איך להפוך אותו למשהו אמיתי.</p>
     </div>
-    <p class="sub">זה לא המחולל. זה מה שבונים לפני שמתחילים.<br>בשיעורים 9 עד 11: גיליון דמות, בדיקת זהות, ומה מסגיר תמונת AI.</p>
+    <p class="sub">לא תמיד צריך מחולל טוב יותר. לפעמים צריך להבין איך לעבוד איתו נכון.<br>וזה בדיוק מה שאנחנו לומדים לעשות.</p>
   </div>
 </section>
 
 
 
 
-<!-- bridge A: Eve's words, 15.11 -->
+<!-- bridge: differentiation (Eve, 15.11) -->
 <section class="sec center bridge" id="flood">
   <div class="wrap narrow">
-    <p>הרשת מתחילה להיות מוצפת בסרטוני&nbsp;AI.<br>לכולם בקרוב יהיו את אותם הכלים<br>ואת אותן היכולות.</p>
-    <p class="ask">אז איך בולטים בעולם שבו <span class="lit">נקודת הפתיחה של כולם</span> עוד רגע תהיה זהה?</p>
+    <p class="ask" style="margin-top:0">בקרוב כולם ידעו ליצור <span style="white-space:nowrap">ב-AI.</span> <span class="lit">אז מה יגרום לסרטון שלכם להיות שונה?</span></p>
+    <p class="soft">הכלים הופכים נגישים יותר, והיכולת לייצר תמונה או סרטון כבר לא תהיה משהו יוצא דופן.</p>
+    <p style="margin-top:22px">אבל לדעת לייצר, ולדעת מה לייצר — אלה שני דברים שונים לגמרי.</p>
+    <p class="soft">בגלל זה הקורס מתחיל דווקא בחשיבה: איך מוצאים רעיון, איך בונים מסר, ואיך מחליטים מה אנחנו רוצים שהצופה ירגיש.<br>ומשם עוברים לצד המעשי. דמויות, מחוללים, שוטים, תנועה, קול, וכל מה שצריך כדי להפוך את הרעיון לסרטון.</p>
+    <p class="ask">״ה-AI הוא רק הצינור. <span class="lit">אתם המקור.</span>״</p>
   </div>
 </section>
 
-<!-- bridge B: Eve's words, 15.11 -->
-<section class="sec center bridge" id="packed">
-  <div class="wrap narrow">
-    <p>בואו ללמוד איך לייצר תוכן ריאליסטי, <span class="lit">מיוחד ושונה בנוף,</span><br>עם כל הדברים הפרקטיים שאתם&nbsp;צריכים.</p>
-    <p class="soft">כל מה שלמדתי לאורך הדרך, מרוכז וארוז בצורה נוחה ופשוטה ליישום.<br>אחרי הטעויות, אחרי מה שלא צלח: פתרונות מדויקים, בשיעורים קצרים וממוקדים.</p>
-  </div>
-</section>
 
 
 <!-- 5 PROOF: real numbers from the Instagram API -->
@@ -799,7 +793,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
     <h2 class="h2-s">שיעור אחד מהקורס, <span class="lit">פתוח לצפייה.</span></h2>
     <p class="sub">שיעור 7 · מכירים את מגרש המשחקים · 3 וחצי דקות</p>
     <div class="free-v led"><iframe src="https://player.vimeo.com/video/1243329981?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" title="שיעור 7 מתוך הקורס: מכירים את מגרש המשחקים" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-    <a class="btn" href="#offer" style="margin-top:28px">אני רוצה להצטרף</a>
+    <a class="btn" href="#offer" style="margin-top:28px">אני רוצה את הקורס</a>
   </div>
 </section>
 
@@ -917,6 +911,16 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
 
 <!-- 10 OFFER -->
+<!-- 8a bridge to the price (Eve, 15.11) -->
+<section class="sec center bridge" id="how">
+  <div class="wrap narrow">
+    <p class="ask" style="margin-top:0">אז איך עוברים מלצפות בסרטונים כאלה, <span class="lit">ליצור אותם בעצמכם?</span></p>
+    <p style="margin-top:22px">לא בבת אחת.</p>
+    <p class="soft">מתחילים מהרעיון. לומדים לבנות אותו לטקסט ולתכנן מה אנחנו רוצים להראות.<br>משם לומדים ליצור דמויות, לשמור על המראה שלהן, לבנות פריימים, להכניס תנועה ולגרום להן לדבר.<br>ובדרך לומדים גם את הדברים שלא תמיד הולכים חלק: איך מזהים מה השתבש, מה כדאי לשנות, ומתי פשוט בחרנו במחולל הלא נכון.</p>
+    <p class="soft">את כל זה ריכזתי ב־24 שיעורים מוקלטים, עם הדגמות מתוך הכלים, חומרי עבודה ומקרי בוחן מהסרטונים שלי.</p>
+  </div>
+</section>
+
 <section class="sec center" id="offer">
   <div class="wrap">
     <div class="cd glass" id="cd" hidden data-end="2026-11-06T22:00:00+02:00" role="timer" aria-live="off">
@@ -949,7 +953,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           <li>🎁 במתנה: קורס קצר של זוהר וענונו, מייסד קולבו, מותאם במיוחד לעבודה בקולבו</li>
           <li>כבר יש לכם מנוי בפלטפורמה אחרת, כמו Higgsfield? אפשר לעבוד גם שם</li>
         </ul>
-        <a class="btn" href="https://mrng.to/XeGb9OUChG">אני רוצה את הקורס</a>
+        <a class="btn" href="https://mrng.to/XeGb9OUChG">להצטרפות לקורס ה-AI</a>
         <p class="fine">גישה לתמיד</p>
         <p class="fine"><a href="#free" style="color:inherit;text-decoration:underline">רוצים לראות קודם שיעור? יש אחד פתוח ←</a></p>
       </div>
@@ -966,7 +970,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
           <li>מתחילים מאפס? הבאנדל בשבילכם: קודם קורס הבסיס (269 ₪ לבד), ואז ה-AI</li>
         </ul>
         <a class="more-base" href="https://www.evecontent.co.il/" target="_blank" rel="noopener" style="display:block;text-align:center;margin:14px 0 4px;padding:13px 18px;border:2px solid #FFC23D;border-radius:999px;color:#fff;font-weight:800;font-size:17px;line-height:1.3;text-decoration:none;box-shadow:0 0 16px rgba(255,194,61,.35)">לעמוד המלא של קורס הבסיס ←</a>
-        <a class="btn" href="https://mrng.to/ZrmjqmJK3M">אני רוצה את הבאנדל</a>
+        <a class="btn" href="https://mrng.to/ZrmjqmJK3M">להצטרפות לבאנדל</a>
         <p class="fine">גישה לתמיד</p>
         <p class="fine"><a href="#free" style="color:inherit;text-decoration:underline">רוצים לראות קודם שיעור? יש אחד פתוח ←</a></p>
       </div>
@@ -1005,7 +1009,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   <div class="wrap narrow">
     <h2 class="h2">ההודעה הבאה <span class="lit">על הסרטון שלכם.</span></h2>
     <div class="empty led"><span id="typed">ההודעה הבאה, על הסרטון שלכם.</span><span class="cursor" aria-hidden="true"></span></div>
-    <a class="btn" href="#offer">אני רוצה להצטרף</a>
+    <a class="btn" href="#offer">אני רוצה להתחיל ליצור</a>
   </div>
 </section>
 </main>

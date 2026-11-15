@@ -117,6 +117,9 @@ main{position:relative;z-index:1}
 .screen .cap p{font-size:clamp(20px,2.4vw,28px);font-weight:700}
 
 /* ---------- 3 FLY-THROUGH ---------- */
+.bridge{padding-block:clamp(48px,7vw,90px)}
+.bridge p{margin:0;text-wrap:balance;font-size:clamp(22px,3vw,30px);font-weight:900;line-height:1.4;color:var(--ink)}
+.bridge p.soft{margin-top:18px;font-size:clamp(17px,1.8vw,20px);font-weight:500;line-height:1.65;color:var(--ink-2)}
 .fly{height:330vh}
 .stage{position:sticky;top:0;height:100svh;overflow:hidden;perspective:900px;perspective-origin:50% 45%}
 .space{position:absolute;inset:0;transform-style:preserve-3d}
@@ -654,6 +657,13 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
 
 
+<!-- bridge A: Eve's words, 15.11 -->
+<section class="sec center bridge" id="flood">
+  <div class="wrap narrow">
+    <p>הרשת מתחילה להיות מוצפת בסרטוני&nbsp;AI.<br>לכולם בקרוב יהיו את אותם הכלים<br>ואת אותן היכולות.</p>
+  </div>
+</section>
+
 <!-- 3 FLY-THROUGH -->
 <section class="fly" id="fly">
   <div class="stage">
@@ -666,6 +676,15 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
     <div class="progress" aria-hidden="true"><i id="prog"></i></div>
   </div>
 </section>
+
+<!-- bridge B: Eve's words, 15.11 -->
+<section class="sec center bridge" id="packed">
+  <div class="wrap narrow">
+    <p>בואו ללמוד איך לייצר תוכן ריאליסטי, <span class="lit">מיוחד ושונה בנוף,</span><br>עם כל הדברים הפרקטיים שאתם&nbsp;צריכים.</p>
+    <p class="soft">כל מה שלמדתי לאורך הדרך, מרוכז וארוז בצורה נוחה ופשוטה ליישום.<br>אחרי הטעויות, אחרי מה שלא צלח: פתרונות מדויקים, בשיעורים קצרים וממוקדים.</p>
+  </div>
+</section>
+
 
 <!-- 5 PROOF: real numbers from the Instagram API -->
 <section class="sec center" id="proof">

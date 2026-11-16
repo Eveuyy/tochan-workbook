@@ -509,6 +509,15 @@ body.rv-on{overflow:hidden}
 .topbar .btn::before,.topbar .btn::after{display:none}
 .topbar .btn:hover{box-shadow:none}
 .screen .cap .cap-sub{max-width:34em;margin:0;font-size:clamp(16px,1.7vw,18px);font-weight:400;line-height:1.55;color:var(--ink-2)}
+/* 16.11 three levels of visual strength. Level 1 (peak): hero title, 1.8M stat, offer. Level 2: section titles, no heavy glow. Level 3: calm text and cards */
+.h2-s{font-size:clamp(32px,5vw,62px)}
+.sec .lit{filter:none}
+#offer .lit,.big3 .main .lit{filter:drop-shadow(0 0 18px var(--glow))}
+.sec:not(.hero):not(#offer) .btn,.fcta .btn{box-shadow:0 0 0 1px rgba(255,255,255,.2) inset,0 0 12px rgba(255,46,136,.3),0 10px 24px -14px var(--glow)}
+.pv-views b{font-size:34px}
+.pv-more{font-size:12.5px;color:var(--ink-2)}
+.pv-where{box-shadow:none;border-color:rgba(255,194,61,.45);color:var(--ink-2);font-size:12px}
+.pv-q{font-size:13px;color:var(--ink-2);background:transparent}
 .lines h2{max-width:14em}
 #fit{padding-bottom:30px}
 .ring .msg{backface-visibility:hidden;-webkit-backface-visibility:hidden}
@@ -867,7 +876,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <!-- 9b FIT: two tap-to-open questions, after "מה מקבלים" (Eve, 10.11) -->
 <section class="sec center" id="fit">
   <div class="wrap">
-    <h2 class="h2-s">איך יודעים אם הקורס <span class="lit">מתאים לי?</span></h2>
+    <h2 class="h2-s">איזה מסלול <span class="lit">מתאים לי?</span></h2>
     <p class="sub">שתי דרכים להתחיל. נוגעים בשאלה שמתאימה לכם.</p>
     <div class="fitq">
       <details class="fitd glass">

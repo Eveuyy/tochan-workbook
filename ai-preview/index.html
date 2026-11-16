@@ -911,26 +911,6 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </section>
 
 <!-- 8 RING -->
-<section class="sec center ring-sec" id="say">
-  <div class="wrap">
-    <h2 class="h2-s">זה מה שקורה <span class="lit">כשמרגישים.</span></h2>
-    <p class="sub">תגובות אמיתיות לסרטונים שלי באינסטגרם.</p>
-  </div>
-  <div class="ring-stage" aria-label="תגובות לסרטונים">
-    <div class="ring" id="ring">
-      <div class="msg glass">את פשוט ביטאת את מה שלא הצלחתי לבטא לבעלי ❤️<small>אינסטגרם</small></div>
-      <div class="msg glass">אין אישה שלא תעשה פורוורד לבן זוג שלה פשוט אין!!<small>אינסטגרם</small></div>
-      <div class="msg glass">תודה, בזכותך אני מבין את אשתי קצת יותר 🙏<small>אינסטגרם</small></div>
-      <div class="msg glass">התעוררתי עם הסרטון הזה ופשוט התחלתי לבכות. כמה מדוייק<small>אינסטגרם</small></div>
-      <div class="msg glass">אני בכלל הומו ורווק, למה אני עם צמרמורת😢<small>אינסטגרם</small></div>
-    </div>
-  </div>
-  <div class="shots" aria-label="צילומי מסך של תגובות מהאינסטגרם, השמות מטושטשים">
-    <img src="../ai-preview/comments/c2.jpg" alt="תגובה באינסטגרם: ואוו תקשיבי את מעבירה תחושות ועולם שלם בכלכך חדות רגישות ועריכה מושלמת" loading="lazy" width="900">
-    <img src="../ai-preview/comments/c6.jpg" alt="תגובה באינסטגרם: אמאלה גרמת לי לבכות. זה כל כך מדויק" loading="lazy" width="900">
-    <img src="../ai-preview/comments/c7.jpg" alt="תגובה באינסטגרם: לא יודעת מה המילים הנכונות לתאר לך מה אני מרגישה בקשר לסרטון הזה.. כל קשת הרגשות. את מטורפת" loading="lazy" width="900">
-  </div>
-</section>
 
 <!-- 9e KEREN: Keren Shacham & Adi Ayash on Ping Pong Show (All•in) + link to the episode. Before the final launch: Eve confirms she checked with Sofi and got their OK -->
 <section class="sec center" id="keren">
@@ -1276,12 +1256,14 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   }
 
   /* ---------- ring ---------- */
-  var ring = document.getElementById('ring'), msgs = Array.prototype.slice.call(ring.children), ringAngle = 0, ringHover = false, R = 300, ringOn = false;
+  var ring = document.getElementById('ring'), msgs = ring ? Array.prototype.slice.call(ring.children) : [], ringAngle = 0, ringHover = false, R = 300, ringOn = false;
   function ringSize(){ R = (msgs[0].offsetWidth / 2) / Math.tan(Math.PI / msgs.length) + 24; }
+  if (ring) {
   ringSize(); addEventListener('resize', ringSize);
   ring.parentNode.addEventListener('pointerenter', function(){ ringHover = true; });
   ring.parentNode.addEventListener('pointerleave', function(){ ringHover = false; });
   new IntersectionObserver(function(es){ ringOn = es[0].isIntersecting; }).observe(ring.parentNode);
+  }
   function ringFrame(){
     msgs.forEach(function(m, i){
       var a = ringAngle + i * 360 / msgs.length, c = Math.cos(a * Math.PI / 180);

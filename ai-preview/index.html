@@ -566,11 +566,25 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
   document.addEventListener('DOMContentLoaded',function(){
     watch('outcomes','reached_outcomes');watch('learn','reached_syllabus');watch('free','reached_free_lesson');watch('offer','reached_price');watch('faq','reached_faq');
   });
+  /* lesson progress (22.11): Clarity-only events at 25/50/75% and 95% of continuous playback. Vimeo itself stays dnt=1 (no Vimeo tracking). A jump (seek) never counts as watching. */
+  function trackLesson(f){
+    var s=document.createElement('script');s.src='https://player.vimeo.com/api/player.js';
+    s.onload=function(){try{
+      var p=new Vimeo.Player(f),last=0,prev=0,hit={};
+      var marks=[[.25,'free_lesson_25'],[.5,'free_lesson_50'],[.75,'free_lesson_75'],[.95,'free_lesson_done']];
+      p.on('timeupdate',function(d){
+        var t=d.seconds,pc=d.percent,jump=Math.abs(t-last)>3;last=t;
+        if(!jump){marks.forEach(function(m){if(prev<m[0]&&pc>=m[0]&&!hit[m[1]]){hit[m[1]]=1;ev(m[1]);}});}
+        prev=pc;
+      });
+    }catch(x){}};
+    document.head.appendChild(s);
+  }
   /* lesson cover (16.11): tap swaps in the Vimeo player and starts it */
   document.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('#fvCover');if(!c)return;
     var f=document.createElement('iframe');f.src='https://player.vimeo.com/video/1243329981?dnt=1&title=0&byline=0&portrait=0&autoplay=1';
     f.title='שיעור 7 מתוך הקורס: מכירים את מגרש המשחקים';f.allow='autoplay; fullscreen; picture-in-picture';f.setAttribute('allowfullscreen','');
-    c.replaceWith(f);if(!seen.fl){seen.fl=1;ev('free_lesson_play');}});
+    c.replaceWith(f);trackLesson(f);if(!seen.fl){seen.fl=1;ev('free_lesson_play');}});
   /* a tap inside the Vimeo player moves focus into the iframe and blurs the page */
   addEventListener('blur',function(){setTimeout(function(){var f=document.activeElement;if(f&&f.tagName==='IFRAME'&&f.closest('#free')&&!seen.fl){seen.fl=1;ev('free_lesson_play');}},0);});
   document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href="#free"]');if(a)ev('to_free_lesson_link');},true);

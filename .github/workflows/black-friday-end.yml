@@ -1,0 +1,30 @@
+name: Black Friday end (ai-preview back to full price)
+on:
+  schedule:
+    # 30.11.2026 00:00 Israel (UTC+2) = 29.11 22:00 UTC. GitHub cron can lag a few minutes; the page's own JS
+    # already hides the sale client-side at the exact second, this commit makes the HTML itself full price.
+    - cron: '0 22 29 11 *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  end:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Back to full price
+        run: python3 .github/scripts/black_friday.py off
+      - name: Turn off the discounted Morning payment links
+        continue-on-error: true
+        env:
+          MORNING_ID: ${{ secrets.MORNING_ID }}
+          MORNING_SECRET: ${{ secrets.MORNING_SECRET }}
+        run: python3 .github/scripts/morning_links_off.py
+      - name: Commit and push if changed
+        run: |
+          git config user.name "black-friday-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet -- ai-preview/index.html; then echo "already at full price"; exit 0; fi
+          git add ai-preview/index.html
+          git commit -m "ai-preview: סוף בלאק פריידיי, חזרה למחיר המלא וללינקים המלאים (אוטומטי)"
+          git push

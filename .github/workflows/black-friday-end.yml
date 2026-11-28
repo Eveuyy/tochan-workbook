@@ -14,12 +14,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Back to full price
         run: python3 .github/scripts/black_friday.py off
-      - name: Turn off the discounted Morning payment links
-        continue-on-error: true
-        env:
-          MORNING_ID: ${{ secrets.MORNING_ID }}
-          MORNING_SECRET: ${{ secrets.MORNING_SECRET }}
-        run: python3 .github/scripts/morning_links_off.py
       - name: Commit and push if changed
         run: |
           git config user.name "black-friday-bot"
